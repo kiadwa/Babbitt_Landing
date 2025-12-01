@@ -123,36 +123,53 @@ document.addEventListener('DOMContentLoaded', function() {
             formMessage.className = 'form-message';
             
             try {
-                const formData = new FormData(form);
-                // Add reCAPTCHA response to form data for FormSubmit.co
-                formData.append('g-recaptcha-response', recaptchaResponse);
+                // Add reCAPTCHA response as hidden input to form
+                // FormSubmit.co works better with direct form submission
+                let recaptchaInput = form.querySelector('input[name="g-recaptcha-response"]');
+                if (!recaptchaInput) {
+                    recaptchaInput = document.createElement('input');
+                    recaptchaInput.type = 'hidden';
+                    recaptchaInput.name = 'g-recaptcha-response';
+                    form.appendChild(recaptchaInput);
+                }
+                recaptchaInput.value = recaptchaResponse;
                 
-                // FormSubmit.co accepts the form data and sends email
+                // Add _next parameter to prevent redirect and show success message
+                let nextInput = form.querySelector('input[name="_next"]');
+                if (!nextInput) {
+                    nextInput = document.createElement('input');
+                    nextInput.type = 'hidden';
+                    nextInput.name = '_next';
+                    form.appendChild(nextInput);
+                }
+                nextInput.value = window.location.href + '#contact';
+                
+                // Submit form using fetch with proper error handling
+                const formData = new FormData(form);
+                
                 const response = await fetch(form.action, {
                     method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'text/html'
-                    }
+                    body: formData
                 });
                 
-                // FormSubmit.co returns HTML, so we check if response is ok
-                if (response.ok) {
+                // FormSubmit.co returns HTML on success, so we check response status
+                if (response.ok || response.status === 200) {
                     formMessage.textContent = 'Thank you for joining the waitlist! We\'ll be in touch soon.';
                     formMessage.className = 'form-message success';
                     form.reset();
-                    // Reset reCAPTCHA
                     grecaptcha.reset();
                 } else {
+                    // Try to get error message from response
+                    const text = await response.text();
                     formMessage.textContent = 'Oops! There was a problem submitting your form. Please try again.';
                     formMessage.className = 'form-message error';
-                    // Reset reCAPTCHA on error
                     grecaptcha.reset();
+                    console.error('Form submission error:', response.status, text);
                 }
             } catch (error) {
-                formMessage.textContent = 'Oops! There was a problem submitting your form. Please try again.';
+                console.error('Form submission error:', error);
+                formMessage.textContent = 'Oops! There was a problem submitting your form. Please check your connection and try again.';
                 formMessage.className = 'form-message error';
-                // Reset reCAPTCHA on error
                 grecaptcha.reset();
             } finally {
                 // Re-enable submit button

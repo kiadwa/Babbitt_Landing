@@ -217,8 +217,10 @@
                 4. Optional: Add _next parameter for redirect URL after submission
             -->
             <form class="waitlist-form" id="waitlistForm" action="https://formsubmit.co/randomappcompany@gmail.com" method="POST">
-                <!-- Hidden input to prevent spam -->
+                <!-- FormSubmit.co configuration -->
                 <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_format" value="plain">
                 <!-- Optional: Redirect to thank you page after submission -->
                 <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you"> -->
                 <!-- Optional: Subject line for email -->
@@ -228,7 +230,7 @@
                     <input type="text" name="lastName" placeholder="Last Name" required>
                 </div>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="Your Company" placeholder="Your Company Name">
+                <input type="text" name="company" placeholder="Your Company Name">
                 <select name="userType" required>
                     <option value="">User Type</option>
                     <option value="trades">Trades & Specialists</option>
