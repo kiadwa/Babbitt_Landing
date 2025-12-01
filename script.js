@@ -1,45 +1,45 @@
 // Countdown Timer
 function updateCountdown() {
-    // Launch date: January 20, 2026
-    const launchDate = new Date('2026-01-20T15:00:00');
-    // Target date: 30 days after launch (February 19, 2026 at 3:00 PM)
-    // This ensures everyone sees the same countdown regardless of when they visit
-    const targetDate = new Date(launchDate);
-    targetDate.setDate(targetDate.getDate() + 30);
-
+    // Target date: February 19, 2026 at 3:00 PM (UTC)
+    // This is 30 days after launch date (January 20, 2026)
+    // Using UTC to avoid timezone issues
+    const targetDate = new Date(Date.UTC(2026, 1, 19, 15, 0, 0)); // Month is 0-indexed (1 = February)
+    
     const now = new Date().getTime();
     const distance = targetDate.getTime() - now;
 
-    if (distance < 0) {
-        // Countdown finished - show 0 or a message
-        // You can update this to show a different message or reset to a new date
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-        
-        if (daysEl) daysEl.textContent = '00';
-        if (hoursEl) hoursEl.textContent = '00';
-        if (minutesEl) minutesEl.textContent = '00';
-        if (secondsEl) secondsEl.textContent = '00';
-        return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Update DOM elements
+    // Get DOM elements
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
 
-    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+    // Check if elements exist
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        console.error('Countdown timer elements not found');
+        return;
+    }
+
+    if (distance < 0) {
+        // Countdown finished - show 0
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+    }
+
+    // Calculate time remaining
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Update DOM elements with zero-padding
+    daysEl.textContent = String(days).padStart(2, '0');
+    hoursEl.textContent = String(hours).padStart(2, '0');
+    minutesEl.textContent = String(minutes).padStart(2, '0');
+    secondsEl.textContent = String(seconds).padStart(2, '0');
 }
 
 // Initialize countdown and update every second
@@ -105,78 +105,58 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submitBtn');
     
     if (form) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+        form.addEventListener('submit', function(e) {
             // Check if reCAPTCHA is completed
             const recaptchaResponse = grecaptcha.getResponse();
             if (!recaptchaResponse) {
+                e.preventDefault();
                 formMessage.textContent = 'Please complete the reCAPTCHA verification.';
                 formMessage.className = 'form-message error';
-                return;
+                return false;
             }
             
-            // Disable submit button and show loading state
+            // Add reCAPTCHA response as hidden input to form
+            // FormSubmit.co works best with direct form submission (not AJAX)
+            let recaptchaInput = form.querySelector('input[name="g-recaptcha-response"]');
+            if (!recaptchaInput) {
+                recaptchaInput = document.createElement('input');
+                recaptchaInput.type = 'hidden';
+                recaptchaInput.name = 'g-recaptcha-response';
+                form.appendChild(recaptchaInput);
+            }
+            recaptchaInput.value = recaptchaResponse;
+            
+            // Show loading state
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
-            formMessage.textContent = '';
+            formMessage.textContent = 'Submitting your request...';
             formMessage.className = 'form-message';
             
-            try {
-                // Add reCAPTCHA response as hidden input to form
-                // FormSubmit.co works better with direct form submission
-                let recaptchaInput = form.querySelector('input[name="g-recaptcha-response"]');
-                if (!recaptchaInput) {
-                    recaptchaInput = document.createElement('input');
-                    recaptchaInput.type = 'hidden';
-                    recaptchaInput.name = 'g-recaptcha-response';
-                    form.appendChild(recaptchaInput);
-                }
-                recaptchaInput.value = recaptchaResponse;
-                
-                // Add _next parameter to prevent redirect and show success message
-                let nextInput = form.querySelector('input[name="_next"]');
-                if (!nextInput) {
-                    nextInput = document.createElement('input');
-                    nextInput.type = 'hidden';
-                    nextInput.name = '_next';
-                    form.appendChild(nextInput);
-                }
-                nextInput.value = window.location.href + '#contact';
-                
-                // Submit form using fetch with proper error handling
-                const formData = new FormData(form);
-                
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                // FormSubmit.co returns HTML on success, so we check response status
-                if (response.ok || response.status === 200) {
-                    formMessage.textContent = 'Thank you for joining the waitlist! We\'ll be in touch soon.';
-                    formMessage.className = 'form-message success';
-                    form.reset();
-                    grecaptcha.reset();
-                } else {
-                    // Try to get error message from response
-                    const text = await response.text();
-                    formMessage.textContent = 'Oops! There was a problem submitting your form. Please try again.';
-                    formMessage.className = 'form-message error';
-                    grecaptcha.reset();
-                    console.error('Form submission error:', response.status, text);
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                formMessage.textContent = 'Oops! There was a problem submitting your form. Please check your connection and try again.';
-                formMessage.className = 'form-message error';
-                grecaptcha.reset();
-            } finally {
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Secure My Spot';
-            }
+            // Allow form to submit naturally - FormSubmit.co will handle it
+            // The form will redirect back to the _next URL after submission
+            return true;
         });
+        
+        // Check if we're returning from a successful form submission
+        // FormSubmit.co redirects to _next URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('submitted') === 'true' || window.location.hash === '#contact') {
+            // Show success message if form was just submitted
+            const showSuccess = sessionStorage.getItem('formSubmitted');
+            if (showSuccess) {
+                formMessage.textContent = 'Thank you for joining the waitlist! We\'ll be in touch soon.';
+                formMessage.className = 'form-message success';
+                form.reset();
+                sessionStorage.removeItem('formSubmitted');
+                // Scroll to form message
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        // Mark form as about to be submitted
+        form.addEventListener('submit', function() {
+            sessionStorage.setItem('formSubmitted', 'true');
+        }, { once: true });
     }
 });
 
