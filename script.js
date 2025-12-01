@@ -104,37 +104,95 @@ document.addEventListener('DOMContentLoaded', function() {
     const formMessage = document.getElementById('formMessage');
     const submitBtn = document.getElementById('submitBtn');
     
+    // Wait for reCAPTCHA to be ready
+    function waitForRecaptcha(callback) {
+        if (typeof grecaptcha !== 'undefined') {
+            if (grecaptcha.ready) {
+                grecaptcha.ready(callback);
+            } else {
+                // If ready() doesn't exist, check if widget is rendered
+                setTimeout(function() {
+                    try {
+                        const widgetId = grecaptcha.render ? 0 : null;
+                        if (widgetId !== null || grecaptcha.getResponse) {
+                            callback();
+                        } else {
+                            waitForRecaptcha(callback);
+                        }
+                    } catch (e) {
+                        waitForRecaptcha(callback);
+                    }
+                }, 100);
+            }
+        } else {
+            // If grecaptcha isn't loaded yet, wait a bit and try again
+            setTimeout(function() {
+                waitForRecaptcha(callback);
+            }, 100);
+        }
+    }
+    
     if (form) {
         form.addEventListener('submit', function(e) {
-            // Check if reCAPTCHA is completed
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-                e.preventDefault();
-                formMessage.textContent = 'Please complete the reCAPTCHA verification.';
-                formMessage.className = 'form-message error';
-                return false;
-            }
+            e.preventDefault();
             
-            // Add reCAPTCHA response as hidden input to form
-            // FormSubmit.co works best with direct form submission (not AJAX)
-            let recaptchaInput = form.querySelector('input[name="g-recaptcha-response"]');
-            if (!recaptchaInput) {
-                recaptchaInput = document.createElement('input');
-                recaptchaInput.type = 'hidden';
-                recaptchaInput.name = 'g-recaptcha-response';
-                form.appendChild(recaptchaInput);
-            }
-            recaptchaInput.value = recaptchaResponse;
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            formMessage.textContent = 'Submitting your request...';
-            formMessage.className = 'form-message';
-            
-            // Allow form to submit naturally - FormSubmit.co will handle it
-            // The form will redirect back to the _next URL after submission
-            return true;
+            // Wait for reCAPTCHA to be ready before checking
+            waitForRecaptcha(function() {
+                try {
+                    // Check if reCAPTCHA exists and get response
+                    if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
+                        formMessage.textContent = 'reCAPTCHA is still loading. Please wait a moment and try again.';
+                        formMessage.className = 'form-message error';
+                        return;
+                    }
+                    
+                    // Get the widget ID (0 for first widget)
+                    let recaptchaResponse = '';
+                    try {
+                        recaptchaResponse = grecaptcha.getResponse();
+                    } catch (err) {
+                        // Try with explicit widget ID
+                        try {
+                            recaptchaResponse = grecaptcha.getResponse(0);
+                        } catch (err2) {
+                            console.error('reCAPTCHA getResponse error:', err2);
+                        }
+                    }
+                    
+                    if (!recaptchaResponse) {
+                        formMessage.textContent = 'Please complete the reCAPTCHA verification.';
+                        formMessage.className = 'form-message error';
+                        return;
+                    }
+                    
+                    // Add reCAPTCHA response as hidden input to form
+                    // FormSubmit.co works best with direct form submission (not AJAX)
+                    let recaptchaInput = form.querySelector('input[name="g-recaptcha-response"]');
+                    if (!recaptchaInput) {
+                        recaptchaInput = document.createElement('input');
+                        recaptchaInput.type = 'hidden';
+                        recaptchaInput.name = 'g-recaptcha-response';
+                        form.appendChild(recaptchaInput);
+                    }
+                    recaptchaInput.value = recaptchaResponse;
+                    
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Submitting...';
+                    formMessage.textContent = 'Submitting your request...';
+                    formMessage.className = 'form-message';
+                    
+                    // Submit the form - FormSubmit.co will handle it
+                    // The form will redirect back to the _next URL after submission
+                    form.submit();
+                } catch (error) {
+                    console.error('reCAPTCHA error:', error);
+                    formMessage.textContent = 'Please complete the reCAPTCHA verification.';
+                    formMessage.className = 'form-message error';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Secure My Spot';
+                }
+            });
         });
         
         // Check if we're returning from a successful form submission
