@@ -12,7 +12,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation -------------------------------------------------------------------------------------------------------------------->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">Babbitt</div>
@@ -24,7 +24,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section -------------------------------------------------------------------------------------------------------------------->
     <section class="hero">
         <div class="hero-background"></div>
         <div class="container">
@@ -59,7 +59,9 @@
                     <a href="#contact" class="btn btn-primary">GET EARLY ACCESS</a>
                     <a href="#features" class="btn btn-secondary">LEARN MORE</a>
                 </div>
-                <div class="scroll-indicator">↓</div>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -71,7 +73,7 @@
         </div>
     </section>
 
-    <!-- Problems Section -->
+    <!-- Problems Section -------------------------------------------------------------------------------------------------------------------->
     <section class="problems">
         <div class="container">
             <h2 class="section-title orange">Yet here we are...</h2>
@@ -83,7 +85,7 @@
                 </div>
                 <div class="problem-item">
                     <span class="problem-icon"><i class="fas fa-user-friends"></i></span>
-                    <p>Difficulty finding reliable tradesmen</p>
+                    <p>Difficulty finding reliable tradespeople</p>
                 </div>
                 <div class="problem-item">
                     <span class="problem-icon"><i class="fas fa-shield-alt"></i></span>
@@ -113,7 +115,7 @@
         </div>
     </section>
 
-    <!-- Solution Section -->
+    <!-- Solution Section ------------------------------------------------------------------------------------------------------------------->
     <section class="solution">
         <div class="container">
             <h2 class="section-title orange">We're changing that</h2>
@@ -122,10 +124,10 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section -------------------------------------------------------------------------------------------------------------------->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-subtitle">Our Core Features</div>
+            <div class="section-subtitle">Our Platform</div>
             <h2 class="section-title orange">Everything You Need</h2>
             <p class="features-intro">Babbitt is a platform that offers everything from community tools to work flows.</p>
             <div class="features-grid">
@@ -156,8 +158,8 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-calculator"></i></div>
-                    <h3>Contract Accounting</h3>
-                    <p>Trust-based system with verified professionals</p>
+                    <h3>Contract Accountability</h3>
+                    <p>Trust-based system with verified professionals and contractors</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-id-card"></i></div>
@@ -170,13 +172,13 @@
                     <p>Find and secure new opportunities</p>
                 </div>
             </div>
-            <div class="features-cta">
+            <!-- <div class="features-cta">
                 <a href="#" class="btn btn-features">See the full list of features that the tools you need</a>
-            </div>
+            </div> -->
         </div>
     </section>
 
-    <!-- Built With You Section -->
+    <!-- Built With You Section ------------------------------------------------------------------------------------------------------------------>
     <section id="about" class="built-with-you">
         <div class="container">
             <h2 class="section-title orange">Built With You, Not Just For You</h2>
@@ -184,42 +186,49 @@
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Direct input from trades, homeowners, and suppliers</h3>
+                    <h3>Listen and grow with our users</h3>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-road"></i></div>
-                    <h3>Transparent roadmap and updates</h3>
+                    <h3>Keep our tools fair, transparent and affordable</h3>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-star"></i></div>
-                    <h3>Prioritized features based on user feedback</h3>
+                    <h3>Protect your privacy and respect your time</h3>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-users-cog"></i></div>
-                    <h3>Community-driven development and moderation</h3>
+                    <h3>Uphold honesty, craftmanship and connections</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section -------------------------------------------------------------------------------------------------------->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title orange">Secure Your Spot</h2>
-            <p class="contact-text">Join the waitlist to be the first to experience our beta.</p>
+            <p class="contact-text">Join the waitlist to be the first to experience our beta. Of course, for free!</p>
             <!-- 
-                SETUP INSTRUCTIONS:
-                1. Go to https://formspree.io/ and create a free account
-                2. Create a new form and copy your form endpoint URL
-                3. Replace "YOUR_FORM_ID" in the action attribute below with your actual Formspree form ID
-                4. Example: action="https://formspree.io/f/xpzgkqyz"
+                FORMSUBMIT.CO SETUP:
+                1. Replace "phamhuykyanh90502@gmail.com" with your actual email address
+                2. FormSubmit.co will send form submissions directly to your email
+                3. No account or signup required - completely free!
+                4. Optional: Add _next parameter for redirect URL after submission
             -->
-            <form class="waitlist-form" id="waitlistForm" action="https://formsubmit.co/phamhuykyanh90502@gmail.com" method="POST">
+            <form class="waitlist-form" id="waitlistForm" action="https://formsubmit.co/randomappcompany@gmail.com" method="POST">
+                <!-- Hidden input to prevent spam -->
+                <input type="hidden" name="_captcha" value="false">
+                <!-- Optional: Redirect to thank you page after submission -->
+                <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you"> -->
+                <!-- Optional: Subject line for email -->
+                <input type="hidden" name="_subject" value="New Waitlist Signup - Babbitt">
                 <div class="form-row">
                     <input type="text" name="firstName" placeholder="First Name" required>
                     <input type="text" name="lastName" placeholder="Last Name" required>
                 </div>
                 <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="Your Company" placeholder="Your Company Name">
                 <select name="userType" required>
                     <option value="">User Type</option>
                     <option value="trades">Trades & Specialists</option>
@@ -253,11 +262,11 @@
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon"><i class="fas fa-tag"></i></span>
-                        <p>Discounts available for 12 months given when you preregistered before launch</p>
+                        <p>12 months discounts users who pre-registered before launch</p>
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon"><i class="fas fa-gift"></i></span>
-                        <p>Free subscription give away for trades business on launch</p>
+                        <p>Subscriptions give-away for trades businesses on launch</p>
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon"><i class="fas fa-handshake"></i></span>
@@ -278,7 +287,7 @@
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Product</h4>
+                        <h3>Product</h3>
                         <ul>
                             <li><a href="#features">Features</a></li>
                             <li><a href="#">Pricing</a></li>
@@ -286,7 +295,7 @@
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>Company</h4>
+                        <h3>Company</h3>
                         <ul>
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#">Careers</a></li>
@@ -298,10 +307,10 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Babbitt. All rights reserved.</p>
                 <div class="social-icons">
-                    <a href="#" aria-label="Twitter">🐦</a>
-                    <a href="#" aria-label="LinkedIn">💼</a>
-                    <a href="#" aria-label="Facebook">📘</a>
-                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>

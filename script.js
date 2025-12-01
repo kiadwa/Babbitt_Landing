@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Form submission handler with reCAPTCHA verification
+// Form submission handler with reCAPTCHA verification for FormSubmit.co
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('waitlistForm');
     const formMessage = document.getElementById('formMessage');
@@ -113,17 +113,19 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                 const formData = new FormData(form);
-                // Add reCAPTCHA response to form data
+                // Add reCAPTCHA response to form data for FormSubmit.co
                 formData.append('g-recaptcha-response', recaptchaResponse);
                 
+                // FormSubmit.co accepts the form data and sends email
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
                     headers: {
-                        'Accept': 'application/json'
+                        'Accept': 'text/html'
                     }
                 });
                 
+                // FormSubmit.co returns HTML, so we check if response is ok
                 if (response.ok) {
                     formMessage.textContent = 'Thank you for joining the waitlist! We\'ll be in touch soon.';
                     formMessage.className = 'form-message success';
@@ -131,12 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Reset reCAPTCHA
                     grecaptcha.reset();
                 } else {
-                    const data = await response.json();
-                    if (data.errors) {
-                        formMessage.textContent = data.errors.map(error => error.message).join(', ');
-                    } else {
-                        formMessage.textContent = 'Oops! There was a problem submitting your form. Please try again.';
-                    }
+                    formMessage.textContent = 'Oops! There was a problem submitting your form. Please try again.';
                     formMessage.className = 'form-message error';
                     // Reset reCAPTCHA on error
                     grecaptcha.reset();
