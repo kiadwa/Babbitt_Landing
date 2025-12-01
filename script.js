@@ -1,16 +1,27 @@
 // Countdown Timer
 function updateCountdown() {
-    // Set target date (30 days from now as example)
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 28);
-    targetDate.setHours(15, 6, 54, 0);
+    // Launch date: January 20, 2025
+    const launchDate = new Date('2025-01-12T15:00:00');
+    
+    // Target date: 30 days after launch (February 19, 2025 at 3:00 PM)
+    // This ensures everyone sees the same countdown regardless of when they visit
+    const targetDate = new Date('2026-01-19T15:00:00');
 
     const now = new Date().getTime();
     const distance = targetDate.getTime() - now;
 
     if (distance < 0) {
-        // Countdown finished, reset to 30 days
-        targetDate.setDate(targetDate.getDate() + 30);
+        // Countdown finished - show 0 or a message
+        // You can update this to show a different message or reset to a new date
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        
+        if (daysEl) daysEl.textContent = '00';
+        if (hoursEl) hoursEl.textContent = '00';
+        if (minutesEl) minutesEl.textContent = '00';
+        if (secondsEl) secondsEl.textContent = '00';
         return;
     }
 
