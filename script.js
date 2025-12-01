@@ -1,8 +1,8 @@
 // Countdown Timer
 function updateCountdown() {
-    // Launch date: January 12, 2025
-    const launchDate = new Date('2025-01-12T00:00:00');
-    // Target date: 30 days after launch
+    // Launch date: January 20, 2026
+    const launchDate = new Date('2026-01-20T15:00:00');
+    // Target date: 30 days after launch (February 19, 2026 at 3:00 PM)
     // This ensures everyone sees the same countdown regardless of when they visit
     const targetDate = new Date(launchDate);
     targetDate.setDate(targetDate.getDate() + 30);
