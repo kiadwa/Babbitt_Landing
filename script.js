@@ -305,3 +305,43 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         });
     }
 })();
+
+/* ── 8. Campaign Modal (Yulli's Launch — swappable) ── */
+(function () {
+    var modal    = document.getElementById('campaignModal');
+    if (!modal) return;
+
+    var closeBtn = document.getElementById('campaignModalClose');
+    var backdrop = modal.querySelector('.campaign-modal-backdrop');
+    var fabBtn   = document.getElementById('btnCampaignFab');
+    var navBtn   = document.getElementById('btnCampaignNav');
+
+    function openCampaign() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCampaign() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeCampaign);
+    if (backdrop) backdrop.addEventListener('click', closeCampaign);
+    if (fabBtn)   fabBtn.addEventListener('click', openCampaign);
+    if (navBtn)   navBtn.addEventListener('click', openCampaign);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeCampaign();
+        }
+    });
+
+    // Auto-open when user lands on /qrlanding (trailing slash tolerant)
+    var path = window.location.pathname.replace(/\/$/, '');
+    if (path.endsWith('/qrlanding') || path.endsWith('/qrlanding/index.html')) {
+        setTimeout(openCampaign, 450);
+    }
+})();
