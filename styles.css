@@ -184,13 +184,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-brand .logo-it svg:last-child {
-    margin-left: -4px;
+    margin-left: -2px;
+    overflow: visible;
     transition: margin-left 300ms ease-out;
 }
 
 .nav-brand:hover .logo-prefix { max-width: 85px; }
 .nav-brand:hover .logo-suffix { max-width: 13px; }
-.nav-brand:hover .logo-it svg:last-child { margin-left: 0px; }
+.nav-brand:hover .logo-it svg:last-child { margin-left: 0px; overflow: hidden; }
 
 .nav-links {
     display: flex;
