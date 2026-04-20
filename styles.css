@@ -1270,6 +1270,13 @@ body.partner-hover .dim-overlay {
     border-radius: var(--radius-card);
     padding: 32px 40px;
     text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.founder-card:hover {
+    border-color: rgba(246, 181, 0, 0.25);
 }
 
 .founder-avatar {
