@@ -14,19 +14,6 @@
     var active = tracks.filter(function (t) { return t.el; });
     if (!active.length) return;
 
-    // Lock hero-headline min-height to prevent layout shift on word change
-    var headline = document.querySelector('.hero-headline');
-    if (headline) {
-        var originals = active.map(function (t) { return t.el.textContent; });
-        var maxH = headline.offsetHeight;
-        for (var j = 0; j < active[0].words.length; j++) {
-            active.forEach(function (t) { t.el.textContent = t.words[j]; });
-            maxH = Math.max(maxH, headline.offsetHeight);
-        }
-        active.forEach(function (t, idx) { t.el.textContent = originals[idx]; });
-        headline.style.minHeight = maxH + 'px';
-    }
-
     var i = 0;
     setInterval(function () {
         active.forEach(function (t) {

@@ -747,7 +747,6 @@ body.partner-hover .dim-overlay {
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    max-width: 860px;
 }
 
 /* Hero lines — poetic stacked layout */
@@ -759,7 +758,7 @@ body.partner-hover .dim-overlay {
     letter-spacing: -0.035em;
     font-weight: 600;
     color: var(--text-primary);
-    text-wrap: balance;
+    white-space: nowrap;
 }
 
 .hero-line.feature-word {
@@ -1539,7 +1538,8 @@ body.partner-hover .dim-overlay {
 
 @media (max-width: 768px) {
     .hero { padding: 80px 0 60px; min-height: auto; }
-    .hero-line { white-space: normal; }
+    .hero-line { font-size: clamp(16px, 5.2vw, 36px); }
+    .hero-line.feature-word { font-size: clamp(20px, 7vw, 48px); }
 
     .stats-grid        { grid-template-columns: repeat(2, 1fr); }
     .features-grid     { grid-template-columns: 1fr; }
