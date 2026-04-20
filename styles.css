@@ -184,7 +184,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-brand .logo-it svg:last-child {
-    margin-left: -1px;
+    margin-left: -4px;
     transition: margin-left 300ms ease-out;
 }
 
