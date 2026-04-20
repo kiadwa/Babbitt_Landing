@@ -13,6 +13,20 @@
     // Bail if none of the elements exist
     var active = tracks.filter(function (t) { return t.el; });
     if (!active.length) return;
+
+    // Lock hero-headline min-height to prevent layout shift on word change
+    var headline = document.querySelector('.hero-headline');
+    if (headline) {
+        var originals = active.map(function (t) { return t.el.textContent; });
+        var maxH = headline.offsetHeight;
+        for (var j = 0; j < active[0].words.length; j++) {
+            active.forEach(function (t) { t.el.textContent = t.words[j]; });
+            maxH = Math.max(maxH, headline.offsetHeight);
+        }
+        active.forEach(function (t, idx) { t.el.textContent = originals[idx]; });
+        headline.style.minHeight = maxH + 'px';
+    }
+
     var i = 0;
     setInterval(function () {
         active.forEach(function (t) {
@@ -279,7 +293,27 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
 })();
 
-/* ── 10. Campaign Modal ── */
+/* ── 10. Hamburger Menu Toggle ── */
+(function () {
+    var hamburger = document.getElementById('navHamburger');
+    var navLinks = document.getElementById('navLinks');
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('is-open');
+        navLinks.classList.toggle('is-open');
+    });
+
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a, button').forEach(function (link) {
+        link.addEventListener('click', function () {
+            hamburger.classList.remove('is-open');
+            navLinks.classList.remove('is-open');
+        });
+    });
+})();
+
+/* ── 11. Campaign Modal ── */
 (function () {
     var modal      = document.getElementById('campaignModal');
     var closeBtn   = document.getElementById('campaignModalClose');
