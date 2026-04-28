@@ -122,7 +122,7 @@
         <!-- ═══ Flow picker ═══ -->
         <section>
             <p class="text-[11px] uppercase tracking-wider text-txt-tertiary mb-2 font-semibold">Choose a flow</p>
-            <div id="flowPicker" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div id="flowPicker" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                 <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="property-owner-listing">
                     <div class="flex items-center gap-2 mb-1.5">
                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Property Owner</span>
@@ -140,6 +140,15 @@
                     <p class="text-sm font-semibold text-txt">Quote, get awarded, stage the job</p>
                     <p class="text-xs text-txt-tertiary mt-0.5">Multi-actor flow — Trade quotes, Owner accepts, Trade stages.</p>
                 </button>
+                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="tradie-incident-chat">
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Trade</span>
+                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Property Owner</span>
+                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
+                    </div>
+                    <p class="text-sm font-semibold text-txt">Site issue → chat → raise incident</p>
+                    <p class="text-xs text-txt-tertiary mt-0.5">Tradie clarifies a hazard with the owner, then logs it formally.</p>
+                </button>
                 <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="supplier-rfq">
                     <div class="flex items-center gap-2 mb-1.5">
                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Supplier</span>
@@ -147,6 +156,15 @@
                     </div>
                     <p class="text-sm font-semibold text-txt">Quote an RFQ from a tradie</p>
                     <p class="text-xs text-txt-tertiary mt-0.5">Receive, draft, adjust, send — get the order.</p>
+                </button>
+                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="tradie-network-community">
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Trade</span>
+                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Network</span>
+                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
+                    </div>
+                    <p class="text-sm font-semibold text-txt">Communities, posts &amp; new mates</p>
+                    <p class="text-xs text-txt-tertiary mt-0.5">Engage in a community thread, then accept a friend request.</p>
                 </button>
             </div>
         </section>
@@ -2110,6 +2128,1631 @@
                     </div>
                 </div>
 
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- ═══ FLOW 4 — Tradie · Site issue → Group chat → Incident   ═══ -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+
+                <!-- ═══ INC-STEP 1 — Intro ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="1">
+                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-orange/15 text-orange border border-orange/40 mb-4">
+                            Trade × Owner Flow
+                        </span>
+                        <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
+                            Something on site doesn't look right.
+                        </h2>
+                        <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
+                            Day 2 of Sarah's bathroom strip-out. Marcus opens the cavity behind the old vanity
+                            and spots a fibrous sheet that looks a lot like asbestos. He needs to clarify with
+                            Sarah — then log it formally so everyone's covered.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-yellow/15 text-yellow flex items-center justify-center mb-2">
+                                    <i class="fas fa-comments text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Ask in the Job chat</p>
+                                <p class="text-xs text-txt-tertiary">Photos + question, all on the Job thread.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-blue/15 text-blue flex items-center justify-center mb-2">
+                                    <i class="fas fa-user-check text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Owner confirms</p>
+                                <p class="text-xs text-txt-tertiary">Sarah replies from her phone — same thread.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-orange/15 text-orange flex items-center justify-center mb-2">
+                                    <i class="fas fa-triangle-exclamation text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Raise an incident</p>
+                                <p class="text-xs text-txt-tertiary">Pause work, notify compliance, audit trail.</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-txt-tertiary mt-8">
+                            Click <span class="text-yellow font-semibold">Begin Demo</span> below to start.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ═══ INC-STEP 2 — Job Shell · Chat tab (compose) ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="2">
+                    <div class="space-y-4">
+                        <!-- Job Shell header -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
+                                <span>On-Site</span><span>·</span>
+                                <span>Day 2 of 5</span><span>·</span>
+                                <span>Paddington, NSW</span>
+                            </div>
+                        </div>
+
+                        <!-- Tab bar — Chat highlighted -->
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Overview</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold">
+                                    <i class="fas fa-comments mr-1.5 text-xs"></i>Chat
+                                </button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Staging / BoQ</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Compliance / Documents</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Incidents</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Close-Out</button>
+                            </nav>
+                        </div>
+
+                        <!-- Chat layout: thread + side panel -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+                            <!-- Thread panel -->
+                            <div class="lg:col-span-8 bg-surface border border-bdr rounded-card flex flex-col min-h-[440px]">
+                                <!-- Thread header -->
+                                <div class="px-4 py-3 border-b border-bdr flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-hashtag text-txt-tertiary text-xs"></i>
+                                        <span class="text-sm font-semibold text-txt">job-thread</span>
+                                        <span class="text-[11px] text-txt-tertiary">· 2 participants</span>
+                                    </div>
+                                    <div class="flex -space-x-2">
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                    </div>
+                                </div>
+
+                                <!-- Messages -->
+                                <div class="flex-1 px-4 py-4 space-y-4 overflow-y-auto">
+                                    <!-- Day separator -->
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex-1 h-px bg-bdr-subtle"></div>
+                                        <span class="text-[10px] uppercase tracking-wider text-txt-tertiary">Yesterday</span>
+                                        <div class="flex-1 h-px bg-bdr-subtle"></div>
+                                    </div>
+
+                                    <!-- Sarah message -->
+                                    <div class="flex gap-3">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-baseline gap-2 mb-1">
+                                                <span class="text-sm font-semibold text-txt">Sarah O'Connor</span>
+                                                <span class="text-[10px] text-txt-tertiary">Yesterday 4:42 PM</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Hi Marcus — gate code is <span class="font-mono bg-elevated px-1 py-0.5 rounded text-[12px]">4421#</span>. Side door's unlocked, bathroom's the second on the right. Skip's arriving Wed AM.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Marcus message -->
+                                    <div class="flex gap-3">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-baseline gap-2 mb-1">
+                                                <span class="text-sm font-semibold text-txt">Marcus O'Brien</span>
+                                                <span class="text-[10px] text-txt-tertiary">Yesterday 5:08 PM</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Got it 👍 On site at 7. Strip-out's pretty straightforward, will flick photos as I go.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Day separator -->
+                                    <div class="flex items-center gap-3 pt-2">
+                                        <div class="flex-1 h-px bg-bdr-subtle"></div>
+                                        <span class="text-[10px] uppercase tracking-wider text-txt-tertiary">Today</span>
+                                        <div class="flex-1 h-px bg-bdr-subtle"></div>
+                                    </div>
+
+                                    <!-- Marcus typing prompt -->
+                                    <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                                        <i class="fas fa-lightbulb text-yellow mt-0.5"></i>
+                                        <p>Marcus just opened the cavity wall — type a question to Sarah and hit <span class="text-yellow font-semibold">Send</span>.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Composer -->
+                                <div class="border-t border-bdr px-3 py-3">
+                                    <div class="bg-input border border-bdr rounded-input px-3 py-2.5 flex items-end gap-2">
+                                        <button class="text-txt-tertiary hover:text-txt text-base shrink-0" title="Attach">
+                                            <i class="fas fa-paperclip"></i>
+                                        </button>
+                                        <textarea id="inc-composer" rows="2" class="flex-1 bg-transparent text-sm text-txt placeholder:text-txt-tertiary resize-none focus:outline-none" placeholder="Hey Sarah — quick one, the place is pre-1990 right? I've found a fibrous sheet behind the old vanity that looks like asbestos…"></textarea>
+                                        <div class="flex items-center gap-2 shrink-0">
+                                            <span class="hidden sm:flex items-center gap-1 px-2 py-1 rounded-badge text-[10px] font-semibold bg-elevated border border-bdr-subtle text-txt-secondary">
+                                                <i class="fas fa-image text-[10px]"></i> 2
+                                            </span>
+                                            <button data-action="chat-send-tradie" class="pulse-ring px-3 py-1.5 rounded-btn text-xs font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition flex items-center gap-1">
+                                                Send <i class="fas fa-paper-plane text-[10px]"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-[10px] text-txt-tertiary mt-1.5 px-1">2 photos attached · IMG_4421.jpg, IMG_4422.jpg</p>
+                                </div>
+                            </div>
+
+                            <!-- Side panel -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Job context</p>
+                                    <dl class="space-y-1.5 text-sm">
+                                        <div class="flex justify-between gap-3"><dt class="text-txt-secondary">Client</dt><dd class="text-txt">Sarah O'Connor</dd></div>
+                                        <div class="flex justify-between gap-3"><dt class="text-txt-secondary">Property</dt><dd class="text-txt text-right">42 Glenmore Rd<br><span class="text-xs text-txt-tertiary">Paddington NSW 2021</span></dd></div>
+                                        <div class="flex justify-between gap-3"><dt class="text-txt-secondary">Built</dt><dd class="text-txt">1962</dd></div>
+                                        <div class="flex justify-between gap-3 pt-2 border-t border-bdr-subtle"><dt class="text-txt-secondary">Stage</dt><dd class="text-txt">Strip-out · Day 2</dd></div>
+                                    </dl>
+                                </div>
+                                <div class="bg-orange/5 border border-orange/30 rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-orange font-semibold mb-1.5 flex items-center gap-1.5">
+                                        <i class="fas fa-circle-info"></i> Heads up
+                                    </p>
+                                    <p class="text-xs text-txt leading-relaxed">Pre-1990 builds in NSW commonly contain asbestos sheeting. If you suspect it, stop work and clarify before disturbing.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ INC-STEP 3 — Tradie message sent ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="3">
+                    <div class="space-y-4">
+                        <!-- Job Shell header (compact, same as step 2) -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
+                                <span>On-Site</span><span>·</span>
+                                <span>Day 2 of 5</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Overview</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold"><i class="fas fa-comments mr-1.5 text-xs"></i>Chat</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Staging / BoQ</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Compliance / Documents</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Incidents</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-8 bg-surface border border-bdr rounded-card flex flex-col min-h-[440px]">
+                                <div class="px-4 py-3 border-b border-bdr flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-hashtag text-txt-tertiary text-xs"></i>
+                                        <span class="text-sm font-semibold text-txt">job-thread</span>
+                                        <span class="text-[11px] text-txt-tertiary">· 2 participants</span>
+                                    </div>
+                                    <div class="flex -space-x-2">
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1 px-4 py-4 space-y-4 overflow-y-auto">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex-1 h-px bg-bdr-subtle"></div>
+                                        <span class="text-[10px] uppercase tracking-wider text-txt-tertiary">Today · 9:14 AM</span>
+                                        <div class="flex-1 h-px bg-bdr-subtle"></div>
+                                    </div>
+
+                                    <!-- Marcus's message just sent -->
+                                    <div class="flex gap-3 step-fade">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-baseline gap-2 mb-1">
+                                                <span class="text-sm font-semibold text-txt">Marcus O'Brien</span>
+                                                <span class="text-[10px] text-txt-tertiary">Just now</span>
+                                                <span class="text-[10px] text-green flex items-center gap-1"><i class="fas fa-check"></i> Sent</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed mb-2">Hey Sarah — quick one. The place is pre-1990 right? I've just opened the cavity behind the old vanity and found a fibrous sheet that looks a lot like asbestos. Pulling these two photos for you to eyeball. Stopping work on the strip-out till we're sorted.</p>
+
+                                            <!-- Photo attachments -->
+                                            <div class="grid grid-cols-2 gap-2 max-w-md">
+                                                <div class="aspect-[4/3] rounded-input border border-bdr-subtle bg-elevated relative overflow-hidden flex flex-col items-center justify-center">
+                                                    <i class="fas fa-image text-2xl text-txt-tertiary"></i>
+                                                    <span class="absolute bottom-1.5 left-1.5 text-[10px] font-mono bg-body/70 text-txt px-1.5 py-0.5 rounded">IMG_4421.jpg</span>
+                                                </div>
+                                                <div class="aspect-[4/3] rounded-input border border-bdr-subtle bg-elevated relative overflow-hidden flex flex-col items-center justify-center">
+                                                    <i class="fas fa-image text-2xl text-txt-tertiary"></i>
+                                                    <span class="absolute bottom-1.5 left-1.5 text-[10px] font-mono bg-body/70 text-txt px-1.5 py-0.5 rounded">IMG_4422.jpg</span>
+                                                    <span class="absolute top-1.5 right-1.5 text-[9px] font-semibold bg-orange/30 text-orange px-1.5 py-0.5 rounded-badge border border-orange/50">close-up</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Typing indicator from Sarah -->
+                                    <div class="flex gap-3 opacity-70">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                        <div class="flex-1 min-w-0 flex items-center gap-1.5 pt-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-txt-tertiary animate-pulse"></span>
+                                            <span class="w-1.5 h-1.5 rounded-full bg-txt-tertiary animate-pulse" style="animation-delay:0.2s;"></span>
+                                            <span class="w-1.5 h-1.5 rounded-full bg-txt-tertiary animate-pulse" style="animation-delay:0.4s;"></span>
+                                            <span class="text-[11px] text-txt-tertiary ml-1">Sarah is typing…</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-bdr px-3 py-3">
+                                    <div class="bg-input border border-bdr-subtle rounded-input px-3 py-2.5 text-sm text-txt-tertiary">
+                                        Composer disabled — waiting for Sarah's reply…
+                                    </div>
+                                </div>
+                            </div>
+
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                                    <i class="fas fa-arrow-right text-yellow mt-0.5"></i>
+                                    <p>Hit <span class="text-yellow font-semibold">Switch to Sarah</span> below to see the same thread from her phone.</p>
+                                </div>
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Auto-flagged by Babbitt</p>
+                                    <p class="text-xs text-txt leading-relaxed mb-2">Keywords <span class="text-orange font-semibold">"asbestos"</span>, <span class="text-orange font-semibold">"stopping work"</span> detected.</p>
+                                    <p class="text-[11px] text-txt-tertiary">Suggested next action: <span class="text-orange font-semibold">Raise Incident</span> once owner replies.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ INC-STEP 4 — Owner's mobile view, replies ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="4">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-blue/40 bg-blue/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-mobile-screen text-blue mt-0.5"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-txt">Switched to Sarah's phone view.</p>
+                                <p class="text-xs text-txt-secondary">She's at her office — push notification just landed.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <!-- Phone-style chat panel -->
+                            <div class="lg:col-span-7 lg:col-start-3">
+                                <div class="mx-auto max-w-md bg-surface border border-bdr rounded-[28px] overflow-hidden shadow-card-hover">
+                                    <!-- Phone status bar -->
+                                    <div class="bg-body px-5 py-2 flex items-center justify-between text-[11px] text-txt-secondary font-mono">
+                                        <span>9:18</span>
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="fas fa-signal text-[10px]"></i>
+                                            <i class="fas fa-wifi text-[10px]"></i>
+                                            <i class="fas fa-battery-three-quarters text-[10px]"></i>
+                                        </span>
+                                    </div>
+                                    <!-- App header -->
+                                    <div class="px-4 py-3 border-b border-bdr flex items-center gap-3">
+                                        <i class="fas fa-chevron-left text-txt-secondary text-sm"></i>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm font-semibold text-txt truncate">Bathroom reno · Marcus</p>
+                                            <p class="text-[10px] text-txt-tertiary truncate">Job · Paddington · Day 2</p>
+                                        </div>
+                                        <i class="fas fa-circle-info text-txt-tertiary text-sm"></i>
+                                    </div>
+
+                                    <!-- Chat body -->
+                                    <div class="px-4 py-4 space-y-3 bg-body min-h-[380px]">
+                                        <p class="text-center text-[10px] uppercase tracking-wider text-txt-tertiary">Today 9:14 AM</p>
+
+                                        <!-- Marcus inbound bubble (left) -->
+                                        <div class="flex gap-2 items-end">
+                                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold shrink-0" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                            <div class="max-w-[80%]">
+                                                <div class="bg-surface text-txt rounded-2xl rounded-bl-sm px-3 py-2 text-sm leading-snug">
+                                                    Hey Sarah — quick one. The place is pre-1990 right? I've found a fibrous sheet behind the old vanity that looks like asbestos. Stopping work till we're sorted.
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-1.5 mt-1.5 max-w-[260px]">
+                                                    <div class="aspect-[4/3] rounded-lg border border-bdr-subtle bg-elevated flex items-center justify-center">
+                                                        <i class="fas fa-image text-lg text-txt-tertiary"></i>
+                                                    </div>
+                                                    <div class="aspect-[4/3] rounded-lg border border-bdr-subtle bg-elevated flex items-center justify-center">
+                                                        <i class="fas fa-image text-lg text-txt-tertiary"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="text-[10px] text-txt-tertiary mt-1">9:14 AM</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sarah's draft reply, awaiting send -->
+                                        <div class="flex justify-end">
+                                            <div class="max-w-[80%]">
+                                                <div class="bg-blue/20 border border-blue/30 text-txt rounded-2xl rounded-br-sm px-3 py-2 text-sm leading-snug">
+                                                    Yep, built 1962. Last reno was 2003 — the bathroom wasn't touched then so anything behind the vanity is original. Don't push further till we're sure. Happy to engage a licensed assessor today if you log it on the job. <span class="text-blue">🙏</span>
+                                                </div>
+                                                <p class="text-[10px] text-txt-tertiary mt-1 text-right">Draft · ready to send</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Phone composer -->
+                                    <div class="px-3 py-3 bg-surface border-t border-bdr flex items-center gap-2">
+                                        <i class="fas fa-plus text-txt-tertiary text-sm"></i>
+                                        <div class="flex-1 bg-input border border-bdr rounded-full px-3 py-1.5 text-xs text-txt-secondary">Yep, built 1962. Last reno was 2003…</div>
+                                        <button data-action="owner-reply-send" class="pulse-ring w-9 h-9 rounded-full bg-yellow text-txt-inverse flex items-center justify-center hover:brightness-110 transition">
+                                            <i class="fas fa-paper-plane text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <p class="text-center text-[11px] text-txt-tertiary mt-3">
+                                    Tap the <span class="text-yellow font-semibold">send</span> button to reply.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ INC-STEP 5 — Marcus reads reply, prompted to raise incident ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="5">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-yellow/50 bg-yellow/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-bell text-yellow mt-0.5"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-txt">New reply from Sarah O'Connor.</p>
+                                <p class="text-xs text-txt-secondary">She's confirmed the building age and asked you to log the issue.</p>
+                            </div>
+                        </div>
+
+                        <!-- Job Shell header -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Work paused</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Overview</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold"><i class="fas fa-comments mr-1.5 text-xs"></i>Chat</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Staging / BoQ</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Compliance / Documents</button>
+                                <button class="pulse-ring px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary hover:text-txt hover:border-bdr transition-colors">Incidents</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-8 bg-surface border border-bdr rounded-card flex flex-col">
+                                <div class="px-4 py-3 border-b border-bdr flex items-center gap-2">
+                                    <i class="fas fa-hashtag text-txt-tertiary text-xs"></i>
+                                    <span class="text-sm font-semibold text-txt">job-thread</span>
+                                </div>
+                                <div class="px-4 py-4 space-y-4">
+                                    <!-- Sarah's reply -->
+                                    <div class="flex gap-3 step-fade">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-baseline gap-2 mb-1">
+                                                <span class="text-sm font-semibold text-txt">Sarah O'Connor</span>
+                                                <span class="text-[10px] text-txt-tertiary">Today 9:18 AM</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Yep, built 1962. Last reno was 2003 — the bathroom wasn't touched then so anything behind the vanity is original. Don't push further till we're sure. Happy to engage a licensed assessor today if you log it on the job. 🙏</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Marcus's quick ack -->
+                                    <div class="flex gap-3">
+                                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-baseline gap-2 mb-1">
+                                                <span class="text-sm font-semibold text-txt">Marcus O'Brien</span>
+                                                <span class="text-[10px] text-txt-tertiary">Just now</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Cheers Sarah, agreed. Logging it now — you'll get a notification to acknowledge once it's filed. Won't touch the cavity again till the assessor's been through.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Suggested next action card -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-orange/10 border border-orange/40 rounded-card p-4 space-y-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-9 h-9 rounded-full bg-orange/20 text-orange flex items-center justify-center">
+                                            <i class="fas fa-triangle-exclamation"></i>
+                                        </span>
+                                        <div>
+                                            <p class="text-sm font-semibold text-txt">Suggested action</p>
+                                            <p class="text-[11px] text-orange">Auto-detected from chat</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-txt leading-relaxed">Owner has acknowledged a hazard. Log this as an incident on the Job to pause work formally and notify compliance.</p>
+                                    <button data-action="open-incident-form" class="pulse-ring w-full px-4 py-2.5 rounded-btn text-sm font-semibold bg-orange text-txt-inverse hover:brightness-110 transition flex items-center justify-center gap-2">
+                                        <i class="fas fa-flag"></i> Raise Incident
+                                    </button>
+                                    <p class="text-[11px] text-txt-tertiary text-center">Pre-fills from the last 2 messages.</p>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5">Why log it?</p>
+                                    <ul class="space-y-1 text-xs text-txt-secondary">
+                                        <li class="flex gap-2"><i class="fas fa-check text-green text-[10px] mt-1"></i><span>Pauses the job clock automatically.</span></li>
+                                        <li class="flex gap-2"><i class="fas fa-check text-green text-[10px] mt-1"></i><span>Generates an audit trail with photos.</span></li>
+                                        <li class="flex gap-2"><i class="fas fa-check text-green text-[10px] mt-1"></i><span>Notifies owner + compliance for sign-off.</span></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ INC-STEP 6 — Incident form ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="6">
+                    <div class="space-y-4">
+                        <!-- Job Shell header -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Work paused</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Overview</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Chat</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Staging / BoQ</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Compliance / Documents</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-orange text-orange font-semibold"><i class="fas fa-flag mr-1.5 text-xs"></i>Incidents</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <!-- Form -->
+                            <div class="lg:col-span-8 bg-surface border border-bdr rounded-card p-5 space-y-5">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-head text-lg font-semibold text-txt">New Incident</h3>
+                                    <span class="text-[11px] text-txt-tertiary">Draft · auto-saving</span>
+                                </div>
+
+                                <p class="rounded-card border border-blue/30 bg-blue/5 p-3 text-sm text-txt flex items-start gap-3">
+                                    <i class="fas fa-wand-magic-sparkles text-blue mt-0.5"></i>
+                                    <span>Pre-filled from the last <span class="font-semibold">2 messages</span> in the Job chat. Edit anything before submitting.</span>
+                                </p>
+
+                                <!-- Title -->
+                                <div>
+                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Title</label>
+                                    <input type="text" value="Suspected asbestos sheeting behind cavity wall — bathroom strip-out" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring">
+                                </div>
+
+                                <!-- Severity -->
+                                <fieldset>
+                                    <legend class="text-xs text-txt-secondary font-semibold mb-1.5">Severity</legend>
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                        <button type="button" class="px-3 py-2 rounded-input border text-xs font-semibold border-bdr text-txt-tertiary bg-surface">Low</button>
+                                        <button type="button" class="px-3 py-2 rounded-input border text-xs font-semibold border-bdr text-txt-tertiary bg-surface">Medium</button>
+                                        <button type="button" class="px-3 py-2 rounded-input border text-xs font-semibold bg-orange/20 text-orange border-orange">High</button>
+                                        <button type="button" class="px-3 py-2 rounded-input border text-xs font-semibold border-bdr text-txt-tertiary bg-surface">Critical</button>
+                                    </div>
+                                </fieldset>
+
+                                <!-- Category -->
+                                <div>
+                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Category</label>
+                                    <select class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring">
+                                        <option>Hazardous material — asbestos suspected</option>
+                                        <option>Hazardous material — lead paint</option>
+                                        <option>Structural / load-bearing concern</option>
+                                        <option>Electrical hazard</option>
+                                        <option>Plumbing / water damage</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+                                <!-- Description -->
+                                <div>
+                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Description</label>
+                                    <textarea rows="4" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring leading-relaxed">Opened cavity behind the original vanity (Day 2 strip-out). Found a fibrous cement-style sheet that has the appearance of asbestos. Property built 1962, last reno 2003 (bathroom not touched then) — owner has confirmed building age and pre-1990 construction. Work paused on the strip-out pending licensed asbestos assessor.</textarea>
+                                </div>
+
+                                <!-- Linked photos -->
+                                <div>
+                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Evidence — linked from chat</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">
+                                            <i class="fas fa-image text-[10px]"></i> IMG_4421.jpg
+                                            <i class="fas fa-xmark text-[9px] text-txt-tertiary"></i>
+                                        </span>
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">
+                                            <i class="fas fa-image text-[10px]"></i> IMG_4422.jpg
+                                            <i class="fas fa-xmark text-[9px] text-txt-tertiary"></i>
+                                        </span>
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-elevated/50 border border-dashed border-bdr-subtle text-txt-tertiary">
+                                            <i class="fas fa-plus text-[10px]"></i> Attach more
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Notify -->
+                                <div>
+                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Notify</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-blue/15 border border-blue/40 text-blue">
+                                            <span class="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(96,205,226,0.4); color:#60CDE2;">SO</span>
+                                            Sarah O'Connor · Owner
+                                            <i class="fas fa-check text-[9px]"></i>
+                                        </span>
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-orange/15 border border-orange/40 text-orange">
+                                            <i class="fas fa-shield-halved text-[10px]"></i>
+                                            Compliance Desk
+                                            <i class="fas fa-check text-[9px]"></i>
+                                        </span>
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">
+                                            <i class="fas fa-plus text-[10px]"></i> Add stakeholder
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Pause job toggle -->
+                                <div class="rounded-card border border-bdr-subtle bg-body p-3 flex items-center justify-between gap-3">
+                                    <div>
+                                        <p class="text-sm text-txt font-medium">Pause the job clock</p>
+                                        <p class="text-[11px] text-txt-tertiary">Suspends BoQ + stage progress until acknowledged.</p>
+                                    </div>
+                                    <span class="relative inline-flex items-center w-10 h-5 rounded-full bg-orange">
+                                        <span class="absolute right-0.5 w-4 h-4 rounded-full bg-white"></span>
+                                    </span>
+                                </div>
+
+                                <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2 pt-2 border-t border-bdr-subtle">
+                                    <button class="px-4 py-2 rounded-btn text-sm bg-surface border border-bdr text-txt-secondary cursor-default">Save as draft</button>
+                                    <button data-action="submit-incident" class="pulse-ring px-5 py-2 rounded-btn text-sm font-semibold bg-orange text-txt-inverse hover:brightness-110 transition">
+                                        <i class="fas fa-flag mr-1"></i> Submit Incident
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Side preview -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">What happens on submit</p>
+                                    <ol class="space-y-2 text-xs text-txt-secondary">
+                                        <li class="flex gap-2"><span class="w-4 h-4 rounded-full bg-orange/20 text-orange flex items-center justify-center text-[10px] font-semibold shrink-0">1</span><span>Job clock pauses; stage marked <span class="text-orange font-semibold">Blocked</span>.</span></li>
+                                        <li class="flex gap-2"><span class="w-4 h-4 rounded-full bg-orange/20 text-orange flex items-center justify-center text-[10px] font-semibold shrink-0">2</span><span>Sarah gets a push notification with an Acknowledge link.</span></li>
+                                        <li class="flex gap-2"><span class="w-4 h-4 rounded-full bg-orange/20 text-orange flex items-center justify-center text-[10px] font-semibold shrink-0">3</span><span>Compliance Desk receives the report with photos + chat excerpt.</span></li>
+                                        <li class="flex gap-2"><span class="w-4 h-4 rounded-full bg-orange/20 text-orange flex items-center justify-center text-[10px] font-semibold shrink-0">4</span><span>Incident appears on the Job timeline with a unique ID.</span></li>
+                                    </ol>
+                                </div>
+                                <div class="bg-elevated/50 border border-bdr-subtle rounded-card p-3 text-xs text-txt-tertiary">
+                                    <i class="fas fa-circle-info text-blue mr-1"></i>
+                                    Babbitt never auto-resumes a paused job — only the Owner's acknowledgement plus your re-start can do that.
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ INC-STEP 7 — Incident logged ═══ -->
+                <div class="step hidden" data-flow="tradie-incident-chat" data-step="7">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-orange/50 bg-orange/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-flag text-orange mt-0.5"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-txt">Incident <span class="font-mono text-orange">INC-2026-0428-01</span> filed.</p>
+                                <p class="text-xs text-txt-secondary">Sarah and Compliance have been notified. Job clock is paused.</p>
+                            </div>
+                        </div>
+
+                        <!-- Job Shell header -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Paused · Incident open</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Overview</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Chat</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Staging / BoQ</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Compliance / Documents</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-orange text-orange font-semibold"><i class="fas fa-flag mr-1.5 text-xs"></i>Incidents <span class="ml-1 px-1.5 py-0.5 rounded-badge text-[9px] bg-orange/20">1</span></button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <!-- Incident detail card -->
+                            <div class="lg:col-span-8 bg-surface border border-orange/40 rounded-card overflow-hidden">
+                                <div class="px-5 py-4 border-b border-bdr-subtle bg-orange/5">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-2 flex-wrap mb-1">
+                                                <span class="font-mono text-[11px] text-orange">INC-2026-0428-01</span>
+                                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Open</span>
+                                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/30">High severity</span>
+                                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-elevated text-txt-secondary border border-bdr-subtle">Hazardous material</span>
+                                            </div>
+                                            <h3 class="font-head text-lg font-semibold text-txt leading-tight">Suspected asbestos sheeting behind cavity wall — bathroom strip-out</h3>
+                                            <p class="text-[11px] text-txt-tertiary mt-1">Filed by Marcus O'Brien · Today 9:23 AM · Awaiting owner acknowledgement</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-5 space-y-4">
+                                    <p class="text-sm text-txt-secondary leading-relaxed">Opened cavity behind the original vanity (Day 2 strip-out). Found a fibrous cement-style sheet that has the appearance of asbestos. Property built 1962, last reno 2003 — owner confirmed building age. Work paused pending licensed asbestos assessor.</p>
+
+                                    <!-- Evidence -->
+                                    <div>
+                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Evidence</p>
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                            <div class="aspect-square rounded-input border border-bdr-subtle bg-elevated relative flex items-center justify-center">
+                                                <i class="fas fa-image text-xl text-txt-tertiary"></i>
+                                                <span class="absolute bottom-1 left-1 text-[9px] font-mono bg-body/80 text-txt px-1 py-0.5 rounded">IMG_4421</span>
+                                            </div>
+                                            <div class="aspect-square rounded-input border border-bdr-subtle bg-elevated relative flex items-center justify-center">
+                                                <i class="fas fa-image text-xl text-txt-tertiary"></i>
+                                                <span class="absolute bottom-1 left-1 text-[9px] font-mono bg-body/80 text-txt px-1 py-0.5 rounded">IMG_4422</span>
+                                            </div>
+                                            <div class="aspect-square rounded-input border border-bdr-subtle bg-elevated/70 flex flex-col items-center justify-center text-center px-2">
+                                                <i class="fas fa-comments text-base text-blue mb-1"></i>
+                                                <span class="text-[10px] text-txt-secondary leading-tight">Chat excerpt<br>9:14–9:18 AM</span>
+                                            </div>
+                                            <div class="aspect-square rounded-input border border-bdr-subtle bg-elevated/70 flex flex-col items-center justify-center text-center px-2">
+                                                <i class="fas fa-file-lines text-base text-green mb-1"></i>
+                                                <span class="text-[10px] text-txt-secondary leading-tight">Auto-summary<br>PDF</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Timeline -->
+                                    <div>
+                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Activity</p>
+                                        <ul class="space-y-2.5">
+                                            <li class="flex gap-3">
+                                                <span class="w-7 h-7 shrink-0 rounded-full bg-orange/20 text-orange flex items-center justify-center text-[11px]"><i class="fas fa-flag"></i></span>
+                                                <div class="flex-1 pt-0.5">
+                                                    <p class="text-sm text-txt"><span class="font-semibold">Marcus O'Brien</span> raised the incident.</p>
+                                                    <p class="text-[10px] text-txt-tertiary">9:23 AM · severity High · 2 photos attached</p>
+                                                </div>
+                                            </li>
+                                            <li class="flex gap-3">
+                                                <span class="w-7 h-7 shrink-0 rounded-full bg-yellow/20 text-yellow flex items-center justify-center text-[11px]"><i class="fas fa-pause"></i></span>
+                                                <div class="flex-1 pt-0.5">
+                                                    <p class="text-sm text-txt">Job clock paused automatically.</p>
+                                                    <p class="text-[10px] text-txt-tertiary">9:23 AM · Stage "Strip-out" marked Blocked</p>
+                                                </div>
+                                            </li>
+                                            <li class="flex gap-3">
+                                                <span class="w-7 h-7 shrink-0 rounded-full bg-blue/20 text-blue flex items-center justify-center text-[11px]"><i class="fas fa-bell"></i></span>
+                                                <div class="flex-1 pt-0.5">
+                                                    <p class="text-sm text-txt">Sarah O'Connor + Compliance Desk notified.</p>
+                                                    <p class="text-[10px] text-txt-tertiary">9:23 AM · push + email</p>
+                                                </div>
+                                            </li>
+                                            <li class="flex gap-3 opacity-60">
+                                                <span class="w-7 h-7 shrink-0 rounded-full bg-elevated text-txt-tertiary flex items-center justify-center text-[11px]"><i class="fas fa-hourglass-half"></i></span>
+                                                <div class="flex-1 pt-0.5">
+                                                    <p class="text-sm text-txt">Awaiting owner acknowledgement.</p>
+                                                    <p class="text-[10px] text-txt-tertiary">Reminder will fire at 12:00 PM if unread</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Side: status + next steps -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Status</p>
+                                    <div class="flex flex-col gap-1.5">
+                                        <span class="px-2 py-1 rounded-badge text-[11px] font-semibold bg-orange/15 text-orange border border-orange/40 self-start">Open · Awaiting Owner</span>
+                                        <span class="px-2 py-1 rounded-badge text-[11px] font-semibold bg-yellow/15 text-yellow border border-yellow/40 self-start">Job clock paused</span>
+                                    </div>
+                                    <div class="pt-2 border-t border-bdr-subtle">
+                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Filed by</p>
+                                        <p class="text-sm text-txt">Marcus O'Brien</p>
+                                        <p class="text-[11px] text-txt-tertiary">Trades · Plumber</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Suggested next steps</p>
+                                    <button class="w-full px-3 py-2 rounded-btn text-xs bg-elevated border border-bdr-subtle text-txt-secondary cursor-default text-left flex items-center gap-2">
+                                        <i class="fas fa-user-tie text-blue"></i> Engage licensed asbestos assessor
+                                    </button>
+                                    <button class="w-full px-3 py-2 rounded-btn text-xs bg-elevated border border-bdr-subtle text-txt-secondary cursor-default text-left flex items-center gap-2">
+                                        <i class="fas fa-calendar text-yellow"></i> Reschedule fit-off (was Day 4)
+                                    </button>
+                                    <button class="w-full px-3 py-2 rounded-btn text-xs bg-elevated border border-bdr-subtle text-txt-secondary cursor-default text-left flex items-center gap-2">
+                                        <i class="fas fa-file-arrow-down text-green"></i> Download incident pack (PDF)
+                                    </button>
+                                </div>
+
+                                <div class="rounded-card border border-green/30 bg-green/5 p-3 text-sm text-txt flex items-start gap-3">
+                                    <i class="fas fa-circle-check text-green mt-0.5"></i>
+                                    <p>End of demo. The audit trail — chat, photos, incident, sign-offs — all stays linked to this Job for the life of the project.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- ═══ FLOW 5 — Tradie · Network → Community → Friend request  ═══ -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+
+                <!-- ═══ NET-STEP 1 — Intro ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="1">
+                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-blue/15 text-blue border border-blue/40 mb-4">
+                            Network · Trade Flow
+                        </span>
+                        <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
+                            Tools down. Time to natter with the mob.
+                        </h2>
+                        <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
+                            Marcus jumps into the Network tab between jobs — catches up on a community thread, throws
+                            in a comment, and finds a friend request waiting from another sparky he's worked with before.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-yellow/15 text-yellow flex items-center justify-center mb-2">
+                                    <i class="fas fa-people-group text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Open a community</p>
+                                <p class="text-xs text-txt-tertiary">Tradie-only spaces. Share, gossip, swap leads.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-green/15 text-green flex items-center justify-center mb-2">
+                                    <i class="fas fa-arrow-up text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Upvote &amp; comment</p>
+                                <p class="text-xs text-txt-tertiary">Reputation builds in the threads, not just on jobs.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-blue/15 text-blue flex items-center justify-center mb-2">
+                                    <i class="fas fa-user-plus text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Add a mate</p>
+                                <p class="text-xs text-txt-tertiary">Quick-view their profile, then accept the request.</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-txt-tertiary mt-8">
+                            Click <span class="text-yellow font-semibold">Begin Demo</span> below to start.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ═══ NET-STEP 2 — Network · Communities tab ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="2">
+                    <div class="space-y-4">
+                        <h2 class="font-head text-2xl font-bold text-txt">Network</h2>
+
+                        <!-- Tab bar -->
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Feed</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">People</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold">Communities</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">
+                                    Connections
+                                    <span class="ml-1 px-1.5 py-0.5 rounded-badge text-[9px] font-bold bg-orange/30 text-orange border border-orange/50">2</span>
+                                </button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Articles</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Events</button>
+                            </nav>
+                        </div>
+
+                        <!-- Search + filter -->
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 justify-between">
+                            <div class="flex items-center gap-2 flex-1 max-w-md">
+                                <div class="relative flex-1">
+                                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-xs text-txt-tertiary"></i>
+                                    <input type="text" placeholder="Search communities…" class="w-full bg-input border border-bdr rounded-input pl-8 pr-3 py-1.5 text-sm text-txt focus-ring placeholder:text-txt-tertiary" />
+                                </div>
+                                <button class="px-2.5 py-1.5 rounded-input text-xs bg-surface border border-bdr text-txt-secondary cursor-default">
+                                    <i class="fas fa-filter mr-1"></i> Filter
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Communities · 24</h3>
+                                <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Saved</button>
+                                <button class="px-3 py-1.5 rounded-btn text-xs bg-yellow text-txt-inverse font-semibold cursor-default">+ Create</button>
+                            </div>
+                        </div>
+
+                        <!-- "My Communities" group -->
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">My communities · 4</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+
+                                <!-- Featured / pulsing card -->
+                                <div data-action="enter-community" class="pulse-ring bg-surface border border-yellow/50 rounded-card p-4 space-y-2 cursor-pointer hover:border-yellow transition-colors">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">Sydney Sparkies &amp; Plumbers Co-Op</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/sydney-sparkies-plumbers</p>
+                                        </div>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/20 text-green border border-green/40 shrink-0">Joined</span>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">Inner-east Sydney trades trading leads, recco's, and gear. No pricing wars, no spam.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>1,242</span>
+                                        <span><i class="fas fa-message text-[10px] mr-1"></i>38 today</span>
+                                        <span class="ml-auto text-yellow font-semibold">3 new</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">NSW Trades Buy/Sell</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/nsw-trades-buysell</p>
+                                        </div>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/20 text-green border border-green/40 shrink-0">Joined</span>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">Used tools, vans, off-cuts. Pickup only, no shippers.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>8,604</span>
+                                        <span><i class="fas fa-message text-[10px] mr-1"></i>120 today</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">Bathroom Reno Specialists AU</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/bathroom-reno-au</p>
+                                        </div>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/20 text-blue border border-blue/40 shrink-0">Moderator</span>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">Wet-area pros: tilers, plumbers, waterproofers. Standards-first.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>3,011</span>
+                                        <span><i class="fas fa-message text-[10px] mr-1"></i>22 today</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default sm:col-span-2 lg:col-span-1">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">Apprentice Mentors AU</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/apprentice-mentors-au</p>
+                                        </div>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/20 text-green border border-green/40 shrink-0">Joined</span>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">3rd &amp; 4th year apprentices and the trades who guide them.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>567</span>
+                                        <span><i class="fas fa-message text-[10px] mr-1"></i>9 today</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discover -->
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Discover · suggested for plumbers in NSW</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">Hot Water &amp; Solar AU</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/hot-water-solar-au</p>
+                                        </div>
+                                        <button class="px-2 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40 cursor-default">+ Join</button>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">Continuous-flow, heat-pump, solar-thermal install &amp; service.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>892</span>
+                                    </div>
+                                </div>
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">Inner-East Tradie Park-up</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/inner-east-tradie-parkup</p>
+                                        </div>
+                                        <button class="px-2 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40 cursor-default">+ Join</button>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">Coffee carts, tip recos, parking grace from Paddo to Bondi.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>418</span>
+                                    </div>
+                                </div>
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div class="min-w-0">
+                                            <h4 class="text-sm font-semibold text-txt truncate">Heritage Renos NSW</h4>
+                                            <p class="text-[10px] text-txt-tertiary font-mono">/heritage-renos-nsw</p>
+                                        </div>
+                                        <button class="px-2 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40 cursor-default">+ Join</button>
+                                    </div>
+                                    <p class="text-xs text-txt-secondary leading-relaxed">Pre-war terraces, lath &amp; plaster, asbestos-aware sequencing.</p>
+                                    <div class="flex items-center gap-3 text-[11px] text-txt-tertiary pt-1 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users text-[10px] mr-1"></i>241</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
+                            <p>Click into the pulsing <span class="text-yellow font-semibold">Sydney Sparkies &amp; Plumbers Co-Op</span> card to open the community.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ NET-STEP 3 — Inside the community (post list) ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="3">
+                    <div class="space-y-4">
+                        <!-- Breadcrumb -->
+                        <div class="flex items-center gap-2 text-sm">
+                            <button class="text-txt-secondary hover:text-txt cursor-default">Network</button>
+                            <i class="fas fa-chevron-right text-[10px] text-txt-tertiary"></i>
+                            <button class="text-txt-secondary hover:text-txt cursor-default">Communities</button>
+                            <i class="fas fa-chevron-right text-[10px] text-txt-tertiary"></i>
+                            <span class="text-txt font-semibold truncate">Sydney Sparkies &amp; Plumbers Co-Op</span>
+                        </div>
+
+                        <!-- Community header -->
+                        <div class="bg-surface border border-bdr rounded-card p-5">
+                            <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                                <div class="w-14 h-14 rounded-card flex items-center justify-center text-2xl font-head font-bold shrink-0" style="background:rgba(246,181,0,0.18); color:#F6B500;">SP</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex flex-wrap items-center gap-2 mb-1">
+                                        <h2 class="font-head text-xl font-bold text-txt">Sydney Sparkies &amp; Plumbers Co-Op</h2>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/20 text-green border border-green/40">Joined ✓</span>
+                                    </div>
+                                    <p class="text-xs text-txt-tertiary font-mono mb-2">/sydney-sparkies-plumbers</p>
+                                    <p class="text-sm text-txt-secondary leading-relaxed">Inner-east Sydney trades trading leads, recco's, and gear. No pricing wars, no spam. Run by working sparkies and plumbers.</p>
+                                    <div class="flex flex-wrap items-center gap-3 text-[11px] text-txt-tertiary mt-3 pt-3 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-users mr-1"></i>1,242 members</span>
+                                        <span><i class="fas fa-message mr-1"></i>1,807 posts</span>
+                                        <span><i class="fas fa-bolt mr-1"></i>Active · 38 posts today</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 shrink-0">
+                                    <button class="px-3 py-1.5 rounded-btn text-xs bg-yellow text-txt-inverse font-semibold cursor-default">+ New Post</button>
+                                    <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default"><i class="fas fa-bell-slash mr-1"></i> Mute</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Body grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+                            <!-- Posts list -->
+                            <div class="lg:col-span-8 space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1 bg-surface border border-bdr rounded-input p-0.5">
+                                        <button class="px-2.5 py-1 rounded text-[11px] font-semibold bg-elevated text-txt">Hot</button>
+                                        <button class="px-2.5 py-1 rounded text-[11px] text-txt-secondary cursor-default">New</button>
+                                        <button class="px-2.5 py-1 rounded text-[11px] text-txt-secondary cursor-default">Top · Week</button>
+                                    </div>
+                                    <span class="text-[11px] text-txt-tertiary">Sorted by hot</span>
+                                </div>
+
+                                <!-- Pinned post -->
+                                <div class="bg-elevated border border-bdr-subtle rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-center gap-2 text-[11px] text-txt-tertiary">
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40"><i class="fas fa-thumbtack mr-1"></i>Pinned</span>
+                                        <span class="font-semibold text-txt-secondary">@modteam</span>
+                                        <span>· 18 Apr</span>
+                                    </div>
+                                    <h4 class="text-sm font-semibold text-txt">Community rules — read before posting</h4>
+                                    <p class="text-xs text-txt-secondary line-clamp-2">No undercutting threads, no marketplace links, name-check verified members only…</p>
+                                    <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1">
+                                        <span><i class="fas fa-arrow-up mr-1"></i>62</span>
+                                        <span><i class="fas fa-comment mr-1"></i>4</span>
+                                    </div>
+                                </div>
+
+                                <!-- Featured post — Marcus's target -->
+                                <div data-action="open-post-thread" class="pulse-ring bg-surface border border-yellow/40 rounded-card p-4 space-y-2 cursor-pointer hover:border-yellow transition-colors">
+                                    <div class="flex items-center gap-2 text-[11px] text-txt-tertiary flex-wrap">
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(96,205,226,0.2); color:#60CDE2;">JS</span>
+                                        <span class="font-semibold text-txt-secondary">Jess Salim</span>
+                                        <span>· Plumber</span>
+                                        <span>· 1h ago</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/20 text-blue border border-blue/40">Question</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold" style="background:rgba(255,92,0,0.18); color:#FF5C00; border:1px solid rgba(255,92,0,0.4);">hazmat</span>
+                                    </div>
+                                    <h4 class="text-base font-semibold text-txt">Anyone got a recco for a licensed asbestos assessor in inner-east?</h4>
+                                    <p class="text-sm text-txt-secondary leading-relaxed line-clamp-3">Pulled into a 60s terrace in Paddo today and found cement-sheet behind the vanity. Owner's gone with us on pausing the strip-out. Need someone same-day or tomorrow AM, ideally one you've actually used. Insurer-friendly paperwork preferred.</p>
+                                    <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1.5 border-t border-bdr-subtle">
+                                        <span class="flex items-center gap-1">
+                                            <i class="fas fa-arrow-up text-txt-tertiary"></i>
+                                            <span class="font-mono font-semibold text-txt">14</span>
+                                            <i class="fas fa-arrow-down text-txt-tertiary"></i>
+                                        </span>
+                                        <span><i class="fas fa-comment mr-1"></i>6 comments</span>
+                                        <span class="ml-auto text-yellow font-semibold flex items-center gap-1"><i class="fas fa-arrow-right text-[10px]"></i> Tap to open</span>
+                                    </div>
+                                </div>
+
+                                <!-- Other posts -->
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-center gap-2 text-[11px] text-txt-tertiary flex-wrap">
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(103,228,170,0.2); color:#67E4AA;">DT</span>
+                                        <span class="font-semibold text-txt-secondary">Daniel Tranh</span>
+                                        <span>· Sparky · 4h ago</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Win</span>
+                                    </div>
+                                    <h4 class="text-sm font-semibold text-txt">Switchboard upgrade in Bondi — RCBOs everywhere, owner stoked</h4>
+                                    <p class="text-xs text-txt-secondary leading-relaxed line-clamp-2">Old porcelain fuses, ceramic neutrals, the lot. New SB came up clean, all type-tested gear, 6 hours total. Insurer's happy.</p>
+                                    <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1.5 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-arrow-up mr-1"></i>41</span>
+                                        <span><i class="fas fa-comment mr-1"></i>12</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
+                                    <div class="flex items-center gap-2 text-[11px] text-txt-tertiary flex-wrap">
+                                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(192,132,252,0.2); color:#C084FC;">LT</span>
+                                        <span class="font-semibold text-txt-secondary">Liam Tran</span>
+                                        <span>· Sparky · 7h ago</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Discussion</span>
+                                    </div>
+                                    <h4 class="text-sm font-semibold text-txt">Anyone else getting hammered on after-hours callout pricing pushback?</h4>
+                                    <p class="text-xs text-txt-secondary leading-relaxed line-clamp-2">Third one this week — owner expects 9am rates at 11pm. Curious how the rest of you frame it on the quote.</p>
+                                    <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1.5 border-t border-bdr-subtle">
+                                        <span><i class="fas fa-arrow-up mr-1"></i>28</span>
+                                        <span><i class="fas fa-comment mr-1"></i>22</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sidebar: rules + stats -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Rules</p>
+                                    <ol class="space-y-1.5 text-xs text-txt-secondary list-decimal list-inside">
+                                        <li>Verified trades only — no marketing accounts.</li>
+                                        <li>No undercut threads. Help, don't snipe.</li>
+                                        <li>Photos beat opinions — show the work.</li>
+                                        <li>Disagree on the post, not the person.</li>
+                                    </ol>
+                                </div>
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Top contributors · this week</p>
+                                    <ul class="space-y-2 text-xs">
+                                        <li class="flex items-center gap-2">
+                                            <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold" style="background:rgba(96,205,226,0.2); color:#60CDE2;">JS</span>
+                                            <span class="text-txt flex-1 truncate">Jess Salim</span>
+                                            <span class="text-txt-tertiary">142 pts</span>
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold" style="background:rgba(192,132,252,0.2); color:#C084FC;">LT</span>
+                                            <span class="text-txt flex-1 truncate">Liam Tran</span>
+                                            <span class="text-txt-tertiary">98 pts</span>
+                                        </li>
+                                        <li class="flex items-center gap-2">
+                                            <span class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold" style="background:rgba(103,228,170,0.2); color:#67E4AA;">DT</span>
+                                            <span class="text-txt flex-1 truncate">Daniel Tranh</span>
+                                            <span class="text-txt-tertiary">76 pts</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                                    <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
+                                    <p>Tap the pulsing <span class="text-yellow font-semibold">asbestos assessor</span> post to read the thread.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ NET-STEP 4 — Post thread + upvote + comment ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="4">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 text-sm">
+                            <button class="text-txt-secondary hover:text-txt cursor-default">&larr; Sydney Sparkies &amp; Plumbers Co-Op</button>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+                            <!-- Main thread panel -->
+                            <div class="lg:col-span-8 bg-surface border border-bdr rounded-card overflow-hidden">
+                                <!-- Original post -->
+                                <div class="p-5 border-b border-bdr-subtle">
+                                    <div class="flex items-center gap-2 text-[11px] text-txt-tertiary mb-2 flex-wrap">
+                                        <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold" style="background:rgba(96,205,226,0.2); color:#60CDE2;">JS</span>
+                                        <span class="font-semibold text-txt-secondary">Jess Salim</span>
+                                        <span>· Plumber · Bondi</span>
+                                        <span>· 1h ago</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/20 text-blue border border-blue/40">Question</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold" style="background:rgba(255,92,0,0.18); color:#FF5C00; border:1px solid rgba(255,92,0,0.4);">hazmat</span>
+                                    </div>
+                                    <h2 class="font-head text-xl font-bold text-txt mb-2">Anyone got a recco for a licensed asbestos assessor in inner-east?</h2>
+                                    <p class="text-sm text-txt leading-relaxed whitespace-pre-line">Pulled into a 60s terrace in Paddo today and found cement-sheet behind the vanity. Owner's gone with us on pausing the strip-out. Need someone same-day or tomorrow AM, ideally one you've actually used. Insurer-friendly paperwork preferred.
+
+Bonus points if they're across NSW SafeWork notification too.</p>
+
+                                    <!-- Action bar -->
+                                    <div class="mt-4 pt-3 border-t border-bdr-subtle flex items-center gap-4 flex-wrap">
+                                        <!-- Upvote group -->
+                                        <div id="net-vote-group" class="flex items-center gap-1 px-2 py-1 rounded-input border border-bdr-subtle bg-elevated">
+                                            <button data-action="upvote-post" id="net-upvote-btn" class="text-txt-tertiary hover:text-green transition-colors px-1" aria-label="Upvote">
+                                                <i class="fas fa-arrow-up text-sm"></i>
+                                            </button>
+                                            <span id="net-vote-score" class="text-xs font-mono font-semibold text-txt min-w-[20px] text-center">14</span>
+                                            <button class="text-txt-tertiary hover:text-orange transition-colors px-1 cursor-default" aria-label="Downvote">
+                                                <i class="fas fa-arrow-down text-sm"></i>
+                                            </button>
+                                        </div>
+                                        <span id="net-comment-count" class="text-[11px] text-txt-tertiary flex items-center gap-1">
+                                            <i class="fas fa-comment"></i> 6 comments
+                                        </span>
+                                        <button class="text-[11px] text-txt-tertiary hover:text-yellow flex items-center gap-1 cursor-default ml-auto"><i class="far fa-bookmark"></i> Save</button>
+                                        <button class="text-[11px] text-txt-tertiary hover:text-orange flex items-center gap-1 cursor-default"><i class="fas fa-flag"></i> Report</button>
+                                    </div>
+                                </div>
+
+                                <!-- Comment list -->
+                                <div class="p-5 space-y-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">6 comments</p>
+
+                                    <!-- Comment 1 -->
+                                    <div class="flex gap-3">
+                                        <div class="flex flex-col items-center gap-0.5 shrink-0 pt-1">
+                                            <button class="text-green hover:text-green/80 cursor-default"><i class="fas fa-arrow-up text-xs"></i></button>
+                                            <span class="text-[10px] font-mono font-semibold text-txt">22</span>
+                                            <button class="text-txt-tertiary hover:text-orange cursor-default"><i class="fas fa-arrow-down text-xs"></i></button>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-2 text-[11px] text-txt-tertiary mb-1 flex-wrap">
+                                                <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(192,132,252,0.2); color:#C084FC;">LT</span>
+                                                <span class="font-semibold text-txt-secondary">Liam Tran</span>
+                                                <span>· Sparky · 52m ago</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Use Pat at <span class="font-semibold">Inner-East Asbestos Audits</span> — fast, NATA-aligned, sends you the air-monitor pack and SafeWork form already filled. 0412-318-409. Tell him Liam sent you.</p>
+                                            <div class="flex items-center gap-3 text-[10px] text-txt-tertiary mt-1.5">
+                                                <button class="hover:text-blue cursor-default">Reply</button>
+                                                <button class="hover:text-txt cursor-default">Share</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nested reply -->
+                                    <div class="flex gap-3 ml-8 pl-3 border-l border-bdr-subtle">
+                                        <div class="flex flex-col items-center gap-0.5 shrink-0 pt-1">
+                                            <button class="text-txt-tertiary hover:text-green cursor-default"><i class="fas fa-arrow-up text-xs"></i></button>
+                                            <span class="text-[10px] font-mono font-semibold text-txt">9</span>
+                                            <button class="text-txt-tertiary hover:text-orange cursor-default"><i class="fas fa-arrow-down text-xs"></i></button>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-2 text-[11px] text-txt-tertiary mb-1 flex-wrap">
+                                                <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(96,205,226,0.2); color:#60CDE2;">JS</span>
+                                                <span class="font-semibold text-txt-secondary">Jess Salim</span>
+                                                <span>· OP · 38m ago</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Legend, ringing him now. 🙏</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comment 2 -->
+                                    <div class="flex gap-3">
+                                        <div class="flex flex-col items-center gap-0.5 shrink-0 pt-1">
+                                            <button class="text-txt-tertiary hover:text-green cursor-default"><i class="fas fa-arrow-up text-xs"></i></button>
+                                            <span class="text-[10px] font-mono font-semibold text-txt">11</span>
+                                            <button class="text-txt-tertiary hover:text-orange cursor-default"><i class="fas fa-arrow-down text-xs"></i></button>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-2 text-[11px] text-txt-tertiary mb-1 flex-wrap">
+                                                <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(103,228,170,0.2); color:#67E4AA;">DT</span>
+                                                <span class="font-semibold text-txt-secondary">Daniel Tranh</span>
+                                                <span>· Sparky · 28m ago</span>
+                                            </div>
+                                            <p class="text-sm text-txt leading-relaxed">Second the recco for Pat. Heads up: don't disturb the cavity any more than you have to until the air-monitor's been done. Owner sounds switched on though, that's half the battle.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Marcus's posted comment (hidden until submit) -->
+                                    <div id="net-marcus-comment" class="hidden flex gap-3 step-fade pt-3 border-t border-yellow/20">
+                                        <div class="flex flex-col items-center gap-0.5 shrink-0 pt-1">
+                                            <button class="text-green hover:text-green/80 cursor-default"><i class="fas fa-arrow-up text-xs"></i></button>
+                                            <span class="text-[10px] font-mono font-semibold text-txt">1</span>
+                                            <button class="text-txt-tertiary hover:text-orange cursor-default"><i class="fas fa-arrow-down text-xs"></i></button>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-2 text-[11px] text-txt-tertiary mb-1 flex-wrap">
+                                                <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
+                                                <span class="font-semibold text-txt-secondary">Marcus O'Brien</span>
+                                                <span>· Plumber · Just now</span>
+                                                <span class="px-1.5 py-0.5 rounded-badge text-[9px] font-semibold bg-green/20 text-green border border-green/40">Posted</span>
+                                            </div>
+                                            <p id="net-marcus-comment-body" class="text-sm text-txt leading-relaxed">Same boat — Paddo terrace, found sheeting behind a vanity yesterday. Pat from Inner-East was on site within 4 hours. Worth keeping his number on the toolbox door.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Composer -->
+                                <div id="net-composer" class="px-5 pb-5">
+                                    <div class="bg-elevated border border-bdr-subtle rounded-card p-3 space-y-2">
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Replying to Jess Salim</p>
+                                        <textarea id="net-comment-input" rows="3" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt placeholder:text-txt-tertiary resize-none focus:outline-none focus-ring leading-relaxed" placeholder="Same boat — Paddo terrace, found sheeting behind a vanity yesterday. Pat from Inner-East was on site within 4 hours…"></textarea>
+                                        <div class="flex items-center justify-between gap-2">
+                                            <div class="flex items-center gap-2 text-[10px] text-txt-tertiary">
+                                                <i class="fas fa-paperclip"></i>
+                                                <i class="fas fa-image"></i>
+                                                <i class="fas fa-link"></i>
+                                                <span>Markdown supported</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Cancel</button>
+                                                <button data-action="submit-comment" id="net-submit-btn" class="pulse-ring px-3 py-1.5 rounded-btn text-xs font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
+                                                    <i class="fas fa-paper-plane mr-1"></i> Post Comment
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- After submit confirmation (hidden) -->
+                                <div id="net-comment-done" class="hidden px-5 pb-5 step-fade">
+                                    <div class="rounded-card border border-green/30 bg-green/5 p-3 text-sm text-txt flex items-start gap-3">
+                                        <i class="fas fa-circle-check text-green mt-0.5"></i>
+                                        <p>Comment posted. <span class="text-txt-secondary">Hit <span class="text-yellow font-semibold">Continue</span> below — there's a new connection waiting.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Side hint panel -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Try it</p>
+                                    <ol class="space-y-2 text-xs text-txt-secondary list-decimal list-inside">
+                                        <li>Click the <span class="text-green font-semibold">▲ upvote</span> on the post — score will tick up.</li>
+                                        <li>Type or accept the pre-filled draft, then hit <span class="text-yellow font-semibold">Post Comment</span>.</li>
+                                        <li>Click <span class="text-yellow font-semibold">Continue</span> below to move on.</li>
+                                    </ol>
+                                </div>
+                                <div class="bg-elevated/50 border border-bdr-subtle rounded-card p-3 text-xs text-txt-tertiary">
+                                    <i class="fas fa-circle-info text-blue mr-1"></i>
+                                    Post upvotes and helpful comments earn community karma — visible on your public profile.
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ NET-STEP 5 — Friend request inbox ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="5">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-blue/40 bg-blue/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-user-plus text-blue mt-0.5"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-txt">Liam Tran sent you a friend request.</p>
+                                <p class="text-xs text-txt-secondary">"Saw your comment on Jess's post — looks like we've worked next to each other on Glenmore Rd."</p>
+                            </div>
+                        </div>
+
+                        <h2 class="font-head text-2xl font-bold text-txt">Network</h2>
+
+                        <!-- Tab bar — Connections active -->
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Feed</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">People</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Communities</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold">
+                                    Connections
+                                    <span class="ml-1 px-1.5 py-0.5 rounded-badge text-[9px] font-bold bg-orange/30 text-orange border border-orange/50">2</span>
+                                </button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Articles</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Events</button>
+                            </nav>
+                        </div>
+
+                        <!-- Pending requests -->
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Incoming requests · 2</p>
+                            <div class="space-y-2">
+
+                                <!-- Liam Tran (target) -->
+                                <div class="bg-surface border border-yellow/40 rounded-card p-3 flex items-center justify-between gap-3">
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        <span class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style="background:rgba(192,132,252,0.2); color:#C084FC;">LT</span>
+                                        <div class="min-w-0">
+                                            <div class="flex items-center gap-1.5 flex-wrap">
+                                                <p class="text-sm text-txt font-semibold truncate">Liam Tran</p>
+                                                <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">A-grade Sparky</span>
+                                            </div>
+                                            <p class="text-[11px] text-txt-tertiary truncate">Bondi · 3 mutual connections · saw your comment in Sparkies Co-Op</p>
+                                            <p class="text-[11px] text-txt-tertiary mt-0.5">Just now</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 shrink-0">
+                                        <button data-action="view-friend-profile" class="pulse-ring px-3 py-1.5 rounded-btn text-xs font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition flex items-center gap-1">
+                                            <i class="fas fa-eye text-[10px]"></i> View profile
+                                        </button>
+                                        <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Decline</button>
+                                    </div>
+                                </div>
+
+                                <!-- Other request -->
+                                <div class="bg-surface border border-bdr rounded-card p-3 flex items-center justify-between gap-3">
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        <span class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style="background:rgba(103,228,170,0.2); color:#67E4AA;">RC</span>
+                                        <div class="min-w-0">
+                                            <p class="text-sm text-txt font-semibold truncate">Reece Chen</p>
+                                            <p class="text-[11px] text-txt-tertiary truncate">Tiler · Marrickville · 1 mutual connection</p>
+                                            <p class="text-[11px] text-txt-tertiary mt-0.5">2 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 shrink-0">
+                                        <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">View profile</button>
+                                        <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Decline</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Existing connections (collapsed teaser) -->
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">My connections · 47</p>
+                            <div class="bg-surface border border-bdr rounded-card p-3 flex items-center justify-between gap-3">
+                                <div class="flex items-center -space-x-2">
+                                    <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                    <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(103,228,170,0.2); color:#67E4AA;">DT</span>
+                                    <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(96,205,226,0.2); color:#60CDE2;">JS</span>
+                                    <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold border-2 border-surface" style="background:rgba(246,181,0,0.2); color:#F6B500;">+44</span>
+                                </div>
+                                <button class="text-xs text-txt-secondary hover:text-txt cursor-default">View all &rarr;</button>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
+                            <p>Tap <span class="text-yellow font-semibold">View profile</span> on Liam Tran to quick-preview before deciding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ NET-STEP 6 — Profile preview panel ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="6">
+                    <div class="relative">
+                        <!-- Backdrop dimmed Connections list -->
+                        <div class="opacity-30 pointer-events-none space-y-3">
+                            <h2 class="font-head text-2xl font-bold text-txt">Network · Connections</h2>
+                            <div class="bg-surface border border-bdr rounded-card p-3 h-16"></div>
+                            <div class="bg-surface border border-bdr rounded-card p-3 h-16"></div>
+                            <div class="bg-surface border border-bdr rounded-card p-3 h-16"></div>
+                        </div>
+
+                        <!-- Slide-in profile panel -->
+                        <div class="absolute inset-x-0 top-0 lg:left-auto lg:right-0 lg:w-[640px] bg-surface border border-bdr rounded-card shadow-modal step-fade overflow-hidden">
+                            <!-- Panel header -->
+                            <div class="px-5 py-3 border-b border-bdr bg-body/60 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-eye text-yellow text-xs"></i>
+                                    <span class="text-sm font-semibold text-txt">Profile Preview</span>
+                                    <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Quick view</span>
+                                </div>
+                                <button class="text-txt-tertiary hover:text-txt cursor-default" aria-label="Close"><i class="fas fa-xmark"></i></button>
+                            </div>
+
+                            <!-- Hero -->
+                            <div class="p-5 space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold shrink-0" style="background:rgba(192,132,252,0.22); color:#C084FC;">LT</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center gap-2 flex-wrap">
+                                            <h3 class="font-head text-lg font-bold text-txt">Liam Tran</h3>
+                                            <span class="text-blue text-xs" title="Verified"><i class="fas fa-circle-check"></i></span>
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">A-grade Sparky</span>
+                                        </div>
+                                        <p class="text-sm text-txt-secondary">Tran Electrical Services Pty Ltd</p>
+                                        <p class="text-[11px] text-txt-tertiary mt-1"><i class="fas fa-location-dot mr-1"></i>Bondi, NSW · 4.2km from you</p>
+                                    </div>
+                                </div>
+
+                                <!-- Trust strip -->
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                    <div class="bg-elevated border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <i class="fas fa-id-card text-green text-sm mb-1"></i>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary">ABN</p>
+                                        <p class="text-[11px] text-txt font-semibold">Verified</p>
+                                    </div>
+                                    <div class="bg-elevated border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <i class="fas fa-shield-halved text-green text-sm mb-1"></i>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary">PI/PL</p>
+                                        <p class="text-[11px] text-txt font-semibold">$20M cover</p>
+                                    </div>
+                                    <div class="bg-elevated border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <i class="fas fa-bolt text-yellow text-sm mb-1"></i>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary">Licence</p>
+                                        <p class="text-[11px] text-txt font-semibold">EC 218491</p>
+                                    </div>
+                                    <div class="bg-elevated border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <i class="fas fa-star text-yellow text-sm mb-1"></i>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary">Rating</p>
+                                        <p class="text-[11px] text-txt font-semibold">4.9 · 38 jobs</p>
+                                    </div>
+                                </div>
+
+                                <!-- Skills -->
+                                <div>
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5">Skills</p>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">Switchboard upgrades</span>
+                                        <span class="px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">Heritage rewires</span>
+                                        <span class="px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">Solar &amp; battery</span>
+                                        <span class="px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">Bathroom rough-in</span>
+                                        <span class="px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">Smoke alarm compliance</span>
+                                    </div>
+                                </div>
+
+                                <!-- KPI metrics -->
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="bg-elevated/60 border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <p class="text-lg font-head font-bold text-txt">38</p>
+                                        <p class="text-[10px] text-txt-tertiary">Jobs done</p>
+                                    </div>
+                                    <div class="bg-elevated/60 border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <p class="text-lg font-head font-bold text-green">98%</p>
+                                        <p class="text-[10px] text-txt-tertiary">On-time</p>
+                                    </div>
+                                    <div class="bg-elevated/60 border border-bdr-subtle rounded-input p-2.5 text-center">
+                                        <p class="text-lg font-head font-bold text-blue">~22m</p>
+                                        <p class="text-[10px] text-txt-tertiary">Avg reply</p>
+                                    </div>
+                                </div>
+
+                                <!-- Mutuals & communities -->
+                                <div class="bg-elevated/60 border border-bdr-subtle rounded-card p-3 space-y-2">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Why this might be a good connection</p>
+                                    <ul class="space-y-1.5 text-xs text-txt-secondary">
+                                        <li class="flex items-center gap-2"><i class="fas fa-people-group text-yellow text-[10px]"></i>You're both in <span class="text-txt font-semibold">Sydney Sparkies &amp; Plumbers Co-Op</span> + 1 other community</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-user-group text-blue text-[10px]"></i><span class="text-txt font-semibold">3 mutual connections</span> — Sarah O'Connor, Daniel Tranh, Jess Salim</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-handshake text-green text-[10px]"></i>Worked on the same street twice — Glenmore Rd, Paddington</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Recent endorsement -->
+                                <div class="bg-elevated/60 border border-bdr-subtle rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5">Recent endorsement</p>
+                                    <p class="text-xs text-txt italic leading-relaxed">"Liam handled the rough-in on a 1920s terrace I project-managed last month — clean cable runs, photos before close-up, paperwork before the cheque. Will book again."</p>
+                                    <p class="text-[10px] text-txt-tertiary mt-1.5">— Sarah O'Connor · Property Owner · 12 Apr</p>
+                                </div>
+                            </div>
+
+                            <!-- Sticky action footer -->
+                            <div class="border-t border-bdr px-5 py-3 bg-body/60 flex items-center justify-between gap-2">
+                                <button class="text-xs text-txt-secondary hover:text-txt cursor-default">Open full profile &rarr;</button>
+                                <div class="flex items-center gap-2">
+                                    <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Decline</button>
+                                    <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default"><i class="fas fa-message mr-1"></i>Message first</button>
+                                    <button data-action="accept-friend" class="pulse-ring px-4 py-1.5 rounded-btn text-xs font-semibold bg-green text-txt-inverse hover:brightness-110 transition flex items-center gap-1">
+                                        <i class="fas fa-check"></i> Accept request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ NET-STEP 7 — Connection accepted ═══ -->
+                <div class="step hidden" data-flow="tradie-network-community" data-step="7">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-green/40 bg-green/10 p-4 flex items-start gap-3">
+                            <i class="fas fa-circle-check text-green mt-0.5 text-lg"></i>
+                            <div class="flex-1">
+                                <p class="text-base font-semibold text-txt">You're connected with Liam Tran 🎉</p>
+                                <p class="text-xs text-txt-secondary">Liam can now see your full profile. He's been added to your Connections list.</p>
+                            </div>
+                        </div>
+
+                        <h2 class="font-head text-2xl font-bold text-txt">Network · Connections</h2>
+
+                        <div class="border-b border-bdr overflow-x-auto">
+                            <nav class="flex gap-0 -mb-px whitespace-nowrap">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Feed</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">People</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Communities</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold">
+                                    Connections
+                                    <span class="ml-1 px-1.5 py-0.5 rounded-badge text-[9px] font-bold bg-orange/30 text-orange border border-orange/50">1</span>
+                                </button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Articles</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Events</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <!-- Updated connections list -->
+                            <div class="lg:col-span-8 space-y-3">
+                                <div>
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">My connections · 48</p>
+                                    <div class="space-y-2">
+                                        <div class="bg-surface border border-green/40 rounded-card p-3 flex items-center justify-between gap-3 step-fade">
+                                            <div class="flex items-center gap-3 min-w-0">
+                                                <span class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style="background:rgba(192,132,252,0.2); color:#C084FC;">LT</span>
+                                                <div class="min-w-0">
+                                                    <div class="flex items-center gap-1.5 flex-wrap">
+                                                        <p class="text-sm text-txt font-semibold truncate">Liam Tran</p>
+                                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/20 text-green border border-green/40">Just connected</span>
+                                                    </div>
+                                                    <p class="text-[11px] text-txt-tertiary">Sparky · Bondi · 3 mutual connections</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-2 shrink-0">
+                                                <button class="px-3 py-1.5 rounded-btn text-xs bg-yellow text-txt-inverse font-semibold cursor-default"><i class="fas fa-message mr-1"></i> Message</button>
+                                                <button class="px-2.5 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default" aria-label="More"><i class="fas fa-ellipsis"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="bg-surface border border-bdr rounded-card p-3 flex items-center justify-between gap-3 opacity-80">
+                                            <div class="flex items-center gap-3 min-w-0">
+                                                <span class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style="background:rgba(96,205,226,0.2); color:#60CDE2;">SO</span>
+                                                <div class="min-w-0">
+                                                    <p class="text-sm text-txt font-semibold truncate">Sarah O'Connor</p>
+                                                    <p class="text-[11px] text-txt-tertiary">Property Owner · Connected 14 Apr</p>
+                                                </div>
+                                            </div>
+                                            <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Message</button>
+                                        </div>
+                                        <div class="bg-surface border border-bdr rounded-card p-3 flex items-center justify-between gap-3 opacity-80">
+                                            <div class="flex items-center gap-3 min-w-0">
+                                                <span class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style="background:rgba(103,228,170,0.2); color:#67E4AA;">DT</span>
+                                                <div class="min-w-0">
+                                                    <p class="text-sm text-txt font-semibold truncate">Daniel Tranh</p>
+                                                    <p class="text-[11px] text-txt-tertiary">Sparky · Connected 22 Mar</p>
+                                                </div>
+                                            </div>
+                                            <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Side: suggested next steps -->
+                            <aside class="lg:col-span-4 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Suggested next steps</p>
+                                    <button class="w-full px-3 py-2 rounded-btn text-xs bg-elevated border border-bdr-subtle text-txt-secondary cursor-default text-left flex items-center gap-2">
+                                        <i class="fas fa-message text-yellow"></i> Send Liam a hello message
+                                    </button>
+                                    <button class="w-full px-3 py-2 rounded-btn text-xs bg-elevated border border-bdr-subtle text-txt-secondary cursor-default text-left flex items-center gap-2">
+                                        <i class="fas fa-thumbs-up text-blue"></i> Endorse a skill
+                                    </button>
+                                    <button class="w-full px-3 py-2 rounded-btn text-xs bg-elevated border border-bdr-subtle text-txt-secondary cursor-default text-left flex items-center gap-2">
+                                        <i class="fas fa-briefcase text-green"></i> Recommend Liam for a job
+                                    </button>
+                                </div>
+                                <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                                    <i class="fas fa-flag-checkered text-yellow mt-0.5"></i>
+                                    <p>End of demo. Network engagement — communities, comments, connections — feeds your trust score and surfaces you to better-fit jobs.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -2172,6 +3815,30 @@
               { n: 14, label: 'Signed',         caption: 'Sarah reviews and signs.',                                url: 'app.babbitt.au/jobs/xyz',         actor: 'sarah',  next: 'Restart Demo' },
             ],
           },
+          'tradie-incident-chat': {
+            title: 'Trade × Owner — Site Issue, Group Chat, Raise Incident',
+            steps: [
+              { n: 1, label: 'Intro',          caption: "Marcus finds something on site.",                          url: 'app.babbitt.au/welcome',         actor: 'marcus', next: 'Begin Demo' },
+              { n: 2, label: 'Job Chat',       caption: "Marcus opens the Job thread to ask Sarah.",                url: 'app.babbitt.au/jobs/xyz/chat',   actor: 'marcus', next: 'Send Message' },
+              { n: 3, label: 'Message sent',   caption: 'Question + 2 photos delivered to the thread.',             url: 'app.babbitt.au/jobs/xyz/chat',   actor: 'marcus', next: 'Switch to Sarah' },
+              { n: 4, label: "Owner's phone",  caption: "Sarah sees the alert and drafts a reply.",                 url: 'm.babbitt.au/threads/xyz',       actor: 'sarah',  next: 'Switch to Marcus' },
+              { n: 5, label: 'Reply received', caption: 'Marcus reads the reply — Babbitt suggests an Incident.',   url: 'app.babbitt.au/jobs/xyz/chat',   actor: 'marcus', next: 'Open Incidents' },
+              { n: 6, label: 'New Incident',   caption: 'Form pre-filled from chat — review and submit.',           url: 'app.babbitt.au/jobs/xyz/incidents/new', actor: 'marcus', next: 'Submit Incident' },
+              { n: 7, label: 'Logged',         caption: 'Audit trail captured — owner + compliance notified.',      url: 'app.babbitt.au/jobs/xyz/incidents/INC-2026-0428-01', actor: 'marcus', next: 'Restart Demo' },
+            ],
+          },
+          'tradie-network-community': {
+            title: 'Trade · Network — Community, Post, New Connection',
+            steps: [
+              { n: 1, label: 'Intro',          caption: 'Marcus dips into the Network.',                              url: 'app.babbitt.au/welcome',                          actor: 'marcus', next: 'Begin Demo' },
+              { n: 2, label: 'Communities',    caption: 'Communities he has joined and a few worth discovering.',     url: 'app.babbitt.au/network/communities',              actor: 'marcus', next: 'Open Community' },
+              { n: 3, label: 'Inside',         caption: 'Sydney Sparkies & Plumbers Co-Op — recent posts.',           url: 'app.babbitt.au/network/communities/sydney-sparkies-plumbers', actor: 'marcus', next: 'Open Post' },
+              { n: 4, label: 'Thread',         caption: 'Read, upvote, drop a comment.',                              url: 'app.babbitt.au/network/communities/sydney-sparkies-plumbers/p/asbestos-recco', actor: 'marcus', next: 'Continue' },
+              { n: 5, label: 'New Request',    caption: 'A friend request from Liam Tran has just landed.',           url: 'app.babbitt.au/network/connections',              actor: 'marcus', next: 'View Profile' },
+              { n: 6, label: 'Quick View',     caption: "Liam's profile in the side panel.",                          url: 'app.babbitt.au/network/connections?preview=liam-tran', actor: 'marcus', next: 'Accept Request' },
+              { n: 7, label: 'Connected',      caption: "You're now connected with Liam.",                            url: 'app.babbitt.au/network/connections',              actor: 'marcus', next: 'Restart Demo' },
+            ],
+          },
           'supplier-rfq': {
             title: 'Supplier — Quote an RFQ from a Tradie',
             steps: [
@@ -2218,7 +3885,8 @@
 
         // ── Controller state ──────────────────────────────────────
         let activeFlow = 'property-owner-listing';
-        const stepByFlow = { 'property-owner-listing': 1, 'trade-respond-and-stage': 1, 'supplier-rfq': 1 };
+        const stepByFlow = { 'property-owner-listing': 1, 'trade-respond-and-stage': 1, 'tradie-incident-chat': 1, 'tradie-network-community': 1, 'supplier-rfq': 1 };
+        let netState = { upvoted: false, commented: false };
         let userTouched = { title: false, description: false, suburb: false, postcode: false };
         let quoteTouched = { price: false, message: false, avail: false };
 
@@ -2615,6 +4283,41 @@
           if (a === 'confirm-rfq')           go(13);
           if (a === 'send-signoff')          go(14);
           if (a === 'sign-gate')             resetActiveFlow();
+          // Flow 4 — tradie incident chat
+          if (a === 'chat-send-tradie')      go(3);
+          if (a === 'owner-reply-send')      go(5);
+          if (a === 'open-incident-form')    go(6);
+          if (a === 'submit-incident')       go(7);
+          // Flow 5 — tradie network / community
+          if (a === 'enter-community')       go(3);
+          if (a === 'open-post-thread')      go(4);
+          if (a === 'upvote-post') {
+            netState.upvoted = !netState.upvoted;
+            const btn = $('#net-upvote-btn');
+            const score = $('#net-vote-score');
+            if (btn && score) {
+              const next = netState.upvoted ? 15 : 14;
+              score.textContent = String(next);
+              btn.classList.toggle('text-green', netState.upvoted);
+              btn.classList.toggle('text-txt-tertiary', !netState.upvoted);
+            }
+          }
+          if (a === 'submit-comment') {
+            netState.commented = true;
+            const input = $('#net-comment-input');
+            const body = $('#net-marcus-comment-body');
+            if (input && body && input.value.trim().length > 0) body.textContent = input.value.trim();
+            const composer = $('#net-composer');
+            const done = $('#net-comment-done');
+            const myComment = $('#net-marcus-comment');
+            const cnt = $('#net-comment-count');
+            if (composer) composer.classList.add('hidden');
+            if (done) done.classList.remove('hidden');
+            if (myComment) myComment.classList.remove('hidden');
+            if (cnt) cnt.innerHTML = '<i class="fas fa-comment"></i> 7 comments';
+          }
+          if (a === 'view-friend-profile')   go(6);
+          if (a === 'accept-friend')         go(7);
           // Flow 3 — supplier RFQ → quote → won
           if (a === 'open-rfq-detail')       go(3);
           if (a === 'back-to-rfq-inbox')     go(2);
@@ -2642,6 +4345,18 @@
             const qf = $('#quoteForm'); if (qf) qf.reset();
             $('#qf-type').value = 'quote';
             $('#qf-share').checked = true;
+          } else if (activeFlow === 'tradie-incident-chat') {
+            const composer = $('#inc-composer');
+            if (composer) composer.value = '';
+          } else if (activeFlow === 'tradie-network-community') {
+            netState = { upvoted: false, commented: false };
+            const score = $('#net-vote-score');           if (score) score.textContent = '14';
+            const upBtn = $('#net-upvote-btn');           if (upBtn) { upBtn.classList.remove('text-green'); upBtn.classList.add('text-txt-tertiary'); }
+            const input = $('#net-comment-input');        if (input) input.value = '';
+            const composer = $('#net-composer');          if (composer) composer.classList.remove('hidden');
+            const done = $('#net-comment-done');           if (done) done.classList.add('hidden');
+            const myComment = $('#net-marcus-comment');   if (myComment) myComment.classList.add('hidden');
+            const cnt = $('#net-comment-count');           if (cnt) cnt.innerHTML = '<i class="fas fa-comment"></i> 6 comments';
           } else if (activeFlow === 'supplier-rfq') {
             quoteState = { discountApplied: false, lead: '', delivery: '' };
             const ql = $('#quote-lead');     if (ql) ql.value = '2 business days delivery';
