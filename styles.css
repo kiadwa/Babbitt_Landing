@@ -1913,7 +1913,7 @@ body.partner-hover .dim-overlay {
 .nav-secure-btn:hover {
     background: #FFF;
     color: #000;
-    border-color: #000;
+    border-color: transparent;
     transform: translateY(-1px);
 }
 
@@ -2072,7 +2072,11 @@ body.partner-hover .dim-overlay {
 
 /* Hover state — transform is JS-driven (3D tilt + zoom-out); only border + arrow here */
 .mosaic-peek:hover {
-    border-color: var(--border-strong);
+    border-color: var(--yellow);
+    box-shadow:
+        0 0 0 1px rgba(246, 181, 0, 0.35),
+        0 0 24px rgba(246, 181, 0, 0.28),
+        0 0 64px rgba(246, 181, 0, 0.14);
 }
 
 .mosaic-peek:hover .peek-arrow {
@@ -2095,6 +2099,160 @@ body.partner-hover .dim-overlay {
 .peek--demo:hover     { border-color: var(--green); }
 .peek--demo:hover     .peek-arrow,
 .peek--demo:hover     .peek-eyebrow { color: var(--green); }
+
+/* Lanes card — hover reveals 6 role shortcuts. Default state hides the
+   grid; eyebrow + title + arrow remain. On hover those fade out and the
+   grid fades + slides in, with each button independently clickable. */
+.peek--lanes { position: relative; }
+.peek-roles {
+    position: absolute;
+    inset: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 2;
+}
+.peek--lanes:hover  .peek-roles,
+.peek--lanes:focus-within .peek-roles {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.peek--lanes:hover  .peek-eyebrow,
+.peek--lanes:hover  .peek-title,
+.peek--lanes:hover  .peek-arrow,
+.peek--lanes:focus-within .peek-eyebrow,
+.peek--lanes:focus-within .peek-title,
+.peek--lanes:focus-within .peek-arrow {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.peek-role {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--bg-base);
+    border: 1px solid var(--border-default);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.18s ease, border-color 0.18s ease,
+                color 0.18s ease, transform 0.18s ease;
+}
+.peek-role i {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    transition: color 0.18s ease;
+}
+.peek-role:hover {
+    transform: translateY(-1px);
+    background: var(--bg-surface);
+}
+.peek-role.role--yellow:hover { border-color: var(--yellow); color: var(--yellow); }
+.peek-role.role--yellow:hover i { color: var(--yellow); }
+.peek-role.role--green:hover  { border-color: var(--green);  color: var(--green); }
+.peek-role.role--green:hover  i { color: var(--green); }
+.peek-role.role--blue:hover   { border-color: var(--blue);   color: var(--blue); }
+.peek-role.role--blue:hover   i { color: var(--blue); }
+
+/* Demo card — hover splits the panel diagonally into Babbitt (top-left
+   triangle) and CodeChecker (bottom-right triangle). Each triangle is its
+   own anchor, grows from its corner via clip-path so the seam reveals
+   smoothly rather than snapping in. */
+.peek--demo { position: relative; }
+.peek-split {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+.peek-half {
+    position: absolute;
+    inset: 0;
+    text-decoration: none;
+    color: var(--text-primary);
+    pointer-events: none;
+    transition: clip-path 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.3s ease;
+    opacity: 0;
+}
+.peek-half--babbitt {
+    background:
+        radial-gradient(circle at 25% 25%, rgba(246, 181, 0, 0.18), transparent 60%),
+        var(--bg-elevated);
+    /* Collapsed at top-left corner */
+    clip-path: polygon(0% 0%, 0% 0%, 0% 0%);
+}
+.peek-half--cc {
+    background: #F3EFE6;
+    color: #1a1a1a;
+    /* Collapsed at bottom-right corner */
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+}
+/* Position contents at each triangle's centroid (1/3 from the right-angle
+   corner along both axes) so the logo + label sit visually centered inside
+   the triangle, not at the card's geometric center. */
+.peek-half-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.peek-half--babbitt .peek-half-content {
+    top: 33.33%;
+    left: 33.33%;
+    transform: translate(-50%, -50%);
+}
+.peek-half--cc .peek-half-content {
+    top: 66.67%;
+    left: 66.67%;
+    transform: translate(-50%, -50%);
+}
+.peek-half-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    pointer-events: none;
+}
+.peek-half--cc .peek-half-logo { width: 40px; height: 40px; margin-left: -10px; }
+.peek-half-wordmark {
+    width: 90px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+}
+.peek-half--cc .peek-half-wordmark { width: 130px; }
+/* Reveal on hover/focus: each half expands to its full triangle, opening
+   the diagonal seam. */
+.peek--demo:hover .peek-half,
+.peek--demo:focus-within .peek-half { opacity: 1; pointer-events: auto; }
+.peek--demo:hover .peek-half--babbitt,
+.peek--demo:focus-within .peek-half--babbitt {
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+.peek--demo:hover .peek-half--cc,
+.peek--demo:focus-within .peek-half--cc {
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+}
+.peek--demo:hover .peek-eyebrow,
+.peek--demo:hover .peek-title,
+.peek--demo:hover .peek-arrow,
+.peek--demo:focus-within .peek-eyebrow,
+.peek--demo:focus-within .peek-title,
+.peek--demo:focus-within .peek-arrow {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
 
 /* Partner CTA below mosaic */
 .mosaic-partner-cta {
@@ -2120,18 +2278,9 @@ body.partner-hover .dim-overlay {
     color: var(--blue);
 }
 
-/* ── Why placeholder section ────────────────────── */
-.why {
-    padding: 80px 0;
-    border-top: 1px solid var(--border-default);
-    border-bottom: 1px solid var(--border-default);
-    background: rgba(28, 26, 23, 0.3);
-}
-
 /* ── Full-page sections (match hero treatment) ──────────── */
 .stats,
 .features,
-.why,
 .lanes,
 .steps,
 .waitlist,
@@ -2145,7 +2294,6 @@ body.partner-hover .dim-overlay {
 @media (max-width: 768px) {
     .stats,
     .features,
-    .why,
     .lanes,
     .steps,
     .waitlist,
@@ -2153,6 +2301,194 @@ body.partner-hover .dim-overlay {
         min-height: auto;
         display: block;
     }
+}
+
+/* ── Why Carousel ──────────────────────────────────────── */
+.why {
+    min-height: 600vh;
+    background: rgba(28, 26, 23, 0.3);
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    position: relative;
+}
+
+.why-stage-wrap {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Top-left header — sits above the rolling cards so the title stays out of
+   the way of cards entering/leaving from either side rail. */
+.why-header {
+    position: absolute;
+    top: clamp(96px, 12vh, 140px);
+    left: clamp(32px, 5vw, 72px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 5;
+    pointer-events: none;
+    max-width: min(420px, 36vw);
+}
+.why-eyebrow {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--yellow);
+    text-transform: uppercase;
+}
+.why-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 0;
+}
+.why-index {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+}
+.why-title-text {
+    transition: opacity 200ms ease-out;
+}
+
+/* Static visible "viewing window", absolutely centered in the wrap. Cards
+   inside slide horizontally and are clipped at the frame edges. */
+.why-stage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(640px, 56vw);
+    height: min(720px, 76vh);
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    border: 2px solid var(--yellow);
+    background: var(--bg-base);
+    box-shadow:
+        0 0 0 1px rgba(246, 181, 0, 0.35) inset,
+        0 0 18px rgba(246, 181, 0, 0.45),
+        0 0 48px rgba(246, 181, 0, 0.28),
+        0 0 96px rgba(246, 181, 0, 0.16);
+    z-index: 2;
+}
+
+/* Thumbnail rails — past cards on the left, upcoming on the right. Sit
+   outside the frame so the user sees a queue approaching/receding. */
+.why-thumb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(110px, 11vw, 150px);
+    height: clamp(160px, 18vw, 220px);
+    margin: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    will-change: transform, opacity;
+    pointer-events: none;
+    z-index: 1;
+}
+.why-thumb-visual {
+    flex: 1;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+}
+.why-thumb-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.why-card {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-surface);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    will-change: transform;
+    opacity: 0;
+}
+
+.why-card-visual {
+    height: 220px;
+    flex-shrink: 0;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+}
+.why-card-headline {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+.why-card-body {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.why-stage-wrap.is-animating .why-card { transition: none; }
+
+@media (max-width: 1024px) {
+    .why { min-height: auto; }
+    .why-stage-wrap {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        padding: 60px 20px;
+        gap: 24px;
+    }
+    .why-header {
+        position: static;
+        max-width: none;
+        margin-bottom: 8px;
+    }
+    .why-stage {
+        position: static;
+        transform: none;
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: 1px solid var(--border-default);
+    }
+    .why-card {
+        position: static;
+        inset: auto;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .why-card-visual { height: 160px; }
+    .why-thumb { display: none; }
 }
 
 /* ── Mosaic — Responsive ───────────────────────── */
@@ -2199,34 +2535,61 @@ body.partner-hover .dim-overlay {
     }
 }
 
-/* ── Hero scroll-out collapse ──────────────────────────── */
-.mosaic-card { transform-origin: left center; }
+/* ── Hero scroll-out fold ──────────────────────────────── */
+/* Pivot scaling/rotation around the card centre so the fold-into-stack
+   converges visually, not toward a corner. */
+.mosaic-card { transform-origin: center center; }
 
 .mosaic-partner-cta {
-    transition: transform 0.05s linear, opacity 0.05s linear;
+    transition: transform 0.12s linear, opacity 0.12s linear;
 }
 
-.untype-char {
-    display: inline-block;
-    max-width: 1.4em;
-    overflow: hidden;
-    white-space: pre;
-    transition: max-width 0.18s ease, opacity 0.18s ease, margin 0.18s ease;
-}
-
-.untype-char[data-hidden="1"] {
-    max-width: 0;
-    opacity: 0;
-    margin: 0;
+/* While the fold animation runs, suppress hover-tilt and grid-driven
+   transitions so the JS-set inline transform updates each frame without
+   fighting CSS. */
+.hero-mosaic.is-collapsing .mosaic-card {
+    transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
     .mosaic-card,
-    .mosaic-partner-cta,
-    .untype-char {
+    .mosaic-partner-cta {
         transition: none !important;
         transform: none !important;
         opacity: 1 !important;
-        max-width: none !important;
     }
+
+    .why { min-height: auto; }
+    .why-stage-wrap {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        padding: 60px 20px;
+        gap: 24px;
+    }
+    .why-header {
+        position: static;
+        max-width: none;
+        margin-bottom: 8px;
+    }
+    .why-stage {
+        position: static;
+        transform: none;
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: 1px solid var(--border-default);
+    }
+    .why-card {
+        position: static;
+        inset: auto;
+        transform: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+    }
+    .why-thumb { display: none; }
 }

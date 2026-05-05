@@ -185,130 +185,139 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     });
 });
 
-/* ── 4c. Hero Scroll-Out Collapse ──
-   Scroll-tied: as the hero's bottom edge leaves the viewport, peek cards fold
-   off-screen left in reverse-numbering order (04 → 03 → 02 → 01 → center),
-   and the partner CTA untypes right-to-left. Reverses on scroll-up.
+/* ── 4c. Hero Scroll-Out Fold ──
+   Scroll-tied. As the hero scrolls past the top of the viewport, the four
+   peek cards converge toward the center card, scale down, and rotate into
+   a tidy stack — like a hand of cards being gathered into a deck. The
+   center card is the base of the stack and shrinks slightly with them.
+   The whole stack then continues to scroll out naturally with the hero.
 */
 (function () {
     var hero = document.querySelector('.hero.hero-mosaic');
     if (!hero) return;
 
     var partnerCta = hero.querySelector('.mosaic-partner-cta');
-    var partnerBtn = partnerCta ? partnerCta.querySelector('button, a') : null;
 
-    // Window the animation plays over, in px of scroll.
-    // Wider = more time to see the choreography. Tunable.
-    var EXIT_WINDOW = Math.round(window.innerHeight * 0.75);
-    var OFFSCREEN_VW = 110;
-    var MAX_ROTATE = 80;
-    var MAX_SCALE_DELTA = 0.15;
-
-    // Order: right-to-left, reverse of card numbering. Each gets a sub-window.
-    var plan = [
-        { sel: '.peek--founders', start: 0.00, end: 0.40 },
-        { sel: '.peek--demo',     start: 0.15, end: 0.55 },
-        { sel: '.peek--why',      start: 0.30, end: 0.70 },
-        { sel: '.peek--lanes',    start: 0.45, end: 0.85 },
-        { sel: '.mosaic-center',  start: 0.60, end: 1.00 }
+    // Per-card terminal state. rot/ox/oy are applied at progress = 1 to
+    // give the stacked deck a hand-thrown, slightly-fanned appearance.
+    // Larger rotations and offsets are intentional: at the final scale the
+    // peek cards are small, so the fan needs to be visible to read as a deck.
+    var cards = [
+        { sel: '.peek--lanes',    rot: -14, ox: -34, oy: -12 },
+        { sel: '.peek--why',      rot:  10, ox:  16, oy: -22 },
+        { sel: '.peek--demo',     rot: -10, ox: -14, oy:  24 },
+        { sel: '.peek--founders', rot:  16, ox:  30, oy:  10 },
+        { sel: '.mosaic-center',  rot:   0, ox:   0, oy:   0 }
     ];
-    plan.forEach(function (p) { p.el = hero.querySelector(p.sel); });
+    cards = cards
+        .map(function (c) { c.el = hero.querySelector(c.sel); return c; })
+        .filter(function (c) { return c.el; });
 
-    // Split partner CTA text into per-character spans (run once).
-    var charSpans = [];
-    if (partnerBtn) {
-        var text = partnerBtn.textContent;
-        partnerBtn.textContent = '';
-        for (var i = 0; i < text.length; i++) {
-            var span = document.createElement('span');
-            span.className = 'untype-char';
-            span.textContent = text[i];
-            partnerBtn.appendChild(span);
-            charSpans.push(span);
-        }
-    }
+    // All cards converge to this scale at progress = 1. The peek cards
+    // shrink less than the centre card, which leaves the centre as the
+    // visible "base" of the stack and creates a sense of depth.
+    var FINAL_SCALE = 0.42;
+    // Animation completes when the hero top has scrolled this fraction of a
+    // viewport above the viewport top. Kept short enough that the formed
+    // stack lingers in the viewport before the hero finishes scrolling out.
+    var FOLD_WINDOW_VH = 0.45;
 
     function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    // Per-card dx/dy (px) needed to translate its centre to the hero centre.
+    // Recomputed on layout/resize.
+    function capture() {
+        var heroR = hero.getBoundingClientRect();
+        var hcx = heroR.width / 2;
+        var hcy = heroR.height / 2;
+        cards.forEach(function (c) {
+            // Strip the inline transform so we read the natural layout box,
+            // not the in-progress folded box.
+            var prev = c.el.style.transform;
+            c.el.style.transform = '';
+            var r = c.el.getBoundingClientRect();
+            c.el.style.transform = prev;
+            var cx = (r.left - heroR.left) + r.width / 2;
+            var cy = (r.top - heroR.top) + r.height / 2;
+            c.dx = hcx - cx;
+            c.dy = hcy - cy;
+        });
+    }
 
     var reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
     var desktopMq = window.matchMedia('(min-width: 769px)');
-
-    function shouldRun() {
-        return desktopMq.matches && !reduceMotionMq.matches;
-    }
+    function shouldRun() { return desktopMq.matches && !reduceMotionMq.matches; }
 
     function resetAll() {
         hero.classList.remove('is-collapsing');
-        plan.forEach(function (p) {
-            if (!p.el) return;
-            p.el.style.transform = '';
-            p.el.style.opacity = '';
+        // Only clear what this IIFE itself sets. Card opacity is owned by the
+        // entrance animation (.anim-hero sets opacity: 0 in CSS, the keyframe
+        // animates to 1, and IIFE 4b's animationend handler pins inline
+        // opacity: 1). Clearing it here re-exposes the CSS opacity: 0 and the
+        // cards vanish — which is exactly the bug we're avoiding.
+        cards.forEach(function (c) {
+            c.el.style.transform = '';
         });
         if (partnerCta) {
             partnerCta.style.transform = '';
             partnerCta.style.opacity = '';
         }
-        charSpans.forEach(function (s) { s.removeAttribute('data-hidden'); });
     }
 
     var pending = false;
     function update() {
         pending = false;
-        if (!shouldRun()) {
-            resetAll();
-            return;
-        }
-        var rect = hero.getBoundingClientRect();
-        // progress = 0 when bottom is EXIT_WINDOW above viewport top
-        // progress = 1 when bottom hits viewport top (rect.bottom = 0)
-        var progress = clamp01((EXIT_WINDOW - rect.bottom) / EXIT_WINDOW);
+        if (!shouldRun()) { resetAll(); return; }
 
-        if (progress > 0) {
+        var foldDist = window.innerHeight * FOLD_WINDOW_VH;
+        var heroTop  = hero.getBoundingClientRect().top;
+        var raw      = clamp01(-heroTop / foldDist);
+        var t        = easeOut(raw);
+
+        if (raw > 0) {
             hero.classList.add('is-collapsing');
-            // Force-end the entrance animation so its `fill-mode: both` final keyframe
-            // doesn't outrank our inline transform at the cascade level.
-            plan.forEach(function (p) {
-                if (p.el && p.el.style.animation !== 'none') p.el.style.animation = 'none';
+            // Cancel any leftover entrance animation so inline transforms are
+            // not overridden by the animation's filled final keyframe. We
+            // also inline opacity:1 here because cancelling the animation
+            // suppresses the animationend event that IIFE 4b normally uses
+            // to pin opacity. Without this, CSS `.anim-hero { opacity: 0 }`
+            // re-applies and the cards go invisible mid-fold.
+            cards.forEach(function (c) {
+                if (c.el.style.animation !== 'none') {
+                    c.el.style.animation = 'none';
+                    c.el.style.opacity = '1';
+                }
             });
-            if (partnerCta && partnerCta.style.animation !== 'none') partnerCta.style.animation = 'none';
+            if (partnerCta && partnerCta.style.animation !== 'none') {
+                partnerCta.style.animation = 'none';
+                partnerCta.style.opacity = '1';
+            }
         } else {
             hero.classList.remove('is-collapsing');
         }
 
-        plan.forEach(function (p) {
-            if (!p.el) return;
-            var span = p.end - p.start;
-            var local = clamp01((progress - p.start) / span);
-            if (local === 0) {
-                p.el.style.transform = '';
-                p.el.style.opacity = '';
+        var sc = 1 - (1 - FINAL_SCALE) * t;
+        cards.forEach(function (c) {
+            if (raw === 0) {
+                c.el.style.transform = '';
                 return;
             }
-            var tx = -local * OFFSCREEN_VW;
-            var ry = -local * MAX_ROTATE;
-            var sc = 1 - local * MAX_SCALE_DELTA;
-            p.el.style.transform =
-                'translateX(' + tx + 'vw) rotateY(' + ry + 'deg) scale(' + sc + ')';
-            p.el.style.opacity = String(1 - local);
+            var tx  = (c.dx + c.ox) * t;
+            var ty  = (c.dy + c.oy) * t;
+            var rot = c.rot * t;
+            c.el.style.transform =
+                'translate(' + tx + 'px, ' + ty + 'px) ' +
+                'rotate(' + rot + 'deg) ' +
+                'scale(' + sc + ')';
         });
 
         if (partnerCta) {
-            // Partner CTA sub-window: 0.0 → 0.6
-            var ctaLocal = clamp01(progress / 0.6);
-            if (ctaLocal === 0) {
-                partnerCta.style.transform = '';
-                partnerCta.style.opacity = '';
-            } else {
-                partnerCta.style.transform = 'translateX(' + (-ctaLocal * 30) + 'px)';
-                partnerCta.style.opacity = String(1 - ctaLocal);
-            }
-            var n = charSpans.length;
-            for (var i = 0; i < n; i++) {
-                // Char i (0 = leftmost) hides when ctaLocal > 1 - i/n
-                var threshold = 1 - i / n;
-                if (ctaLocal > threshold) charSpans[i].setAttribute('data-hidden', '1');
-                else charSpans[i].removeAttribute('data-hidden');
-            }
+            // Partner CTA fades out faster than the cards so it doesn't
+            // hover over the forming stack.
+            var ctaT = clamp01(raw / 0.4);
+            partnerCta.style.opacity = String(1 - ctaT);
+            partnerCta.style.transform = 'translateY(' + (ctaT * 24) + 'px)';
         }
     }
 
@@ -318,11 +327,175 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         requestAnimationFrame(update);
     }
 
+    function init() {
+        capture();
+        update();
+    }
+
+    function onResize() {
+        capture();
+        onScroll();
+    }
+
+    // Capture immediately. Entrance animation is mid-flight at this moment,
+    // but its keyframes only shift cards 40px on the Y axis and scale them
+    // 0.96 — neither changes a card's centre, which is all capture()
+    // measures. A scroll event arriving before capture() ran (e.g. from
+    // browser scroll-restoration) would otherwise produce NaN transforms
+    // and leave the cards at the CSS .anim-hero opacity:0 — i.e. blank.
+    init();
+    // Re-capture after entrance fully settles, in case any layout shift
+    // happened during the animation (e.g. webfont swap reflowing content).
+    if (document.readyState === 'complete') {
+        setTimeout(init, 1500);
+    } else {
+        window.addEventListener('load', function () { setTimeout(init, 1500); });
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', onResize);
     if (reduceMotionMq.addEventListener) reduceMotionMq.addEventListener('change', onScroll);
-    if (desktopMq.addEventListener) desktopMq.addEventListener('change', onScroll);
-    update();
+    if (desktopMq.addEventListener) desktopMq.addEventListener('change', onResize);
+})();
+
+/* ── 4d. Why Babbitt Scroll Carousel ── */
+(function () {
+    var section = document.querySelector('.why');
+    var wrap    = document.querySelector('.why-stage-wrap');
+    var stage   = document.querySelector('.why-stage');
+    var titleEl = document.querySelector('.why-title-text');
+    var indexEl = document.querySelector('.why-index');
+    if (!section || !wrap || !stage || !titleEl || !indexEl) return;
+
+    var cards  = Array.prototype.slice.call(stage.querySelectorAll('.why-card'));
+    var thumbs = Array.prototype.slice.call(wrap.querySelectorAll('.why-thumb'));
+    if (cards.length === 0) return;
+
+    var NUM = cards.length;
+    var LAST = NUM - 1;
+
+    var desktopMq      = window.matchMedia('(min-width: 1025px)');
+    var reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function shouldRun() { return desktopMq.matches && !reduceMotionMq.matches; }
+    function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+    var pending = false;
+    var lastIndex = -1;
+    var sectionTop = 0, scrollRange = 1, stageW = 0, wrapW = 0;
+    var thumbW = 0, thumbGap = 26, thumbEdgePad = 30;
+
+    function capture() {
+        var r = section.getBoundingClientRect();
+        sectionTop = window.scrollY + r.top;
+        scrollRange = Math.max(1, section.offsetHeight - window.innerHeight);
+        stageW = stage.offsetWidth;
+        wrapW  = wrap.offsetWidth;
+        thumbW = thumbs.length ? thumbs[0].offsetWidth : 0;
+    }
+
+    /* Pure horizontal slide. Cards live inside .why-stage which has
+       overflow:hidden + dashed border. The two cards crossing the frame at
+       any moment sit side-by-side (no overlap) and are clipped at the frame
+       edges. Beyond ±1 stage-widths the card is fully outside the window. */
+    function getCardTransform(delta) {
+        var tx;
+        if (delta <= -1)      tx = -stageW;
+        else if (delta >= 1)  tx =  stageW;
+        else                  tx =  delta * stageW;
+        return tx;
+    }
+
+    /* Thumb sits centered on the wrap (top:50%; left:50%). When |delta| < 1
+       the thumb is hidden (its card is currently in the frame). When delta
+       <= -1 the thumb takes a slot on the left rail; when delta >= 1 it
+       takes a slot on the right rail. Slot 1 sits just outside the frame. */
+    function getThumbState(delta) {
+        var absD = Math.abs(delta);
+        if (absD < 1) return { tx: 0, op: 0 };
+        var slot = absD - 1;                          // 0..LAST-1
+        var sign = delta < 0 ? -1 : 1;
+        var offset = (stageW / 2) + thumbEdgePad + (thumbW / 2)
+                   + slot * (thumbW + thumbGap);
+        var tx = sign * offset - (thumbW / 2);        // left:50% offset by half thumb
+        var op = Math.max(0, 1 - slot * 0.35);
+        // Past cards (left rail) fade a touch more than upcoming
+        if (sign < 0) op *= 0.85;
+        return { tx: tx, op: op };
+    }
+
+    function update() {
+        pending = false;
+        if (!shouldRun()) { resetAll(); return; }
+
+        var raw = clamp01((window.scrollY - sectionTop) / scrollRange);
+        var activeFloat = raw * LAST;
+
+        for (var i = 0; i < NUM; i++) {
+            var d = i - activeFloat;
+            var tx = getCardTransform(d);
+            cards[i].style.transform = 'translate(' + tx + 'px, 0)';
+            // Cards fully outside the frame (|delta| >= 1) are hidden so the
+            // thumbnail rail rather than a stack of full cards is what the
+            // user sees outside the dashed window.
+            cards[i].style.opacity = (Math.abs(d) >= 1) ? '0' : '1';
+            cards[i].style.zIndex = String(100 - Math.abs(Math.round(d)));
+        }
+
+        for (var j = 0; j < thumbs.length; j++) {
+            var dd = j - activeFloat;
+            var s = getThumbState(dd);
+            thumbs[j].style.transform = 'translate(' + s.tx + 'px, -50%)';
+            thumbs[j].style.opacity = String(s.op);
+        }
+
+        var idx = Math.round(activeFloat);
+        if (idx < 0) idx = 0; else if (idx > LAST) idx = LAST;
+        if (idx !== lastIndex) {
+            lastIndex = idx;
+            var label = cards[idx].dataset.whyLabel || ('Subsection ' + (idx + 1));
+            titleEl.textContent = label;
+            indexEl.textContent = (idx + 1 < 10 ? '0' : '') + (idx + 1);
+        }
+    }
+
+    function resetAll() {
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].style.transform = '';
+            cards[i].style.opacity = '';
+            cards[i].style.zIndex = '';
+        }
+        for (var j = 0; j < thumbs.length; j++) {
+            thumbs[j].style.transform = '';
+            thumbs[j].style.opacity = '';
+        }
+        wrap.classList.remove('is-animating');
+        lastIndex = -1;
+    }
+
+    function onScroll() {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(update);
+    }
+    function onResize() { capture(); onScroll(); }
+
+    function init() {
+        if (!shouldRun()) { resetAll(); return; }
+        capture();
+        wrap.classList.add('is-animating');
+        update();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+        window.addEventListener('load', function () { setTimeout(init, 1500); });
+    } else {
+        init();
+        setTimeout(init, 1500);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    if (reduceMotionMq.addEventListener) reduceMotionMq.addEventListener('change', onResize);
+    if (desktopMq.addEventListener) desktopMq.addEventListener('change', onResize);
 })();
 
 /* ── 5. Hero Cursor Glare ── */

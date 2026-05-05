@@ -30,3 +30,8 @@ _about*
 .claude
 
 node_modules
+
+# Visual-test artefacts produced by audit-hero-*.mjs harnesses
+scroll-shots/
+audit-*-full.png
+audit-*-hero.png
