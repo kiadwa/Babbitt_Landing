@@ -2,39 +2,35 @@
    BABBITT LANDING — Interactions
    ════════════════════════════════════════════════════════════ */
 
-/* ── 1. Word Cycling (hero headline) ── */
+/* ── 1. Word Cycling (hero headline — four sync'd slots) ── */
 (function () {
-    var nouns   = ['trade','craft','skill','hands','licence','crew','work','property','product','supply'];
-    var verbs   = ['builds','frames','finishes','renovates','installs','completes','holds','starts','moves'];
-    var objects = ['home','site','job','property','build','project','story','team','reputation'];
-    var singles = ['Remembered','Respected','Rewarded','Redefines','Re-orders','Remains'];
+    var tracks = [
+        { el: document.getElementById('c-noun'),   words: ['trade', 'craft', 'skill', 'work'] },
+        { el: document.getElementById('c-verb'),    words: ['builds', 'shapes', 'defines', 'proves'] },
+        { el: document.getElementById('c-obj'),     words: ['home', 'building', 'project', 'community'] },
+        { el: document.getElementById('c-single'),  words: ['Remembered', 'Verified', 'Trusted', 'Proven'] }
+    ];
+    // Bail if none of the elements exist
+    var active = tracks.filter(function (t) { return t.el; });
+    if (!active.length) return;
 
-    var idx  = { n: 0, v: 0, o: 0, s: 0 };
-    var els  = {
-        n: document.getElementById('c-noun'),
-        v: document.getElementById('c-verb'),
-        o: document.getElementById('c-obj'),
-        s: document.getElementById('c-single')
-    };
-    var words = { n: nouns, v: verbs, o: objects, s: singles };
-
-    function swapWord(key) {
-        var el  = els[key];
-        var arr = words[key];
-        if (!el) return;
-        el.classList.remove('anim-in');
-        el.classList.add('anim-out');
-        setTimeout(function () {
-            idx[key] = (idx[key] + 1) % arr.length;
-            el.textContent = arr[idx[key]];
-            el.classList.remove('anim-out');
-            el.classList.add('anim-in');
-            setTimeout(function () { el.classList.remove('anim-in'); }, 300);
-        }, 300);
-    }
-
+    var i = 0;
     setInterval(function () {
-        swapWord('n'); swapWord('v'); swapWord('o'); swapWord('s');
+        active.forEach(function (t) {
+            t.el.classList.remove('anim-in');
+            t.el.classList.add('anim-out');
+        });
+        setTimeout(function () {
+            i = (i + 1) % active[0].words.length;
+            active.forEach(function (t) {
+                t.el.textContent = t.words[i];
+                t.el.classList.remove('anim-out');
+                t.el.classList.add('anim-in');
+            });
+            setTimeout(function () {
+                active.forEach(function (t) { t.el.classList.remove('anim-in'); });
+            }, 300);
+        }, 300);
     }, 2800);
 })();
 
@@ -101,34 +97,14 @@
     }
 
     function closeSweep() {
-        // 1. Fade out the form first
         sweepMsg.classList.remove('active');
-        // 2. After form fades (250ms), retract the yellow sweep
         setTimeout(function () {
             yellowSweep.classList.remove('active');
-            if (btnMember) {
-                setTimeout(function () {
-                    btnMember.style.transform = '';
-                    btnMember.style.opacity   = '1';
-                    btnMember.classList.remove('flying');
-                }, 250);
-            }
         }, 300);
     }
 
-    // Hero "I'm interested" — fly animation then open
     if (btnMember) {
-        btnMember.addEventListener('click', function () {
-            var rect = this.getBoundingClientRect();
-            var flyX = (window.innerWidth - rect.right) + rect.width * 0.5 - 20;
-            var flyY = -(rect.top) + 18;
-
-            this.classList.add('flying');
-            this.style.transform = 'translate(' + flyX + 'px, ' + flyY + 'px) scale(0.32) rotate(6deg)';
-            this.style.opacity   = '0.5';
-
-            setTimeout(openSweep, 400);
-        });
+        btnMember.addEventListener('click', openSweep);
     }
 
     // Nav "Get Early Access" — open immediately
@@ -182,26 +158,19 @@ document.querySelectorAll('.tilt-card').forEach(function (card) {
 (function () {
     var hero = document.querySelector('.hero');
     var glare = document.getElementById('glareLayer');
-    var glareWarm = document.getElementById('glareLayerWarm');
-    if (!hero || !glare || !glareWarm) return;
+    if (!hero || !glare) return;
 
     hero.addEventListener('mousemove', function (e) {
         var rect = hero.getBoundingClientRect();
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
-
         glare.style.opacity = '1';
         glare.style.background =
-            'radial-gradient(600px circle at ' + x + 'px ' + y + 'px, rgba(255,255,255,0.07) 0%, transparent 50%)';
-
-        glareWarm.style.opacity = '1';
-        glareWarm.style.background =
-            'radial-gradient(400px circle at ' + x + 'px ' + y + 'px, rgba(246,181,0,0.1) 0%, transparent 50%)';
+            'radial-gradient(600px circle at ' + x + 'px ' + y + 'px, rgba(255,255,255,0.05) 0%, transparent 50%)';
     });
 
     hero.addEventListener('mouseleave', function () {
         glare.style.opacity = '0';
-        glareWarm.style.opacity = '0';
     });
 })();
 
@@ -216,9 +185,14 @@ document.querySelectorAll('.tilt-card').forEach(function (card) {
                     // After animation ends, clear it so JS tilt transform can take over
                     if (entry.target.classList.contains('tilt-card')) {
                         entry.target.addEventListener('animationend', function () {
-                            this.style.animation = 'none';
-                            this.style.opacity = '1';
-                            this.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)';
+                            var card = this;
+                            card.style.transition = 'none';
+                            card.style.animation = 'none';
+                            card.style.opacity = '1';
+                            card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)';
+                            requestAnimationFrame(function () {
+                                card.style.transition = '';
+                            });
                         }, { once: true });
                     }
                 }
@@ -306,42 +280,52 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
 })();
 
-/* ── 8. Campaign Modal (Yulli's Launch — swappable) ── */
+/* ── 10. Hamburger Menu Toggle ── */
 (function () {
-    var modal    = document.getElementById('campaignModal');
-    if (!modal) return;
+    var hamburger = document.getElementById('navHamburger');
+    var navLinks = document.getElementById('navLinks');
+    if (!hamburger || !navLinks) return;
 
-    var closeBtn = document.getElementById('campaignModalClose');
-    var backdrop = modal.querySelector('.campaign-modal-backdrop');
-    var fabBtn   = document.getElementById('btnCampaignFab');
-    var navBtn   = document.getElementById('btnCampaignNav');
-
-    function openCampaign() {
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeCampaign() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    if (closeBtn) closeBtn.addEventListener('click', closeCampaign);
-    if (backdrop) backdrop.addEventListener('click', closeCampaign);
-    if (fabBtn)   fabBtn.addEventListener('click', openCampaign);
-    if (navBtn)   navBtn.addEventListener('click', openCampaign);
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeCampaign();
-        }
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('is-open');
+        navLinks.classList.toggle('is-open');
     });
 
-    // Auto-open when user lands on /qrlanding (trailing slash tolerant)
-    var path = window.location.pathname.replace(/\/$/, '');
-    if (path.endsWith('/qrlanding') || path.endsWith('/qrlanding/index.html')) {
-        setTimeout(openCampaign, 450);
-    }
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a, button').forEach(function (link) {
+        link.addEventListener('click', function () {
+            hamburger.classList.remove('is-open');
+            navLinks.classList.remove('is-open');
+        });
+    });
 })();
+
+/* ── 11. Campaign Modal ── */
+(function () {
+    var modal      = document.getElementById('campaignModal');
+    var closeBtn   = document.getElementById('campaignModalClose');
+    var backdrop   = modal ? modal.querySelector('.campaign-modal-backdrop') : null;
+    var btnNav     = document.getElementById('btnCampaignNav');
+    var btnFab     = document.getElementById('btnCampaignFab');
+    if (!modal) return;
+
+    function openModal() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+
+    if (btnNav) btnNav.addEventListener('click', openModal);
+    if (btnFab) btnFab.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+})();
+

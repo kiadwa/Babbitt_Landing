@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -115,7 +116,7 @@
                         <g fill="#F6B500"><path d="M 28.6875 -177.09375 L 81.8125 -177.09375 L 57.03125 0 L 3.890625 0 Z M 58.265625 -195.515625 C 50.585938 -195.515625 44.503906 -198.050781 40.015625 -203.125 C 35.535156 -208.195312 33.828125 -214.515625 34.890625 -222.078125 C 35.953125 -229.515625 39.429688 -235.800781 45.328125 -240.9375 C 51.234375 -246.070312 57.960938 -248.640625 65.515625 -248.640625 C 72.953125 -248.640625 78.882812 -246.070312 83.3125 -240.9375 C 87.75 -235.800781 89.4375 -229.515625 88.375 -222.078125 C 87.3125 -214.515625 83.914062 -208.195312 78.1875 -203.125 C 72.457031 -198.050781 65.816406 -195.515625 58.265625 -195.515625 Z M 58.265625 -195.515625 "/></g>
                     </svg>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="11 -270 117 280" aria-hidden="true">
-                        <g fill="#F6B500"><path d="M 118.65625 -123.96875 L 88.546875 -123.96875 L 71.1875 0 L 18.0625 0 L 35.421875 -123.96875 L 12.390625 -123.96875 L 19.828125 -177.09375 L 42.859375 -177.09375 L 50.65625 -232.703125 L 103.78125 -232.703125 L 95.984375 -177.09375 L 126.09375 -177.09375 Z M 118.65625 -123.96875 "/></g>
+                        <g fill="#F6B500"><path d="M 118.65625 -123.96875 L 88.546875 -123.96875 L 71.1875 0 L 18.0625 0 L 35.421875 -123.96875 L -7.609375 -123.96875 L -0.171875 -177.09375 L 42.859375 -177.09375 L 50.65625 -232.703125 L 103.78125 -232.703125 L 95.984375 -177.09375 L 126.09375 -177.09375 Z M 118.65625 -123.96875 "/></g>
                     </svg>
                 </span>
                 <span class="logo-suffix" aria-hidden="true">
@@ -124,12 +125,22 @@
                     </svg>
                 </span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="#features">Features</a>
                 <a href="#lanes">Who it's for</a>
-                <button class="btn btn-sm btn-campaign-nav" id="btnCampaignNav">Apply Now — The Babbitt 60</button>
-                <button class="btn btn-sm" id="btnNavCta">Get Early Access</button>
+                <a href="https://codechecker.babbitt.app" class="nav-codechecker" target="_blank" rel="noopener">
+                    <span class="nav-codechecker-logo" aria-hidden="true">
+                        <img src="CodeChecker_icon_black.png" alt="">
+                    </span>
+                    <span class="nav-codechecker-text">CodeChecker</span>
+                    <span class="nav-codechecker-live" aria-hidden="true"></span>
+                </a>
+                <a href="/demo" class="btn btn-sm btn-demo-nav"><i class="fas fa-play" style="font-size:9px"></i> View Demo</a>
+                <a href="/qrlanding" class="btn btn-sm btn-campaign-nav" id="btnCampaignNav">Apply Now — The Babbitt 60</a>
             </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -146,9 +157,26 @@
         <div class="glare-layer-warm" id="glareLayerWarm"></div>
 
         <div class="container hero-inner">
+            <a href="https://codechecker.babbitt.app" target="_blank" rel="noopener" class="hero-codechecker anim-hero" aria-label="CodeChecker is live — open codechecker.babbitt.app">
+                <span class="hero-codechecker-shine" aria-hidden="true"></span>
+                <span class="hero-codechecker-logo" aria-hidden="true">
+                    <img src="CodeChecker_icon_black.png" alt="">
+                </span>
+                <span class="hero-codechecker-content">
+                    <span class="hero-codechecker-eyebrow">
+                        <span class="hero-codechecker-pulse"></span>
+                        Now live
+                    </span>
+                    <span class="hero-codechecker-label">CodeChecker</span>
+                </span>
+                <span class="hero-codechecker-arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+            </a>
+
             <div class="hero-badge anim-hero">
                 <span class="badge-dot"></span>
-                Launching April 30, 2026
+                Launching soon
             </div>
 
             <div class="hero-headline anim-hero delay-1">
@@ -161,6 +189,7 @@
 
             <div class="hero-cta anim-hero delay-3">
                 <button class="btn-member" id="btnMember">I'm interested</button>
+                <a class="btn-demo" href="/demo"><span class="demo-play"><i class="fas fa-play"></i></span> View our Demo</a>
                 <button class="btn-partner" id="btnPartner">Become a Partner</button>
                 <span class="hero-subline">Every job. Your name on it.</span>
             </div>
@@ -370,16 +399,16 @@
                 <h2 class="section-title">The people behind Babbitt</h2>
             </div>
             <div class="founders-grid">
-                <div class="founder-card tilt-card anim-up">
+                <a href="https://www.linkedin.com/in/babbitt-australia/" target="_blank" rel="noopener noreferrer" class="founder-card tilt-card anim-up">
                     <div class="founder-avatar">BP</div>
                     <h3>Bruno Panucci</h3>
                     <p class="founder-role">Founder</p>
-                </div>
-                <div class="founder-card tilt-card anim-up">
+                </a>
+                <a href="https://www.linkedin.com/in/anh-ky-pham/" target="_blank" rel="noopener noreferrer" class="founder-card tilt-card anim-up">
                     <div class="founder-avatar">KA</div>
                     <h3>Ky Anh Pham</h3>
                     <p class="founder-role">Co-Founder</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -430,10 +459,10 @@
     </div>
 
     <!-- Floating Campaign CTA -->
-    <button class="campaign-fab" id="btnCampaignFab" aria-label="Apply for The Babbitt 60">
+    <a href="/qrlanding" class="campaign-fab" id="btnCampaignFab" aria-label="Apply for The Babbitt 60">
         <span class="campaign-fab-dot"></span>
         <span class="campaign-fab-text">Apply — The Babbitt 60</span>
-    </button>
+    </a>
 
     <script src="script.js"></script>
 </body>
