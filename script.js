@@ -154,6 +154,177 @@ document.querySelectorAll('.tilt-card').forEach(function (card) {
     });
 });
 
+/* ── 4b. Mosaic Cards — 3D tilt with zoom-OUT (cursor-driven) ── */
+document.querySelectorAll('.mosaic-card').forEach(function (card) {
+    // Clear .anim-hero entrance animation after it ends so inline transforms
+    // are not blocked by the animation's `fill-mode: both` final keyframe.
+    card.addEventListener('animationend', function () {
+        card.style.animation = 'none';
+        card.style.opacity = '1';
+        card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)';
+    }, { once: true });
+
+    card.addEventListener('mousemove', function (e) {
+        var heroEl = card.closest('.hero');
+        if (heroEl && heroEl.classList.contains('is-collapsing')) return;
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform =
+            'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) scale3d(0.94,0.94,0.94)';
+        card.style.boxShadow =
+            (-x * 22) + 'px ' + (y * 22) + 'px 38px rgba(0,0,0,0.32), ' +
+            (-x * 6) + 'px ' + (y * 6) + 'px 12px rgba(0,0,0,0.18)';
+    });
+
+    card.addEventListener('mouseleave', function () {
+        var heroEl = card.closest('.hero');
+        if (heroEl && heroEl.classList.contains('is-collapsing')) return;
+        card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)';
+        card.style.boxShadow = '';
+    });
+});
+
+/* ── 4c. Hero Scroll-Out Collapse ──
+   Scroll-tied: as the hero's bottom edge leaves the viewport, peek cards fold
+   off-screen left in reverse-numbering order (04 → 03 → 02 → 01 → center),
+   and the partner CTA untypes right-to-left. Reverses on scroll-up.
+*/
+(function () {
+    var hero = document.querySelector('.hero.hero-mosaic');
+    if (!hero) return;
+
+    var partnerCta = hero.querySelector('.mosaic-partner-cta');
+    var partnerBtn = partnerCta ? partnerCta.querySelector('button, a') : null;
+
+    // Window the animation plays over, in px of scroll.
+    // Wider = more time to see the choreography. Tunable.
+    var EXIT_WINDOW = Math.round(window.innerHeight * 0.75);
+    var OFFSCREEN_VW = 110;
+    var MAX_ROTATE = 80;
+    var MAX_SCALE_DELTA = 0.15;
+
+    // Order: right-to-left, reverse of card numbering. Each gets a sub-window.
+    var plan = [
+        { sel: '.peek--founders', start: 0.00, end: 0.40 },
+        { sel: '.peek--demo',     start: 0.15, end: 0.55 },
+        { sel: '.peek--why',      start: 0.30, end: 0.70 },
+        { sel: '.peek--lanes',    start: 0.45, end: 0.85 },
+        { sel: '.mosaic-center',  start: 0.60, end: 1.00 }
+    ];
+    plan.forEach(function (p) { p.el = hero.querySelector(p.sel); });
+
+    // Split partner CTA text into per-character spans (run once).
+    var charSpans = [];
+    if (partnerBtn) {
+        var text = partnerBtn.textContent;
+        partnerBtn.textContent = '';
+        for (var i = 0; i < text.length; i++) {
+            var span = document.createElement('span');
+            span.className = 'untype-char';
+            span.textContent = text[i];
+            partnerBtn.appendChild(span);
+            charSpans.push(span);
+        }
+    }
+
+    function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+    var reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var desktopMq = window.matchMedia('(min-width: 769px)');
+
+    function shouldRun() {
+        return desktopMq.matches && !reduceMotionMq.matches;
+    }
+
+    function resetAll() {
+        hero.classList.remove('is-collapsing');
+        plan.forEach(function (p) {
+            if (!p.el) return;
+            p.el.style.transform = '';
+            p.el.style.opacity = '';
+        });
+        if (partnerCta) {
+            partnerCta.style.transform = '';
+            partnerCta.style.opacity = '';
+        }
+        charSpans.forEach(function (s) { s.removeAttribute('data-hidden'); });
+    }
+
+    var pending = false;
+    function update() {
+        pending = false;
+        if (!shouldRun()) {
+            resetAll();
+            return;
+        }
+        var rect = hero.getBoundingClientRect();
+        // progress = 0 when bottom is EXIT_WINDOW above viewport top
+        // progress = 1 when bottom hits viewport top (rect.bottom = 0)
+        var progress = clamp01((EXIT_WINDOW - rect.bottom) / EXIT_WINDOW);
+
+        if (progress > 0) {
+            hero.classList.add('is-collapsing');
+            // Force-end the entrance animation so its `fill-mode: both` final keyframe
+            // doesn't outrank our inline transform at the cascade level.
+            plan.forEach(function (p) {
+                if (p.el && p.el.style.animation !== 'none') p.el.style.animation = 'none';
+            });
+            if (partnerCta && partnerCta.style.animation !== 'none') partnerCta.style.animation = 'none';
+        } else {
+            hero.classList.remove('is-collapsing');
+        }
+
+        plan.forEach(function (p) {
+            if (!p.el) return;
+            var span = p.end - p.start;
+            var local = clamp01((progress - p.start) / span);
+            if (local === 0) {
+                p.el.style.transform = '';
+                p.el.style.opacity = '';
+                return;
+            }
+            var tx = -local * OFFSCREEN_VW;
+            var ry = -local * MAX_ROTATE;
+            var sc = 1 - local * MAX_SCALE_DELTA;
+            p.el.style.transform =
+                'translateX(' + tx + 'vw) rotateY(' + ry + 'deg) scale(' + sc + ')';
+            p.el.style.opacity = String(1 - local);
+        });
+
+        if (partnerCta) {
+            // Partner CTA sub-window: 0.0 → 0.6
+            var ctaLocal = clamp01(progress / 0.6);
+            if (ctaLocal === 0) {
+                partnerCta.style.transform = '';
+                partnerCta.style.opacity = '';
+            } else {
+                partnerCta.style.transform = 'translateX(' + (-ctaLocal * 30) + 'px)';
+                partnerCta.style.opacity = String(1 - ctaLocal);
+            }
+            var n = charSpans.length;
+            for (var i = 0; i < n; i++) {
+                // Char i (0 = leftmost) hides when ctaLocal > 1 - i/n
+                var threshold = 1 - i / n;
+                if (ctaLocal > threshold) charSpans[i].setAttribute('data-hidden', '1');
+                else charSpans[i].removeAttribute('data-hidden');
+            }
+        }
+    }
+
+    function onScroll() {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    if (reduceMotionMq.addEventListener) reduceMotionMq.addEventListener('change', onScroll);
+    if (desktopMq.addEventListener) desktopMq.addEventListener('change', onScroll);
+    update();
+})();
+
 /* ── 5. Hero Cursor Glare ── */
 (function () {
     var hero = document.querySelector('.hero');
@@ -217,18 +388,16 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     });
 });
 
-/* ── 8. Navbar Scroll Effect ── */
+/* ── 8. Navbar Scroll Effect — yellow nav: shadow on scroll ── */
 (function () {
     var navbar = document.querySelector('.navbar');
     if (!navbar) return;
 
     window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
-            navbar.style.borderBottomColor = 'rgba(46,43,38,0.8)';
-            navbar.style.backgroundColor = 'rgba(19,18,16,0.95)';
+            navbar.style.boxShadow = '0 4px 18px rgba(0,0,0,0.18)';
         } else {
-            navbar.style.borderBottomColor = '';
-            navbar.style.backgroundColor = '';
+            navbar.style.boxShadow = '';
         }
     });
 })();

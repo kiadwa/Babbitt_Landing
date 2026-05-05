@@ -1874,3 +1874,359 @@ body.partner-hover .dim-overlay {
     .waitlist-form { padding: 24px 18px; }
 }
 
+/* ════════════════════════════════════════════════════════════
+   YELLOW NAV + 5-CARD MOSAIC — 2026 redesign
+   ════════════════════════════════════════════════════════════ */
+
+/* Yellow navbar */
+.navbar.nav--yellow {
+    background: var(--yellow);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* Recolor the logo on yellow bg — CSS overrides inline fill="" */
+.nav--yellow .nav-brand .logo-prefix svg g,
+.nav--yellow .nav-brand .logo-prefix svg path,
+.nav--yellow .nav-brand .logo-suffix svg g,
+.nav--yellow .nav-brand .logo-suffix svg path { fill: #000; }
+
+.nav--yellow .nav-brand .logo-it svg g,
+.nav--yellow .nav-brand .logo-it svg path { fill: #FFF; }
+
+/* Single nav CTA button */
+.nav-secure-btn {
+    padding: 9px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--yellow);
+    background: #000;
+    border: 1px solid #000;
+    border-radius: var(--radius-button);
+    cursor: pointer;
+    transition: all var(--motion-standard);
+}
+
+.nav-secure-btn:hover {
+    background: #FFF;
+    color: #000;
+    border-color: #000;
+    transform: translateY(-1px);
+}
+
+/* Hamburger lines need to be dark on yellow */
+.nav--yellow .nav-hamburger span { background: #000; }
+
+/* ── Hero — Mosaic layout (full viewport, edge-to-edge) ─── */
+.hero.hero-mosaic {
+    padding: 14px 0 0;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: stretch;
+    background: var(--bg-base);
+}
+
+.hero-mosaic .glow-orb-1 { opacity: 0.6; }
+.hero-mosaic .glow-orb-2 { opacity: 0.5; }
+
+/* Override .container's max-width — keep 14px side gutter to match nav top spacing */
+.hero-mosaic .mosaic-wrap.container {
+    max-width: 100%;
+    padding: 0 14px;
+}
+
+.mosaic-wrap {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mosaic-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 14px;
+    flex: 1;
+    min-height: 540px;
+}
+
+/* Card base */
+.mosaic-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+    border-radius: var(--radius-card);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+}
+
+/* Center hero card — spans 1 col × 2 rows */
+.mosaic-center {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 2;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    padding: 56px 40px;
+    background:
+        radial-gradient(120% 80% at 0% 0%, rgba(246, 181, 0, 0.08) 0%, transparent 60%),
+        var(--bg-elevated);
+    border-color: rgba(246, 181, 0, 0.18);
+}
+
+.center-eyebrow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+}
+
+/* Center card uses legacy poetic stack — re-scale for mosaic context */
+.mosaic-center .center-headline {
+    gap: 6px;
+    align-items: flex-start;
+    text-align: left;
+    margin: auto 0;
+}
+
+.mosaic-center .hero-line {
+    font-size: clamp(22px, 3.2vw, 44px);
+    line-height: 1.08;
+    white-space: nowrap;
+}
+
+.mosaic-center .hero-line.feature-word {
+    font-size: clamp(32px, 5vw, 72px);
+    margin-top: 6px;
+}
+
+.mosaic-center .hero-line.closing {
+    font-size: clamp(13px, 1vw, 16px);
+    margin-top: 16px;
+    white-space: normal;
+}
+
+.center-footer {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+/* Sneak-peek cards — corners */
+.mosaic-peek {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.peek--lanes    { grid-column: 1; grid-row: 1; }
+.peek--why      { grid-column: 1; grid-row: 2; }
+.peek--demo     { grid-column: 3; grid-row: 1; }
+.peek--founders { grid-column: 3; grid-row: 2; }
+
+.peek-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.peek-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+}
+
+.peek-arrow {
+    align-self: flex-end;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover state — transform is JS-driven (3D tilt + zoom-out); only border + arrow here */
+.mosaic-peek:hover {
+    border-color: var(--border-strong);
+}
+
+.mosaic-peek:hover .peek-arrow {
+    transform: translate(4px, -4px);
+}
+
+/* Per-card accent */
+.peek--lanes:hover    { border-color: var(--yellow); }
+.peek--lanes:hover    .peek-arrow,
+.peek--lanes:hover    .peek-eyebrow { color: var(--yellow); }
+
+.peek--why:hover      { border-color: var(--blue); }
+.peek--why:hover      .peek-arrow,
+.peek--why:hover      .peek-eyebrow { color: var(--blue); }
+
+.peek--founders:hover { border-color: var(--orange); }
+.peek--founders:hover .peek-arrow,
+.peek--founders:hover .peek-eyebrow { color: var(--orange); }
+
+.peek--demo:hover     { border-color: var(--green); }
+.peek--demo:hover     .peek-arrow,
+.peek--demo:hover     .peek-eyebrow { color: var(--green); }
+
+/* Partner CTA below mosaic */
+.mosaic-partner-cta {
+    text-align: center;
+    margin-top: 24px;
+    padding: 0 24px 24px;
+}
+
+.link-partner {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--motion-standard);
+    letter-spacing: 0.01em;
+}
+
+.link-partner:hover {
+    color: var(--blue);
+}
+
+/* ── Why placeholder section ────────────────────── */
+.why {
+    padding: 80px 0;
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    background: rgba(28, 26, 23, 0.3);
+}
+
+/* ── Full-page sections (match hero treatment) ──────────── */
+.stats,
+.features,
+.why,
+.lanes,
+.steps,
+.waitlist,
+.founders {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+}
+
+/* On narrow screens content may exceed 100vh — let sections grow naturally */
+@media (max-width: 768px) {
+    .stats,
+    .features,
+    .why,
+    .lanes,
+    .steps,
+    .waitlist,
+    .founders {
+        min-height: auto;
+        display: block;
+    }
+}
+
+/* ── Mosaic — Responsive ───────────────────────── */
+@media (max-width: 1024px) {
+    .mosaic-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        min-height: auto;
+    }
+    .mosaic-center {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        padding: 48px 32px;
+        min-height: 320px;
+    }
+    .peek--lanes    { grid-column: 1; grid-row: 2; }
+    .peek--why      { grid-column: 2; grid-row: 2; }
+    .peek--demo     { grid-column: 1; grid-row: 3; }
+    .peek--founders { grid-column: 2; grid-row: 3; }
+    .mosaic-peek { min-height: 130px; }
+}
+
+@media (max-width: 540px) {
+    .hero.hero-mosaic { padding: 32px 0 48px; }
+    .mosaic-grid { gap: 10px; }
+    .mosaic-center {
+        padding: 40px 24px;
+        min-height: 260px;
+    }
+    .center-headline { font-size: clamp(44px, 13vw, 64px); }
+    .mosaic-peek { padding: 16px; min-height: 110px; }
+    .peek-title { font-size: 18px; }
+    .peek-eyebrow { font-size: 10px; }
+    .peek-arrow { font-size: 22px; }
+}
+
+/* Mobile dropdown — match yellow nav theme */
+@media (max-width: 768px) {
+    .nav--yellow .nav-links {
+        background: var(--yellow);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+/* ── Hero scroll-out collapse ──────────────────────────── */
+.mosaic-card { transform-origin: left center; }
+
+.mosaic-partner-cta {
+    transition: transform 0.05s linear, opacity 0.05s linear;
+}
+
+.untype-char {
+    display: inline-block;
+    max-width: 1.4em;
+    overflow: hidden;
+    white-space: pre;
+    transition: max-width 0.18s ease, opacity 0.18s ease, margin 0.18s ease;
+}
+
+.untype-char[data-hidden="1"] {
+    max-width: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mosaic-card,
+    .mosaic-partner-cta,
+    .untype-char {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        max-width: none !important;
+    }
+}
