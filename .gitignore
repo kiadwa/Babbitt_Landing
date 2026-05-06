@@ -35,3 +35,8 @@ node_modules
 scroll-shots/
 audit-*-full.png
 audit-*-hero.png
+
+# Playwright test artefacts
+test-results/
+playwright-report/
+playwright/.cache/

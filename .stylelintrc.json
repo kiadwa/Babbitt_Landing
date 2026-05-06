@@ -1,0 +1,34 @@
+{
+    "extends": ["stylelint-config-standard"],
+    "ignoreFiles": [
+        "node_modules/**",
+        "_about/**",
+        "scroll-shots/**",
+        "test-results/**",
+        "playwright-report/**"
+    ],
+    "rules": {
+        "no-descending-specificity": null,
+        "selector-class-pattern": null,
+        "alpha-value-notation": null,
+        "color-function-notation": null,
+        "hue-degree-notation": null,
+        "declaration-block-no-redundant-longhand-properties": null,
+        "shorthand-property-no-redundant-values": null,
+        "no-duplicate-selectors": null,
+        "font-family-name-quotes": null,
+        "value-keyword-case": ["lower", { "ignoreProperties": ["font-family"] }],
+        "comment-empty-line-before": null,
+        "rule-empty-line-before": null,
+        "declaration-empty-line-before": null,
+        "at-rule-empty-line-before": null,
+        "media-feature-range-notation": "prefix",
+        "selector-not-notation": null,
+        "declaration-block-single-line-max-declarations": null,
+        "keyframes-name-pattern": null,
+        "length-zero-no-unit": null,
+        "property-no-vendor-prefix": null,
+        "value-no-vendor-prefix": null,
+        "at-rule-no-unknown": [true, { "ignoreAtRules": ["supports"] }]
+    }
+}
