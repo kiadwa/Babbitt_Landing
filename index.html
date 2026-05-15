@@ -147,22 +147,22 @@
                     <span class="peek-arrow" aria-hidden="true">→</span>
 
                     <div class="peek-roles" aria-label="Choose your role">
-                        <a class="peek-role role--yellow" href="#lane-trades">
+                        <a class="peek-role role--yellow" href="#features">
                             <i class="fas fa-wrench" aria-hidden="true"></i><span>Trades</span>
                         </a>
-                        <a class="peek-role role--green" href="#lane-supplier">
+                        <a class="peek-role role--green" href="#features">
                             <i class="fas fa-box" aria-hidden="true"></i><span>Supplier</span>
                         </a>
-                        <a class="peek-role role--blue" href="#lane-owner">
+                        <a class="peek-role role--blue" href="#features">
                             <i class="fas fa-home" aria-hidden="true"></i><span>Property Owner</span>
                         </a>
-                        <a class="peek-role role--blue" href="#lane-manager">
+                        <a class="peek-role role--blue" href="#features">
                             <i class="fas fa-building" aria-hidden="true"></i><span>Property Manager</span>
                         </a>
-                        <a class="peek-role role--blue" href="#lane-strata">
+                        <a class="peek-role role--blue" href="#features">
                             <i class="fas fa-users" aria-hidden="true"></i><span>Strata</span>
                         </a>
-                        <a class="peek-role role--blue" href="#lane-tenant">
+                        <a class="peek-role role--blue" href="#features">
                             <i class="fas fa-hard-hat" aria-hidden="true"></i><span>Tenant</span>
                         </a>
                     </div>
@@ -244,45 +244,133 @@
         </div>
     </section> -->
 
-    <!-- ═══ Features ═══ -->
-    <section class="features" id="features">
+    <!-- ═══ Who — Iso Floorplan ═══ -->
+    <section class="features floorplan-section" id="features">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The whole job, in one place</h2>
-                <p class="section-lead">The way Australian construction actually works.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card tilt-card anim-up">
-                    <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
-                    <h3>Your job. Scope to close-out.</h3>
-                    <p>Every signature, every gate, every step — visible to everyone on it.</p>
+
+            <header class="section-header floorplan-header">
+                <h2 class="section-title floorplan-title">Who Babbitt is for ?</h2>
+                <p class="section-lead floorplan-lead">
+                    Every role on the project &mdash; in the same plan, scaled 1 : 1.
+                </p>
+            </header>
+
+        </div>
+
+        <!-- Full-bleed plate -->
+        <div class="floorplan-stage">
+                <div class="floorplan-sheet">
+                    <span class="sheet-corner sheet-corner--tl" aria-hidden="true">
+                        <span class="sheet-tick"></span><span class="sheet-tick"></span>
+                    </span>
+
+                    <div class="floorplan-titleblock" aria-hidden="true">
+                        <span class="tb-cell tb-cell--label">Plan MVP.V1</span>
+                        <span class="tb-cell tb-cell--name">Babbitt</span>
+                        <span class="tb-cell tb-cell--rev">Rev. 2026</span>
+                    </div>
+                    <span class="sheet-corner sheet-corner--tr" aria-hidden="true">
+                        <span class="sheet-tick"></span><span class="sheet-tick"></span>
+                    </span>
+                    <span class="sheet-corner sheet-corner--bl" aria-hidden="true">
+                        <span class="sheet-tick"></span><span class="sheet-tick"></span>
+                    </span>
+                    <span class="sheet-corner sheet-corner--br" aria-hidden="true">
+                        <span class="sheet-tick"></span><span class="sheet-tick"></span>
+                    </span>
+
+                    <span class="sheet-compass" aria-hidden="true">
+                        <span class="compass-needle"></span>
+                        <span class="compass-n">N</span>
+                    </span>
+
+                    <span class="sheet-scale" aria-hidden="true">
+                        <span class="scale-bar"></span>
+                        <span class="scale-label">SCALE 1 : 1</span>
+                    </span>
+
+                    <div class="floorplan" id="floorplan" role="list">
+                        <span class="wing-label wing-label--field"  aria-hidden="true">1 · Trades</span>
+                        <span class="wing-label wing-label--mgmt"   aria-hidden="true">2 · Management</span>
+                        <span class="wing-label wing-label--client" aria-hidden="true">3 · Client</span>
+
+                        <span class="corridor" aria-hidden="true">
+                            <svg class="corridor-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <polygon class="corridor-floor" points="0,44 36,44 95,6 100,16 40,50 100,84 95,94 36,56 0,56" />
+                                <line class="corridor-path corridor-path--stem" x1="0"  y1="50" x2="40" y2="50" />
+                                <line class="corridor-path corridor-path--up"   x1="40" y1="50" x2="98" y2="14" />
+                                <line class="corridor-path corridor-path--down" x1="40" y1="50" x2="98" y2="86" />
+                                <path  class="corridor-arc"  d="M 95 14 A 5 5 0 0 0 90 19" />
+                                <path  class="corridor-arc"  d="M 95 86 A 5 5 0 0 1 90 81" />
+                                <circle class="corridor-junction" cx="40" cy="50" r="3" />
+                            </svg>
+                            <span class="corridor-stamp">JCT · A6 · Vestibule</span>
+                            <span class="corridor-cue corridor-cue--up">↗ Mgmt</span>
+                            <span class="corridor-cue corridor-cue--down">↘ Client</span>
+                        </span>
+
+                        <button type="button" class="room room--trades" data-tool="trades" role="listitem" aria-label="Enter the Trades lane">
+                            <span class="room-grid" aria-hidden="true"></span>
+                            <span class="room-watermark" aria-hidden="true"><i class="fas fa-helmet-safety"></i></span>
+                            <span class="room-dim room-dim--top"  aria-hidden="true">28'-0"</span>
+                            <span class="room-dim room-dim--side" aria-hidden="true">18'-0"</span>
+                            <span class="room-tag">
+                                <span class="room-num">01</span>
+                                <span class="room-name">Trades</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="room room--supplier" data-tool="supplier" role="listitem" aria-label="Enter the Supplier lane">
+                            <span class="room-grid" aria-hidden="true"></span>
+                            <span class="room-watermark" aria-hidden="true"><i class="fas fa-boxes-stacked"></i></span>
+                            <span class="room-dim room-dim--top"  aria-hidden="true">28'-0"</span>
+                            <span class="room-tag">
+                                <span class="room-num">02</span>
+                                <span class="room-name">Supplier</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="room room--manager" data-tool="manager" role="listitem" aria-label="Enter the Property Manager lane">
+                            <span class="room-grid" aria-hidden="true"></span>
+                            <span class="room-watermark" aria-hidden="true"><i class="fas fa-clipboard-list"></i></span>
+                            <span class="room-dim room-dim--top" aria-hidden="true">18'-0"</span>
+                            <span class="room-tag">
+                                <span class="room-num">03</span>
+                                <span class="room-name">Property Manager</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="room room--strata" data-tool="strata" role="listitem" aria-label="Enter the Strata lane">
+                            <span class="room-grid" aria-hidden="true"></span>
+                            <span class="room-watermark" aria-hidden="true"><i class="fas fa-folder-open"></i></span>
+                            <span class="room-dim room-dim--top" aria-hidden="true">14'-0"</span>
+                            <span class="room-tag">
+                                <span class="room-num">04</span>
+                                <span class="room-name">Strata</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="room room--owner" data-tool="owner" role="listitem" aria-label="Enter the Property Owner lane">
+                            <span class="room-grid" aria-hidden="true"></span>
+                            <span class="room-watermark" aria-hidden="true"><i class="fas fa-key"></i></span>
+                            <span class="room-dim room-dim--top" aria-hidden="true">18'-0"</span>
+                            <span class="room-tag">
+                                <span class="room-num">05</span>
+                                <span class="room-name">Property Owner</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="room room--tenant" data-tool="tenant" role="listitem" aria-label="Enter the Tenant lane">
+                            <span class="room-grid" aria-hidden="true"></span>
+                            <span class="room-watermark" aria-hidden="true"><i class="fas fa-door-open"></i></span>
+                            <span class="room-dim room-dim--top" aria-hidden="true">14'-0"</span>
+                            <span class="room-tag">
+                                <span class="room-num">06</span>
+                                <span class="room-name">Tenant</span>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div class="feature-card tilt-card anim-up">
-                    <div class="feature-icon"><i class="fas fa-comments"></i></div>
-                    <h3>Conversations that hold up.</h3>
-                    <p>Quick chats or formal threads. Your call. Both on the same job.</p>
-                </div>
-                <div class="feature-card tilt-card anim-up">
-                    <div class="feature-icon"><i class="fas fa-truck"></i></div>
-                    <h3>Quote to delivery. One thread.</h3>
-                    <p>Every order visible. Every exception caught. Nothing lost between site and supplier.</p>
-                </div>
-                <div class="feature-card tilt-card anim-up">
-                    <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Your business at a glance.</h3>
-                    <p>Staff, fleet, compliance, finances. One view. Yours.</p>
-                </div>
-                <div class="feature-card tilt-card anim-up">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Your credibility, verified.</h3>
-                    <p>ABN, licences, trust markers. They follow you across every job.</p>
-                </div>
-                <div class="feature-card tilt-card anim-up">
-                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>Find work. Find people.</h3>
-                    <p>The right listings reach the right profiles. Post, sub-contract, or hire.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -294,35 +382,273 @@
                 <span class="why-eyebrow">Why Babbitt</span>
                 <h2 class="why-title">
                     <span class="why-index">01</span>
-                    <span class="why-title-text">Subsection One</span>
+                    <span class="why-title-text">One job. Every stakeholder.</span>
                 </h2>
             </div>
 
             <div class="why-stage">
-                <article class="why-card" data-why-index="0" data-why-label="Subsection One">
-                    <div class="why-card-visual" aria-hidden="true"></div>
-                    <h3 class="why-card-headline">Headline placeholder one.</h3>
-                    <p class="why-card-body">Supporting body copy placeholder. Replace with the first reason Babbitt matters.</p>
+                <article class="why-card" data-why-index="0" data-why-label="One job. Every stakeholder.">
+                    <div class="why-card-visual evidence-panel evidence-panel--stakeholders" aria-hidden="true">
+                        <div class="evidence-bar">
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>jobs<span class="evidence-sep">/</span><span class="evidence-crumb-id">bathroom_reno</span></span>
+                            <span class="evidence-status"><span class="evidence-dot"></span>4 online</span>
+                        </div>
+                        <div class="evidence-stage">
+                            <svg class="evidence-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                                <line x1="22" y1="20" x2="40" y2="38"/>
+                                <line x1="78" y1="20" x2="60" y2="38"/>
+                                <line x1="22" y1="80" x2="40" y2="62"/>
+                                <line x1="78" y1="80" x2="60" y2="62"/>
+                                <circle cx="22" cy="20" r="1.2" class="wire-port"/>
+                                <circle cx="78" cy="20" r="1.2" class="wire-port"/>
+                                <circle cx="22" cy="80" r="1.2" class="wire-port"/>
+                                <circle cx="78" cy="80" r="1.2" class="wire-port"/>
+                            </svg>
+                            <span class="role-pill role-pill--owner"><span class="role-dot"></span>Owner<span class="role-meta">Mara K.</span></span>
+                            <span class="role-pill role-pill--manager"><span class="role-dot"></span>Manager<span class="role-meta">Sam R.</span></span>
+                            <span class="role-pill role-pill--trade"><span class="role-dot"></span>Trade<span class="role-meta">PlumbCo</span></span>
+                            <span class="role-pill role-pill--supplier"><span class="role-dot"></span>Supplier<span class="role-meta">Reece</span></span>
+                            <div class="job-chip">
+                                <span class="job-chip-eyebrow">Job · open</span>
+                                <span class="job-chip-id">bathroom_reno</span>
+                                <span class="job-chip-divider"></span>
+                                <span class="job-chip-title">Bathroom reno</span>
+                                <span class="job-chip-meta">Hopetoun St, Paddington</span>
+                            </div>
+                        </div>
+                        <div class="evidence-strip">
+                            <span class="strip-item"><i class="strip-num">14</i> messages</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item"><i class="strip-num">4</i> docs</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item"><i class="strip-num">2</i> variations</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item strip-item--ok">close-out pending</span>
+                        </div>
+                    </div>
+                    <h3 class="why-card-headline">One job. Every stakeholder.</h3>
+                    <p class="why-card-body">Owners, tenants, managers, trades, subbies and suppliers all work from the same job record. Scope, approvals, orders, variations, delivery and close-out stay connected instead of splitting across inboxes, calls and portals. Everyone sees the same work, at the same address, with the same history.</p>
                 </article>
-                <article class="why-card" data-why-index="1" data-why-label="Subsection Two">
-                    <div class="why-card-visual" aria-hidden="true"></div>
-                    <h3 class="why-card-headline">Headline placeholder two.</h3>
-                    <p class="why-card-body">Supporting body copy placeholder. Replace with the second reason Babbitt matters.</p>
+                <article class="why-card" data-why-index="1" data-why-label="More than a job manager.">
+                    <div class="why-card-visual evidence-panel evidence-panel--property" aria-hidden="true">
+                        <div class="evidence-bar">
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>properties<span class="evidence-sep">/</span><span class="evidence-crumb-id">hopetoun_st_paddington</span></span>
+                            <span class="evidence-status"><span class="evidence-dot"></span>synced</span>
+                        </div>
+                        <div class="evidence-stage">
+                            <div class="property-card">
+                                <div class="property-head">
+                                    <span class="property-eyebrow">Property record</span>
+                                    <span class="property-id">hopetoun_st_paddington</span>
+                                    <span class="property-addr">Hopetoun St, Paddington</span>
+                                </div>
+                                <ul class="property-history">
+                                    <li class="property-row property-row--new">
+                                        <span class="row-date">Apr '26</span>
+                                        <span class="row-type row-type--closeout">close-out</span>
+                                        <span class="row-slug">bathroom_reno</span>
+                                        <span class="row-stamp">just archived</span>
+                                    </li>
+                                    <li class="property-row">
+                                        <span class="row-date">Sep '24</span>
+                                        <span class="row-type row-type--inspection">inspection</span>
+                                        <span class="row-slug">electrical_safety</span>
+                                    </li>
+                                    <li class="property-row">
+                                        <span class="row-date">May '22</span>
+                                        <span class="row-type row-type--repair">repair</span>
+                                        <span class="row-slug">roof_patch</span>
+                                    </li>
+                                    <li class="property-row property-row--faded">
+                                        <span class="row-date">Jul '20</span>
+                                        <span class="row-type row-type--fitout">fit-out</span>
+                                        <span class="row-slug">kitchen_fit</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="evidence-strip">
+                            <span class="strip-item"><i class="strip-num">7</i> jobs archived</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item"><i class="strip-num">14</i> docs</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item"><i class="strip-num">2</i> warranties</span>
+                            <span class="strip-item strip-item--ok">record permanent</span>
+                        </div>
+                    </div>
+                    <h3 class="why-card-headline">More than a job manager.</h3>
+                    <p class="why-card-body">Babbitt does not just help you run today's job. It turns every completed job into a permanent property record. What was scoped, approved, supplied, built and signed off stays useful after the invoice is paid.</p>
                 </article>
-                <article class="why-card" data-why-index="2" data-why-label="Subsection Three">
-                    <div class="why-card-visual" aria-hidden="true"></div>
-                    <h3 class="why-card-headline">Headline placeholder three.</h3>
-                    <p class="why-card-body">Supporting body copy placeholder. Replace with the third reason Babbitt matters.</p>
+                <article class="why-card" data-why-index="2" data-why-label="Ratings backed by real work.">
+                    <div class="why-card-visual evidence-panel evidence-panel--rating" aria-hidden="true">
+                        <div class="evidence-bar">
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>trades<span class="evidence-sep">/</span>plumbco<span class="evidence-sep">/</span><span class="evidence-crumb-id">review_0142</span></span>
+                            <span class="evidence-status"><span class="evidence-dot"></span>verified</span>
+                        </div>
+                        <div class="evidence-stage">
+                            <div class="review-card">
+                                <div class="review-head">
+                                    <span class="review-score">4.9</span>
+                                    <span class="review-stars" aria-hidden="true">★★★★★</span>
+                                    <span class="review-of">of 5</span>
+                                </div>
+                                <p class="review-quote">"Showed up on time, finished a day early, billed exactly what we approved. Worth every dollar."</p>
+                                <span class="review-author">— Mara K. · owner</span>
+                            </div>
+                            <svg class="review-wire" viewBox="0 0 20 30" preserveAspectRatio="none" aria-hidden="true">
+                                <line x1="10" y1="0" x2="10" y2="30"/>
+                                <circle cx="10" cy="2" r="1.4" class="wire-port"/>
+                                <circle cx="10" cy="28" r="1.4" class="wire-port"/>
+                            </svg>
+                            <div class="review-anchor">
+                                <span class="anchor-eyebrow">Tied to</span>
+                                <span class="anchor-slug">bathroom_reno</span>
+                                <span class="anchor-meta">signed close-out · Apr '26</span>
+                                <span class="anchor-check" aria-hidden="true">✓</span>
+                            </div>
+                        </div>
+                        <div class="evidence-strip">
+                            <span class="strip-item">property <i class="strip-slug">hopetoun_st_paddington</i></span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item"><i class="strip-num">4</i> docs verified</span>
+                            <span class="strip-item strip-item--ok">no pay-to-rank</span>
+                        </div>
+                    </div>
+                    <h3 class="why-card-headline">Ratings backed by real work.</h3>
+                    <p class="why-card-body">Reviews only mean something when they are tied to the job that earned them. Babbitt links reputation to signed close-outs, real properties and verified work, so trust is built from proof instead of paid visibility or empty profile claims.</p>
                 </article>
-                <article class="why-card" data-why-index="3" data-why-label="Subsection Four">
-                    <div class="why-card-visual" aria-hidden="true"></div>
-                    <h3 class="why-card-headline">Headline placeholder four.</h3>
-                    <p class="why-card-body">Supporting body copy placeholder. Replace with the fourth reason Babbitt matters.</p>
+                <article class="why-card" data-why-index="3" data-why-label="Free to start. Scales when you do.">
+                    <div class="why-card-visual evidence-panel evidence-panel--plan" aria-hidden="true">
+                        <div class="evidence-bar">
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>account<span class="evidence-sep">/</span><span class="evidence-crumb-id">plan</span></span>
+                            <span class="evidence-status"><span class="evidence-dot"></span>active</span>
+                        </div>
+                        <div class="evidence-stage">
+                            <div class="plan-card">
+                                <div class="plan-head">
+                                    <span class="plan-eyebrow">Current plan</span>
+                                    <div class="plan-price">
+                                        <span class="plan-currency">A$</span>
+                                        <span class="plan-amount">0</span>
+                                        <span class="plan-period">/ mo</span>
+                                    </div>
+                                </div>
+                                <div class="plan-tiers" role="presentation">
+                                    <span class="plan-tier plan-tier--active">Free</span>
+                                    <span class="plan-tier">Pro</span>
+                                    <span class="plan-tier">Team</span>
+                                </div>
+                                <div class="plan-slider" aria-hidden="true">
+                                    <div class="plan-track"></div>
+                                    <span class="plan-thumb"></span>
+                                </div>
+                                <div class="plan-meters">
+                                    <div class="plan-meter">
+                                        <span class="meter-label">Jobs this month</span>
+                                        <div class="meter-bar"><span class="meter-fill" style="width: 22%"></span></div>
+                                        <span class="meter-value">4 <em>/ unlimited</em></span>
+                                    </div>
+                                    <div class="plan-meter">
+                                        <span class="meter-label">Team seats</span>
+                                        <div class="meter-bar"><span class="meter-fill" style="width: 10%"></span></div>
+                                        <span class="meter-value">1 <em>/ 1 included</em></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="evidence-strip">
+                            <span class="strip-item">no card on file</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item">next bill <i class="strip-num">—</i></span>
+                            <span class="strip-item strip-item--ok">$0 to start</span>
+                        </div>
+                    </div>
+                    <h3 class="why-card-headline">Free to start. Scales when you do.</h3>
+                    <p class="why-card-body">Babbitt is built to be affordable from day one. No pay-to-bid, no charge before there is real business value, and no heavy onboarding just to begin. The platform grows with the operator, portfolio or supply team using it.</p>
                 </article>
-                <article class="why-card" data-why-index="4" data-why-label="Subsection Five">
-                    <div class="why-card-visual" aria-hidden="true"></div>
-                    <h3 class="why-card-headline">Headline placeholder five.</h3>
-                    <p class="why-card-body">Supporting body copy placeholder. Replace with the fifth reason Babbitt matters.</p>
+                <article class="why-card" data-why-index="4" data-why-label="A permanent maintenance log.">
+                    <div class="why-card-visual evidence-panel evidence-panel--log" aria-hidden="true">
+                        <div class="evidence-bar">
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>properties<span class="evidence-sep">/</span>hopetoun_st_paddington<span class="evidence-sep">/</span><span class="evidence-crumb-id">history</span></span>
+                            <span class="evidence-status"><span class="evidence-dot"></span>12 entries</span>
+                        </div>
+                        <div class="evidence-stage">
+                            <ol class="log-timeline">
+                                <li class="log-entry log-entry--latest">
+                                    <span class="log-date">14 Apr '26</span>
+                                    <span class="log-type log-type--closeout">close-out</span>
+                                    <span class="log-label">bathroom_reno</span>
+                                </li>
+                                <li class="log-entry">
+                                    <span class="log-date">22 Jan '25</span>
+                                    <span class="log-type log-type--warranty">warranty</span>
+                                    <span class="log-label">hot_water_unit · 5yr</span>
+                                </li>
+                                <li class="log-entry">
+                                    <span class="log-date">10 Sep '24</span>
+                                    <span class="log-type log-type--inspection">inspection</span>
+                                    <span class="log-label">electrical_safety</span>
+                                </li>
+                                <li class="log-entry">
+                                    <span class="log-date">03 Mar '24</span>
+                                    <span class="log-type log-type--repair">repair</span>
+                                    <span class="log-label">roof_patch</span>
+                                </li>
+                                <li class="log-entry log-entry--faded">
+                                    <span class="log-date">2019…</span>
+                                    <span class="log-type log-type--more">earlier</span>
+                                    <span class="log-label">8 more entries</span>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="evidence-strip">
+                            <span class="strip-item">oldest <i class="strip-num">2019</i></span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item"><i class="strip-num">2</i> warranties active</span>
+                            <span class="strip-item strip-item--ok">1 inspection due</span>
+                        </div>
+                    </div>
+                    <h3 class="why-card-headline">A permanent maintenance log.</h3>
+                    <p class="why-card-body">From con-note to close-out, every repair, inspection, product, warranty and approval can become part of the property's service history. The next person opening the property starts with context, not a blank page.</p>
+                </article>
+                <article class="why-card" data-why-index="5" data-why-label="Get paid for scope creep.">
+                    <div class="why-card-visual evidence-panel evidence-panel--variation" aria-hidden="true">
+                        <div class="evidence-bar">
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>jobs<span class="evidence-sep">/</span>bathroom_reno<span class="evidence-sep">/</span><span class="evidence-crumb-id">variation_02</span></span>
+                            <span class="evidence-status"><span class="evidence-dot"></span>approved</span>
+                        </div>
+                        <div class="evidence-stage">
+                            <div class="variation-card">
+                                <div class="variation-row variation-row--base">
+                                    <span class="var-eyebrow">Base scope</span>
+                                    <span class="var-label">bathroom_reno · agreed Mar '26</span>
+                                    <span class="var-amount">A$4,200</span>
+                                </div>
+                                <div class="variation-connector" aria-hidden="true">
+                                    <span class="connector-line"></span>
+                                    <span class="connector-tag">+ variation</span>
+                                    <span class="connector-line"></span>
+                                </div>
+                                <div class="variation-row variation-row--new">
+                                    <span class="var-eyebrow">Splash-back tiles</span>
+                                    <span class="var-label">Add to vanity wall · 3 m²</span>
+                                    <span class="var-amount var-amount--add">+ A$420</span>
+                                    <div class="var-foot">
+                                        <span class="var-sig"><span class="var-sig-tick">✓</span> signed · Mara K. · 14 Apr '26</span>
+                                        <span class="var-status">approved</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="evidence-strip">
+                            <span class="strip-item"><i class="strip-num">2</i> variations</span>
+                            <span class="strip-sep"></span>
+                            <span class="strip-item">approved <i class="strip-num">+A$680</i></span>
+                            <span class="strip-item strip-item--ok">invoice ready</span>
+                        </div>
+                    </div>
+                    <h3 class="why-card-headline">Get paid for scope creep.</h3>
+                    <p class="why-card-body">When the client asks for more, a variation opens inside the job with scope, price and approval attached. Work moves forward once it is signed. Every change stays pinned to the job, so the invoice follows the work instead of the argument.</p>
                 </article>
             </div>
 
@@ -346,95 +672,72 @@
                 <div class="why-thumb-visual"></div>
                 <span class="why-thumb-label">05</span>
             </div>
+            <div class="why-thumb" data-thumb-index="5" aria-hidden="true">
+                <div class="why-thumb-visual"></div>
+                <span class="why-thumb-label">06</span>
+            </div>
 
         </div>
     </section>
 
-    <!-- ═══ ICP Lanes ═══ -->
-    <section class="lanes" id="lanes">
-        <div class="float-shape shape-hammer" style="top:10%;left:5%;animation-delay:0s;animation-duration:18s"></div>
-        <div class="float-shape shape-building" style="top:80%;left:92%;animation-delay:2s;animation-duration:14s"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Every role in the chain</h2>
-                <p class="section-lead">One account. Multiple profiles. Each with its own workspace.</p>
-            </div>
-            <div class="lanes-grid">
-                <div class="lane-card tilt-card anim-up" id="lane-trades">
-                    <div class="lane-icon icon-yellow"><i class="fas fa-wrench"></i></div>
-                    <div>
-                        <h3 class="color-yellow">Trades</h3>
-                        <p>Your job, your crew, your name on it. Plumbers, electricians, builders.</p>
-                    </div>
-                </div>
-                <div class="lane-card tilt-card anim-up" id="lane-supplier">
-                    <div class="lane-icon icon-green"><i class="fas fa-box"></i></div>
-                    <div>
-                        <h3 class="color-green">Supplier</h3>
-                        <p>The job doesn't start without you. Quote to delivery, one thread.</p>
-                    </div>
-                </div>
-                <div class="lane-card tilt-card anim-up" id="lane-owner">
-                    <div class="lane-icon icon-blue"><i class="fas fa-home"></i></div>
-                    <div>
-                        <h3 class="color-blue">Property Owner</h3>
-                        <p>Your property. Every trade who touched it, part of its story.</p>
-                    </div>
-                </div>
-                <div class="lane-card tilt-card anim-up" id="lane-manager">
-                    <div class="lane-icon icon-blue"><i class="fas fa-building"></i></div>
-                    <div>
-                        <h3 class="color-blue">Property Manager</h3>
-                        <p>Your portfolio. Every job across it, in one place.</p>
-                    </div>
-                </div>
-                <div class="lane-card tilt-card anim-up" id="lane-strata">
-                    <div class="lane-icon icon-blue"><i class="fas fa-users"></i></div>
-                    <div>
-                        <h3 class="color-blue">Strata</h3>
-                        <p>Common property. Every compliance step, accounted for.</p>
-                    </div>
-                </div>
-                <div class="lane-card tilt-card anim-up" id="lane-tenant">
-                    <div class="lane-icon icon-blue"><i class="fas fa-hard-hat"></i></div>
-                    <div>
-                        <h3 class="color-blue">Tenant</h3>
-                        <p>Your home. See the job. Talk to the trade. That simple.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- ═══ Live Demo Board ═══ -->
+    <section class="demo-board" id="demo">
+        <div class="perspective-grid-wrap demo-board-bg" aria-hidden="true">
+            <div class="perspective-grid"></div>
         </div>
-    </section>
+        <div class="demo-board-inner">
 
-    <!-- ═══ How It Works ═══ -->
-    <section class="steps">
-        <div class="container steps-inner">
-            <div class="section-header">
-                <h2 class="section-title">Up and running in minutes</h2>
+            <header class="demo-board-header anim-up">
+                <span class="demo-board-eyebrow">
+                    <span class="demo-board-live-dot" aria-hidden="true"></span>
+                    Live walkthrough
+                </span>
+                <h2 class="section-title demo-board-title">See the loop.</h2>
+                <a class="demo-board-master-cta" href="/demo">
+                    <span class="demo-board-master-cta-label">Open the full walkthrough</span>
+                    <span class="demo-board-master-cta-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <p class="demo-board-fine">A UI walkthrough &mdash; not a live application. No data is sent anywhere.</p>
+            </header>
+
+            <div class="demo-embed-pair anim-up">
+
+                <div class="demo-embed demo-embed--desktop">
+                    <div class="demo-embed-chrome" aria-hidden="true">
+                        <span class="demo-embed-dot" style="background:#FF8A4C"></span>
+                        <span class="demo-embed-dot" style="background:#F6B500"></span>
+                        <span class="demo-embed-dot" style="background:#67E4AA"></span>
+                        <span class="demo-embed-url">babbitt.app/demo</span>
+                        <span class="demo-embed-live"><span class="demo-embed-live-dot"></span>Interactive</span>
+                    </div>
+                    <iframe
+                        id="demoEmbedFrame"
+                        class="demo-embed-frame"
+                        src="/demo/?embed=1"
+                        title="Babbitt — Interactive product walkthrough (desktop)"
+                        loading="lazy"
+                        referrerpolicy="same-origin"></iframe>
+                </div>
+
+                <div class="demo-embed demo-embed--mobile" aria-label="Mobile preview">
+                    <div class="demo-embed-phone-bezel">
+                        <div class="demo-embed-phone-notch" aria-hidden="true">
+                            <span class="demo-embed-phone-speaker"></span>
+                            <span class="demo-embed-phone-camera"></span>
+                        </div>
+                        <iframe
+                            id="demoEmbedFrameMobile"
+                            class="demo-embed-frame demo-embed-frame--mobile"
+                            src="/demo/?embed=1&amp;flow=tradie-incident-chat"
+                            title="Babbitt — Interactive product walkthrough (mobile)"
+                            loading="lazy"
+                            referrerpolicy="same-origin"
+                            data-fixed-height></iframe>
+                    </div>
+                </div>
+
             </div>
-            <div class="steps-list">
-                <div class="step-card tilt-card anim-up">
-                    <div class="step-num">01</div>
-                    <div>
-                        <h3>Create your account</h3>
-                        <p>No onboarding call. No sales deck. Start immediately.</p>
-                    </div>
-                </div>
-                <div class="step-card tilt-card anim-up">
-                    <div class="step-num">02</div>
-                    <div>
-                        <h3>Choose your lane</h3>
-                        <p>Trades, Supplier, Property, or Tenant. Verify your ABN. Build trust from job one.</p>
-                    </div>
-                </div>
-                <div class="step-card tilt-card anim-up">
-                    <div class="step-num">03</div>
-                    <div>
-                        <h3>Post your first job</h3>
-                        <p>The platform works from day one. Your reputation compounds from there.</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -511,8 +814,7 @@
                 <span class="footer-by">by Babbitt Australia Pty Ltd</span>
             </div>
             <div class="footer-links">
-                <a href="#features">Features</a>
-                <a href="#lanes">Who it's for</a>
+                <a href="#features">Who it's for</a>
                 <a href="#waitlist">Waitlist</a>
             </div>
             <p class="footer-copy">&copy; 2026 Babbitt. All rights reserved.</p>
@@ -555,5 +857,26 @@
     </a>
 
     <script src="script.js"></script>
+    <script>
+        // Auto-resize each inline /demo iframe based on its real content height.
+        // The demo broadcasts { type: 'babbitt-demo-resize', height } from inside
+        // its IIFE when ?embed=1 is set. We resolve which iframe sent it via
+        // e.source so the desktop and mobile frames stay independent.
+        (function () {
+            const frames = Array.from(document.querySelectorAll('.demo-embed-frame'));
+            if (!frames.length) return;
+            const MIN_HEIGHT = 480;
+            window.addEventListener('message', (e) => {
+                const data = e.data;
+                if (!data || data.type !== 'babbitt-demo-resize') return;
+                const frame = frames.find((f) => f.contentWindow === e.source);
+                if (!frame || frame.hasAttribute('data-fixed-height')) return;
+                // Cap to viewport — the section is designed to fit one window.
+                const cap = Math.max(MIN_HEIGHT, window.innerHeight - 200);
+                const h = Math.max(MIN_HEIGHT, Math.min(cap, Number(data.height) || MIN_HEIGHT));
+                frame.style.height = h + 'px';
+            });
+        })();
+    </script>
 </body>
 </html>

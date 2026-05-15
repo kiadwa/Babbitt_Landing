@@ -7,56 +7,24 @@
     <title>Babbitt — Demo</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Babbitt">
+    <meta property="og:title" content="Babbitt — Live demo">
+    <meta property="og:description" content="Walk through real user flows. Post a job, quote, stage a build, sign-off — all in one place.">
+    <meta property="og:url" content="https://babbitt.app/demo/">
+    <meta property="og:image" content="https://babbitt.app/babbitt-full-logo.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Babbitt — Live demo">
+    <meta name="twitter:description" content="Walk through real user flows. Post a job, quote, stage a build, sign-off — all in one place.">
+    <meta name="twitter:image" content="https://babbitt.app/babbitt-full-logo.svg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              yellow: '#F6B500',
-              blue: '#60CDE2',
-              green: '#67E4AA',
-              orange: '#FF5C00',
-              body: '#131210',
-              surface: '#1C1A17',
-              overlay: '#1A1815',
-              elevated: '#242119',
-              'elevated-2': '#2C2924',
-              input: '#171512',
-              txt: '#F0EDE8',
-              'txt-secondary': '#9B9793',
-              'txt-tertiary': '#5C5955',
-              'txt-disabled': '#3A3835',
-              'txt-inverse': '#131210',
-              bdr: '#2E2B26',
-              'bdr-subtle': '#222019',
-              'bdr-strong': '#3D3A34',
-            },
-            fontFamily: {
-              head: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-              body: ['Outfit', 'system-ui', 'sans-serif'],
-            },
-            borderRadius: {
-              card: '20px',
-              btn: '6px',
-              badge: '4px',
-              input: '8px',
-              modal: '16px',
-            },
-            boxShadow: {
-              'card-hover': '0 4px 24px rgba(0,0,0,0.40), 0 1px 6px rgba(0,0,0,0.25)',
-              modal: '0 8px 48px rgba(0,0,0,0.60), 0 2px 12px rgba(0,0,0,0.30)',
-              focus: '0 0 0 2px rgba(246,181,0,0.50)',
-            },
-          },
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="tailwind.css">
 
     <style>
       html, body { background: #131210; color: #F0EDE8; }
@@ -91,13 +59,43 @@
       input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
 
       .focus-ring:focus { outline: none; box-shadow: 0 0 0 2px rgba(246,181,0,0.50); }
+
+      /* Mute simulated/preview buttons so visitors don't try to click them */
+      button.cursor-default { opacity: 0.88; }
+      button.cursor-default:hover { opacity: 0.95; }
+
+      /* End-of-flow CTA — shown by JS when on the final step */
+      #demoFinale { display: none; }
+      #demoFinale.is-on { display: block; }
+
+      /* Embed mode — when /demo is loaded inside the landing page iframe (?embed=1).
+         Hides the demo's own chrome so the landing page provides the framing. */
+      html.is-embed, body.is-embed { min-height: 0 !important; height: auto !important; }
+      body.is-embed > header { display: none !important; }
+      body.is-embed main { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+      body.is-embed::before { opacity: 0.02; } /* slightly soften grain inside the frame */
+      /* The step viewport's 600px floor pads short flows; drop it in embed so the
+         iframe can tighten around the real content. */
+      body.is-embed #stepViewport { min-height: 0 !important; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .pulse-ring,
+        .step-fade,
+        .toast-in { animation: none !important; }
+        * { scroll-behavior: auto !important; }
+      }
     </style>
 </head>
 
 <body class="min-h-screen relative">
 
-    <!-- Tailwind JIT safelist for classes only added dynamically by JS -->
-    <div aria-hidden="true" class="hidden bg-yellow/20 text-yellow border-yellow"></div>
+    <!-- Tailwind safelist for classes only added dynamically by JS -->
+    <div aria-hidden="true" class="hidden
+        bg-yellow/20 text-yellow border-yellow border-yellow/60 hover:text-yellow hover:border-yellow/40
+        bg-blue/20 text-blue border-blue/60 hover:text-blue hover:border-blue/40
+        bg-green/20 text-green border-green/60 bg-green/10 border-green/40 hover:text-green hover:border-green/40
+        bg-transparent bg-surface text-txt text-txt-secondary text-txt-tertiary text-txt-inverse
+        bg-yellow border-bdr font-semibold shadow-sm"></div>
 
     <!-- ═══ Top demo header ═══ -->
     <header class="sticky top-0 z-30 bg-body/85 backdrop-blur border-b border-bdr">
@@ -111,69 +109,32 @@
                 <span class="text-txt-tertiary mx-1">·</span>
                 <span class="text-txt-secondary">Live Demo</span>
             </div>
-            <button id="restartBtn" class="text-xs text-txt-tertiary hover:text-txt transition-colors">
-                <i class="fas fa-rotate-left mr-1"></i> Restart
-            </button>
+            <div class="flex items-center gap-3">
+                <button id="restartBtn" class="text-xs text-txt-tertiary hover:text-txt transition-colors">
+                    <i class="fas fa-rotate-left mr-1"></i> Restart
+                </button>
+                <a href="../#waitlist" class="px-3 py-1.5 rounded-btn text-xs font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
+                    Join waitlist
+                </a>
+            </div>
         </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-6 space-y-6 relative z-10">
 
-        <!-- ═══ Flow picker ═══ -->
-        <section>
-            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary mb-2 font-semibold">Choose a flow</p>
-            <div id="flowPicker" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="property-owner-listing">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Property Owner</span>
-                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
-                    </div>
-                    <p class="text-sm font-semibold text-txt">Create a marketplace listing</p>
-                    <p class="text-xs text-txt-tertiary mt-0.5">Post a job for trades to quote on.</p>
-                </button>
-                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="trade-respond-and-stage">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Trade</span>
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Property Owner</span>
-                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
-                    </div>
-                    <p class="text-sm font-semibold text-txt">Quote, get awarded, stage the job</p>
-                    <p class="text-xs text-txt-tertiary mt-0.5">Multi-actor flow — Trade quotes, Owner accepts, Trade stages.</p>
-                </button>
-                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="tradie-incident-chat">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Trade</span>
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Property Owner</span>
-                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
-                    </div>
-                    <p class="text-sm font-semibold text-txt">Site issue → chat → raise incident</p>
-                    <p class="text-xs text-txt-tertiary mt-0.5">Tradie clarifies a hazard with the owner, then logs it formally.</p>
-                </button>
-                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="supplier-rfq">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Supplier</span>
-                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
-                    </div>
-                    <p class="text-sm font-semibold text-txt">Quote an RFQ from a tradie</p>
-                    <p class="text-xs text-txt-tertiary mt-0.5">Receive, draft, adjust, send — get the order.</p>
-                </button>
-                <button class="flow-btn text-left p-3 rounded-card border transition-colors" data-flow="tradie-network-community">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Trade</span>
-                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Network</span>
-                        <span class="flow-active-badge hidden px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/20 text-yellow border border-yellow/40">Active</span>
-                    </div>
-                    <p class="text-sm font-semibold text-txt">Communities, posts &amp; new mates</p>
-                    <p class="text-xs text-txt-tertiary mt-0.5">Engage in a community thread, then accept a friend request.</p>
-                </button>
-            </div>
-        </section>
-
-        <!-- ═══ Step indicator ═══ -->
+        <!-- ═══ Step indicator (with inline flow picker) ═══ -->
         <section class="bg-surface border border-bdr rounded-card p-4">
+            <div class="flex flex-wrap items-center gap-2 mb-4" id="flowPicker" role="tablist" aria-label="Choose a demo flow">
+                <span class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mr-1">Flow</span>
+                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="property-owner-listing" data-tone="blue" role="tab">Post a job</button>
+                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="trade-respond-and-stage" data-tone="yellow" role="tab">Quote &amp; stage</button>
+                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="tradie-incident-chat" data-tone="yellow" role="tab">Site incident</button>
+                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="supplier-rfq" data-tone="green" role="tab">Supplier RFQ</button>
+                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="tradie-network-community" data-tone="yellow" role="tab">Network</button>
+            </div>
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-3">
                 <div>
-                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Flow</p>
+                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Active flow</p>
                     <h1 id="flowTitle" class="text-xl font-head font-bold text-txt">Property Owner — Create a Listing</h1>
                 </div>
                 <div class="text-xs text-txt-secondary">
@@ -190,7 +151,7 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-orange/70"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-yellow/70"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-green/70"></span>
-                <span class="ml-3 text-xs text-txt-tertiary font-mono hidden sm:inline" id="urlBar">app.babbitt.au/marketplace</span>
+                <span class="ml-3 text-xs text-txt-tertiary font-mono hidden sm:inline" id="urlBar">babbitt.app/marketplace</span>
                 <span class="ml-auto text-xs text-txt-secondary flex items-center gap-2">
                     <span id="actorAvatar" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border" style="background:rgba(96,205,226,0.15); color:#60CDE2; border-color:rgba(96,205,226,0.3);">SO</span>
                     <span id="actorName" class="hidden sm:inline">Sarah O'Connor</span>
@@ -3037,7 +2998,7 @@
                                     </div>
                                 </div>
 
-                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default sm:col-span-2 lg:col-span-1">
+                                <div class="bg-surface border border-bdr rounded-card p-4 space-y-2 cursor-default">
                                     <div class="flex items-start justify-between gap-2">
                                         <div class="min-w-0">
                                             <h4 class="text-sm font-semibold text-txt truncate">Apprentice Mentors AU</h4>
@@ -3767,6 +3728,25 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             </button>
         </section>
 
+        <!-- ═══ End-of-demo CTA (shown by JS on the last step of any flow) ═══ -->
+        <section id="demoFinale" aria-label="Join Babbitt" class="rounded-card border border-yellow/40 bg-gradient-to-br from-yellow/10 to-yellow/5 p-6 sm:p-8 text-center">
+            <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-yellow/20 text-yellow border border-yellow/40 mb-3">
+                That's the loop
+            </span>
+            <h2 class="font-head text-2xl sm:text-3xl font-bold text-txt mb-2">Like what you saw?</h2>
+            <p class="text-txt-secondary text-sm sm:text-base max-w-xl mx-auto mb-5 leading-relaxed">
+                Babbitt is gearing up for first access. Get on the waitlist to use it in your business as soon as it ships.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="../#waitlist" class="px-5 py-2.5 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
+                    Join the waitlist <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+                <a href="../#why" class="text-sm text-txt-secondary hover:text-yellow underline underline-offset-4 transition-colors">
+                    Or read why we built it
+                </a>
+            </div>
+        </section>
+
         <p class="text-center text-[11px] text-txt-tertiary pt-4">
             This is a UI walkthrough — not a live application. No data is sent anywhere.
         </p>
@@ -3789,65 +3769,65 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           'property-owner-listing': {
             title: 'Property Owner — Create a Listing',
             steps: [
-              { n: 1, label: 'Intro',          caption: 'A quick story before we dive in.',  url: 'app.babbitt.au/welcome',         actor: 'sarah', next: 'Begin Demo' },
-              { n: 2, label: 'Marketplace',    caption: 'Empty My Listings tab.',            url: 'app.babbitt.au/marketplace',     actor: 'sarah', next: 'Open New Listing' },
-              { n: 3, label: 'Fill the form',  caption: 'Type your job details.',            url: 'app.babbitt.au/marketplace/new', actor: 'sarah', next: 'Review' },
-              { n: 4, label: 'Review',         caption: 'Final check before publish.',       url: 'app.babbitt.au/marketplace/new', actor: 'sarah', next: 'Publish Listing' },
-              { n: 5, label: 'Live',           caption: 'Listing is live on the feed.',      url: 'app.babbitt.au/marketplace',     actor: 'sarah', next: 'Restart Demo' },
+              { n: 1, label: 'Intro',          caption: 'A quick story before we dive in.',  url: 'babbitt.app/welcome',         actor: 'sarah', next: 'Begin Demo' },
+              { n: 2, label: 'Marketplace',    caption: 'Empty My Listings tab.',            url: 'babbitt.app/marketplace',     actor: 'sarah', next: 'Open New Listing' },
+              { n: 3, label: 'Fill the form',  caption: 'Type your job details.',            url: 'babbitt.app/marketplace/new', actor: 'sarah', next: 'Review' },
+              { n: 4, label: 'Review',         caption: 'Final check before publish.',       url: 'babbitt.app/marketplace/new', actor: 'sarah', next: 'Publish Listing' },
+              { n: 5, label: 'Live',           caption: 'Listing is live on the feed.',      url: 'babbitt.app/marketplace',     actor: 'sarah', next: 'Restart Demo' },
             ],
           },
           'trade-respond-and-stage': {
             title: 'Trade — Quote, Get Awarded, Stage the Job',
             steps: [
-              { n: 1,  label: 'Intro',          caption: 'Meet Marcus and Sarah.',                                 url: 'app.babbitt.au/welcome',          actor: 'marcus', next: 'Begin Demo' },
-              { n: 2,  label: 'Marketplace',    caption: 'Marcus browses the feed for plumbing jobs.',             url: 'app.babbitt.au/marketplace',      actor: 'marcus', next: 'Open Listing' },
-              { n: 3,  label: 'Listing',        caption: "Sarah's bathroom-reno listing detail.",                  url: 'app.babbitt.au/marketplace/abc',  actor: 'marcus', next: 'Respond' },
-              { n: 4,  label: 'Quote',          caption: 'Marcus fills out his quote.',                            url: 'app.babbitt.au/marketplace/abc',  actor: 'marcus', next: 'Submit Quote' },
-              { n: 5,  label: 'Submitted',      caption: 'Quote submitted — stage: Quoting.',                      url: 'app.babbitt.au/marketplace/abc',  actor: 'marcus', next: 'Switch to Sarah' },
-              { n: 6,  label: 'Owner Reviews',  caption: 'Sarah opens her listing and sees the quote.',            url: 'app.babbitt.au/marketplace/abc',  actor: 'sarah',  next: 'Accept Quote' },
-              { n: 7,  label: 'Awarded',        caption: 'Quote accepted — a Job is created.',                     url: 'app.babbitt.au/marketplace/abc',  actor: 'sarah',  next: 'Switch to Marcus' },
-              { n: 8,  label: 'Job Shell',      caption: 'Marcus opens the Job workspace.',                        url: 'app.babbitt.au/jobs/xyz',         actor: 'marcus', next: 'Open Staging / BoQ' },
-              { n: 9,  label: 'Staging',        caption: 'Empty Staging tab — pick a template.',                   url: 'app.babbitt.au/jobs/xyz',         actor: 'marcus', next: 'Apply Template' },
-              { n: 10, label: 'Template',       caption: 'Bathroom Reno template — 8 stages applied.',             url: 'app.babbitt.au/jobs/xyz',         actor: 'marcus', next: 'Add BoQ Items' },
-              { n: 11, label: 'BoQ',            caption: 'Add line items linked to stages.',                       url: 'app.babbitt.au/jobs/xyz',         actor: 'marcus', next: 'Send RFQ' },
-              { n: 12, label: 'RFQ',            caption: 'Pick suppliers and send the RFQ.',                       url: 'app.babbitt.au/jobs/xyz',         actor: 'marcus', next: 'Request Sign-off' },
-              { n: 13, label: 'Sign-off Req',   caption: 'Marcus requests Sarah to sign the gate.',                url: 'app.babbitt.au/jobs/xyz',         actor: 'marcus', next: 'Switch to Sarah' },
-              { n: 14, label: 'Signed',         caption: 'Sarah reviews and signs.',                                url: 'app.babbitt.au/jobs/xyz',         actor: 'sarah',  next: 'Restart Demo' },
+              { n: 1,  label: 'Intro',          caption: 'Meet Marcus and Sarah.',                                 url: 'babbitt.app/welcome',          actor: 'marcus', next: 'Begin Demo' },
+              { n: 2,  label: 'Marketplace',    caption: 'Marcus browses the feed for plumbing jobs.',             url: 'babbitt.app/marketplace',      actor: 'marcus', next: 'Open Listing' },
+              { n: 3,  label: 'Listing',        caption: "Sarah's bathroom-reno listing detail.",                  url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Respond' },
+              { n: 4,  label: 'Quote',          caption: 'Marcus fills out his quote.',                            url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Submit Quote' },
+              { n: 5,  label: 'Submitted',      caption: 'Quote submitted — stage: Quoting.',                      url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Switch to Sarah' },
+              { n: 6,  label: 'Owner Reviews',  caption: 'Sarah opens her listing and sees the quote.',            url: 'babbitt.app/marketplace/abc',  actor: 'sarah',  next: 'Accept Quote' },
+              { n: 7,  label: 'Awarded',        caption: 'Quote accepted — a Job is created.',                     url: 'babbitt.app/marketplace/abc',  actor: 'sarah',  next: 'Switch to Marcus' },
+              { n: 8,  label: 'Job Shell',      caption: 'Marcus opens the Job workspace.',                        url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Open Staging / BoQ' },
+              { n: 9,  label: 'Staging',        caption: 'Empty Staging tab — pick a template.',                   url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Apply Template' },
+              { n: 10, label: 'Template',       caption: 'Bathroom Reno template — 8 stages applied.',             url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Add BoQ Items' },
+              { n: 11, label: 'BoQ',            caption: 'Add line items linked to stages.',                       url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Send RFQ' },
+              { n: 12, label: 'RFQ',            caption: 'Pick suppliers and send the RFQ.',                       url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Request Sign-off' },
+              { n: 13, label: 'Sign-off Req',   caption: 'Marcus requests Sarah to sign the gate.',                url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Switch to Sarah' },
+              { n: 14, label: 'Signed',         caption: 'Sarah reviews and signs.',                                url: 'babbitt.app/jobs/xyz',         actor: 'sarah',  next: 'Restart Demo' },
             ],
           },
           'tradie-incident-chat': {
             title: 'Trade × Owner — Site Issue, Group Chat, Raise Incident',
             steps: [
-              { n: 1, label: 'Intro',          caption: "Marcus finds something on site.",                          url: 'app.babbitt.au/welcome',         actor: 'marcus', next: 'Begin Demo' },
-              { n: 2, label: 'Job Chat',       caption: "Marcus opens the Job thread to ask Sarah.",                url: 'app.babbitt.au/jobs/xyz/chat',   actor: 'marcus', next: 'Send Message' },
-              { n: 3, label: 'Message sent',   caption: 'Question + 2 photos delivered to the thread.',             url: 'app.babbitt.au/jobs/xyz/chat',   actor: 'marcus', next: 'Switch to Sarah' },
-              { n: 4, label: "Owner's phone",  caption: "Sarah sees the alert and drafts a reply.",                 url: 'm.babbitt.au/threads/xyz',       actor: 'sarah',  next: 'Switch to Marcus' },
-              { n: 5, label: 'Reply received', caption: 'Marcus reads the reply — Babbitt suggests an Incident.',   url: 'app.babbitt.au/jobs/xyz/chat',   actor: 'marcus', next: 'Open Incidents' },
-              { n: 6, label: 'New Incident',   caption: 'Form pre-filled from chat — review and submit.',           url: 'app.babbitt.au/jobs/xyz/incidents/new', actor: 'marcus', next: 'Submit Incident' },
-              { n: 7, label: 'Logged',         caption: 'Audit trail captured — owner + compliance notified.',      url: 'app.babbitt.au/jobs/xyz/incidents/INC-2026-0428-01', actor: 'marcus', next: 'Restart Demo' },
+              { n: 1, label: 'Intro',          caption: "Marcus finds something on site.",                          url: 'babbitt.app/welcome',         actor: 'marcus', next: 'Begin Demo' },
+              { n: 2, label: 'Job Chat',       caption: "Marcus opens the Job thread to ask Sarah.",                url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Send Message' },
+              { n: 3, label: 'Message sent',   caption: 'Question + 2 photos delivered to the thread.',             url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Switch to Sarah' },
+              { n: 4, label: "Owner's phone",  caption: "Sarah sees the alert and drafts a reply.",                 url: 'm.babbitt.app/threads/xyz',       actor: 'sarah',  next: 'Switch to Marcus' },
+              { n: 5, label: 'Reply received', caption: 'Marcus reads the reply — Babbitt suggests an Incident.',   url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Open Incidents' },
+              { n: 6, label: 'New Incident',   caption: 'Form pre-filled from chat — review and submit.',           url: 'babbitt.app/jobs/xyz/incidents/new', actor: 'marcus', next: 'Submit Incident' },
+              { n: 7, label: 'Logged',         caption: 'Audit trail captured — owner + compliance notified.',      url: 'babbitt.app/jobs/xyz/incidents/INC-2026-0428-01', actor: 'marcus', next: 'Restart Demo' },
             ],
           },
           'tradie-network-community': {
             title: 'Trade · Network — Community, Post, New Connection',
             steps: [
-              { n: 1, label: 'Intro',          caption: 'Marcus dips into the Network.',                              url: 'app.babbitt.au/welcome',                          actor: 'marcus', next: 'Begin Demo' },
-              { n: 2, label: 'Communities',    caption: 'Communities he has joined and a few worth discovering.',     url: 'app.babbitt.au/network/communities',              actor: 'marcus', next: 'Open Community' },
-              { n: 3, label: 'Inside',         caption: 'Sydney Sparkies & Plumbers Co-Op — recent posts.',           url: 'app.babbitt.au/network/communities/sydney-sparkies-plumbers', actor: 'marcus', next: 'Open Post' },
-              { n: 4, label: 'Thread',         caption: 'Read, upvote, drop a comment.',                              url: 'app.babbitt.au/network/communities/sydney-sparkies-plumbers/p/asbestos-recco', actor: 'marcus', next: 'Continue' },
-              { n: 5, label: 'New Request',    caption: 'A friend request from Liam Tran has just landed.',           url: 'app.babbitt.au/network/connections',              actor: 'marcus', next: 'View Profile' },
-              { n: 6, label: 'Quick View',     caption: "Liam's profile in the side panel.",                          url: 'app.babbitt.au/network/connections?preview=liam-tran', actor: 'marcus', next: 'Accept Request' },
-              { n: 7, label: 'Connected',      caption: "You're now connected with Liam.",                            url: 'app.babbitt.au/network/connections',              actor: 'marcus', next: 'Restart Demo' },
+              { n: 1, label: 'Intro',          caption: 'Marcus dips into the Network.',                              url: 'babbitt.app/welcome',                          actor: 'marcus', next: 'Begin Demo' },
+              { n: 2, label: 'Communities',    caption: 'Communities he has joined and a few worth discovering.',     url: 'babbitt.app/network/communities',              actor: 'marcus', next: 'Open Community' },
+              { n: 3, label: 'Inside',         caption: 'Sydney Sparkies & Plumbers Co-Op — recent posts.',           url: 'babbitt.app/network/communities/sydney-sparkies-plumbers', actor: 'marcus', next: 'Open Post' },
+              { n: 4, label: 'Thread',         caption: 'Read, upvote, drop a comment.',                              url: 'babbitt.app/network/communities/sydney-sparkies-plumbers/p/asbestos-recco', actor: 'marcus', next: 'Continue' },
+              { n: 5, label: 'New Request',    caption: 'A friend request from Liam Tran has just landed.',           url: 'babbitt.app/network/connections',              actor: 'marcus', next: 'View Profile' },
+              { n: 6, label: 'Quick View',     caption: "Liam's profile in the side panel.",                          url: 'babbitt.app/network/connections?preview=liam-tran', actor: 'marcus', next: 'Accept Request' },
+              { n: 7, label: 'Connected',      caption: "You're now connected with Liam.",                            url: 'babbitt.app/network/connections',              actor: 'marcus', next: 'Restart Demo' },
             ],
           },
           'supplier-rfq': {
             title: 'Supplier — Quote an RFQ from a Tradie',
             steps: [
-              { n: 1, label: 'Intro',     caption: "Suppliers win on speed.",                              url: 'app.babbitt.au/welcome',                actor: 'dan',    next: 'Begin Demo' },
-              { n: 2, label: 'Inbox',     caption: "Marcus's RFQ landed in the queue.",                    url: 'app.babbitt.au/quote-desk',             actor: 'dan',    next: 'Open RFQ' },
-              { n: 3, label: 'RFQ',       caption: 'Items, message, deadline.',                            url: 'app.babbitt.au/quote-desk/rfq/091',     actor: 'dan',    next: 'Draft Quote' },
-              { n: 4, label: 'Draft',     caption: 'Catalogue-matched prices — adjust as needed.',         url: 'app.babbitt.au/quote-desk/rfq/091',     actor: 'dan',    next: 'Review &amp; Send' },
-              { n: 5, label: 'Send',      caption: 'Final summary before sending.',                        url: 'app.babbitt.au/quote-desk/rfq/091',     actor: 'dan',    next: 'Send Quote' },
-              { n: 6, label: 'Won',       caption: 'Marcus accepted — order confirmed.',                   url: 'app.babbitt.au/quote-desk/orders/8421', actor: 'dan',    next: 'Restart Demo' },
+              { n: 1, label: 'Intro',     caption: "Suppliers win on speed.",                              url: 'babbitt.app/welcome',                actor: 'dan',    next: 'Begin Demo' },
+              { n: 2, label: 'Inbox',     caption: "Marcus's RFQ landed in the queue.",                    url: 'babbitt.app/quote-desk',             actor: 'dan',    next: 'Open RFQ' },
+              { n: 3, label: 'RFQ',       caption: 'Items, message, deadline.',                            url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Draft Quote' },
+              { n: 4, label: 'Draft',     caption: 'Catalogue-matched prices — adjust as needed.',         url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Review &amp; Send' },
+              { n: 5, label: 'Send',      caption: 'Final summary before sending.',                        url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Send Quote' },
+              { n: 6, label: 'Won',       caption: 'Marcus accepted — order confirmed.',                   url: 'babbitt.app/quote-desk/orders/8421', actor: 'dan',    next: 'Restart Demo' },
             ],
           },
         };
@@ -3939,16 +3919,22 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           const total = all.length;
           const step = all[cur - 1];
 
-          // Flow picker buttons
+          // Flow picker pills — color-coded by data-tone
+          const TONE = {
+            yellow: { on: ['bg-yellow/20', 'text-yellow', 'border-yellow/60'],
+                      off: ['bg-transparent', 'text-txt-secondary', 'border-bdr', 'hover:text-yellow', 'hover:border-yellow/40'] },
+            blue:   { on: ['bg-blue/20', 'text-blue', 'border-blue/60'],
+                      off: ['bg-transparent', 'text-txt-secondary', 'border-bdr', 'hover:text-blue', 'hover:border-blue/40'] },
+            green:  { on: ['bg-green/20', 'text-green', 'border-green/60'],
+                      off: ['bg-transparent', 'text-txt-secondary', 'border-bdr', 'hover:text-green', 'hover:border-green/40'] },
+          };
           $$('.flow-btn').forEach((btn) => {
             const isActive = btn.dataset.flow === activeFlow;
-            btn.classList.toggle('border-yellow', isActive);
-            btn.classList.toggle('bg-yellow/10', isActive);
-            btn.classList.toggle('border-bdr', !isActive);
-            btn.classList.toggle('bg-surface', !isActive);
-            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-            const badge = btn.querySelector('.flow-active-badge');
-            if (badge) badge.classList.toggle('hidden', !isActive);
+            const tone = TONE[btn.dataset.tone] || TONE.yellow;
+            tone.on.forEach((c) => btn.classList.remove(c));
+            tone.off.forEach((c) => btn.classList.remove(c));
+            (isActive ? tone.on : tone.off).forEach((c) => btn.classList.add(c));
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
           });
 
           // Header / topbar
@@ -3963,6 +3949,10 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           $('#nextBtn').innerHTML = cur === total
             ? `<i class="fas fa-rotate-left mr-1"></i> ${step.next}`
             : `${step.next} <i class="fas fa-arrow-right ml-1"></i>`;
+
+          // End-of-demo CTA visible only on the last step of the active flow
+          const finale = $('#demoFinale');
+          if (finale) finale.classList.toggle('is-on', cur === total);
 
           // Step dots
           $$('.step-dot').forEach((btn) => {
@@ -4370,7 +4360,48 @@ Bonus points if they're across NSW SafeWork notification too.</p>
         }
         $('#restartBtn').addEventListener('click', resetActiveFlow);
 
-        // Boot
+        // Boot — honour ?flow=… deep links from the landing page's demo board
+        const _params = new URLSearchParams(location.search);
+        const _urlFlow = _params.get('flow');
+        if (_urlFlow && FLOWS[_urlFlow]) activeFlow = _urlFlow;
+
+        // Embed mode — when the landing page iframes /demo with ?embed=1, hide our
+        // own header, route finale CTAs to the parent (target=_top), and broadcast
+        // the document height so the iframe can grow without inner scrollbars.
+        if (_params.get('embed') === '1') {
+          document.documentElement.classList.add('is-embed');
+          document.body.classList.add('is-embed');
+          document.querySelectorAll('a[href^="../"]').forEach((a) => { a.target = '_top'; });
+          // Use the main element (the real content) for size signal — body has
+          // grain overlay pseudo + sticky chrome that can confuse scrollHeight.
+          const measure = () => {
+            const main = document.querySelector('main');
+            const rect = main ? main.getBoundingClientRect() : null;
+            const fromMain = rect ? Math.ceil(rect.bottom + window.scrollY + 12) : 0;
+            return Math.max(fromMain, 480);
+          };
+          let lastH = 0;
+          const broadcast = () => {
+            try {
+              const h = measure();
+              if (Math.abs(h - lastH) < 4) return;
+              lastH = h;
+              parent.postMessage({ type: 'babbitt-demo-resize', height: h }, '*');
+            } catch (_) { /* cross-origin or no parent — ignore */ }
+          };
+          if ('ResizeObserver' in window) {
+            const ro = new ResizeObserver(broadcast);
+            ro.observe(document.documentElement);
+            const mainEl = document.querySelector('main');
+            if (mainEl) ro.observe(mainEl);
+          } else {
+            window.addEventListener('resize', broadcast);
+          }
+          window.addEventListener('load', broadcast);
+          setTimeout(broadcast, 60);
+          setTimeout(broadcast, 400);
+        }
+
         buildStepDots();
         render();
       })();
