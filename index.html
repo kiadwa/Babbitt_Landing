@@ -752,38 +752,172 @@
 
         <div class="container waitlist-inner">
             <div class="section-header">
-                <h2 class="section-title">Secure Your Spot</h2>
-                <p class="section-lead">Be first. Join the waitlist.</p>
+                <span class="section-eyebrow">PRICING · FOUNDING RATES</span>
+                <h2 class="section-title">Build your plan. Lock the price.</h2>
+                <p class="section-lead">Pick a tier, add what you need, and secure founding pricing before launch. Quotes convert to invoices on launch day — you'll have 30 days to accept.</p>
                 <div id="waitlistSuccess" class="form-message" style="max-width:560px;margin:16px auto 0"></div>
             </div>
 
-            <div style="text-align:center;margin-bottom:48px">
-                <button class="btn btn-primary btn-open-form" id="btnWaitlistCta">I'm interested</button>
-            </div>
+            <div class="pricing-builder" id="pricingBuilder">
+                <!-- Top controls: billing toggle + Babbitt 60 -->
+                <div class="pb-controls">
+                    <div class="pb-billing" role="tablist" aria-label="Billing cycle">
+                        <button class="pb-chip is-active" data-billing="yearly" role="tab" aria-selected="true">Yearly · save 50%</button>
+                        <button class="pb-chip" data-billing="monthly" role="tab" aria-selected="false">Monthly</button>
+                    </div>
+                    <div class="pb-divider" aria-hidden="true"></div>
+                    <button class="pb-chip pb-chip--offer" id="pbBabbitt60">
+                        <span class="pb-chip-spark" aria-hidden="true">✦</span> Apply for Babbitt 60
+                    </button>
+                </div>
 
-            <div class="waitlist-perks">
-                <h3>Why join the waitlist?</h3>
-                <div class="perks-grid">
-                    <div class="perk-item">
-                        <span class="perk-icon"><i class="fas fa-bell"></i></span>
-                        <p>First to know when the platform opens</p>
+                <div class="pb-layout">
+                    <!-- LEFT: builder -->
+                    <div class="pb-main">
+                        <!-- Account type -->
+                        <div class="pb-block">
+                            <span class="pb-label">Account type</span>
+                            <div class="pb-account" role="tablist" aria-label="Account type">
+                                <button class="pb-account-chip is-active" data-account="trades" role="tab" aria-selected="true">
+                                    <span class="pb-account-icon"><i class="fas fa-hard-hat" aria-hidden="true"></i></span>
+                                    Trades
+                                </button>
+                                <button class="pb-account-chip" data-account="property" role="tab" aria-selected="false">
+                                    <span class="pb-account-icon"><i class="fas fa-building" aria-hidden="true"></i></span>
+                                    Property
+                                </button>
+                                <button class="pb-account-chip" data-account="supplier" role="tab" aria-selected="false">
+                                    <span class="pb-account-icon"><i class="fas fa-boxes" aria-hidden="true"></i></span>
+                                    Supplier
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tier selection -->
+                        <div class="pb-block">
+                            <span class="pb-label">Select your base plan</span>
+                            <div class="pb-tier-grid">
+                                <!-- FREE -->
+                                <article class="pb-tier" data-tier="free" data-monthly="0" data-yearly="0" tabindex="0" role="radio" aria-checked="false">
+                                    <header class="pb-tier-head">
+                                        <h3 class="pb-tier-name">Free</h3>
+                                    </header>
+                                    <div class="pb-tier-price"><span class="pb-tier-amount">$0</span></div>
+                                    <div class="pb-tier-period">forever</div>
+                                    <div class="pb-tier-storage">1 GB storage</div>
+                                    <ul class="pb-tier-list">
+                                        <li>Basic job management</li>
+                                        <li>2 properties</li>
+                                        <li>Business registration</li>
+                                        <li>Basic AI features</li>
+                                        <li>12 confirmed jobs / year</li>
+                                    </ul>
+                                </article>
+
+                                <!-- TIER 1 -->
+                                <article class="pb-tier is-selected is-popular" data-tier="tier1" data-monthly="60" data-yearly="30" tabindex="0" role="radio" aria-checked="true">
+                                    <span class="pb-tier-badge">★ Most Popular</span>
+                                    <header class="pb-tier-head">
+                                        <h3 class="pb-tier-name">Tier 1</h3>
+                                    </header>
+                                    <div class="pb-tier-price"><span class="pb-tier-amount">$30</span></div>
+                                    <div class="pb-tier-period">/month, billed yearly</div>
+                                    <div class="pb-tier-storage">10 GB storage</div>
+                                    <ul class="pb-tier-list">
+                                        <li>Code Checker (25 q / mo)</li>
+                                        <li>Untracked fleet</li>
+                                        <li>AI decision support</li>
+                                        <li>Unlimited sub-contractors</li>
+                                        <li>Advanced job management</li>
+                                        <li>Remove ads</li>
+                                    </ul>
+                                </article>
+
+                                <!-- TIER 2 -->
+                                <article class="pb-tier is-locked" data-tier="tier2" data-monthly="200" data-yearly="100" tabindex="0" role="radio" aria-checked="false" aria-disabled="true">
+                                    <span class="pb-tier-badge pb-tier-badge--enterprise">Enterprise</span>
+                                    <header class="pb-tier-head">
+                                        <h3 class="pb-tier-name">Tier 2</h3>
+                                    </header>
+                                    <div class="pb-tier-price"><span class="pb-tier-amount">$100</span></div>
+                                    <div class="pb-tier-period">/month, billed yearly</div>
+                                    <div class="pb-tier-storage">100 GB storage</div>
+                                    <ul class="pb-tier-list">
+                                        <li>Dedicated support</li>
+                                        <li>Full API access</li>
+                                        <li>Advanced reporting</li>
+                                        <li>Team collaboration</li>
+                                        <li>Custom integration</li>
+                                        <li>Remove ads</li>
+                                    </ul>
+                                    <div class="pb-tier-trigger" id="pbTier2Trigger">
+                                        <strong>Unlocks at</strong><br>20+ staff or 50+ properties
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
                     </div>
-                    <div class="perk-item">
-                        <span class="perk-icon"><i class="fas fa-tag"></i></span>
-                        <p>Priority access at launch</p>
-                    </div>
-                    <div class="perk-item">
-                        <span class="perk-icon"><i class="fas fa-gift"></i></span>
-                        <p>Launch rewards for early members</p>
-                    </div>
-                    <div class="perk-item">
-                        <span class="perk-icon"><i class="fas fa-handshake"></i></span>
-                        <p>Enterprise partnership offers</p>
-                    </div>
+
+                    <!-- RIGHT: quote -->
+                    <aside class="pb-quote" aria-label="Your quote">
+                        <header class="pb-quote-head">
+                            <span class="pb-quote-eyebrow">YOUR QUOTE</span>
+                            <h3 class="pb-quote-title">Founding member rate</h3>
+                        </header>
+
+                        <div class="pb-quote-line pb-quote-line--tier">
+                            <span id="pbTierLabel">Tier 1</span>
+                            <span class="pb-quote-amount" id="pbTierPrice">$30.00</span>
+                        </div>
+
+                        <div id="pbAddonsContainer"></div>
+
+                        <div class="pb-quote-line pb-quote-line--rule">
+                            <span>Sub-total</span>
+                            <span class="pb-quote-amount" id="pbSubtotal">$30.00</span>
+                        </div>
+                        <div class="pb-quote-line">
+                            <span>GST +10%</span>
+                            <span class="pb-quote-amount" id="pbGst">$3.00</span>
+                        </div>
+
+                        <div id="pbDiscountLine"></div>
+
+                        <div class="pb-quote-total">
+                            <span id="pbTotalLabel">Total · yearly</span>
+                            <span class="pb-quote-total-amount" id="pbTotal">$396.00</span>
+                        </div>
+
+                        <div id="pbRecurringNote"></div>
+
+                        <div class="pb-quote-cta">
+                            <button class="btn btn-primary pb-lock-btn" id="btnWaitlistCta" type="button">Lock in my quote</button>
+                            <div id="pbSavingsDisplay"></div>
+                            <p class="pb-quote-fine">Quotes convert to invoices when Babbitt goes live. You'll have 30 days to accept after launch.</p>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ═══ Pricing Builder — Tier 2 enquiry & setup fee explainer ═══ -->
+    <div class="pb-modal" id="pbSetupModal" aria-hidden="true">
+        <div class="pb-modal-backdrop"></div>
+        <div class="pb-modal-inner" role="dialog" aria-modal="true" aria-labelledby="pbSetupTitle">
+            <button class="pb-modal-close" id="pbSetupClose" aria-label="Close">&times;</button>
+            <span class="pb-modal-eyebrow">Supplier · one-time setup</span>
+            <h3 id="pbSetupTitle" class="pb-modal-title">Catalogue setup — $200</h3>
+            <p class="pb-modal-lead">We connect your product catalogue to the Babbitt trade-code system. That gets you:</p>
+            <ul class="pb-modal-list">
+                <li>Automatic code sync for accurate quoting</li>
+                <li>Real-time inventory tracking across the platform</li>
+                <li>Faster project matches with trades and property teams</li>
+            </ul>
+            <p class="pb-modal-note">One-time fee. After setup, all sync updates are automatic.</p>
+            <button class="btn btn-primary pb-modal-confirm" id="pbSetupConfirm" type="button">Got it</button>
+        </div>
+    </div>
 
     <!-- ═══ Founders ═══ -->
     <section class="founders" id="founders">
@@ -848,6 +982,1216 @@
             </div>
             <!-- SWAPPABLE CONTENT END -->
         </div>
+    </div>
+
+    <!-- ═══ Room Modals — one per floor-plan lane ═══ -->
+    <div class="room-modal" id="roomModal" aria-hidden="true">
+        <div class="room-modal-backdrop"></div>
+
+        <!-- ── Room 01 · Trades — Job Ticket ── -->
+        <article class="room-modal-inner room-ticket" data-room="trades" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
+
+            <!-- Perforated tear edge (top) -->
+            <span class="ticket-perf ticket-perf--top" aria-hidden="true"></span>
+
+            <!-- Titleblock — mirrors the floor-plan sheet -->
+            <header class="ticket-titleblock" aria-hidden="true">
+                <span class="tb-cell tb-cell--label">For Tradies</span>
+                <span class="tb-cell tb-cell--name">01 · Trades</span>
+                <span class="tb-cell tb-cell--serial">JW-PREVIEW</span>
+            </header>
+
+            <button class="room-modal-close" id="roomModalClose" aria-label="Back to floor plan">
+                <span aria-hidden="true">&larr;</span> <span class="close-label">Back to plan</span>
+            </button>
+
+            <!-- Body -->
+            <div class="ticket-body">
+
+                <!-- Mono breadcrumb — generic, benefit-flavoured -->
+                <div class="ticket-crumb" aria-label="Workspace breadcrumb">
+                    <span class="crumb-item"><span aria-hidden="true">&larr;</span> Jobs</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item">New Leads</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item crumb-stage">No Fee</span>
+                    <span class="crumb-spacer"></span>
+                    <span class="crumb-live"><span class="status-dot" aria-hidden="true"></span>Live</span>
+                </div>
+
+                <!-- Headline — benefit-led -->
+                <div class="ticket-headline">
+                    <h2 class="ticket-title" id="ticketTitle">New job found on Babbitt &mdash; for free.</h2>
+                    <p class="ticket-meta">
+                        <span class="badge badge--active">Free Lead</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>No commission</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Owner-funded</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span class="meta-faint">Your name on every job you sign</span>
+                    </p>
+                </div>
+
+                <!-- Workspace tab strip — proof "the whole job, one place" -->
+                <nav class="ws-tabs" aria-label="Workspace tabs (preview)">
+                    <span class="ws-tab is-active">Overview</span>
+                    <span class="ws-tab">Staging / BoQ</span>
+                    <span class="ws-tab">Payments</span>
+                    <span class="ws-tab">Compliance</span>
+                    <span class="ws-tab">Sub-Contracts</span>
+                    <span class="ws-tab">Close-Out</span>
+                </nav>
+
+                <!-- ◢ spec-sheet divider -->
+                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why tradies pick Babbitt</div>
+
+                <!-- Foreman "Up Next" hero — reframed as the always-on AI dispatcher -->
+                <aside class="foreman-panel" aria-label="Up Next">
+                    <header class="foreman-head">
+                        <span class="foreman-bolt" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+                        <span class="foreman-label">Foreman &mdash; your AI dispatcher, always one move ahead</span>
+                    </header>
+                    <p class="foreman-action">
+                        <strong>You&rsquo;ll never wonder &ldquo;what&rsquo;s next?&rdquo; again.</strong>
+                        Foreman queues the move that unblocks the job &mdash; sign the gate, log a pressure test,
+                        ping the client &mdash; so <em>you&rsquo;re never the bottleneck</em>.
+                    </p>
+                </aside>
+
+                <!-- Lifecycle (3 gates) — pitched as "how you get paid" -->
+                <section class="ticket-track">
+                    <div class="track-head">
+                        <h3 class="ticket-section-title">Three gates &mdash; one straight line to the money</h3>
+                        <span class="track-tail">You sign with a PIN &rarr; client counter-signs &rarr; gate clears &rarr; you get paid</span>
+                    </div>
+                    <ol class="stage-line stage-line--lifecycle" aria-label="Lifecycle stages">
+                        <li class="stage" data-state="done"><span class="stage-num">1</span><span class="stage-name">Scope</span></li>
+                        <li class="stage" data-state="now">
+                            <span class="stage-num">2</span>
+                            <span class="stage-name">In Progress</span>
+                            <span class="stage-pin"><i class="fas fa-lock" aria-hidden="true"></i> PIN</span>
+                        </li>
+                        <li class="stage" data-state="next"><span class="stage-num">3</span><span class="stage-name">Close Out</span></li>
+                    </ol>
+                </section>
+
+                <!-- 3-up benefits tiles -->
+                <div class="ticket-stamps" role="list">
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Lead fees</span>
+                        <span class="stamp-value">$0</span>
+                        <span class="stamp-foot">Owners pay to post &mdash; not you</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Paid in</span>
+                        <span class="stamp-value">T+3 <span class="stamp-unit">days</span></span>
+                        <span class="stamp-foot">After the Close-Out gate clears</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Disputes</span>
+                        <span class="stamp-value">Nil</span>
+                        <span class="stamp-foot">Counter-signed at every gate</span>
+                    </div>
+                </div>
+
+                <!-- PIN / counter-sign strip -->
+                <aside class="ticket-payout" aria-label="How sign-off works">
+                    <span class="payout-mark"><i class="fas fa-key" aria-hidden="true"></i></span>
+                    <p class="payout-copy">
+                        <strong>Your 4-digit PIN is your invoice.</strong> Sign the gate, the client
+                        counter-signs, the money moves &mdash; no chasing, no &ldquo;invoice in the post.&rdquo;
+                    </p>
+                    <span class="payout-tag">GATE</span>
+                </aside>
+
+                <!-- CTAs -->
+                <footer class="ticket-cta">
+                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="trades">
+                        Start finding jobs <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="/demo?flow=trade-respond-and-stage" class="btn btn-ghost ticket-cta-ghost">
+                        Watch a tradie do it
+                    </a>
+                </footer>
+
+                <!-- Stub / dimension footer -->
+                <div class="ticket-stub" aria-hidden="true">
+                    <span class="stub-dim">Babbitt for Tradies</span>
+                    <span class="stub-sep">&middot;</span>
+                    <span class="stub-dim">Lane 01 / Trades</span>
+                    <span class="stub-spacer"></span>
+                    <span class="stub-meta">Workspace Preview &middot; MVP.V1</span>
+                </div>
+            </div>
+
+            <!-- Perforated tear edge (bottom) -->
+            <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
+        </article>
+
+        <!-- ── Room 02 · Supplier — RFQ Board / Manifest ── -->
+        <article class="room-modal-inner room-ticket room-manifest" data-room="supplier" role="dialog" aria-modal="true" aria-labelledby="manifestTitle" hidden>
+
+            <span class="ticket-perf ticket-perf--top" aria-hidden="true"></span>
+
+            <header class="ticket-titleblock" aria-hidden="true">
+                <span class="tb-cell tb-cell--label">For Suppliers</span>
+                <span class="tb-cell tb-cell--name">02 · Supplier</span>
+                <span class="tb-cell tb-cell--serial">RFQ-LIVE</span>
+            </header>
+
+            <button class="room-modal-close" id="roomModalCloseB" aria-label="Back to floor plan">
+                <span aria-hidden="true">&larr;</span> <span class="close-label">Back to plan</span>
+            </button>
+
+            <div class="ticket-body">
+
+                <!-- Mono breadcrumb -->
+                <div class="ticket-crumb" aria-label="Supplier breadcrumb">
+                    <span class="crumb-item"><span aria-hidden="true">&larr;</span> RFQs</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item">Inbox</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item crumb-stage">No Fee</span>
+                    <span class="crumb-spacer"></span>
+                    <span class="crumb-live"><span class="status-dot status-dot--blue" aria-hidden="true"></span>Live feed</span>
+                </div>
+
+                <!-- Headline — benefit-led -->
+                <div class="ticket-headline">
+                    <h2 class="ticket-title" id="manifestTitle">Funded orders &mdash; straight to your inbox.</h2>
+                    <p class="ticket-meta">
+                        <span class="badge badge--info">Free Listing</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>No commission</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Real BoQ lines</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span class="meta-faint">Counter-signed on every gate</span>
+                    </p>
+                </div>
+
+                <!-- Workspace tab strip — supplier surface -->
+                <nav class="ws-tabs" aria-label="Supplier workspace (preview)">
+                    <span class="ws-tab is-active">RFQs</span>
+                    <span class="ws-tab">Quotes</span>
+                    <span class="ws-tab">Orders</span>
+                    <span class="ws-tab">Packs</span>
+                    <span class="ws-tab">Deliveries</span>
+                    <span class="ws-tab">Invoices</span>
+                </nav>
+
+                <!-- ◢ section divider -->
+                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why suppliers run with Babbitt</div>
+
+                <!-- HERO: Live RFQ board — the supplier's distinguishing visual -->
+                <section class="rfq-board" aria-label="Live RFQ feed">
+                    <header class="rfq-board-head">
+                        <span class="rfq-board-title">
+                            <span class="rfq-board-pulse" aria-hidden="true"></span>
+                            Inbound RFQs &mdash; matched to your catalogue
+                        </span>
+                        <span class="rfq-board-meta">Updated 4s ago</span>
+                    </header>
+
+                    <ol class="rfq-list" role="list">
+                        <li class="rfq-row rfq-row--new">
+                            <span class="rfq-id">RFQ&#8209;3041</span>
+                            <span class="rfq-item">
+                                <span class="rfq-item-name">Radiata Pine 90&times;45 MGP10 H2 &mdash; 6.0&thinsp;m</span>
+                                <span class="rfq-item-sku">PINE-9045-MGP10-H2-L6000</span>
+                            </span>
+                            <span class="rfq-region">Sydney NSW</span>
+                            <span class="rfq-age">2m ago</span>
+                            <span class="rfq-action">Quote &rarr;</span>
+                        </li>
+                        <li class="rfq-row">
+                            <span class="rfq-id">RFQ&#8209;3040</span>
+                            <span class="rfq-item">
+                                <span class="rfq-item-name">Gyprock Fire-Rated 13&thinsp;mm FRL60 1200&times;2700</span>
+                                <span class="rfq-item-sku">GYPROCK-STD-FRSHEET-13-FRL60-1200X2700</span>
+                            </span>
+                            <span class="rfq-region">Newcastle NSW</span>
+                            <span class="rfq-age">6m ago</span>
+                            <span class="rfq-action">Quote &rarr;</span>
+                        </li>
+                        <li class="rfq-row">
+                            <span class="rfq-id">RFQ&#8209;3039</span>
+                            <span class="rfq-item">
+                                <span class="rfq-item-name">310UB32 300PLUS Hot-Dip Galvanised &mdash; 9.0&thinsp;m</span>
+                                <span class="rfq-item-sku">STEEL-310UB32-300PLUS-HDG-L9000</span>
+                            </span>
+                            <span class="rfq-region">Geelong VIC</span>
+                            <span class="rfq-age">14m ago</span>
+                            <span class="rfq-action">Quote &rarr;</span>
+                        </li>
+                        <li class="rfq-row">
+                            <span class="rfq-id">RFQ&#8209;3038</span>
+                            <span class="rfq-item">
+                                <span class="rfq-item-name">Bradford Glasswool Wall Batt R2.5 &mdash; 90&thinsp;mm</span>
+                                <span class="rfq-item-sku">BRADFORD-GW-WALLBAT-R25-YELLOW-90MM</span>
+                            </span>
+                            <span class="rfq-region">Paddington NSW</span>
+                            <span class="rfq-age">28m ago</span>
+                            <span class="rfq-action">Quote &rarr;</span>
+                        </li>
+                    </ol>
+
+                    <footer class="rfq-board-foot">
+                        Every line traces back to a real, funded BoQ &mdash; no tyre-kickers.
+                    </footer>
+                </section>
+
+                <!-- Order flow (5 gates — supplier lifecycle) -->
+                <section class="ticket-track">
+                    <div class="track-head">
+                        <h3 class="ticket-section-title">Order flow &mdash; receipted at every step</h3>
+                        <span class="track-tail">Quote &rarr; PO lands &rarr; pack &rarr; deliver &rarr; paid</span>
+                    </div>
+                    <ol class="stage-line stage-line--flow" aria-label="Supplier order stages">
+                        <li class="stage" data-state="done"><span class="stage-num">1</span><span class="stage-name">Quote</span></li>
+                        <li class="stage" data-state="done"><span class="stage-num">2</span><span class="stage-name">PO</span></li>
+                        <li class="stage" data-state="now">
+                            <span class="stage-num">3</span>
+                            <span class="stage-name">Pack</span>
+                            <span class="stage-pin stage-pin--blue"><i class="fas fa-box" aria-hidden="true"></i> Pick</span>
+                        </li>
+                        <li class="stage" data-state="next"><span class="stage-num">4</span><span class="stage-name">Deliver</span></li>
+                        <li class="stage" data-state="next"><span class="stage-num">5</span><span class="stage-name">Paid</span></li>
+                    </ol>
+                </section>
+
+                <!-- 3-up benefits tiles -->
+                <div class="ticket-stamps" role="list">
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Listing fee</span>
+                        <span class="stamp-value">$0</span>
+                        <span class="stamp-foot">No SaaS, no commission</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">RFQ &rarr; PO</span>
+                        <span class="stamp-value">&lt;48h <span class="stamp-unit">avg</span></span>
+                        <span class="stamp-foot">From quote sent to PO landed</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Paid on</span>
+                        <span class="stamp-value">Delivery</span>
+                        <span class="stamp-foot">Counter-signed at the door</span>
+                    </div>
+                </div>
+
+                <!-- Order strip (blue accent variant of payout) -->
+                <aside class="ticket-payout ticket-payout--info" aria-label="How orders land">
+                    <span class="payout-mark payout-mark--info"><i class="fas fa-inbox" aria-hidden="true"></i></span>
+                    <p class="payout-copy">
+                        <strong>Win the quote, the PO lands.</strong> No follow-up calls. Pack list, delivery
+                        slot, invoice trigger &mdash; all wired to the job, all visible to both sides.
+                    </p>
+                    <span class="payout-tag payout-tag--info">PO</span>
+                </aside>
+
+                <!-- CTAs -->
+                <footer class="ticket-cta">
+                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="supplier">
+                        Get on the board <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
+                        Watch a supplier do it
+                    </a>
+                </footer>
+
+                <!-- Stub footer -->
+                <div class="ticket-stub" aria-hidden="true">
+                    <span class="stub-dim">Babbitt for Suppliers</span>
+                    <span class="stub-sep">&middot;</span>
+                    <span class="stub-dim">Lane 02 / Supplier</span>
+                    <span class="stub-spacer"></span>
+                    <span class="stub-meta">RFQ Board Preview &middot; MVP.V1</span>
+                </div>
+            </div>
+
+            <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
+        </article>
+
+        <!-- ── Room 03 · Property Manager — Portfolio Brief ── -->
+        <article class="room-modal-inner room-ticket room-brief" data-room="manager" role="dialog" aria-modal="true" aria-labelledby="briefTitle" hidden>
+
+            <span class="ticket-perf ticket-perf--top" aria-hidden="true"></span>
+
+            <header class="ticket-titleblock" aria-hidden="true">
+                <span class="tb-cell tb-cell--label">For Property Managers</span>
+                <span class="tb-cell tb-cell--name">03 &middot; Property</span>
+                <span class="tb-cell tb-cell--serial">PORT-LIVE</span>
+            </header>
+
+            <button class="room-modal-close" id="roomModalCloseC" aria-label="Back to floor plan">
+                <span aria-hidden="true">&larr;</span> <span class="close-label">Back to plan</span>
+            </button>
+
+            <div class="ticket-body">
+
+                <!-- Mono breadcrumb -->
+                <div class="ticket-crumb" aria-label="Property breadcrumb">
+                    <span class="crumb-item"><span aria-hidden="true">&larr;</span> Portfolio</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item">Daily brief</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item crumb-stage">All clear</span>
+                    <span class="crumb-spacer"></span>
+                    <span class="crumb-live"><span class="status-dot status-dot--green" aria-hidden="true"></span>Synced</span>
+                </div>
+
+                <!-- Headline — benefit-led -->
+                <div class="ticket-headline">
+                    <h2 class="ticket-title" id="briefTitle">One brief. Every property. Every day.</h2>
+                    <p class="ticket-meta">
+                        <span class="badge badge--success">Portfolio view</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>No spreadsheet</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>No chasing</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span class="meta-faint">Foreman briefs you before owners ask</span>
+                    </p>
+                </div>
+
+                <!-- Workspace tab strip — property surface -->
+                <nav class="ws-tabs ws-tabs--green" aria-label="Property workspace (preview)">
+                    <span class="ws-tab is-active">Portfolio</span>
+                    <span class="ws-tab">Active Jobs</span>
+                    <span class="ws-tab">Maintenance</span>
+                    <span class="ws-tab">Quotes</span>
+                    <span class="ws-tab">Compliance</span>
+                    <span class="ws-tab">Money</span>
+                </nav>
+
+                <!-- ◢ section divider -->
+                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why managers run their portfolio on Babbitt</div>
+
+                <!-- Foreman briefing panel -->
+                <aside class="foreman-panel" aria-label="Foreman briefing">
+                    <header class="foreman-head">
+                        <span class="foreman-bolt"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+                        <span class="foreman-label">Foreman &middot; Property Briefing</span>
+                    </header>
+                    <p class="foreman-msg">
+                        <strong>14 properties &middot; 3 active jobs &middot; 2 quotes awaiting</strong> &mdash;
+                        Unit 4 / 22 Macleay St has a leak callout open since 9:02. Last update 11 min ago.
+                        Strata at 88 Elizabeth needs sign-off on the lift contractor quote.
+                    </p>
+                </aside>
+
+                <!-- HERO: Portfolio tile grid — the manager's distinguishing visual -->
+                <section class="portfolio-grid" aria-label="Portfolio at a glance">
+                    <header class="portfolio-grid-head">
+                        <span class="portfolio-grid-title">
+                            <span class="status-dot status-dot--green" aria-hidden="true"></span>
+                            Your portfolio &mdash; live status across 14 properties
+                        </span>
+                        <span class="portfolio-grid-meta">Updated 11s ago</span>
+                    </header>
+
+                    <ol class="property-tiles" role="list">
+                        <li class="property-tile" data-state="active">
+                            <span class="prop-id">PT&#8209;001</span>
+                            <span class="prop-name">22 Macleay St &mdash; Unit 4</span>
+                            <span class="prop-foot"><i class="fas fa-circle prop-pulse prop-pulse--alert" aria-hidden="true"></i> Leak callout &middot; open</span>
+                        </li>
+                        <li class="property-tile" data-state="active">
+                            <span class="prop-id">PT&#8209;002</span>
+                            <span class="prop-name">88 Elizabeth St &mdash; Common areas</span>
+                            <span class="prop-foot"><i class="fas fa-circle prop-pulse prop-pulse--quote" aria-hidden="true"></i> Lift quote awaiting</span>
+                        </li>
+                        <li class="property-tile" data-state="clear">
+                            <span class="prop-id">PT&#8209;003</span>
+                            <span class="prop-name">5 Bayswater Rd &mdash; Townhouse</span>
+                            <span class="prop-foot"><i class="fas fa-circle prop-pulse prop-pulse--ok" aria-hidden="true"></i> All clear</span>
+                        </li>
+                        <li class="property-tile" data-state="active">
+                            <span class="prop-id">PT&#8209;004</span>
+                            <span class="prop-name">14 Hereford St &mdash; Duplex A</span>
+                            <span class="prop-foot"><i class="fas fa-circle prop-pulse prop-pulse--job" aria-hidden="true"></i> Reno in progress</span>
+                        </li>
+                        <li class="property-tile" data-state="clear">
+                            <span class="prop-id">PT&#8209;005</span>
+                            <span class="prop-name">31 Womerah Ave &mdash; Apartment 12</span>
+                            <span class="prop-foot"><i class="fas fa-circle prop-pulse prop-pulse--ok" aria-hidden="true"></i> All clear</span>
+                        </li>
+                        <li class="property-tile property-tile--more" data-state="more">
+                            <span class="prop-id">+9</span>
+                            <span class="prop-name">more properties</span>
+                            <span class="prop-foot"><i class="fas fa-circle prop-pulse prop-pulse--ok" aria-hidden="true"></i> Quiet &middot; nothing to action</span>
+                        </li>
+                    </ol>
+
+                    <footer class="portfolio-grid-foot">
+                        Every tile is its own job feed, maintenance roster, money trail and compliance pack &mdash; opened in one click.
+                    </footer>
+                </section>
+
+                <!-- Maintenance schedule strip — 4-week look ahead -->
+                <section class="ticket-track">
+                    <div class="track-head">
+                        <h3 class="ticket-section-title">Next 4 weeks &mdash; nothing slips, nothing surprises</h3>
+                        <span class="track-tail">Maintenance scheduled, quoted, counter-signed</span>
+                    </div>
+                    <ol class="schedule-strip" aria-label="Upcoming maintenance">
+                        <li class="schedule-week" data-state="now">
+                            <span class="week-label">This week</span>
+                            <span class="week-count">3</span>
+                            <span class="week-foot">Smoke alarm checks &middot; Macleay</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">Next week</span>
+                            <span class="week-count">2</span>
+                            <span class="week-foot">Pool service &middot; Elizabeth common</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">Week 3</span>
+                            <span class="week-count">5</span>
+                            <span class="week-foot">Quarterly safety &middot; portfolio-wide</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">Week 4</span>
+                            <span class="week-count">1</span>
+                            <span class="week-foot">Gutter clean &middot; Hereford</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- 3-up benefits tiles -->
+                <div class="ticket-stamps" role="list">
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">SaaS fee</span>
+                        <span class="stamp-value">$0</span>
+                        <span class="stamp-foot">Per door, per month, per ever</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Owner reports</span>
+                        <span class="stamp-value">Auto</span>
+                        <span class="stamp-foot">Reconciled, attached, sent</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Compliance</span>
+                        <span class="stamp-value">100%</span>
+                        <span class="stamp-foot">Logged at every gate</span>
+                    </div>
+                </div>
+
+                <!-- Brief strip (green accent variant of payout) -->
+                <aside class="ticket-payout ticket-payout--success" aria-label="How the brief lands">
+                    <span class="payout-mark payout-mark--success"><i class="fas fa-clipboard-list" aria-hidden="true"></i></span>
+                    <p class="payout-copy">
+                        <strong>Your portfolio reports itself.</strong> No follow-up chains. No owner emails left dangling.
+                        Babbitt walks every property at dawn &mdash; you get the brief, not the busywork.
+                    </p>
+                    <span class="payout-tag payout-tag--success">Brief</span>
+                </aside>
+
+                <!-- CTAs -->
+                <footer class="ticket-cta">
+                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="manager">
+                        Onboard your portfolio <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
+                        Watch a manager do it
+                    </a>
+                </footer>
+
+                <!-- Stub footer -->
+                <div class="ticket-stub" aria-hidden="true">
+                    <span class="stub-dim">Babbitt for Property Managers</span>
+                    <span class="stub-sep">&middot;</span>
+                    <span class="stub-dim">Lane 03 / Property</span>
+                    <span class="stub-spacer"></span>
+                    <span class="stub-meta">Portfolio Brief Preview &middot; MVP.V1</span>
+                </div>
+            </div>
+
+            <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
+        </article>
+
+        <!-- ── Room 04 · Strata — Motion Sheet ── -->
+        <article class="room-modal-inner room-ticket room-motion" data-room="strata" role="dialog" aria-modal="true" aria-labelledby="motionTitle" hidden>
+
+            <span class="ticket-perf ticket-perf--top" aria-hidden="true"></span>
+
+            <header class="ticket-titleblock" aria-hidden="true">
+                <span class="tb-cell tb-cell--label">For Strata Committees</span>
+                <span class="tb-cell tb-cell--name">04 &middot; Strata</span>
+                <span class="tb-cell tb-cell--serial">SP-LIVE</span>
+            </header>
+
+            <button class="room-modal-close" id="roomModalCloseD" aria-label="Back to floor plan">
+                <span aria-hidden="true">&larr;</span> <span class="close-label">Back to plan</span>
+            </button>
+
+            <div class="ticket-body">
+
+                <!-- Mono breadcrumb -->
+                <div class="ticket-crumb" aria-label="Strata breadcrumb">
+                    <span class="crumb-item"><span aria-hidden="true">&larr;</span> Scheme</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item">Harbour View SP12345</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item crumb-stage">Quorum reached</span>
+                    <span class="crumb-spacer"></span>
+                    <span class="crumb-live"><span class="status-dot status-dot--plum" aria-hidden="true"></span>AGM live</span>
+                </div>
+
+                <!-- Headline — benefit-led -->
+                <div class="ticket-headline">
+                    <h2 class="ticket-title" id="motionTitle">AGM season, minus the paperwork and just one click away.</h2>
+                    <p class="ticket-meta">
+                        <span class="badge badge--plum">Motion Sheet</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Online voting</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Auto-tallied</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span class="meta-faint">Reference-only ledger &mdash; no money handled on platform</span>
+                    </p>
+                </div>
+
+                <!-- Workspace tab strip — strata surface -->
+                <nav class="ws-tabs ws-tabs--plum" aria-label="Strata workspace (preview)">
+                    <span class="ws-tab">Overview</span>
+                    <span class="ws-tab">Members</span>
+                    <span class="ws-tab is-active">Motions</span>
+                    <span class="ws-tab">Common Works</span>
+                    <span class="ws-tab">Budget</span>
+                    <span class="ws-tab">Documents</span>
+                </nav>
+
+                <!-- ◢ section divider -->
+                <div class="spec-divider spec-divider--plum"><span class="spec-mark">&#9698;</span> Why committees run their scheme on Babbitt</div>
+
+                <!-- Foreman briefing panel -->
+                <aside class="foreman-panel" aria-label="Foreman briefing">
+                    <header class="foreman-head">
+                        <span class="foreman-bolt"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+                        <span class="foreman-label">Foreman &middot; Strata Briefing</span>
+                    </header>
+                    <p class="foreman-msg">
+                        <strong>AGM in 9 days &middot; 28 of 42 lots have voted &middot; 1 motion needs your countersign.</strong>
+                        Motion 18-2026 (roof works) is at 76% in favour &mdash; safe to call. Lift quote from Otis is
+                        attached to Motion 19, awaiting Strata Manager sign-off.
+                    </p>
+                </aside>
+
+                <!-- HERO: Motion ballot board — the strata distinguishing visual -->
+                <section class="motion-board" aria-label="Live motions">
+                    <header class="motion-board-head">
+                        <span class="motion-board-title">
+                            <span class="status-dot status-dot--plum" aria-hidden="true"></span>
+                            Live motions &mdash; AGM 2026
+                        </span>
+                        <span class="motion-board-meta">42 lots &middot; 67% quorum</span>
+                    </header>
+
+                    <ol class="motion-list" role="list">
+                        <li class="motion-card" data-state="voting">
+                            <header class="motion-card-head">
+                                <span class="motion-id">18-2026</span>
+                                <span class="motion-stage motion-stage--voting"><span class="status-dot status-dot--plum" aria-hidden="true"></span>VOTING</span>
+                            </header>
+                            <p class="motion-title-line">Roof replacement &mdash; capital works from sinking fund</p>
+                            <div class="motion-tally">
+                                <div class="tally-bar" role="img" aria-label="76 percent in favour">
+                                    <span class="tally-bar-yes" style="width: 76%"></span>
+                                </div>
+                                <span class="tally-meta">
+                                    <strong>76% YES</strong> &middot; 28 / 42 voted
+                                </span>
+                            </div>
+                        </li>
+
+                        <li class="motion-card" data-state="open">
+                            <header class="motion-card-head">
+                                <span class="motion-id">19-2026</span>
+                                <span class="motion-stage motion-stage--open"><span class="status-dot status-dot--plum-soft" aria-hidden="true"></span>OPEN</span>
+                            </header>
+                            <p class="motion-title-line">Lift modernisation &mdash; contractor selection (Otis quoted)</p>
+                            <div class="motion-tally">
+                                <div class="tally-bar">
+                                    <span class="tally-bar-yes" style="width: 41%"></span>
+                                </div>
+                                <span class="tally-meta">
+                                    41% YES &middot; 12 / 42 voted
+                                </span>
+                            </div>
+                        </li>
+
+                        <li class="motion-card" data-state="passed">
+                            <header class="motion-card-head">
+                                <span class="motion-id">17-2026</span>
+                                <span class="motion-stage motion-stage--passed"><i class="fas fa-check" aria-hidden="true"></i> PASSED</span>
+                            </header>
+                            <p class="motion-title-line">2026 / 27 budget approval &mdash; quarterly levies unchanged</p>
+                            <div class="motion-tally">
+                                <div class="tally-bar tally-bar--done">
+                                    <span class="tally-bar-yes" style="width: 89%"></span>
+                                </div>
+                                <span class="tally-meta">
+                                    89% YES &middot; quorum reached
+                                </span>
+                            </div>
+                        </li>
+
+                        <li class="motion-card" data-state="failed">
+                            <header class="motion-card-head">
+                                <span class="motion-id">16-2026</span>
+                                <span class="motion-stage motion-stage--failed"><i class="fas fa-times" aria-hidden="true"></i> FAILED</span>
+                            </header>
+                            <p class="motion-title-line">By-law amendment &mdash; short-stay letting restriction</p>
+                            <div class="motion-tally">
+                                <div class="tally-bar tally-bar--done">
+                                    <span class="tally-bar-yes" style="width: 38%"></span>
+                                </div>
+                                <span class="tally-meta">
+                                    38% YES &middot; special resolution missed
+                                </span>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <footer class="motion-board-foot">
+                        Every motion traces to its quote, sinking-fund line, or by-law &mdash; one click, full chain of custody.
+                    </footer>
+                </section>
+
+                <!-- AGM / committee schedule strip -->
+                <section class="ticket-track">
+                    <div class="track-head">
+                        <h3 class="ticket-section-title">Scheme calendar &mdash; nothing slips, nothing surprises</h3>
+                        <span class="track-tail">AGM, committee, levy reminders &mdash; all linked to the right motion</span>
+                    </div>
+                    <ol class="schedule-strip schedule-strip--plum" aria-label="Upcoming scheme dates">
+                        <li class="schedule-week" data-state="now">
+                            <span class="week-label">In 9 days</span>
+                            <span class="week-count">AGM</span>
+                            <span class="week-foot">Pack auto-generated &middot; lots notified</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 3 weeks</span>
+                            <span class="week-count">Lev.</span>
+                            <span class="week-foot">Q2 levy reminders &middot; reference only</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 6 weeks</span>
+                            <span class="week-count">Cttee</span>
+                            <span class="week-foot">Committee meeting &middot; agenda primed</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 11 weeks</span>
+                            <span class="week-count">Ins.</span>
+                            <span class="week-foot">Insurance renewal &middot; broker pack ready</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- 3-up benefits tiles -->
+                <div class="ticket-stamps" role="list">
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Starts free</span>
+                        <span class="stamp-value">$0</span>
+                        <span class="stamp-foot">No onboarding, ready to dive in</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Voting</span>
+                        <span class="stamp-value">Online</span>
+                        <span class="stamp-foot">Auto-tallied, quorum tracked</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">AGM pack</span>
+                        <span class="stamp-value">Auto</span>
+                        <span class="stamp-foot">Notice, agenda, minutes &mdash; filed</span>
+                    </div>
+                </div>
+
+                <!-- Brief strip (plum accent variant of payout) -->
+                <aside class="ticket-payout ticket-payout--plum" aria-label="How the scheme runs itself">
+                    <span class="payout-mark payout-mark--plum"><i class="fas fa-stamp" aria-hidden="true"></i></span>
+                    <p class="payout-copy">
+                        <strong>Your AGM runs itself.</strong> Babbitt drafts the notice, opens voting, tallies the lots,
+                        files the minutes &mdash; and every motion links back to its quote, contractor and works ticket.
+                    </p>
+                    <span class="payout-tag payout-tag--plum">Filed</span>
+                </aside>
+
+                <!-- CTAs -->
+                <footer class="ticket-cta">
+                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="strata">
+                        Onboard your scheme <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
+                        Watch a chair do it
+                    </a>
+                </footer>
+
+                <!-- Stub footer -->
+                <div class="ticket-stub" aria-hidden="true">
+                    <span class="stub-dim">Babbitt for Strata Committees</span>
+                    <span class="stub-sep">&middot;</span>
+                    <span class="stub-dim">Lane 04 / Strata</span>
+                    <span class="stub-spacer"></span>
+                    <span class="stub-meta">Motion Sheet Preview &middot; MVP.V1</span>
+                </div>
+            </div>
+
+            <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
+        </article>
+
+        <!-- ── Room 05 · Property Owner — Owner's Statement ── -->
+        <article class="room-modal-inner room-ticket room-statement" data-room="owner" role="dialog" aria-modal="true" aria-labelledby="ownerTitle" hidden>
+
+            <span class="ticket-perf ticket-perf--top" aria-hidden="true"></span>
+
+            <header class="ticket-titleblock" aria-hidden="true">
+                <span class="tb-cell tb-cell--label">For Property Owners</span>
+                <span class="tb-cell tb-cell--name">05 &middot; Owner</span>
+                <span class="tb-cell tb-cell--serial">DEED-LIVE</span>
+            </header>
+
+            <button class="room-modal-close" id="roomModalCloseE" aria-label="Back to floor plan">
+                <span aria-hidden="true">&larr;</span> <span class="close-label">Back to plan</span>
+            </button>
+
+            <div class="ticket-body">
+
+                <!-- Mono breadcrumb -->
+                <div class="ticket-crumb" aria-label="Owner breadcrumb">
+                    <span class="crumb-item"><span aria-hidden="true">&larr;</span> My properties</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item">14 Hereford St &mdash; Duplex A</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item crumb-stage">Owner statement</span>
+                    <span class="crumb-spacer"></span>
+                    <span class="crumb-live"><span class="status-dot status-dot--amber" aria-hidden="true"></span>Up to date</span>
+                </div>
+
+                <!-- Headline — benefit-led -->
+                <div class="ticket-headline">
+                    <h2 class="ticket-title" id="ownerTitle">Keep track of your property, no paper included.</h2>
+                    <p class="ticket-meta">
+                        <span class="badge badge--amber">Owner Verified</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Every dollar logged</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Every fix dated</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span class="meta-faint">Hand it to a buyer, a manager, a strata &mdash; ready</span>
+                    </p>
+                </div>
+
+                <!-- Workspace tab strip — owner surface -->
+                <nav class="ws-tabs ws-tabs--amber" aria-label="Owner workspace (preview)">
+                    <span class="ws-tab is-active">Statement</span>
+                    <span class="ws-tab">Asset trail</span>
+                    <span class="ws-tab">Maintenance</span>
+                    <span class="ws-tab">Documents</span>
+                    <span class="ws-tab">Money</span>
+                    <span class="ws-tab">Handover</span>
+                </nav>
+
+                <!-- ◢ section divider -->
+                <div class="spec-divider spec-divider--amber"><span class="spec-mark">&#9698;</span> Why owners keep their asset on Babbitt</div>
+
+                <!-- Foreman briefing panel -->
+                <aside class="foreman-panel" aria-label="Foreman briefing">
+                    <header class="foreman-head">
+                        <span class="foreman-bolt"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+                        <span class="foreman-label">Foreman &middot; Owner Briefing</span>
+                    </header>
+                    <p class="foreman-msg">
+                        <strong>14 Hereford St &mdash; condition score 94 / 100, up 2 this quarter.</strong>
+                        Annual valuation due in 6 weeks. Two tradies have served this property in the last 12 months &mdash;
+                        all jobs counter-signed, photos attached, invoices reconciled.
+                    </p>
+                </aside>
+
+                <!-- HERO: Owner's Statement card — the owner's distinguishing visual -->
+                <section class="owner-statement" aria-label="Property statement">
+                    <header class="statement-head">
+                        <div class="statement-head-left">
+                            <span class="statement-eyebrow">Subject property</span>
+                            <h3 class="statement-name">14 Hereford St, Glebe NSW &mdash; Duplex A</h3>
+                            <span class="statement-meta">Owned since 2019 &middot; 3 bed / 2 bath / 1 car &middot; 184 m&sup2;</span>
+                        </div>
+                        <div class="statement-score">
+                            <span class="score-num">94</span>
+                            <span class="score-label">Condition<br/>score</span>
+                            <span class="score-delta">&uarr; 2 QoQ</span>
+                        </div>
+                    </header>
+
+                    <dl class="statement-grid">
+                        <div class="stat-cell">
+                            <dt class="stat-key">Capital works this year</dt>
+                            <dd class="stat-val">$8,420</dd>
+                            <dd class="stat-note">3 jobs &middot; all counter-signed</dd>
+                        </div>
+                        <div class="stat-cell">
+                            <dt class="stat-key">Maintenance this year</dt>
+                            <dd class="stat-val">$1,260</dd>
+                            <dd class="stat-note">Quarterly safety &middot; on schedule</dd>
+                        </div>
+                        <div class="stat-cell">
+                            <dt class="stat-key">Trades on file</dt>
+                            <dd class="stat-val">5</dd>
+                            <dd class="stat-note">All verified &middot; rated 4.8 avg</dd>
+                        </div>
+                        <div class="stat-cell">
+                            <dt class="stat-key">Documents</dt>
+                            <dd class="stat-val">38</dd>
+                            <dd class="stat-note">Warranties, certs, plans &mdash; filed</dd>
+                        </div>
+                    </dl>
+
+                    <ol class="works-trail" role="list" aria-label="Recent works trail">
+                        <li class="works-row" data-state="done">
+                            <span class="works-date">14 Apr</span>
+                            <span class="works-body">
+                                <span class="works-title">Bathroom rough-in &amp; fit-off</span>
+                                <span class="works-sub">SureFlow Plumbing &middot; counter-signed &middot; warranty filed</span>
+                            </span>
+                            <span class="works-amt">$6,140</span>
+                        </li>
+                        <li class="works-row" data-state="done">
+                            <span class="works-date">02 Mar</span>
+                            <span class="works-body">
+                                <span class="works-title">Quarterly safety &mdash; smoke alarms</span>
+                                <span class="works-sub">Beacon Safety Co &middot; cert attached</span>
+                            </span>
+                            <span class="works-amt">$310</span>
+                        </li>
+                        <li class="works-row" data-state="done">
+                            <span class="works-date">19 Feb</span>
+                            <span class="works-body">
+                                <span class="works-title">Roof gutter clean &amp; downpipe flush</span>
+                                <span class="works-sub">PeakClean &middot; 14 photos &middot; before / after</span>
+                            </span>
+                            <span class="works-amt">$420</span>
+                        </li>
+                    </ol>
+
+                    <footer class="statement-foot">
+                        Hand this statement to a buyer at exchange &mdash; pre-sale due diligence done for you.
+                    </footer>
+                </section>
+
+                <!-- Owner calendar strip -->
+                <section class="ticket-track">
+                    <div class="track-head">
+                        <h3 class="ticket-section-title">Next 4 things &mdash; calmly, ahead of time</h3>
+                        <span class="track-tail">Renewals, valuations, capital plan &mdash; nothing surprises you</span>
+                    </div>
+                    <ol class="schedule-strip schedule-strip--amber" aria-label="Upcoming owner items">
+                        <li class="schedule-week" data-state="now">
+                            <span class="week-label">In 6 weeks</span>
+                            <span class="week-count">Val.</span>
+                            <span class="week-foot">Annual valuation &middot; pack auto-ready</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 9 weeks</span>
+                            <span class="week-count">Ins.</span>
+                            <span class="week-foot">Building insurance renewal</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 13 weeks</span>
+                            <span class="week-count">Plan</span>
+                            <span class="week-foot">Capital works review &middot; 5-yr horizon</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 18 weeks</span>
+                            <span class="week-count">Land</span>
+                            <span class="week-foot">Land tax reminder &middot; reference only</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- 3-up benefits tiles -->
+                <div class="ticket-stamps" role="list">
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Starts free</span>
+                        <span class="stamp-value">$0</span>
+                        <span class="stamp-foot">No SaaS, no clip on works</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Asset trail</span>
+                        <span class="stamp-value">Forever</span>
+                        <span class="stamp-foot">Or until whenever you want</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Pre-sale pack</span>
+                        <span class="stamp-value">Auto</span>
+                        <span class="stamp-foot">Hand it to a buyer at exchange</span>
+                    </div>
+                </div>
+
+                <!-- Amber payout strip -->
+                <aside class="ticket-payout ticket-payout--amber" aria-label="Why owners stay">
+                    <span class="payout-mark payout-mark--amber"><i class="fas fa-house-chimney" aria-hidden="true"></i></span>
+                    <p class="payout-copy">
+                        <strong>A track record secured for your property.</strong> Every job, photo, warranty, certificate
+                        and dollar &mdash; chained to the address, not the manager. Sell, switch agents, hand it down &mdash;
+                        the trail goes with the house.
+                    </p>
+                    <span class="payout-tag payout-tag--amber">Deed</span>
+                </aside>
+
+                <!-- CTAs -->
+                <footer class="ticket-cta">
+                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="owner">
+                        Claim your property <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
+                        Watch an owner do it
+                    </a>
+                </footer>
+
+                <!-- Stub footer -->
+                <div class="ticket-stub" aria-hidden="true">
+                    <span class="stub-dim">Babbitt for Property Owners</span>
+                    <span class="stub-sep">&middot;</span>
+                    <span class="stub-dim">Lane 05 / Owner</span>
+                    <span class="stub-spacer"></span>
+                    <span class="stub-meta">Owner Statement Preview &middot; MVP.V1</span>
+                </div>
+            </div>
+
+            <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
+        </article>
+
+        <!-- ── Room 06 · Tenant — Tenant Card ── -->
+        <article class="room-modal-inner room-ticket room-card" data-room="tenant" role="dialog" aria-modal="true" aria-labelledby="tenantTitle" hidden>
+
+            <span class="ticket-perf ticket-perf--top" aria-hidden="true"></span>
+
+            <header class="ticket-titleblock" aria-hidden="true">
+                <span class="tb-cell tb-cell--label">For Tenants</span>
+                <span class="tb-cell tb-cell--name">06 &middot; Tenant</span>
+                <span class="tb-cell tb-cell--serial">UNIT-LIVE</span>
+            </header>
+
+            <button class="room-modal-close" id="roomModalCloseF" aria-label="Back to floor plan">
+                <span aria-hidden="true">&larr;</span> <span class="close-label">Back to plan</span>
+            </button>
+
+            <div class="ticket-body">
+
+                <!-- Mono breadcrumb -->
+                <div class="ticket-crumb" aria-label="Tenant breadcrumb">
+                    <span class="crumb-item"><span aria-hidden="true">&larr;</span> My place</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item">Unit 4 / 22 Macleay St</span>
+                    <span class="crumb-sep">&middot;</span>
+                    <span class="crumb-item crumb-stage">1 open request</span>
+                    <span class="crumb-spacer"></span>
+                    <span class="crumb-live"><span class="status-dot status-dot--coral" aria-hidden="true"></span>Tradie dispatched</span>
+                </div>
+
+                <!-- Headline — benefit-led -->
+                <div class="ticket-headline">
+                    <h2 class="ticket-title" id="tenantTitle">Report it once. Watch it get fixed.</h2>
+                    <p class="ticket-meta">
+                        <span class="badge badge--coral">Tenant Card</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>One tap to log</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span>Live status</span>
+                        <span class="meta-sep">&middot;</span>
+                        <span class="meta-faint">No chasing, no group chats, no &ldquo;did you get my email?&rdquo;</span>
+                    </p>
+                </div>
+
+                <!-- Workspace tab strip — tenant surface -->
+                <nav class="ws-tabs ws-tabs--coral" aria-label="Tenant workspace (preview)">
+                    <span class="ws-tab is-active">My place</span>
+                    <span class="ws-tab">Requests</span>
+                    <span class="ws-tab">Visits</span>
+                    <span class="ws-tab">Documents</span>
+                    <span class="ws-tab">Contacts</span>
+                </nav>
+
+                <!-- ◢ section divider -->
+                <div class="spec-divider spec-divider--coral"><span class="spec-mark">&#9698;</span> Why tenants log issues on Babbitt</div>
+
+                <!-- Foreman briefing panel -->
+                <aside class="foreman-panel" aria-label="Foreman briefing">
+                    <header class="foreman-head">
+                        <span class="foreman-bolt"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+                        <span class="foreman-label">Foreman &middot; Tenant Update</span>
+                    </header>
+                    <p class="foreman-msg">
+                        <strong>Your bathroom leak is at Stage 2: tradie dispatched.</strong>
+                        Aaron from SureFlow Plumbing &mdash; ETA Friday between 9:00 and 11:00. You&rsquo;ll get a
+                        notification when he&rsquo;s 20 minutes away. Bring keys to the meter cupboard.
+                    </p>
+                </aside>
+
+                <!-- HERO: Tenant Card — issue report + live status -->
+                <section class="tenant-card" aria-label="Your place">
+                    <header class="tenant-card-head">
+                        <div class="tenant-card-head-left">
+                            <span class="statement-eyebrow">Your place</span>
+                            <h3 class="statement-name">Unit 4 / 22 Macleay St, Potts Point NSW</h3>
+                            <span class="statement-meta">Leased from Jul 2024 &middot; Managed by Northside PM</span>
+                        </div>
+                        <div class="tenant-card-pulse">
+                            <span class="pulse-dot" aria-hidden="true"></span>
+                            <span class="pulse-label">1 request open</span>
+                        </div>
+                    </header>
+
+                    <div class="tenant-card-grid">
+                        <!-- Report panel (mocked) -->
+                        <form class="report-panel" aria-label="Report an issue (preview)" onsubmit="return false;">
+                            <span class="panel-eyebrow">Report an issue</span>
+                            <label class="report-row">
+                                <span class="report-label">What&rsquo;s up?</span>
+                                <span class="report-input report-input--readonly">Bathroom &mdash; ensuite leak under sink</span>
+                            </label>
+                            <div class="report-chips" role="list">
+                                <span class="report-chip is-on" role="listitem">Bathroom</span>
+                                <span class="report-chip" role="listitem">Kitchen</span>
+                                <span class="report-chip" role="listitem">Electrical</span>
+                                <span class="report-chip" role="listitem">Lock / Key</span>
+                                <span class="report-chip" role="listitem">Other</span>
+                            </div>
+                            <label class="report-row">
+                                <span class="report-label">Photo</span>
+                                <span class="report-input report-input--photo"><i class="fas fa-camera" aria-hidden="true"></i> IMG_0231.jpg attached</span>
+                            </label>
+                            <button class="report-submit" type="button" aria-disabled="true">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i> Send to PM
+                            </button>
+                            <span class="report-foot">Already sent &middot; tracked below</span>
+                        </form>
+
+                        <!-- Live status timeline -->
+                        <aside class="tenant-status" aria-label="Live request status">
+                            <span class="panel-eyebrow">Request #TR-4042 &middot; Live</span>
+                            <ol class="status-line" role="list">
+                                <li class="status-step" data-state="done">
+                                    <span class="status-pill">1</span>
+                                    <span class="status-body">
+                                        <span class="status-title">Logged</span>
+                                        <span class="status-sub">You &middot; Tue 9:02</span>
+                                    </span>
+                                </li>
+                                <li class="status-step" data-state="done">
+                                    <span class="status-pill">2</span>
+                                    <span class="status-body">
+                                        <span class="status-title">Approved by PM</span>
+                                        <span class="status-sub">Northside PM &middot; Tue 11:18</span>
+                                    </span>
+                                </li>
+                                <li class="status-step" data-state="now">
+                                    <span class="status-pill">3</span>
+                                    <span class="status-body">
+                                        <span class="status-title">Tradie dispatched</span>
+                                        <span class="status-sub">Aaron, SureFlow &middot; ETA Fri 9&ndash;11am</span>
+                                    </span>
+                                </li>
+                                <li class="status-step" data-state="next">
+                                    <span class="status-pill">4</span>
+                                    <span class="status-body">
+                                        <span class="status-title">Job complete</span>
+                                        <span class="status-sub">You countersign &middot; warranty filed</span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </aside>
+                    </div>
+
+                    <footer class="statement-foot">
+                        Every step is visible to you, your PM, the tradie &mdash; same source of truth, no group chats.
+                    </footer>
+                </section>
+
+                <!-- Tenant calendar strip -->
+                <section class="ticket-track">
+                    <div class="track-head">
+                        <h3 class="ticket-section-title">What&rsquo;s coming &mdash; you always know who&rsquo;s at the door</h3>
+                        <span class="track-tail">Visits, tests, renewals &mdash; with names and time windows</span>
+                    </div>
+                    <ol class="schedule-strip schedule-strip--coral" aria-label="Upcoming tenant items">
+                        <li class="schedule-week" data-state="now">
+                            <span class="week-label">This Fri</span>
+                            <span class="week-count">9&ndash;11</span>
+                            <span class="week-foot">Aaron, SureFlow &middot; leak fix</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">Next mo.</span>
+                            <span class="week-count">Insp.</span>
+                            <span class="week-foot">PM routine inspection</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 6 weeks</span>
+                            <span class="week-count">Alarm</span>
+                            <span class="week-foot">Annual smoke alarm test</span>
+                        </li>
+                        <li class="schedule-week" data-state="next">
+                            <span class="week-label">In 14 weeks</span>
+                            <span class="week-count">Lease</span>
+                            <span class="week-foot">Lease renewal window</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- 3-up benefits tiles -->
+                <div class="ticket-stamps" role="list">
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">To you</span>
+                        <span class="stamp-value">Free</span>
+                        <span class="stamp-foot">Forever &middot; no app store traps</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Reports</span>
+                        <span class="stamp-value">Tracked</span>
+                        <span class="stamp-foot">No more &ldquo;I told you&rdquo; arguments</span>
+                    </div>
+                    <div class="stamp" role="listitem">
+                        <span class="stamp-label">Next visit</span>
+                        <span class="stamp-value">Named</span>
+                        <span class="stamp-foot">Who, when, why &mdash; every time</span>
+                    </div>
+                </div>
+
+                <!-- Coral payout strip -->
+                <aside class="ticket-payout ticket-payout--coral" aria-label="Why tenants stay">
+                    <span class="payout-mark payout-mark--coral"><i class="fas fa-handshake" aria-hidden="true"></i></span>
+                    <p class="payout-copy">
+                        <strong>You&rsquo;re finally in the loop.</strong> Babbitt links you, your PM and the tradie to
+                        the same timeline &mdash; so when you ask &ldquo;when&rsquo;s it being fixed?&rdquo;, the answer is
+                        already on your screen.
+                    </p>
+                    <span class="payout-tag payout-tag--coral">Live</span>
+                </aside>
+
+                <!-- CTAs -->
+                <footer class="ticket-cta">
+                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="tenant">
+                        Add your unit <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
+                        Watch a tenant do it
+                    </a>
+                </footer>
+
+                <!-- Stub footer -->
+                <div class="ticket-stub" aria-hidden="true">
+                    <span class="stub-dim">Babbitt for Tenants</span>
+                    <span class="stub-sep">&middot;</span>
+                    <span class="stub-dim">Lane 06 / Tenant</span>
+                    <span class="stub-spacer"></span>
+                    <span class="stub-meta">Tenant Card Preview &middot; MVP.V1</span>
+                </div>
+            </div>
+
+            <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
+        </article>
     </div>
 
     <!-- Floating Campaign CTA -->
