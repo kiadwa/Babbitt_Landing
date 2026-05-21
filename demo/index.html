@@ -114,7 +114,7 @@
                     <i class="fas fa-rotate-left mr-1"></i> Restart
                 </button>
                 <a href="../#waitlist" class="px-3 py-1.5 rounded-btn text-xs font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
-                    Join waitlist
+                    See our pricing
                 </a>
             </div>
         </div>
@@ -124,13 +124,24 @@
 
         <!-- ═══ Step indicator (with inline flow picker) ═══ -->
         <section class="bg-surface border border-bdr rounded-card p-4">
-            <div class="flex flex-wrap items-center gap-2 mb-4" id="flowPicker" role="tablist" aria-label="Choose a demo flow">
-                <span class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mr-1">Flow</span>
-                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="property-owner-listing" data-tone="blue" role="tab">Post a job</button>
-                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="trade-respond-and-stage" data-tone="yellow" role="tab">Quote &amp; stage</button>
-                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="tradie-incident-chat" data-tone="yellow" role="tab">Site incident</button>
-                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="supplier-rfq" data-tone="green" role="tab">Supplier RFQ</button>
-                <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="tradie-network-community" data-tone="yellow" role="tab">Network</button>
+            <div class="space-y-2 mb-4" id="flowPicker" role="tablist" aria-label="Choose a demo flow">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="inline-flex items-center text-[10px] uppercase tracking-wider text-yellow font-semibold pl-1.5 border-l-2 border-yellow w-[68px] shrink-0">Trade</span>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="trade-respond-and-stage" data-tone="yellow" role="tab">Quote &amp; stage</button>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="tradie-incident-chat" data-tone="yellow" role="tab">Site incident</button>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="tradie-network-community" data-tone="yellow" role="tab">Network</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="inline-flex items-center text-[10px] uppercase tracking-wider text-blue font-semibold pl-1.5 border-l-2 border-blue w-[68px] shrink-0">Property</span>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="property-owner-register" data-tone="blue" role="tab">Register property</button>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="property-owner-listing" data-tone="blue" role="tab">Post a job</button>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="pm-listing-from-property" data-tone="green" role="tab">PM lists work</button>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="strata-votes-rules" data-tone="yellow" role="tab">Strata vote</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="inline-flex items-center text-[10px] uppercase tracking-wider text-green font-semibold pl-1.5 border-l-2 border-green w-[68px] shrink-0">Supplier</span>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="supplier-rfq" data-tone="green" role="tab">Supplier RFQ</button>
+                </div>
             </div>
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-3">
                 <div>
@@ -3714,6 +3725,1237 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                     </div>
                 </div>
 
+                <!-- ═══════════════════════════════════════════════════════
+                     FLOW 6 — Owner registers a property + adds rooms
+                     ═══════════════════════════════════════════════════ -->
+
+                <!-- ═══ PR-STEP 1 — Intro ═══ -->
+                <div class="step hidden" data-flow="property-owner-register" data-step="1">
+                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-blue/15 text-blue border border-blue/40 mb-4">
+                            Property Owner Flow
+                        </span>
+                        <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
+                            Register your property. Manage it forever.
+                        </h2>
+                        <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
+                            Sarah just bought a 3-bed terrace in Paddington. Before she posts jobs against it,
+                            she sets up the property record — address, structure, rooms — once.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-blue/15 text-blue flex items-center justify-center mb-2">
+                                    <i class="fas fa-house-chimney text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Address &amp; type</p>
+                                <p class="text-xs text-txt-tertiary">Lookup + dwelling shape.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-yellow/15 text-yellow flex items-center justify-center mb-2">
+                                    <i class="fas fa-door-open text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Rooms &amp; areas</p>
+                                <p class="text-xs text-txt-tertiary">Kitchen, baths, garage — each tagged.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-green/15 text-green flex items-center justify-center mb-2">
+                                    <i class="fas fa-key text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Access &amp; constraints</p>
+                                <p class="text-xs text-txt-tertiary">Parking, hours, induction notes.</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-txt-tertiary mt-8">
+                            Hit <span class="text-yellow font-semibold">Begin Demo</span> below.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ═══ PR-STEP 2 — Empty Portfolio ═══ -->
+                <div class="step hidden" data-flow="property-owner-register" data-step="2">
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Portfolio</p>
+                                <h2 class="font-head text-2xl font-bold text-txt">Your Properties</h2>
+                            </div>
+                            <button data-action="open-add-property" class="pulse-ring px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
+                                <i class="fas fa-plus mr-1"></i> Add Property
+                            </button>
+                        </div>
+
+                        <div class="border-b border-bdr">
+                            <nav class="flex flex-wrap gap-0 -mb-px">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-blue text-blue font-semibold">Property</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Projects</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Governance</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Maintenance</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card text-center py-10 px-4">
+                                    <div class="w-12 h-12 mx-auto rounded-full bg-blue/10 flex items-center justify-center mb-3">
+                                        <i class="fas fa-house text-blue"></i>
+                                    </div>
+                                    <p class="text-sm font-semibold text-txt mb-1">No properties yet</p>
+                                    <p class="text-xs text-txt-tertiary max-w-sm mx-auto">Register your first property to track maintenance, post jobs, and manage your home or portfolio.</p>
+                                    <button data-action="open-add-property" class="mt-4 pulse-ring px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
+                                        <i class="fas fa-plus mr-1"></i> Register First Property
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="hidden lg:block lg:col-span-5">
+                                <div class="bg-surface/40 border border-dashed border-bdr rounded-card p-4 h-full min-h-[260px]">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Property roles supported</p>
+                                    <ul class="space-y-2 text-xs text-txt-secondary">
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Owner</span> — owns the property outright.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Property Manager</span> — managing on behalf of an owner.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Strata committee</span> — building / body corporate.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Tenant</span> — renting or occupying.</span></li>
+                                    </ul>
+                                    <p class="text-[11px] text-txt-tertiary mt-3 leading-relaxed">You can hold multiple roles across a portfolio — and even multiple roles on the same property.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
+                            <p>Click <span class="text-yellow font-semibold">Add Property</span> to start the intake form.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PR-STEP 3 — Property intake: address + type + structure + role ═══ -->
+                <div class="step hidden" data-flow="property-owner-register" data-step="3">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3">
+                            <button data-action="back-to-portfolio" class="text-txt-secondary hover:text-txt text-sm">&larr; Portfolio</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">Register Property</h2>
+                        </div>
+
+                        <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
+                            <li class="text-blue flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-blue/20 text-blue border border-blue/60 flex items-center justify-center text-[10px]">1</span> Property</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">2</span> Rooms</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">3</span> Access</li>
+                        </ol>
+
+                        <div>
+                            <label class="text-sm text-txt-secondary font-semibold">Address</label>
+                            <div class="relative mt-1">
+                                <i class="fas fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-txt-tertiary text-xs"></i>
+                                <input value="12 Cascade St, Padd"
+                                    class="focus-ring w-full pl-8 pr-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt placeholder:text-txt-tertiary"
+                                    placeholder="Search by street address…" readonly>
+                                <div class="absolute left-0 right-0 top-full mt-1 bg-elevated border border-bdr rounded-input shadow-card-hover z-10 overflow-hidden">
+                                    <button data-action="select-address" class="w-full px-3 py-2.5 text-left text-sm text-txt hover:bg-yellow/10 transition-colors border-b border-bdr-subtle flex items-center gap-2">
+                                        <i class="fas fa-location-dot text-blue text-xs"></i>
+                                        <span><span class="font-semibold">12 Cascade St</span>, Paddington NSW 2021</span>
+                                    </button>
+                                    <button class="w-full px-3 py-2.5 text-left text-sm text-txt-secondary cursor-default flex items-center gap-2 border-b border-bdr-subtle">
+                                        <i class="fas fa-location-dot text-txt-tertiary text-xs"></i>
+                                        <span>12 Cascade Ln, Paddington VIC 3079</span>
+                                    </button>
+                                    <button class="w-full px-3 py-2.5 text-left text-sm text-txt-secondary cursor-default flex items-center gap-2">
+                                        <i class="fas fa-location-dot text-txt-tertiary text-xs"></i>
+                                        <span>12 Cascade Pl, Paddington QLD 4064</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-txt-tertiary mt-1">We verify against G-NAF (Australia's national address index).</p>
+                        </div>
+
+                        <div class="pt-14">
+                            <span class="text-sm text-txt-secondary font-semibold">Property type</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+                                <button type="button" class="p-3 rounded-card border border-blue bg-blue/10 text-left cursor-default">
+                                    <i class="fas fa-house-chimney text-blue mb-1"></i>
+                                    <p class="text-sm font-semibold text-txt">Standalone dwelling</p>
+                                    <p class="text-[11px] text-txt-tertiary">House, terrace, semi.</p>
+                                </button>
+                                <button type="button" class="p-3 rounded-card border border-bdr bg-input text-left cursor-default opacity-60">
+                                    <i class="fas fa-building text-txt-tertiary mb-1"></i>
+                                    <p class="text-sm font-semibold text-txt">Unit / Apartment</p>
+                                    <p class="text-[11px] text-txt-tertiary">Part of a building.</p>
+                                </button>
+                                <button type="button" class="p-3 rounded-card border border-bdr bg-input text-left cursor-default opacity-60">
+                                    <i class="fas fa-city text-txt-tertiary mb-1"></i>
+                                    <p class="text-sm font-semibold text-txt">Building / Strata</p>
+                                    <p class="text-[11px] text-txt-tertiary">Whole-of-building record.</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-sm text-txt-secondary font-semibold">Structure</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-2">
+                                <div class="bg-input border border-bdr rounded-input p-2.5">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Bedrooms</p>
+                                    <p class="text-lg font-head font-bold text-txt mt-0.5">3</p>
+                                </div>
+                                <div class="bg-input border border-bdr rounded-input p-2.5">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Bathrooms</p>
+                                    <p class="text-lg font-head font-bold text-txt mt-0.5">2</p>
+                                </div>
+                                <div class="bg-input border border-bdr rounded-input p-2.5">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Parking</p>
+                                    <p class="text-lg font-head font-bold text-txt mt-0.5">1</p>
+                                </div>
+                                <div class="bg-input border border-bdr rounded-input p-2.5">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Floors</p>
+                                    <p class="text-lg font-head font-bold text-txt mt-0.5">2</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-sm text-txt-secondary font-semibold">Your role on this property</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+                                <label class="flex items-center gap-2 p-2.5 rounded-input border border-blue bg-blue/10 cursor-default">
+                                    <input type="radio" checked class="accent-yellow" name="pr-role">
+                                    <span class="text-xs text-txt font-semibold">Owner</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-input border border-bdr bg-input cursor-default opacity-60">
+                                    <input type="radio" disabled class="accent-yellow" name="pr-role">
+                                    <span class="text-xs text-txt-secondary">Manager</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-input border border-bdr bg-input cursor-default opacity-60">
+                                    <input type="radio" disabled class="accent-yellow" name="pr-role">
+                                    <span class="text-xs text-txt-secondary">Strata</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-input border border-bdr bg-input cursor-default opacity-60">
+                                    <input type="radio" disabled class="accent-yellow" name="pr-role">
+                                    <span class="text-xs text-txt-secondary">Tenant</span>
+                                </label>
+                            </div>
+                            <p class="text-[11px] text-txt-tertiary mt-1">Roles drive what governance and authority options are available later.</p>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-info-circle text-yellow mt-0.5"></i>
+                            <span>Hit <span class="text-yellow font-semibold">Next: Rooms</span> to break the property into rooms and areas.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PR-STEP 4 — Rooms / areas ═══ -->
+                <div class="step hidden" data-flow="property-owner-register" data-step="4">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3">
+                            <button data-action="back-to-property-step" class="text-txt-secondary hover:text-txt text-sm">&larr; Property</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">Rooms &amp; Areas</h2>
+                        </div>
+
+                        <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Property</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-blue flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-blue/20 text-blue border border-blue/60 flex items-center justify-center text-[10px]">2</span> Rooms</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">3</span> Access</li>
+                        </ol>
+
+                        <div class="rounded-card border border-bdr bg-surface p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <p class="text-sm font-semibold text-txt">12 Cascade St, Paddington</p>
+                                <span class="text-[11px] text-txt-tertiary"><i class="fas fa-circle-info mr-1"></i> 5 rooms set up · 1 floor of 2</span>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="flex items-center justify-between p-2.5 bg-input rounded-input border border-bdr">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-full bg-yellow/15 text-yellow flex items-center justify-center text-xs"><i class="fas fa-utensils"></i></span>
+                                        <div>
+                                            <p class="text-sm text-txt font-semibold">Kitchen</p>
+                                            <p class="text-[11px] text-txt-tertiary">Ground · 14 m² · Gas + 600mm oven</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-txt-tertiary hover:text-txt text-xs cursor-default"><i class="fas fa-pen"></i></button>
+                                </li>
+                                <li class="flex items-center justify-between p-2.5 bg-input rounded-input border border-bdr">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-full bg-blue/15 text-blue flex items-center justify-center text-xs"><i class="fas fa-bed"></i></span>
+                                        <div>
+                                            <p class="text-sm text-txt font-semibold">Master Bedroom</p>
+                                            <p class="text-[11px] text-txt-tertiary">Upper · 18 m² · Ensuite + walk-in</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-txt-tertiary hover:text-txt text-xs cursor-default"><i class="fas fa-pen"></i></button>
+                                </li>
+                                <li class="flex items-center justify-between p-2.5 bg-input rounded-input border border-bdr">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-full bg-green/15 text-green flex items-center justify-center text-xs"><i class="fas fa-bath"></i></span>
+                                        <div>
+                                            <p class="text-sm text-txt font-semibold">Family Bathroom</p>
+                                            <p class="text-[11px] text-txt-tertiary">Upper · 6 m² · Reno planned 2026</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-txt-tertiary hover:text-txt text-xs cursor-default"><i class="fas fa-pen"></i></button>
+                                </li>
+                                <li class="flex items-center justify-between p-2.5 bg-input rounded-input border border-bdr">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-full bg-orange/15 text-orange flex items-center justify-center text-xs"><i class="fas fa-couch"></i></span>
+                                        <div>
+                                            <p class="text-sm text-txt font-semibold">Living + Dining</p>
+                                            <p class="text-[11px] text-txt-tertiary">Ground · 32 m² · Open plan, fireplace</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-txt-tertiary hover:text-txt text-xs cursor-default"><i class="fas fa-pen"></i></button>
+                                </li>
+                                <li class="flex items-center justify-between p-2.5 bg-input rounded-input border border-bdr">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-full bg-txt-tertiary text-txt-inverse flex items-center justify-center text-xs"><i class="fas fa-car"></i></span>
+                                        <div>
+                                            <p class="text-sm text-txt font-semibold">Garage</p>
+                                            <p class="text-[11px] text-txt-tertiary">Ground · 18 m² · 1 bay + storage</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-txt-tertiary hover:text-txt text-xs cursor-default"><i class="fas fa-pen"></i></button>
+                                </li>
+                            </ul>
+                            <button class="mt-3 w-full px-3 py-2 rounded-btn text-sm bg-input border border-dashed border-bdr text-txt-secondary hover:text-txt hover:border-yellow/40 transition-colors">
+                                <i class="fas fa-plus mr-1"></i> Add another room
+                            </button>
+                        </div>
+
+                        <div class="rounded-card border border-blue/30 bg-blue/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-lightbulb text-blue mt-0.5"></i>
+                            <span>Tip — rooms unlock the <span class="text-blue font-semibold">Access &amp; Constraints</span> pack that pre-fills tradies on job day.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PR-STEP 5 — Access & Constraints (PF-GV1) ═══ -->
+                <div class="step hidden" data-flow="property-owner-register" data-step="5">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3">
+                            <button data-action="back-to-rooms" class="text-txt-secondary hover:text-txt text-sm">&larr; Rooms</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">Access &amp; Constraints</h2>
+                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">Optional</span>
+                        </div>
+
+                        <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Property</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Rooms</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-blue flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-blue/20 text-blue border border-blue/60 flex items-center justify-center text-[10px]">3</span> Access</li>
+                        </ol>
+
+                        <p class="text-xs text-txt-secondary leading-relaxed">This pack pre-fills into any job created on this property — tradies see it before arriving on site.</p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="bg-surface border border-bdr rounded-card p-3">
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5"><i class="fas fa-car mr-1"></i>Parking</p>
+                                <p class="text-sm text-txt leading-snug">Street parking on Cascade St. 2P 8am–6pm weekdays. Off-street bay via rear lane (gate code 4-2-7-9).</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-3">
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5"><i class="fas fa-clock mr-1"></i>Working hours</p>
+                                <p class="text-sm text-txt leading-snug">Weekdays 7:00am–4:00pm. Saturdays 9:00am–1:00pm. No Sundays / public holidays (council bylaw).</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-3">
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5"><i class="fas fa-key mr-1"></i>Site access</p>
+                                <p class="text-sm text-txt leading-snug">Key safe under porch — code on file. Two dogs (friendly). Owner usually on-site Wednesdays.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-3">
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5"><i class="fas fa-triangle-exclamation mr-1"></i>Notes</p>
+                                <p class="text-sm text-txt leading-snug">Heritage overlay — no facade changes. Asbestos cleared (2024 report on file).</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-circle-check text-yellow mt-0.5"></i>
+                            <span>You can skip and come back. Hit <span class="text-yellow font-semibold">Register Property</span> to finish.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PR-STEP 6 — Live property card in register ═══ -->
+                <div class="step hidden" data-flow="property-owner-register" data-step="6">
+                    <div class="space-y-4">
+                        <div id="prSuccessToast" class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-circle-check text-green mt-0.5"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-txt">Property registered.</p>
+                                <p class="text-xs text-txt-secondary">12 Cascade St is now in your portfolio with 5 rooms and access info attached.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Portfolio</p>
+                                <h2 class="font-head text-2xl font-bold text-txt">Your Properties · 1</h2>
+                            </div>
+                            <button class="px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse cursor-default">
+                                <i class="fas fa-plus mr-1"></i> Add Property
+                            </button>
+                        </div>
+
+                        <div class="border-b border-bdr">
+                            <nav class="flex flex-wrap gap-0 -mb-px">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-blue text-blue font-semibold">Property</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Projects</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Governance</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Maintenance</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7">
+                                <div class="bg-surface border border-blue/40 rounded-card p-4 hover:border-blue transition-colors">
+                                    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
+                                        <div>
+                                            <p class="text-sm font-semibold text-txt leading-snug">12 Cascade St</p>
+                                            <p class="text-xs text-txt-tertiary">Paddington, NSW 2021 · Standalone dwelling</p>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-1">
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Owner</span>
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-4 gap-2 mt-3">
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Beds</p>
+                                            <p class="text-sm font-head font-bold text-txt">3</p>
+                                        </div>
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Baths</p>
+                                            <p class="text-sm font-head font-bold text-txt">2</p>
+                                        </div>
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Rooms</p>
+                                            <p class="text-sm font-head font-bold text-txt">5</p>
+                                        </div>
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Jobs</p>
+                                            <p class="text-sm font-head font-bold text-txt">0</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-bdr-subtle">
+                                        <p class="text-[11px] text-txt-tertiary flex items-center gap-3 flex-wrap">
+                                            <span><i class="fas fa-key mr-1 text-txt-tertiary"></i>Access pack complete</span>
+                                            <span><i class="far fa-clock mr-1"></i>Just now</span>
+                                        </p>
+                                        <div class="flex gap-2">
+                                            <button class="px-2.5 py-1 rounded-btn text-[11px] font-semibold bg-yellow/15 text-yellow border border-yellow/40 cursor-default">Post a job</button>
+                                            <button class="px-2.5 py-1 rounded-btn text-[11px] font-semibold bg-elevated border border-bdr text-txt-secondary cursor-default">Schedule maintenance</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden lg:block lg:col-span-5">
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">What's unlocked</p>
+                                    <ul class="space-y-2 text-sm text-txt-secondary">
+                                        <li class="flex items-start gap-2"><i class="fas fa-bullhorn text-yellow mt-1 text-xs"></i><span>Post jobs that auto-fill room + access info for tradies.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-calendar-check text-blue mt-1 text-xs"></i><span>Schedule recurring maintenance per room (gutters, HVAC).</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-shield-halved text-green mt-1 text-xs"></i><span>Track warranty, compliance, and inspection history.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-people-arrows text-orange mt-1 text-xs"></i><span>Invite a Property Manager or tenant in one click.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════
+                     FLOW 7 — Property Manager creates a marketplace listing
+                     attached to a managed property
+                     ═══════════════════════════════════════════════════ -->
+
+                <!-- ═══ PM-STEP 1 — Intro ═══ -->
+                <div class="step hidden" data-flow="pm-listing-from-property" data-step="1">
+                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-green/15 text-green border border-green/40 mb-4">
+                            Property Manager Flow
+                        </span>
+                        <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
+                            Manage 14 properties. Post jobs in seconds.
+                        </h2>
+                        <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
+                            Liam runs a 14-property rental portfolio in Bondi &amp; Coogee.
+                            Unit 3 at 42 Beach Rd needs tiling — and the listing should auto-pull every room, access note,
+                            and constraint from the property record.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-green/15 text-green flex items-center justify-center mb-2">
+                                    <i class="fas fa-building-circle-arrow-right text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Pick the property</p>
+                                <p class="text-xs text-txt-tertiary">From your managed register.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-yellow/15 text-yellow flex items-center justify-center mb-2">
+                                    <i class="fas fa-paperclip text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Attach property context</p>
+                                <p class="text-xs text-txt-tertiary">Rooms, access, constraints — auto.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-blue/15 text-blue flex items-center justify-center mb-2">
+                                    <i class="fas fa-bullhorn text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Tradies see it all</p>
+                                <p class="text-xs text-txt-tertiary">No phone tag for site details.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PM-STEP 2 — Managed portfolio (pick a property) ═══ -->
+                <div class="step hidden" data-flow="pm-listing-from-property" data-step="2">
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Portfolio · Managed for Eastern Suburbs Property Co.</p>
+                                <h2 class="font-head text-2xl font-bold text-txt">14 properties</h2>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="relative">
+                                    <i class="fas fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-txt-tertiary text-xs"></i>
+                                    <input value="42 Beach" readonly class="pl-8 pr-3 py-1.5 text-sm bg-input border border-bdr rounded-input text-txt w-40">
+                                </div>
+                                <button class="px-3 py-1.5 rounded-btn text-xs font-medium bg-surface border border-bdr text-txt-tertiary cursor-default">
+                                    <i class="fas fa-filter mr-1"></i>Filters
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-bdr">
+                            <nav class="flex flex-wrap gap-0 -mb-px">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-green text-green font-semibold">Property</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Projects · <span class="text-yellow">3</span></button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Governance</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Maintenance · <span class="text-orange">2</span></button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7 space-y-2">
+                                <button data-action="open-pm-property" class="w-full bg-surface border border-green/40 rounded-card p-3 hover:border-green text-left transition-colors pulse-ring">
+                                    <div class="flex items-start justify-between gap-2 mb-1.5 flex-wrap">
+                                        <div>
+                                            <p class="text-sm font-semibold text-txt leading-snug">42 Beach Rd · Unit 3</p>
+                                            <p class="text-xs text-txt-tertiary">Bondi, NSW 2026 · 2-bed apartment · Owner: M. Chen</p>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-1">
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">PM</span>
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/40">1 reno due</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-[11px] text-txt-tertiary flex flex-wrap items-center gap-3 mt-1.5">
+                                        <span><i class="fas fa-door-open mr-1"></i>4 rooms</span>
+                                        <span><i class="fas fa-key mr-1"></i>Access pack</span>
+                                        <span><i class="fas fa-handshake mr-1"></i>Owner approved</span>
+                                    </p>
+                                </button>
+
+                                <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
+                                    <div class="flex items-start justify-between gap-2 mb-1.5 flex-wrap">
+                                        <div>
+                                            <p class="text-sm font-semibold text-txt leading-snug">128 Coogee Bay Rd · Unit 7</p>
+                                            <p class="text-xs text-txt-tertiary">Coogee, NSW 2034 · 1-bed apartment · Owner: P. Singh</p>
+                                        </div>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">PM</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
+                                    <div class="flex items-start justify-between gap-2 mb-1.5 flex-wrap">
+                                        <div>
+                                            <p class="text-sm font-semibold text-txt leading-snug">9 Brighton Blvd · House</p>
+                                            <p class="text-xs text-txt-tertiary">North Bondi, NSW 2026 · 4-bed terrace · Owner: J. Walsh</p>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-1">
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">PM</span>
+                                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">2 active jobs</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-[11px] text-txt-tertiary px-2">11 more…</p>
+                            </div>
+                            <div class="hidden lg:block lg:col-span-5">
+                                <div class="bg-surface/40 border border-dashed border-bdr rounded-card p-4 h-full min-h-[260px] flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-hand-pointer text-txt-tertiary mb-2"></i>
+                                    <p class="text-xs text-txt-tertiary max-w-[200px]">Click a property to see the full record and post-job options.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
+                            <p>Open <span class="text-yellow font-semibold">42 Beach Rd · Unit 3</span> — that's where the tiling is needed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PM-STEP 3 — Property record + post job CTA ═══ -->
+                <div class="step hidden" data-flow="pm-listing-from-property" data-step="3">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <button data-action="back-to-pm-portfolio" class="text-txt-secondary hover:text-txt text-sm">&larr; Portfolio</button>
+                            <h2 class="font-head text-xl font-bold text-txt">42 Beach Rd · Unit 3</h2>
+                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Property Manager</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Record</p>
+                                    <p class="text-sm text-txt mb-1">2-bed, 2-bath apartment · Unit 3 of 8 · Bondi NSW 2026</p>
+                                    <p class="text-xs text-txt-tertiary">Owner: <span class="text-txt-secondary">Margaret Chen</span> · Last renovated 2019 · Authority: PM may approve up to <span class="text-txt">$2,500</span> without owner sign-off.</p>
+                                    <div class="grid grid-cols-4 gap-2 mt-3">
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Beds</p>
+                                            <p class="text-sm font-head font-bold text-txt">2</p>
+                                        </div>
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Baths</p>
+                                            <p class="text-sm font-head font-bold text-txt">2</p>
+                                        </div>
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Floor</p>
+                                            <p class="text-sm font-head font-bold text-txt">3rd</p>
+                                        </div>
+                                        <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                            <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">m²</p>
+                                            <p class="text-sm font-head font-bold text-txt">82</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Rooms · 4</p>
+                                        <span class="text-[11px] text-txt-tertiary">Tap for detail</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="flex items-center gap-2 p-2 bg-input rounded-input border border-bdr">
+                                            <span class="w-6 h-6 rounded-full bg-yellow/15 text-yellow flex items-center justify-center text-[10px]"><i class="fas fa-utensils"></i></span>
+                                            <span class="text-xs text-txt">Kitchen · 11 m²</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 p-2 bg-input rounded-input border border-bdr">
+                                            <span class="w-6 h-6 rounded-full bg-blue/15 text-blue flex items-center justify-center text-[10px]"><i class="fas fa-bed"></i></span>
+                                            <span class="text-xs text-txt">Master + ensuite</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 p-2 bg-input rounded-input border border-orange/40 ring-1 ring-orange/40">
+                                            <span class="w-6 h-6 rounded-full bg-orange/15 text-orange flex items-center justify-center text-[10px]"><i class="fas fa-bath"></i></span>
+                                            <span class="text-xs text-txt">Ensuite · 4 m² · <span class="text-orange font-semibold">reno needed</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 p-2 bg-input rounded-input border border-bdr">
+                                            <span class="w-6 h-6 rounded-full bg-green/15 text-green flex items-center justify-center text-[10px]"><i class="fas fa-couch"></i></span>
+                                            <span class="text-xs text-txt">Living + dining</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Access pack</p>
+                                    <ul class="text-xs text-txt-secondary space-y-1">
+                                        <li><span class="text-txt-tertiary w-16 inline-block">Parking:</span> Visitor bay #4 (rear lane)</li>
+                                        <li><span class="text-txt-tertiary w-16 inline-block">Hours:</span> 8:00am–4:00pm weekdays</li>
+                                        <li><span class="text-txt-tertiary w-16 inline-block">Access:</span> PM key drop-off, building intercom Unit 3</li>
+                                        <li><span class="text-txt-tertiary w-16 inline-block">Notes:</span> Strata insurance covers common walls only</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-5 space-y-3">
+                                <div class="bg-surface border border-yellow/40 rounded-card p-4 shadow-card-hover">
+                                    <p class="text-[11px] uppercase tracking-wider text-yellow font-semibold mb-2"><i class="fas fa-bolt mr-1"></i>Next action</p>
+                                    <p class="text-sm text-txt mb-3 leading-snug">The ensuite reno is overdue. Create a marketplace listing — Babbitt will attach this property as context for tradies.</p>
+                                    <button data-action="open-pm-listing" class="pulse-ring w-full px-4 py-2.5 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
+                                        <i class="fas fa-bullhorn mr-1"></i> Create Listing for this Property
+                                    </button>
+                                    <button class="mt-2 w-full px-4 py-2 rounded-btn text-xs bg-elevated border border-bdr text-txt-secondary cursor-default">
+                                        <i class="fas fa-user-tie mr-1"></i> Invite known tradie instead
+                                    </button>
+                                </div>
+
+                                <div class="bg-surface border border-bdr rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Linked work</p>
+                                    <p class="text-xs text-txt-tertiary">No active jobs. Last completed: Smoke alarm service · 11 days ago.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PM-STEP 4 — New listing with property attached ═══ -->
+                <div class="step hidden" data-flow="pm-listing-from-property" data-step="4">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3">
+                            <button data-action="back-to-pm-property" class="text-txt-secondary hover:text-txt text-sm">&larr; Property</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">New Listing</h2>
+                        </div>
+
+                        <div class="rounded-card border border-green/40 bg-green/5 p-3 flex items-center justify-between gap-3 flex-wrap">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-9 h-9 rounded-input bg-green/20 text-green flex items-center justify-center"><i class="fas fa-link"></i></span>
+                                <div>
+                                    <p class="text-[10px] uppercase tracking-wider text-green font-semibold">Linked property</p>
+                                    <p class="text-sm font-semibold text-txt">42 Beach Rd · Unit 3 · Bondi NSW 2026</p>
+                                </div>
+                            </div>
+                            <button class="text-[11px] text-txt-secondary hover:text-txt cursor-default flex items-center gap-1"><i class="fas fa-arrow-right-arrow-left text-[10px]"></i>Change</button>
+                        </div>
+
+                        <fieldset>
+                            <legend class="text-sm text-txt-secondary font-semibold">Mode</legend>
+                            <div class="grid grid-cols-2 gap-3 mt-2">
+                                <button type="button" class="p-3 rounded-card border border-yellow bg-yellow/10 text-center cursor-default">
+                                    <p class="text-sm font-semibold text-txt">Work</p>
+                                </button>
+                                <div class="p-3 rounded-card border border-bdr bg-surface text-center opacity-40">
+                                    <p class="text-xs text-txt-tertiary">Locked for Property Manager</p>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div>
+                            <label class="text-sm text-txt-secondary font-semibold">Title</label>
+                            <input value="Ensuite re-tile — Unit 3, Bondi (PM-managed)"
+                                class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt" readonly>
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-txt-secondary font-semibold">Scope</label>
+                            <textarea rows="3" readonly class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt resize-none">Strip existing 4 m² ensuite (floor + walls), install owner-supplied porcelain (600×600), waterproof to AS 3740, regrout. Plumbing already disconnected. Access via PM key drop. Strata-approved working hours 8–4 weekdays.</textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Trade</label>
+                                <select disabled class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt">
+                                    <option>Tiler + Waterproofer</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Budget band</label>
+                                <select disabled class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt">
+                                    <option>$1,500 – $2,500</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-sm text-txt-secondary font-semibold">Auto-attached from property record</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+                                <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                    <i class="fas fa-door-open text-blue text-xs mb-0.5"></i>
+                                    <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Room</p>
+                                    <p class="text-[11px] font-semibold text-txt">Ensuite</p>
+                                </div>
+                                <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                    <i class="fas fa-car text-green text-xs mb-0.5"></i>
+                                    <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Parking</p>
+                                    <p class="text-[11px] font-semibold text-txt">Bay 4</p>
+                                </div>
+                                <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                    <i class="fas fa-clock text-yellow text-xs mb-0.5"></i>
+                                    <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Hours</p>
+                                    <p class="text-[11px] font-semibold text-txt">8–4 wkd</p>
+                                </div>
+                                <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                    <i class="fas fa-key text-orange text-xs mb-0.5"></i>
+                                    <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Access</p>
+                                    <p class="text-[11px] font-semibold text-txt">PM key</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-blue/30 bg-blue/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-shield-halved text-blue mt-0.5"></i>
+                            <span>Owner M. Chen will be CC'd on every quote. Standing PM authority: <span class="text-blue font-semibold">$2,500</span> — anything higher needs owner sign-off.</span>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-info-circle text-yellow mt-0.5"></i>
+                            <span>Hit <span class="text-yellow font-semibold">Publish Listing</span> — verified tilers near Bondi will see it instantly.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ PM-STEP 5 — Live with property reference ═══ -->
+                <div class="step hidden" data-flow="pm-listing-from-property" data-step="5">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-circle-check text-green mt-0.5"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-txt">Listing published — 12 tilers notified.</p>
+                                <p class="text-xs text-txt-secondary">Owner M. Chen received a copy. Quotes will land in the linked property's project.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Marketplace · Work · My Listings</p>
+                                <h2 class="font-head text-2xl font-bold text-txt">1 active</h2>
+                            </div>
+                            <button class="px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse cursor-default">
+                                <i class="fas fa-plus mr-1"></i> Post
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-5">
+                                <div class="bg-surface border border-green/40 rounded-card p-3 hover:border-green transition-colors">
+                                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Work</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
+                                        <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">PM</span>
+                                    </div>
+                                    <p class="text-sm font-semibold text-txt leading-snug mb-1.5">Ensuite re-tile — Unit 3, Bondi (PM-managed)</p>
+                                    <div class="flex items-center gap-1.5 px-2 py-1 mb-1.5 rounded-input bg-elevated border border-bdr-subtle w-fit">
+                                        <i class="fas fa-link text-green text-[10px]"></i>
+                                        <span class="text-[11px] text-txt-secondary">Linked to <span class="text-txt font-semibold">42 Beach Rd · U3</span></span>
+                                    </div>
+                                    <p class="text-xs text-txt-tertiary flex items-center gap-3 flex-wrap">
+                                        <span><i class="fas fa-location-dot mr-1"></i>Bondi, NSW 2026</span>
+                                        <span><i class="far fa-clock mr-1"></i>Just now</span>
+                                        <span><i class="fas fa-eye mr-1"></i>12 invited</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hidden lg:block lg:col-span-7">
+                                <div class="bg-surface border border-bdr rounded-card p-4">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Why this works for PMs</p>
+                                    <ul class="space-y-2 text-sm text-txt-secondary">
+                                        <li class="flex items-start gap-2"><i class="fas fa-paperclip text-green mt-1 text-xs"></i><span>Property record auto-fills room, access, hours — tradies see real site info, not a vague brief.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-user-shield text-blue mt-1 text-xs"></i><span>Owner is CC'd on every quote — no surprises, no shadow approvals.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-gavel text-yellow mt-1 text-xs"></i><span>Standing PM authority cap respected — quotes above $2,500 prompt owner sign-off.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-folder-tree text-orange mt-1 text-xs"></i><span>Awarded job becomes a workspace under this property — every receipt stays attached.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════
+                     FLOW 8 — Strata committee sets a rule + opens a vote
+                     on a common area
+                     ═══════════════════════════════════════════════════ -->
+
+                <!-- ═══ ST-STEP 1 — Intro ═══ -->
+                <div class="step hidden" data-flow="strata-votes-rules" data-step="1">
+                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold mb-4 border" style="background:rgba(192,132,252,0.12); color:#C084FC; border-color:rgba(192,132,252,0.45);">
+                            Strata Committee Flow
+                        </span>
+                        <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
+                            Set a rule. Open a vote. Move on.
+                        </h2>
+                        <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
+                            Priya chairs the strata committee at Harbour Heights. Lot owners keep storing junk in the fire stairwell.
+                            She needs a by-law and a binding vote — both in the same record where the building lives.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input flex items-center justify-center mb-2" style="background:rgba(192,132,252,0.12); color:#C084FC;">
+                                    <i class="fas fa-building-shield text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Pick a common area</p>
+                                <p class="text-xs text-txt-tertiary">Foyer, stairs, parking, rooftop.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-yellow/15 text-yellow flex items-center justify-center mb-2">
+                                    <i class="fas fa-scale-balanced text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Draft the rule</p>
+                                <p class="text-xs text-txt-tertiary">Title, scope, category, effective.</p>
+                            </div>
+                            <div class="bg-surface border border-bdr rounded-card p-4">
+                                <div class="w-9 h-9 rounded-input bg-green/15 text-green flex items-center justify-center mb-2">
+                                    <i class="fas fa-check-to-slot text-sm"></i>
+                                </div>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Open the vote</p>
+                                <p class="text-xs text-txt-tertiary">Owners vote in-app or by reply.</p>
+                            </div>
+                        </div>
+
+                        <p class="text-[11px] text-txt-tertiary mt-6 leading-relaxed max-w-md mx-auto">
+                            <i class="fas fa-circle-info mr-1"></i> Babbitt keeps strata operations light in V1 — no full strata platform, just the by-law / vote layer over the building's record.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ═══ ST-STEP 2 — Building governance hub, pick common area ═══ -->
+                <div class="step hidden" data-flow="strata-votes-rules" data-step="2">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <h2 class="font-head text-xl font-bold text-txt">Harbour Heights · SP 24871</h2>
+                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold border" style="background:rgba(192,132,252,0.12); color:#C084FC; border-color:rgba(192,132,252,0.45);">Strata Committee · Chair</span>
+                            <span class="ml-auto text-[11px] text-txt-tertiary">16 lots · 2 towers · Bondi Junction NSW</span>
+                        </div>
+
+                        <div class="border-b border-bdr">
+                            <nav class="flex flex-wrap gap-0 -mb-px">
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Building</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-yellow text-yellow font-semibold">Governance</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Maintenance</button>
+                                <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Finances</button>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7 space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Common areas</p>
+                                    <p class="text-[11px] text-txt-tertiary">5 zones · pick to set a rule</p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                    <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="w-7 h-7 rounded-full bg-blue/15 text-blue flex items-center justify-center text-xs"><i class="fas fa-door-closed"></i></span>
+                                            <p class="text-sm text-txt font-semibold">Lobby &amp; Foyer</p>
+                                        </div>
+                                        <p class="text-[11px] text-txt-tertiary">3 by-laws · 0 open votes</p>
+                                    </div>
+                                    <button data-action="pick-firestair" class="bg-surface border rounded-card p-3 text-left hover:brightness-110 transition-colors pulse-ring" style="border-color:rgba(192,132,252,0.45);">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs" style="background:rgba(192,132,252,0.15); color:#C084FC;"><i class="fas fa-stairs"></i></span>
+                                            <p class="text-sm text-txt font-semibold">Fire Stair · Tower B</p>
+                                            <span class="ml-auto px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/40">Issue raised</span>
+                                        </div>
+                                        <p class="text-[11px] text-txt-tertiary">2 by-laws · 0 open votes · 3 incident reports (90d)</p>
+                                    </button>
+                                    <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="w-7 h-7 rounded-full bg-green/15 text-green flex items-center justify-center text-xs"><i class="fas fa-tree"></i></span>
+                                            <p class="text-sm text-txt font-semibold">Rooftop garden</p>
+                                        </div>
+                                        <p class="text-[11px] text-txt-tertiary">1 by-law · 0 open votes</p>
+                                    </div>
+                                    <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="w-7 h-7 rounded-full bg-yellow/15 text-yellow flex items-center justify-center text-xs"><i class="fas fa-square-parking"></i></span>
+                                            <p class="text-sm text-txt font-semibold">Basement parking</p>
+                                        </div>
+                                        <p class="text-[11px] text-txt-tertiary">4 by-laws · 1 open vote · ends Fri</p>
+                                    </div>
+                                    <div class="bg-surface border border-bdr rounded-card p-3 opacity-70 sm:col-span-2">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="w-7 h-7 rounded-full bg-blue/15 text-blue flex items-center justify-center text-xs"><i class="fas fa-water-ladder"></i></span>
+                                            <p class="text-sm text-txt font-semibold">Pool deck (shared, both towers)</p>
+                                        </div>
+                                        <p class="text-[11px] text-txt-tertiary">5 by-laws · 0 open votes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-5 space-y-3">
+                                <div class="bg-surface border rounded-card p-3" style="border-color:rgba(192,132,252,0.30);">
+                                    <p class="text-[11px] uppercase tracking-wider font-semibold mb-1.5" style="color:#C084FC;"><i class="fas fa-triangle-exclamation mr-1"></i>Foreman flag</p>
+                                    <p class="text-sm text-txt leading-snug mb-1">3 incidents on Tower B fire stair in 90 days — items blocking egress.</p>
+                                    <p class="text-[11px] text-txt-tertiary">Suggested: open a by-law and binding vote within 14 days to satisfy Strata Schemes Mgmt Act 137.</p>
+                                </div>
+                                <div class="bg-surface/40 border border-dashed border-bdr rounded-card p-4 text-center">
+                                    <i class="fas fa-hand-pointer text-txt-tertiary mb-2"></i>
+                                    <p class="text-xs text-txt-tertiary max-w-[220px] mx-auto">Open the highlighted area to begin the rule + vote flow.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ ST-STEP 3 — Rule editor ═══ -->
+                <div class="step hidden" data-flow="strata-votes-rules" data-step="3">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <button data-action="back-to-strata-hub" class="text-txt-secondary hover:text-txt text-sm">&larr; Governance</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">New By-law</h2>
+                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold border" style="background:rgba(192,132,252,0.12); color:#C084FC; border-color:rgba(192,132,252,0.45);">Fire Stair · Tower B</span>
+                        </div>
+
+                        <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
+                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">1</span> Rule</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">2</span> Vote</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">3</span> Broadcast</li>
+                        </ol>
+
+                        <div>
+                            <label class="text-sm text-txt-secondary font-semibold">Title</label>
+                            <input value="By-law 18 — No storage in Tower B fire stairwell"
+                                class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt" readonly>
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-txt-secondary font-semibold">Body</label>
+                            <textarea rows="5" readonly class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt resize-none">No lot owner, resident or visitor may place or store personal items (bicycles, prams, boxes, recyclables, etc.) in any part of the Tower B fire stairwell at any time. This includes landings, half-landings and treads. The committee may remove items left after 48 hours' written notice and charge the responsible lot $80 administration + actual disposal cost. The intent is to keep the egress path clear at all times in compliance with the National Construction Code section D2.20.</textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Category</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-orange/40 text-sm text-orange font-semibold flex items-center gap-1.5">
+                                    <i class="fas fa-fire-extinguisher text-xs"></i> Safety
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Scope</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">Tower B only (8 lots)</div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Effective</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">On vote pass</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface border border-bdr rounded-card p-3">
+                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Attachments</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-pdf text-orange text-[10px]"></i>NCC-D2.20.pdf</span>
+                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-image text-blue text-[10px]"></i>stairwell-photo-1.jpg</span>
+                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-lines text-green text-[10px]"></i>incident-summary.md</span>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-arrow-right text-yellow mt-0.5"></i>
+                            <span>Hit <span class="text-yellow font-semibold">Configure Vote</span> to set quorum + window.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ ST-STEP 4 — Vote setup ═══ -->
+                <div class="step hidden" data-flow="strata-votes-rules" data-step="4">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <button data-action="back-to-strata-rule" class="text-txt-secondary hover:text-txt text-sm">&larr; Rule</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">Configure Vote</h2>
+                        </div>
+
+                        <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Rule</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">2</span> Vote</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">3</span> Broadcast</li>
+                        </ol>
+
+                        <div>
+                            <span class="text-sm text-txt-secondary font-semibold">Resolution type</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+                                <div class="p-3 rounded-card text-left cursor-default border" style="background:rgba(192,132,252,0.10); border-color:rgba(192,132,252,0.60);">
+                                    <p class="text-sm font-semibold text-txt">Special resolution</p>
+                                    <p class="text-[11px] text-txt-tertiary">75% threshold · binding by-law</p>
+                                </div>
+                                <div class="p-3 rounded-card bg-input border border-bdr text-left opacity-60 cursor-default">
+                                    <p class="text-sm font-semibold text-txt">Simple majority</p>
+                                    <p class="text-[11px] text-txt-tertiary">50% + 1 · committee decision</p>
+                                </div>
+                                <div class="p-3 rounded-card bg-input border border-bdr text-left opacity-60 cursor-default">
+                                    <p class="text-sm font-semibold text-txt">Unanimous</p>
+                                    <p class="text-[11px] text-txt-tertiary">100% · only for special items</p>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-txt-tertiary mt-1">Tower B by-law change requires a special resolution under SSMA s 141.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Quorum</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">25% of eligible lots (2 of 8)</div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Voting basis</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">1 lot = 1 vote</div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Open</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">Tomorrow 9:00 AEST</div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-txt-secondary font-semibold">Close</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">+ 14 days, 5:00 PM AEST</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface border border-bdr rounded-card p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Eligible voters · 8 lots (Tower B)</p>
+                                <button class="text-[11px] text-txt-secondary hover:text-txt cursor-default">Edit list</button>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-301 · M. Chen</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-302 · J. Pham</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-401 · L. Russo</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-402 · S. Patel</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-501 · K. Watanabe</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-502 · M. O'Brien</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-601 · S. O'Connor</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-602 · P. Nair (you)</span>
+                            </div>
+                        </div>
+
+                        <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
+                            <i class="fas fa-arrow-right text-yellow mt-0.5"></i>
+                            <span>Hit <span class="text-yellow font-semibold">Preview Broadcast</span> to see what owners receive.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ ST-STEP 5 — Broadcast preview ═══ -->
+                <div class="step hidden" data-flow="strata-votes-rules" data-step="5">
+                    <div class="max-w-3xl mx-auto space-y-6">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <button data-action="back-to-strata-vote" class="text-txt-secondary hover:text-txt text-sm">&larr; Vote</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">Broadcast Preview</h2>
+                        </div>
+
+                        <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Rule</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Vote</li>
+                            <li class="w-4 h-px bg-bdr"></li>
+                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">3</span> Broadcast</li>
+                        </ol>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7">
+                                <div class="bg-surface border border-bdr rounded-card overflow-hidden">
+                                    <div class="px-4 py-2.5 border-b border-bdr bg-elevated text-[11px] text-txt-tertiary flex items-center gap-2">
+                                        <i class="fas fa-envelope text-yellow"></i>
+                                        <span>To: 8 lot owners · Cc: Building manager · Reply-to: SP24871 strata mailbox</span>
+                                    </div>
+                                    <div class="p-4 space-y-3">
+                                        <p class="text-sm font-semibold text-txt">[Harbour Heights · SP24871] Vote opens tomorrow — By-law 18</p>
+                                        <p class="text-xs text-txt-secondary leading-relaxed">Hi Tower B owner,</p>
+                                        <p class="text-xs text-txt-secondary leading-relaxed">The committee is opening a special resolution to add <span class="text-txt">By-law 18 — No storage in Tower B fire stairwell</span>. Three incidents in the last 90 days flagged egress items in the stairwell, and the National Construction Code requires the path stays clear.</p>
+                                        <div class="rounded-input border border-bdr bg-input p-3">
+                                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Quick vote</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="px-3 py-1.5 rounded-btn bg-green/15 text-green border border-green/40 text-xs font-semibold cursor-default">Vote YES</span>
+                                                <span class="px-3 py-1.5 rounded-btn bg-orange/15 text-orange border border-orange/40 text-xs font-semibold cursor-default">Vote NO</span>
+                                                <span class="px-3 py-1.5 rounded-btn bg-elevated border border-bdr text-txt-secondary text-xs cursor-default">Abstain</span>
+                                            </div>
+                                            <p class="text-[11px] text-txt-tertiary mt-2">Tap any choice to vote — link binds to your lot record.</p>
+                                        </div>
+                                        <p class="text-[11px] text-txt-tertiary leading-relaxed">Closes 5pm AEST, 14 days from open. Quorum: 2 lots. Threshold: 75% YES of votes cast.</p>
+                                        <p class="text-[11px] text-txt-tertiary">— P. Nair (Chair) · sent via Babbitt Strata</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-5 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Channels</p>
+                                    <ul class="space-y-1.5 text-xs text-txt">
+                                        <li class="flex items-center gap-2"><i class="fas fa-envelope text-yellow text-[10px] w-3"></i> Email · 8 owners</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-mobile-screen text-blue text-[10px] w-3"></i> Babbitt push · 8 owners</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-print text-txt-secondary text-[10px] w-3"></i> Mailbox notice · 8 lots (PDF)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-surface border border-bdr rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Audit trail</p>
+                                    <p class="text-xs text-txt-secondary leading-snug">Every vote is timestamped, IP-stamped, and bound to the lot record. The full register is exportable for the next AGM minutes.</p>
+                                </div>
+                                <div class="rounded-card border p-3 text-sm text-txt flex items-start gap-3" style="background:rgba(192,132,252,0.08); border-color:rgba(192,132,252,0.30);">
+                                    <i class="fas fa-arrow-right mt-0.5" style="color:#C084FC;"></i>
+                                    <span>Hit <span class="font-semibold" style="color:#C084FC;">Open Vote</span> to send the broadcast.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══ ST-STEP 6 — Live tally / result ═══ -->
+                <div class="step hidden" data-flow="strata-votes-rules" data-step="6">
+                    <div class="space-y-4">
+                        <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
+                            <i class="fas fa-circle-check text-green mt-0.5"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-txt">Vote opened — 8 owners notified.</p>
+                                <p class="text-xs text-txt-secondary">Live tally below — owners can vote at any time until the close window. Showing simulated result 14 days later.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-7 bg-surface border border-bdr rounded-card p-4">
+                                <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+                                    <div>
+                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Result · SP24871</p>
+                                        <h3 class="font-head text-lg font-bold text-txt">By-law 18 — No storage in Tower B fire stairwell</h3>
+                                    </div>
+                                    <span class="px-2 py-1 rounded-badge text-xs font-bold bg-green/15 text-green border border-green/40">PASSED · 87.5%</span>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex items-center justify-between text-[11px] mb-1">
+                                            <span class="text-green font-semibold">YES · 7 lots</span>
+                                            <span class="text-txt-tertiary">87.5% · threshold 75%</span>
+                                        </div>
+                                        <div class="h-2 bg-input rounded-full overflow-hidden border border-bdr-subtle">
+                                            <div class="h-full bg-green" style="width:87.5%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center justify-between text-[11px] mb-1">
+                                            <span class="text-orange font-semibold">NO · 1 lot</span>
+                                            <span class="text-txt-tertiary">12.5%</span>
+                                        </div>
+                                        <div class="h-2 bg-input rounded-full overflow-hidden border border-bdr-subtle">
+                                            <div class="h-full bg-orange" style="width:12.5%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center justify-between text-[11px] mb-1">
+                                            <span class="text-txt-secondary font-semibold">Abstain · 0</span>
+                                            <span class="text-txt-tertiary">Turnout 100%</span>
+                                        </div>
+                                        <div class="h-2 bg-input rounded-full overflow-hidden border border-bdr-subtle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-4 border-t border-bdr-subtle">
+                                    <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Cast</p>
+                                        <p class="text-sm font-head font-bold text-txt">8 / 8</p>
+                                    </div>
+                                    <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Quorum</p>
+                                        <p class="text-sm font-head font-bold text-green">Met</p>
+                                    </div>
+                                    <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Type</p>
+                                        <p class="text-sm font-head font-bold text-txt">Special</p>
+                                    </div>
+                                    <div class="bg-input border border-bdr rounded-input p-2 text-center">
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Effective</p>
+                                        <p class="text-sm font-head font-bold text-txt">Today</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-5 space-y-3">
+                                <div class="bg-surface border border-bdr rounded-card p-3">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">What happens next</p>
+                                    <ul class="space-y-2 text-sm text-txt-secondary">
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-green mt-1 text-xs"></i><span>By-law 18 is now in force on the Fire Stair · Tower B record.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-file-export text-blue mt-1 text-xs"></i><span>Result auto-attached to next AGM minutes pack.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-bell text-yellow mt-1 text-xs"></i><span>Future incident reports on this area pre-link to the by-law.</span></li>
+                                        <li class="flex items-start gap-2" style="color:#C084FC;"><i class="fas fa-folder-tree mt-1 text-xs"></i><span class="text-txt-secondary">Audit trail downloadable any time from Governance &gt; Votes.</span></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-surface border border-bdr rounded-card p-3 text-center">
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">One dissenting vote</p>
+                                    <p class="text-xs text-txt-secondary leading-snug">B-401 (L. Russo) voted NO — comment attached. Visible to committee only.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -3735,11 +4977,11 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             </span>
             <h2 class="font-head text-2xl sm:text-3xl font-bold text-txt mb-2">Like what you saw?</h2>
             <p class="text-txt-secondary text-sm sm:text-base max-w-xl mx-auto mb-5 leading-relaxed">
-                Babbitt is gearing up for first access. Get on the waitlist to use it in your business as soon as it ships.
+                Babbitt is gearing up for first access. Get on the Babbitt-60 program to use it in your business as soon as it ships.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a href="../#waitlist" class="px-5 py-2.5 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
-                    Join the waitlist <i class="fas fa-arrow-right ml-1"></i>
+                    See our pricing <i class="fas fa-arrow-right ml-1"></i>
                 </a>
                 <a href="../#why" class="text-sm text-txt-secondary hover:text-yellow underline underline-offset-4 transition-colors">
                     Or read why we built it
@@ -3762,6 +5004,8 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           sarah:  { initials: 'SO', name: "Sarah O'Connor",  role: 'Property Owner',         hex: '#60CDE2' },
           marcus: { initials: 'MO', name: "Marcus O'Brien",  role: 'Trades · Plumber',       hex: '#F6B500' },
           dan:    { initials: 'DM', name: 'Dan Murray',      role: 'Supplier · Reece',       hex: '#67E4AA' },
+          liam:   { initials: 'LT', name: 'Liam Tran',       role: 'Property Manager',       hex: '#FF5C00' },
+          priya:  { initials: 'PN', name: 'Priya Nair',      role: 'Strata Committee · Chair', hex: '#C084FC' },
         };
 
         // ── Flow definitions ──────────────────────────────────────
@@ -3830,6 +5074,38 @@ Bonus points if they're across NSW SafeWork notification too.</p>
               { n: 6, label: 'Won',       caption: 'Marcus accepted — order confirmed.',                   url: 'babbitt.app/quote-desk/orders/8421', actor: 'dan',    next: 'Restart Demo' },
             ],
           },
+          'property-owner-register': {
+            title: 'Property Owner — Register a Property + Rooms',
+            steps: [
+              { n: 1, label: 'Intro',    caption: 'Sarah just bought a Paddington terrace.',          url: 'babbitt.app/welcome',                  actor: 'sarah', next: 'Begin Demo' },
+              { n: 2, label: 'Portfolio',caption: 'Empty register — start with Add Property.',         url: 'babbitt.app/portfolio',                actor: 'sarah', next: 'Add Property' },
+              { n: 3, label: 'Property', caption: 'Address, type, structure, role.',                   url: 'babbitt.app/portfolio/new',            actor: 'sarah', next: 'Next: Rooms' },
+              { n: 4, label: 'Rooms',    caption: '5 rooms tagged — each with floor + area.',          url: 'babbitt.app/portfolio/new/rooms',      actor: 'sarah', next: 'Next: Access' },
+              { n: 5, label: 'Access',   caption: 'Access pack pre-fills future jobs on this property.',url: 'babbitt.app/portfolio/new/access',     actor: 'sarah', next: 'Register Property' },
+              { n: 6, label: 'Live',     caption: 'Property is now in your register.',                 url: 'babbitt.app/portfolio',                actor: 'sarah', next: 'Restart Demo' },
+            ],
+          },
+          'pm-listing-from-property': {
+            title: 'Property Manager — List Work for a Managed Property',
+            steps: [
+              { n: 1, label: 'Intro',     caption: 'Liam manages 14 properties.',                                          url: 'babbitt.app/welcome',                       actor: 'liam', next: 'Begin Demo' },
+              { n: 2, label: 'Portfolio', caption: '14 managed properties — pick the one needing work.',                   url: 'babbitt.app/portfolio?role=pm',             actor: 'liam', next: 'Open Property' },
+              { n: 3, label: 'Property',  caption: 'Unit 3 record — ensuite reno overdue.',                                url: 'babbitt.app/portfolio/u-bondi-42-3',         actor: 'liam', next: 'Create Listing' },
+              { n: 4, label: 'Listing',   caption: 'New listing with the property auto-attached.',                          url: 'babbitt.app/marketplace/new?property=u-bondi-42-3', actor: 'liam', next: 'Publish Listing' },
+              { n: 5, label: 'Live',      caption: 'Listing live — owner CC\'d, property-linked.',                           url: 'babbitt.app/marketplace',                   actor: 'liam', next: 'Restart Demo' },
+            ],
+          },
+          'strata-votes-rules': {
+            title: 'Strata Committee — Set a By-law &amp; Open a Vote',
+            steps: [
+              { n: 1, label: 'Intro',     caption: 'Priya chairs Harbour Heights strata.',                          url: 'babbitt.app/welcome',                                       actor: 'priya', next: 'Begin Demo' },
+              { n: 2, label: 'Governance',caption: 'Common areas register — pick the fire stair.',                  url: 'babbitt.app/strata/sp24871/governance',                      actor: 'priya', next: 'Open Area' },
+              { n: 3, label: 'Rule',      caption: 'Draft By-law 18 — no storage in egress path.',                  url: 'babbitt.app/strata/sp24871/by-laws/new',                     actor: 'priya', next: 'Configure Vote' },
+              { n: 4, label: 'Vote',      caption: 'Special resolution · 75% · 14-day window.',                     url: 'babbitt.app/strata/sp24871/by-laws/new/vote',                actor: 'priya', next: 'Preview Broadcast' },
+              { n: 5, label: 'Broadcast', caption: 'Channels selected — owners receive email + push.',               url: 'babbitt.app/strata/sp24871/by-laws/new/broadcast',           actor: 'priya', next: 'Open Vote' },
+              { n: 6, label: 'Result',    caption: '14 days later — by-law PASSED 87.5%.',                          url: 'babbitt.app/strata/sp24871/by-laws/18',                      actor: 'priya', next: 'Restart Demo' },
+            ],
+          },
         };
 
         // ── Sample data for flow 1 ────────────────────────────────
@@ -3865,7 +5141,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
         // ── Controller state ──────────────────────────────────────
         let activeFlow = 'property-owner-listing';
-        const stepByFlow = { 'property-owner-listing': 1, 'trade-respond-and-stage': 1, 'tradie-incident-chat': 1, 'tradie-network-community': 1, 'supplier-rfq': 1 };
+        const stepByFlow = { 'property-owner-listing': 1, 'trade-respond-and-stage': 1, 'tradie-incident-chat': 1, 'tradie-network-community': 1, 'supplier-rfq': 1, 'property-owner-register': 1, 'pm-listing-from-property': 1, 'strata-votes-rules': 1 };
         let netState = { upvoted: false, commented: false };
         let userTouched = { title: false, description: false, suburb: false, postcode: false };
         let quoteTouched = { price: false, message: false, avail: false };
@@ -4319,6 +5595,21 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             quoteState.discountApplied = !quoteState.discountApplied;
             recomputeQuote();
           }
+          // Flow 6 — Owner registers property + rooms
+          if (a === 'open-add-property')      go(3);
+          if (a === 'back-to-portfolio')      go(2);
+          if (a === 'back-to-property-step')  go(3);
+          if (a === 'back-to-rooms')          go(4);
+          // Flow 7 — PM listing from property
+          if (a === 'open-pm-property')       go(3);
+          if (a === 'back-to-pm-portfolio')   go(2);
+          if (a === 'open-pm-listing')        go(4);
+          if (a === 'back-to-pm-property')    go(3);
+          // Flow 8 — Strata votes & rules
+          if (a === 'pick-firestair')         go(3);
+          if (a === 'back-to-strata-hub')     go(2);
+          if (a === 'back-to-strata-rule')    go(3);
+          if (a === 'back-to-strata-vote')    go(4);
         });
 
         function resetActiveFlow() {

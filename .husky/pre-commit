@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+# Rebuild Tailwind CSS only when relevant files are part of this commit, then
+# re-stage the generated file so the commit ships fresh CSS.
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+needs_tailwind=0
+case "$staged" in
+    *demo/*.html*|*demo/src/tailwind.css*|*tailwind.config.js*)
+        needs_tailwind=1 ;;
+esac
+
+if [ "$needs_tailwind" = "1" ]; then
+    echo "[husky] Tailwind-relevant change detected — rebuilding demo/tailwind.css"
+    npm run build:tailwind --silent || exit 1
+    git add demo/tailwind.css
+fi
+
+# Cheap HTML sanity check (~50ms) — catches obvious breakage without slowing commits
+npm run lint:html --silent || exit 1

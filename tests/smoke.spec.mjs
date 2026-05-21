@@ -31,7 +31,7 @@ test.describe('landing page', () => {
             '#sweepMessage',
             '#blueSweep',
             '#sweepPartner',
-            '#waitlistForm',
+            '#babbitt60Form',
             '#partnerForm',
             '#btnPartner',
             '#btnNavCta',
@@ -51,7 +51,7 @@ test.describe('landing page', () => {
         await expect(page.locator('#sweepPartner')).toHaveClass(/active/);
     });
 
-    test('nav "Secure Your Spot" opens the yellow sweep', async ({ page, isMobile }) => {
+    test('nav "Secure Your Spot" opens the yellow sweep (Babbitt 60 form)', async ({ page, isMobile }) => {
         await page.goto('/index.html');
         if (isMobile) {
             // The CTA lives inside the collapsed nav menu on small screens.
@@ -62,6 +62,7 @@ test.describe('landing page', () => {
         await cta.click();
         await expect(page.locator('#yellowSweep')).toHaveClass(/active/);
         await expect(page.locator('#sweepMessage')).toHaveClass(/active/);
+        await expect(page.locator('#babbitt60Form')).toBeVisible();
     });
 
     test('hero word-cycling spans render', async ({ page }) => {

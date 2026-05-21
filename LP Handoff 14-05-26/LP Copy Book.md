@@ -16,7 +16,7 @@
 | home | holds | story | Remembered |
 | schedule | maintains | property | Respected |
 | strata plan | responsible | callout | Recorded |
-| property | keeps | Proof | Protexted | 
+| property | keeps | Proof | Protected | 
 
 ## Suppliers
 
