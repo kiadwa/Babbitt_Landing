@@ -1,0 +1,30 @@
+name = "babbitt-checkout"
+main = "index.js"
+compatibility_date = "2025-09-01"
+
+# Public env vars. Override per-environment below.
+[vars]
+ALLOWED_ORIGIN = "https://babbitt.app"
+SUCCESS_URL    = "https://babbitt.app/?checkout=success"
+CANCEL_URL     = "https://babbitt.app/?checkout=cancel"
+CURRENCY       = "aud"
+
+# Secrets are NOT defined here. Set them with:
+#   wrangler secret put STRIPE_SECRET_KEY
+#
+# Production (live keys, live domain) — default deploy target.
+# Use:  wrangler deploy
+#
+# Staging / test (Stripe test keys against a localhost or preview site):
+[env.staging]
+name = "babbitt-checkout-staging"
+[env.staging.vars]
+ALLOWED_ORIGIN = "http://localhost:4173"
+SUCCESS_URL    = "http://localhost:4173/?checkout=success"
+CANCEL_URL     = "http://localhost:4173/?checkout=cancel"
+CURRENCY       = "aud"
+
+# Optional: bind a custom domain in the Cloudflare dashboard or via routes.
+# [[routes]]
+# pattern = "api.babbitt.app/checkout"
+# custom_domain = true

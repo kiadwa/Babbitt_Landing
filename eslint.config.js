@@ -43,6 +43,22 @@ export default [
         },
     },
     {
-        ignores: ['node_modules/', 'scroll-shots/', 'test-results/', 'playwright-report/', '_about/'],
+        // Cloudflare Worker — uses Web/ServiceWorker runtime globals.
+        files: ['worker/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: 'module',
+            globals: {
+                ...globals.serviceworker,
+                ...globals.browser,
+            },
+        },
+        rules: {
+            'no-unused-vars': ['warn', { args: 'none' }],
+            'no-console': 'off',
+        },
+    },
+    {
+        ignores: ['node_modules/', 'scroll-shots/', 'test-results/', 'playwright-report/', '_about/', 'worker/node_modules/'],
     },
 ];

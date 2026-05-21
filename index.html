@@ -17,42 +17,45 @@
     <!-- Dim overlay — partner hover -->
     <div class="dim-overlay"></div>
 
-    <!-- Yellow sweep — form overlay -->
+    <!-- Yellow sweep — Babbitt 60 application overlay -->
     <div class="yellow-sweep" id="yellowSweep"></div>
     <div class="sweep-message" id="sweepMessage">
         <div class="sweep-content">
-            <p class="sweep-title">Every job. Your name on it.</p>
-            <form class="sweep-form" id="waitlistForm" action="https://formsubmit.co/58459ab88c06eacf2b587fb2888464e5" method="POST">
+            <form class="sweep-form" id="babbitt60Form" action="https://formsubmit.co/58459ab88c06eacf2b587fb2888464e5" method="POST">
+                <header class="sweep-form-header">
+                    <p class="sweep-form-eyebrow">Applications Now Open</p>
+                    <p class="sweep-form-title">The Babbitt 60</p>
+                    <p class="sweep-form-subline">By application only. We review every one.</p>
+                </header>
                 <input type="hidden" name="_captcha" value="true">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_format" value="plain">
                 <input type="hidden" name="_url" value="https://babbitt-app.github.io">
-                <input type="hidden" name="_next" value="https://babbitt-app.github.io/#user_waitlist">
-                <input type="hidden" name="_subject" value="New Waitlist Signup - Babbitt">
-                <input type="hidden" name="_autoresponse" value="Thank you for your interest in Babbitt! We'll be in touch soon.">
+                <input type="hidden" name="_next" value="https://babbitt-app.github.io/#babbitt60_submitted">
+                <input type="hidden" name="_subject" value="New Babbitt 60 Application">
+                <input type="hidden" name="_autoresponse" value="Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.">
                 <div class="form-row">
                     <input type="text" name="firstName" placeholder="First Name" required>
                     <input type="text" name="lastName" placeholder="Last Name" required>
                 </div>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="company" placeholder="Your Company Name (if any)">
-                <select name="userType" aria-placeholder="Your Profession" required>
-                    <option value ="">Your Profession</option>
+                <select name="userType" required>
+                    <option value="">Your Profession</option>
                     <option value="trades">Trades & Specialists</option>
                     <option value="property_manager">Property Manager</option>
                     <option value="property_owner">Property Owner</option>
                     <option value="strata">Strata</option>
                     <option value="supplier">Suppliers & Enterprise Contractors</option>
-                    <option value="tenant">Tenant</option>
                     <option value="other">Other</option>
                 </select>
-                <textarea name="Your thoughts" rows="3" maxlength="300" placeholder="Anything on your mind about Babbitt? Let us know"></textarea>
+                <textarea name="whyBabbitt60" rows="3" maxlength="500" placeholder="What's your thought so far about Babbitt, we would love to know? (1–2 sentences)" required></textarea>
                 <label class="checkbox-label">
                     <input type="checkbox" name="terms" required>
                     <span>I agree to the terms and conditions</span>
                 </label>
-                <div id="formMessage" class="form-message"></div>
-                <button type="submit" class="btn btn-submit-sweep" id="submitBtn">Secure My Spot</button>
+                <div id="babbitt60FormMessage" class="form-message"></div>
+                <button type="submit" class="btn btn-submit-sweep" id="babbitt60SubmitBtn">Submit Application</button>
             </form>
             <p class="sweep-hint">Click outside to close</p>
         </div>
@@ -126,7 +129,7 @@
                 </span>
             </a>
             <div class="nav-links" id="navLinks">
-                <button class="btn nav-secure-btn" id="btnNavCta">Secure Your Spot</button>
+                <button class="btn nav-secure-btn" id="btnNavCta">Apply - The Babbitt 60</button>
             </div>
             <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -754,21 +757,17 @@
             <div class="section-header">
                 <span class="section-eyebrow">PRICING · FOUNDING RATES</span>
                 <h2 class="section-title">Build your plan. Lock the price.</h2>
-                <p class="section-lead">Pick a tier, add what you need, and secure founding pricing before launch. Quotes convert to invoices on launch day — you'll have 30 days to accept.</p>
+                <p class="section-lead">Pick a tier, add what you need, and lock the founding rate today. Your card is charged immediately and the founding price stays with your account for life.</p>
                 <div id="waitlistSuccess" class="form-message" style="max-width:560px;margin:16px auto 0"></div>
             </div>
 
-            <div class="pricing-builder" id="pricingBuilder">
-                <!-- Top controls: billing toggle + Babbitt 60 -->
+            <div class="pricing-builder" id="pricingBuilder" data-checkout-endpoint="">
+                <!-- Top controls: billing toggle -->
                 <div class="pb-controls">
                     <div class="pb-billing" role="tablist" aria-label="Billing cycle">
                         <button class="pb-chip is-active" data-billing="yearly" role="tab" aria-selected="true">Yearly · save 50%</button>
                         <button class="pb-chip" data-billing="monthly" role="tab" aria-selected="false">Monthly</button>
                     </div>
-                    <div class="pb-divider" aria-hidden="true"></div>
-                    <button class="pb-chip pb-chip--offer" id="pbBabbitt60">
-                        <span class="pb-chip-spark" aria-hidden="true">✦</span> Apply for Babbitt 60
-                    </button>
                 </div>
 
                 <div class="pb-layout">
@@ -824,7 +823,7 @@
                                     <div class="pb-tier-period">/month, billed yearly</div>
                                     <div class="pb-tier-storage">10 GB storage</div>
                                     <ul class="pb-tier-list">
-                                        <li>Code Checker (25 q / mo)</li>
+                                        <li>CodeChecker (25 q / mo)</li>
                                         <li>Untracked fleet</li>
                                         <li>AI decision support</li>
                                         <li>Unlimited sub-contractors</li>
@@ -891,9 +890,10 @@
                         <div id="pbRecurringNote"></div>
 
                         <div class="pb-quote-cta">
-                            <button class="btn btn-primary pb-lock-btn" id="btnWaitlistCta" type="button">Lock in my quote</button>
+                            <button class="btn btn-primary pb-lock-btn" id="btnWaitlistCta" type="button">Lock founding rate · Checkout</button>
+                            <div id="pbCheckoutError" class="form-message" style="display:none;margin-top:10px"></div>
                             <div id="pbSavingsDisplay"></div>
-                            <p class="pb-quote-fine">Quotes convert to invoices when Babbitt goes live. You'll have 30 days to accept after launch.</p>
+                            <p class="pb-quote-fine">Secured by Stripe. Founding price stays with your account — cancel anytime.</p>
                         </div>
                     </aside>
                 </div>
@@ -910,6 +910,7 @@
             <h3 id="pbSetupTitle" class="pb-modal-title">Catalogue setup — $200</h3>
             <p class="pb-modal-lead">We connect your product catalogue to the Babbitt trade-code system. That gets you:</p>
             <ul class="pb-modal-list">
+                <li>We personally sit down with you and help you migrate your stock data</li>
                 <li>Automatic code sync for accurate quoting</li>
                 <li>Real-time inventory tracking across the platform</li>
                 <li>Faster project matches with trades and property teams</li>
@@ -949,40 +950,10 @@
             </div>
             <div class="footer-links">
                 <a href="#features">Who it's for</a>
-                <a href="#waitlist">Waitlist</a>
             </div>
             <p class="footer-copy">&copy; 2026 Babbitt. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- ═══ Campaign Modal — SWAPPABLE per campaign ═══ -->
-    <div class="campaign-modal" id="campaignModal" aria-hidden="true">
-        <div class="campaign-modal-backdrop"></div>
-        <div class="campaign-modal-inner" role="dialog" aria-modal="true" aria-labelledby="campaignTitle">
-            <button class="campaign-modal-close" id="campaignModalClose" aria-label="Close">&times;</button>
-            <!-- SWAPPABLE CONTENT START -->
-            <div class="campaign-content" data-campaign="babbitt-60">
-                <header class="campaign-header">
-                    <span class="campaign-eyebrow">Applications Now Open</span>
-                    <h2 id="campaignTitle">The Babbitt 60</h2>
-                    <p class="campaign-subline">By application only. We review every one.</p>
-                </header>
-                <div class="campaign-form-wrap">
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSfubIBGPsNZ4RxWvyWn84CW7pykTtsm7uMkHkD0QdYX5xVBnA/viewform?embedded=true"
-                        width="100%"
-                        height="800"
-                        frameborder="0"
-                        marginheight="0"
-                        marginwidth="0"
-                        title="The Babbitt 60 — Application">
-                        Loading…
-                    </iframe>
-                </div>
-            </div>
-            <!-- SWAPPABLE CONTENT END -->
-        </div>
-    </div>
 
     <!-- ═══ Room Modals — one per floor-plan lane ═══ -->
     <div class="room-modal" id="roomModal" aria-hidden="true">
@@ -1079,19 +1050,20 @@
                 <!-- 3-up benefits tiles -->
                 <div class="ticket-stamps" role="list">
                     <div class="stamp" role="listitem">
-                        <span class="stamp-label">Lead fees</span>
+                        <span class="stamp-label">Starts free</span>
                         <span class="stamp-value">$0</span>
-                        <span class="stamp-foot">Owners pay to post &mdash; not you</span>
+                        <span class="stamp-foot">Why pay to find a job</span>
                     </div>
                     <div class="stamp" role="listitem">
                         <span class="stamp-label">Paid in</span>
-                        <span class="stamp-value">T+3 <span class="stamp-unit">days</span></span>
-                        <span class="stamp-foot">After the Close-Out gate clears</span>
+                        <!-- T+3 <span class="stamp-unit">days -->
+                        <span class="stamp-value">In-app payment</span>
+                        <span class="stamp-foot">No need to open your banking app</span>
                     </div>
                     <div class="stamp" role="listitem">
-                        <span class="stamp-label">Disputes</span>
-                        <span class="stamp-value">Nil</span>
-                        <span class="stamp-foot">Counter-signed at every gate</span>
+                        <span class="stamp-label">One app</span>
+                        <span class="stamp-value">For everything</span>
+                        <span class="stamp-foot">We got your supplier and client here too</span>
                     </div>
                 </div>
 
@@ -1099,8 +1071,7 @@
                 <aside class="ticket-payout" aria-label="How sign-off works">
                     <span class="payout-mark"><i class="fas fa-key" aria-hidden="true"></i></span>
                     <p class="payout-copy">
-                        <strong>Your 4-digit PIN is your invoice.</strong> Sign the gate, the client
-                        counter-signs, the money moves &mdash; no chasing, no &ldquo;invoice in the post.&rdquo;
+                        <strong>Your invoice is secured.</strong> 2 factors signature to progress the job, the money moves &mdash; no chasing, no &ldquo;hard work before the pay.&rdquo;
                     </p>
                     <span class="payout-tag">GATE</span>
                 </aside>
@@ -1159,7 +1130,7 @@
 
                 <!-- Headline — benefit-led -->
                 <div class="ticket-headline">
-                    <h2 class="ticket-title" id="manifestTitle">Funded orders &mdash; straight to your inbox.</h2>
+                    <h2 class="ticket-title" id="manifestTitle">Tradies' orders &mdash; straight to your inbox.</h2>
                     <p class="ticket-meta">
                         <span class="badge badge--info">Free Listing</span>
                         <span class="meta-sep">&middot;</span>
@@ -1264,14 +1235,14 @@
                 <!-- 3-up benefits tiles -->
                 <div class="ticket-stamps" role="list">
                     <div class="stamp" role="listitem">
-                        <span class="stamp-label">Listing fee</span>
+                        <span class="stamp-label">Starts free</span>
                         <span class="stamp-value">$0</span>
-                        <span class="stamp-foot">No SaaS, no commission</span>
+                        <span class="stamp-foot">No onboarding steps, we personally help you register your stock</span>
                     </div>
                     <div class="stamp" role="listitem">
-                        <span class="stamp-label">RFQ &rarr; PO</span>
-                        <span class="stamp-value">&lt;48h <span class="stamp-unit">avg</span></span>
-                        <span class="stamp-foot">From quote sent to PO landed</span>
+                        <span class="stamp-label">Easy quoting and invoicing</span>
+                        <span class="stamp-value">1 <span class="stamp-unit">click</span></span>
+                        <span class="stamp-foot">From RFQ to Quote, from Quote to Invoice</span>
                     </div>
                     <div class="stamp" role="listitem">
                         <span class="stamp-label">Paid on</span>
@@ -1462,9 +1433,9 @@
                 <!-- 3-up benefits tiles -->
                 <div class="ticket-stamps" role="list">
                     <div class="stamp" role="listitem">
-                        <span class="stamp-label">SaaS fee</span>
+                        <span class="stamp-label">Starts free</span>
                         <span class="stamp-value">$0</span>
-                        <span class="stamp-foot">Per door, per month, per ever</span>
+                        <span class="stamp-foot">No onboarding, pay when you need</span>
                     </div>
                     <div class="stamp" role="listitem">
                         <span class="stamp-label">Owner reports</span>
@@ -1943,7 +1914,7 @@
                 <!-- CTAs -->
                 <footer class="ticket-cta">
                     <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="owner">
-                        Claim your property <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        Starts with your property <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
                         Watch an owner do it
@@ -2193,12 +2164,6 @@
             <span class="ticket-perf ticket-perf--bottom" aria-hidden="true"></span>
         </article>
     </div>
-
-    <!-- Floating Campaign CTA -->
-    <a href="/qrlanding" class="campaign-fab" id="btnCampaignFab" aria-label="Apply for The Babbitt 60">
-        <span class="campaign-fab-dot"></span>
-        <span class="campaign-fab-text">Apply — The Babbitt 60</span>
-    </a>
 
     <script src="script.js"></script>
     <script>

@@ -81,9 +81,8 @@
     });
 })();
 
-/* ── 3. Yellow Sweep — open form overlay ── */
+/* ── 3. Yellow Sweep — open Babbitt 60 application overlay ── */
 (function () {
-    var btnMember    = document.getElementById('btnMember');
     var btnNavCta    = document.getElementById('btnNavCta');
     var btnWaitlist  = document.getElementById('btnWaitlistCta');
     var yellowSweep  = document.getElementById('yellowSweep');
@@ -103,11 +102,7 @@
         }, 300);
     }
 
-    if (btnMember) {
-        btnMember.addEventListener('click', openSweep);
-    }
-
-    // Nav "Get Early Access" — open immediately
+    // Nav "Secure Your Spot" — open immediately
     if (btnNavCta) {
         btnNavCta.addEventListener('click', function (e) {
             e.preventDefault();
@@ -115,9 +110,14 @@
         });
     }
 
-    // Waitlist section "I'm interested" — open immediately
+    // Pricing "Lock founding rate" — handled by the pricing-builder IIFE when
+    // a checkout endpoint is configured. Falls back to the sweep form here so
+    // the button still works on environments without the Worker deployed.
     if (btnWaitlist) {
         btnWaitlist.addEventListener('click', function () {
+            var pb = document.getElementById('pricingBuilder');
+            var endpoint = pb && pb.getAttribute('data-checkout-endpoint');
+            if (endpoint) return; // handled by Stripe checkout IIFE
             openSweep();
         });
     }
@@ -577,32 +577,51 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 
 /* ── 9. Form Submission (FormSubmit.co with built-in captcha) ── */
 (function () {
-    var form = document.getElementById('waitlistForm');
-    var formMessage = document.getElementById('formMessage');
-    var submitBtn = document.getElementById('submitBtn');
     var successEl = document.getElementById('waitlistSuccess');
-    if (!form) return;
 
-    form.addEventListener('submit', function () {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-        if (formMessage) {
-            formMessage.textContent = 'Submitting your request...';
-            formMessage.className = 'form-message';
-        }
-        sessionStorage.setItem('formSubmitted', 'true');
-    });
+    // Babbitt 60 application form (lives inside the yellow sweep)
+    var b60Form = document.getElementById('babbitt60Form');
+    var b60Msg  = document.getElementById('babbitt60FormMessage');
+    var b60Btn  = document.getElementById('babbitt60SubmitBtn');
+    if (b60Form) {
+        b60Form.addEventListener('submit', function () {
+            if (b60Btn) {
+                b60Btn.disabled = true;
+                b60Btn.textContent = 'Submitting...';
+            }
+            if (b60Msg) {
+                b60Msg.textContent = 'Submitting your application...';
+                b60Msg.className = 'form-message';
+            }
+            sessionStorage.setItem('formSubmitted', 'babbitt60');
+        });
+    }
 
     // Detect return from successful FormSubmit redirect
     var submitted = sessionStorage.getItem('formSubmitted');
-    if (submitted && successEl) {
-        var msg = submitted === 'partner'
-            ? "Thank you for your partnership enquiry. We'll be in touch soon."
-            : "Thank you for joining the waitlist. We'll be in touch soon.";
-        successEl.textContent = msg;
-        successEl.className = 'form-message success';
+    if (submitted) {
+        if (submitted === 'babbitt60') {
+            var yellowSweep = document.getElementById('yellowSweep');
+            var sweepMsg    = document.getElementById('sweepMessage');
+            if (b60Form && b60Msg) {
+                b60Form.style.display = 'none';
+                b60Msg.textContent = "Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.";
+                b60Msg.className = 'form-message success';
+            }
+            if (yellowSweep) yellowSweep.classList.add('active');
+            if (sweepMsg)    sweepMsg.classList.add('active');
+            if (successEl) {
+                successEl.textContent = "Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.";
+                successEl.className = 'form-message success';
+            }
+        } else if (successEl) {
+            successEl.textContent = submitted === 'partner'
+                ? "Thank you for your partnership enquiry. We'll be in touch soon."
+                : "Thank you for joining the waitlist. We'll be in touch soon.";
+            successEl.className = 'form-message success';
+            successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         sessionStorage.removeItem('formSubmitted');
-        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     // Partner form submission
@@ -787,35 +806,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     if (reduceMotionMq.addEventListener) reduceMotionMq.addEventListener('change', onScroll);
 })();
 
-/* ── 11. Campaign Modal ── */
-(function () {
-    var modal      = document.getElementById('campaignModal');
-    var closeBtn   = document.getElementById('campaignModalClose');
-    var backdrop   = modal ? modal.querySelector('.campaign-modal-backdrop') : null;
-    var btnNav     = document.getElementById('btnCampaignNav');
-    var btnFab     = document.getElementById('btnCampaignFab');
-    if (!modal) return;
-
-    function openModal() {
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-    }
-
-    function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-    }
-
-    if (btnNav) btnNav.addEventListener('click', openModal);
-    if (btnFab) btnFab.addEventListener('click', openModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (backdrop) backdrop.addEventListener('click', closeModal);
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-    });
-})();
-
 /* ── 12. Mosaic cards — rotating photo backgrounds (crossfade) ── */
 (function () {
     var base = 'stock-photo/';
@@ -949,13 +939,13 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     var discountLine    = document.getElementById('pbDiscountLine');
     var recurringNote   = document.getElementById('pbRecurringNote');
     var savingsDisplay  = document.getElementById('pbSavingsDisplay');
-    var babbitt60Chip   = document.getElementById('pbBabbitt60');
     var tier2Trigger    = document.getElementById('pbTier2Trigger');
     var setupModal      = document.getElementById('pbSetupModal');
     var setupClose      = document.getElementById('pbSetupClose');
     var setupConfirm    = document.getElementById('pbSetupConfirm');
     var setupBackdrop   = setupModal ? setupModal.querySelector('.pb-modal-backdrop') : null;
-    var campaignModal   = document.getElementById('campaignModal');
+    var yellowSweep     = document.getElementById('yellowSweep');
+    var sweepMsg        = document.getElementById('sweepMessage');
 
     var PRICING = {
         accountModifiers: {
@@ -1039,9 +1029,9 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
 
     function openCampaignModal() {
-        if (!campaignModal) return;
-        campaignModal.classList.add('is-open');
-        campaignModal.setAttribute('aria-hidden', 'false');
+        if (!yellowSweep || !sweepMsg) return;
+        yellowSweep.classList.add('active');
+        sweepMsg.classList.add('active');
     }
 
     // Billing toggle
@@ -1129,20 +1119,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             }
         });
     });
-
-    // Babbitt 60 chip — open existing campaign modal
-    if (babbitt60Chip) {
-        babbitt60Chip.addEventListener('click', function () {
-            if (state.billing !== 'yearly') {
-                window.alert('Babbitt 60 is only available with yearly billing. Switch to yearly to apply.');
-                return;
-            }
-            state.babbitt60 = true;
-            renderAddons();
-            renderTotals();
-            openCampaignModal();
-        });
-    }
 
     // Setup fee modal wiring
     function openSetupModal() {
@@ -1338,6 +1314,77 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 savingsDisplay.innerHTML = 'You save $' + totalSavings.toFixed(2) + ' / year';
             }
         }
+    }
+
+    // ── Stripe Checkout wiring ──
+    // When `data-checkout-endpoint` is set on #pricingBuilder, the lock button
+    // POSTs the current selection to the Cloudflare Worker, which returns a
+    // Stripe Checkout Session URL. We then redirect the browser there.
+    var lockBtn = document.getElementById('btnWaitlistCta');
+    var errEl   = document.getElementById('pbCheckoutError');
+    var endpoint = builder.getAttribute('data-checkout-endpoint');
+
+    function showError(msg) {
+        if (!errEl) return;
+        errEl.style.display = 'block';
+        errEl.textContent = msg;
+    }
+    function clearError() {
+        if (!errEl) return;
+        errEl.style.display = 'none';
+        errEl.textContent = '';
+    }
+
+    function buildCheckoutPayload() {
+        var addons = {};
+        Object.keys(state.addons).forEach(function (k) {
+            var a = state.addons[k];
+            if (a && a.quantity > 0) addons[k] = { quantity: a.quantity };
+        });
+        return {
+            billing:   state.billing,
+            account:   state.account,
+            tier:      state.tier,
+            babbitt60: !!state.babbitt60,
+            addons:    addons,
+        };
+    }
+
+    if (lockBtn && endpoint) {
+        lockBtn.addEventListener('click', async function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            // Free tier has no paid items — fall back to waitlist sweep form
+            if (state.tier === 'free' && state.accountFee === 0) {
+                var pb = document.getElementById('yellowSweep');
+                var sm = document.getElementById('sweepMessage');
+                if (pb && sm) { pb.classList.add('active'); sm.classList.add('active'); }
+                return;
+            }
+
+            clearError();
+            var original = lockBtn.textContent;
+            lockBtn.disabled = true;
+            lockBtn.textContent = 'Redirecting to checkout…';
+
+            try {
+                var res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(buildCheckoutPayload()),
+                });
+                var data = await res.json().catch(function () { return {}; });
+                if (!res.ok || !data.url) {
+                    throw new Error(data.error || 'Checkout could not be started. Please try again.');
+                }
+                window.location.assign(data.url);
+            } catch (err) {
+                showError(err.message || 'Checkout failed. Please try again.');
+                lockBtn.disabled = false;
+                lockBtn.textContent = original;
+            }
+        }, true); // capture phase: run before the IIFE-3 fallback handler
     }
 
     // Initialise
