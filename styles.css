@@ -1057,9 +1057,10 @@ body.partner-hover .dim-overlay {
 
 .brand-logo-inline {
     display: inline-block;
-    height: 0.75em;
-    vertical-align: baseline;
-    margin-bottom: -0.05em;
+    /* Match the biggest cycling word (.hero-line.feature-word) */
+    height: clamp(48px, 7vw, 88px);
+    vertical-align: middle;
+    margin-bottom: 0;
 }
 
 .footer-brand-logo {
@@ -1728,6 +1729,10 @@ body.partner-hover .dim-overlay {
     .hero { padding: 80px 0 60px; min-height: auto; }
     .hero-line { font-size: clamp(16px, 5.2vw, 36px); }
     .hero-line.feature-word { font-size: clamp(20px, 7vw, 48px); }
+    .brand-logo-inline { height: clamp(20px, 7vw, 48px); }
+    .mosaic-center .hero-line.closing .brand-logo-inline { height: clamp(20px, 7vw, 48px); }
+    /* Footer mark keeps its compact size */
+    .brand-logo-inline.footer-brand-logo { height: 18px; }
 
     .stats-grid        { grid-template-columns: repeat(2, 1fr); }
     .features-grid     { grid-template-columns: 1fr; }
@@ -1990,17 +1995,13 @@ body.partner-hover .dim-overlay {
 
 .mosaic-center .hero-line.closing {
     font-size: clamp(13px, 1vw, 16px);
-    margin-top: 16px;
+    margin-top: clamp(56px, 8vw, 120px);
     white-space: normal;
 }
 
-.center-footer {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
+/* Wordmark in mosaic closing line matches mosaic feature-word size */
+.mosaic-center .hero-line.closing .brand-logo-inline {
+    height: clamp(32px, 5vw, 72px);
 }
 
 /* Sneak-peek cards — corners */
