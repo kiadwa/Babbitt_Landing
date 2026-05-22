@@ -575,6 +575,48 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     });
 })();
 
+/* ── 8b. Scroll-to-top FAB — fades in once user scrolls past the hero ── */
+(function () {
+    var btn = document.getElementById('btnScrollTop');
+    if (!btn) return;
+
+    var hero = document.getElementById('hero');
+    var ticking = false;
+
+    function threshold() {
+        // Reveal once scrolled roughly one viewport down, or past the hero.
+        var heroBottom = hero ? hero.offsetTop + hero.offsetHeight : window.innerHeight;
+        return Math.max(window.innerHeight * 0.6, heroBottom - window.innerHeight * 0.5);
+    }
+
+    function update() {
+        ticking = false;
+        if (window.scrollY > threshold()) {
+            btn.classList.add('is-visible');
+        } else {
+            btn.classList.remove('is-visible');
+        }
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', function () {
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (hero && hero.scrollIntoView) {
+            hero.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        } else {
+            window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        }
+    });
+
+    update();
+})();
+
 /* ── 9. Form Submission (FormSubmit.co with built-in captcha) ── */
 (function () {
     var successEl = document.getElementById('waitlistSuccess');
