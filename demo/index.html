@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Babbitt — Live demo of the platform. Walk through key user flows.">
-    <title>Babbitt — Demo</title>
+    <meta name="description" content="Babbitt. Live demo of the platform. Walk through key user flows.">
+    <title>Babbitt &middot; Demo</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
     <!-- Open Graph / social previews -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Babbitt">
-    <meta property="og:title" content="Babbitt — Live demo">
-    <meta property="og:description" content="Walk through real user flows. Post a job, quote, stage a build, sign-off — all in one place.">
+    <meta property="og:title" content="Babbitt &middot; Live demo">
+    <meta property="og:description" content="Walk through real user flows. Post a job, quote, stage a build, sign off. All in one place.">
     <meta property="og:url" content="https://babbitt.app/demo/">
     <meta property="og:image" content="https://babbitt.app/babbitt-full-logo.svg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Babbitt — Live demo">
-    <meta name="twitter:description" content="Walk through real user flows. Post a job, quote, stage a build, sign-off — all in one place.">
+    <meta name="twitter:title" content="Babbitt &middot; Live demo">
+    <meta name="twitter:description" content="Walk through real user flows. Post a job, quote, stage a build, sign off. All in one place.">
     <meta name="twitter:image" content="https://babbitt.app/babbitt-full-logo.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -136,7 +136,7 @@
                     <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="property-owner-register" data-tone="blue" role="tab">Register property</button>
                     <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="property-owner-listing" data-tone="blue" role="tab">Post a job</button>
                     <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="pm-listing-from-property" data-tone="green" role="tab">PM lists work</button>
-                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="strata-votes-rules" data-tone="yellow" role="tab">Strata vote</button>
+                    <button class="flow-btn px-2.5 py-1 rounded-badge text-[11px] font-semibold border transition-colors" data-flow="strata-votes-rules" data-tone="yellow" role="tab">Strata motion</button>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                     <span class="inline-flex items-center text-[10px] uppercase tracking-wider text-green font-semibold pl-1.5 border-l-2 border-green w-[68px] shrink-0">Supplier</span>
@@ -146,7 +146,7 @@
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-3">
                 <div>
                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Active flow</p>
-                    <h1 id="flowTitle" class="text-xl font-head font-bold text-txt">Property Owner — Create a Listing</h1>
+                    <h1 id="flowTitle" class="text-xl font-head font-bold text-txt">Property Owner &middot; Create a Listing</h1>
                 </div>
                 <div class="text-xs text-txt-secondary">
                     Step <span id="stepCurrent" class="text-txt font-semibold">1</span> of <span id="stepTotal">5</span>
@@ -276,7 +276,7 @@
 
                         <p id="step3Hint" class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-info-circle text-yellow mt-0.5"></i>
-                            <span>Fill in the details for your job. Hit <span class="text-yellow font-semibold">Next</span> to review — we'll auto-fill demo data if you skip any field.</span>
+                            <span>Fill in the details for your job. Hit <span class="text-yellow font-semibold">Next</span> to review. We'll auto-fill demo data if you skip any field.</span>
                         </p>
 
                         <p id="step4Hint" class="hidden rounded-card border border-green/30 bg-green/5 p-3 text-sm text-txt flex items-start gap-3">
@@ -310,7 +310,7 @@
 
                             <div>
                                 <label for="lf-title" class="text-sm text-txt-secondary font-semibold">Title *</label>
-                                <input id="lf-title" name="title" type="text" placeholder="e.g. Plumber needed for bathroom reno — Paddington"
+                                <input id="lf-title" name="title" type="text" placeholder="e.g. Plumber needed for bathroom reno in Paddington"
                                     class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt placeholder:text-txt-tertiary">
                             </div>
 
@@ -444,7 +444,7 @@
                                             <span id="sc-type" class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">Quote Request</span>
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                                         </div>
-                                        <p id="sc-title" class="text-sm font-semibold text-txt leading-snug mb-1">Plumber needed for bathroom renovation — Paddington</p>
+                                        <p id="sc-title" class="text-sm font-semibold text-txt leading-snug mb-1">Plumber needed for bathroom renovation, Paddington</p>
                                         <p class="text-xs text-txt-tertiary flex items-center gap-3 flex-wrap">
                                             <span><i class="fas fa-location-dot mr-1"></i><span id="sc-loc">Paddington, NSW 2021</span></span>
                                             <span><i class="far fa-clock mr-1"></i>Just now</span>
@@ -459,7 +459,7 @@
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">What happens next</p>
                                     <ul class="space-y-2 text-sm text-txt-secondary">
                                         <li class="flex items-start gap-2"><i class="fas fa-bullhorn text-yellow mt-1 text-xs"></i><span>Your listing is now visible to verified plumbers near Paddington.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-comments text-blue mt-1 text-xs"></i><span>Quotes land in one thread — compare side-by-side.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-comments text-blue mt-1 text-xs"></i><span>Quotes land in one thread. Compare side-by-side.</span></li>
                                         <li class="flex items-start gap-2"><i class="fas fa-shield-halved text-green mt-1 text-xs"></i><span>Trade ABNs, licences and trust markers are verified before they can quote.</span></li>
                                         <li class="flex items-start gap-2"><i class="fas fa-handshake text-orange mt-1 text-xs"></i><span>Pick a quote, kick off the job. Every signature stays on the record.</span></li>
                                     </ul>
@@ -483,7 +483,7 @@
                             Quote, get awarded, stage the job.
                         </h2>
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
-                            Marcus runs a one-man plumbing crew out of Surry Hills — verified plumber, 87 jobs on Babbitt.
+                            Marcus runs a one-man plumbing crew out of Surry Hills. Verified plumber, 87 jobs on Babbitt.
                             He spots Sarah's bathroom-reno listing, sends a quote, and gets the job. Then he opens the
                             Job Shell to start staging the work.
                         </p>
@@ -506,7 +506,7 @@
                         </div>
 
                         <p class="text-xs text-txt-tertiary">
-                            We'll switch between actors as the job moves — watch the avatar in the top bar.
+                            We'll switch between actors as the job moves. Watch the avatar in the top bar.
                         </p>
                     </div>
                 </div>
@@ -551,7 +551,7 @@
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">Quote Request</span>
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                                         </div>
-                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Plumber needed for bathroom renovation — Paddington</p>
+                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Plumber needed for bathroom renovation, Paddington</p>
                                         <p class="text-xs text-txt-tertiary flex items-center gap-3 flex-wrap">
                                             <span><i class="fas fa-location-dot mr-1"></i>Paddington, NSW 2021</span>
                                             <span><i class="far fa-clock mr-1"></i>2h ago</span>
@@ -563,7 +563,7 @@
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Work</span>
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">Job Posting</span>
                                         </div>
-                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Hot water unit replacement — Surry Hills</p>
+                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Hot water unit replacement, Surry Hills</p>
                                         <p class="text-xs text-txt-tertiary"><i class="fas fa-location-dot mr-1"></i>Surry Hills, NSW · 1d ago · 2 quotes</p>
                                     </li>
                                     <li class="bg-surface border border-bdr rounded-card p-3 opacity-60">
@@ -571,7 +571,7 @@
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Work</span>
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/40">Emergency</span>
                                         </div>
-                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Burst pipe under kitchen sink — Newtown</p>
+                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Burst pipe under kitchen sink, Newtown</p>
                                         <p class="text-xs text-txt-tertiary"><i class="fas fa-location-dot mr-1"></i>Newtown, NSW · 18m ago · 4 quotes</p>
                                     </li>
                                 </ul>
@@ -605,7 +605,7 @@
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Work</span>
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                                     </div>
-                                    <h2 class="font-head text-xl font-bold text-txt">Plumber needed for bathroom renovation — Paddington</h2>
+                                    <h2 class="font-head text-xl font-bold text-txt">Plumber needed for bathroom renovation, Paddington</h2>
                                     <p class="text-xs text-txt-tertiary">Quote Request &middot; by Sarah O'Connor &middot; 2h ago</p>
                                 </div>
                                 <button data-action="open-quote-form" class="pulse-ring px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition shrink-0">
@@ -616,7 +616,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div class="md:col-span-2 bg-body border border-bdr-subtle rounded-card p-4 space-y-2">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Description</p>
-                                    <p class="text-sm text-txt whitespace-pre-wrap">Full bathroom strip-out and reinstall in a 3-bed terrace. Need a licensed plumber for rough-in and fit-off — vanity, shower, toilet, mixer taps. Tiler and waterproofer separate. Materials supplied. Site access weekdays 7am–4pm.</p>
+                                    <p class="text-sm text-txt whitespace-pre-wrap">Full bathroom strip-out and reinstall in a 3-bed terrace. Need a licensed plumber for rough-in and fit-off, covering vanity, shower, toilet and mixer taps. Tiler and waterproofer separate. Materials supplied. Site access weekdays 7am to 4pm.</p>
                                 </div>
                                 <div class="bg-body border border-bdr-subtle rounded-card p-4 space-y-3">
                                     <div>
@@ -659,7 +659,7 @@
 
                         <p class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-info-circle text-yellow mt-0.5"></i>
-                            <span>Quote on Sarah's bathroom-reno listing. Hit <span class="text-yellow font-semibold">Submit Quote</span> when done — we'll auto-fill any blanks.</span>
+                            <span>Quote on Sarah's bathroom-reno listing. Hit <span class="text-yellow font-semibold">Submit Quote</span> when done. We'll auto-fill any blanks.</span>
                         </p>
 
                         <form id="quoteForm" class="bg-surface border border-bdr rounded-card p-4 space-y-4" onsubmit="return false;">
@@ -691,7 +691,7 @@
                             </div>
                             <div>
                                 <label for="qf-message" class="text-xs text-txt-secondary font-semibold mb-1 block">Message</label>
-                                <textarea id="qf-message" rows="4" placeholder="Describe your offer — scope, timing, any inclusions/exclusions..."
+                                <textarea id="qf-message" rows="4" placeholder="Describe your offer: scope, timing, any inclusions/exclusions..."
                                     class="focus-ring w-full px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt placeholder:text-txt-tertiary resize-none"></textarea>
                             </div>
                             <label class="flex items-center gap-2 cursor-pointer">
@@ -717,7 +717,7 @@
                             <div class="flex items-center gap-2 flex-wrap">
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Work</span>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
-                                <h3 class="font-head text-base font-bold text-txt">Plumber needed for bathroom renovation — Paddington</h3>
+                                <h3 class="font-head text-base font-bold text-txt">Plumber needed for bathroom renovation, Paddington</h3>
                             </div>
 
                             <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">My Response</p>
@@ -726,7 +726,7 @@
                                     <span class="text-sm font-medium text-txt">Marcus O'Brien</span>
                                     <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Quoting</span>
                                 </div>
-                                <p id="tr-resp-msg" class="text-xs text-txt-secondary">Happy to take this on — I've done bathroom rough-in/fit-off near Paddington recently. Can start within a week, 5 working days on site, all licences current.</p>
+                                <p id="tr-resp-msg" class="text-xs text-txt-secondary">Happy to take this on. I've done bathroom rough-in/fit-off near Paddington recently. Can start within a week, 5 working days on site, all licences current.</p>
                                 <div class="flex items-center gap-3 text-[11px] text-txt-tertiary">
                                     <span id="tr-resp-price" class="font-medium text-txt-secondary">$2,400</span>
                                     <span id="tr-resp-avail">Avail: Within 1 Week</span>
@@ -737,7 +737,7 @@
 
                         <div class="rounded-card border border-bdr bg-overlay p-3 text-sm text-txt-secondary flex items-start gap-3">
                             <i class="fas fa-shuffle text-yellow mt-0.5"></i>
-                            <span>We'll switch to <span class="text-blue font-semibold">Sarah</span> next — she just got notified there's a quote on her listing.</span>
+                            <span>We'll switch to <span class="text-blue font-semibold">Sarah</span> next. She just got notified there's a quote on her listing.</span>
                         </div>
                     </div>
                 </div>
@@ -774,7 +774,7 @@
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">Quote Request</span>
                                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                                         </div>
-                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Plumber needed for bathroom renovation — Paddington</p>
+                                        <p class="text-sm font-semibold text-txt leading-snug mb-1">Plumber needed for bathroom renovation, Paddington</p>
                                         <p class="text-xs text-txt-tertiary flex items-center gap-3 flex-wrap">
                                             <span><i class="fas fa-eye mr-1"></i>1 quote</span>
                                             <span class="text-yellow"><i class="fas fa-circle text-[6px] mr-1"></i>New</span>
@@ -785,7 +785,7 @@
 
                             <div class="lg:col-span-8">
                                 <div class="bg-surface border border-bdr rounded-card p-5 space-y-4">
-                                    <h3 class="font-head text-base font-bold text-txt">Plumber needed for bathroom renovation — Paddington</h3>
+                                    <h3 class="font-head text-base font-bold text-txt">Plumber needed for bathroom renovation, Paddington</h3>
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Responses (1)</p>
                                     <div class="bg-body border border-bdr-subtle rounded-card p-4 space-y-3">
                                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
@@ -796,7 +796,7 @@
                                                     <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Quoting</span>
                                                     <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Verified ABN</span>
                                                 </div>
-                                                <p class="text-xs text-txt-secondary line-clamp-2" id="tr-resp-msg-owner">Happy to take this on — I've done bathroom rough-in/fit-off near Paddington recently. Can start within a week, 5 working days on site, all licences current.</p>
+                                                <p class="text-xs text-txt-secondary line-clamp-2" id="tr-resp-msg-owner">Happy to take this on. I've done bathroom rough-in/fit-off near Paddington recently. Can start within a week, 5 working days on site, all licences current.</p>
                                                 <div class="flex items-center gap-3 text-[11px] text-txt-tertiary">
                                                     <span class="font-medium text-txt-secondary" id="tr-resp-price-owner">$2,400</span>
                                                     <span id="tr-resp-avail-owner">Avail: Within 1 Week</span>
@@ -828,7 +828,7 @@
                         <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
                             <i class="fas fa-handshake text-green mt-0.5"></i>
                             <div>
-                                <p class="text-sm font-semibold text-txt">Quote accepted — Job created.</p>
+                                <p class="text-sm font-semibold text-txt">Quote accepted. Job created.</p>
                                 <p class="text-xs text-txt-secondary">Sarah awarded Marcus the listing. A new Job has been created in the workspace; both sides can now see it.</p>
                             </div>
                         </div>
@@ -837,7 +837,7 @@
                             <div class="flex items-center gap-2 flex-wrap">
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Work</span>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">Awarded</span>
-                                <h3 class="font-head text-base font-bold text-txt">Plumber needed for bathroom renovation — Paddington</h3>
+                                <h3 class="font-head text-base font-bold text-txt">Plumber needed for bathroom renovation, Paddington</h3>
                             </div>
 
                             <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Responses (1)</p>
@@ -854,7 +854,7 @@
 
                         <div class="rounded-card border border-bdr bg-overlay p-3 text-sm text-txt-secondary flex items-start gap-3">
                             <i class="fas fa-shuffle text-yellow mt-0.5"></i>
-                            <span>Switching back to <span class="text-yellow font-semibold">Marcus</span> — he's about to get a notification.</span>
+                            <span>Switching back to <span class="text-yellow font-semibold">Marcus</span>. He's about to get a notification.</span>
                         </div>
                     </div>
                 </div>
@@ -866,7 +866,7 @@
                             <i class="fas fa-bell text-yellow mt-0.5"></i>
                             <div class="flex-1">
                                 <p class="text-sm font-semibold text-txt">🎉 Sarah O'Connor accepted your quote.</p>
-                                <p class="text-xs text-txt-secondary">A new Job has been created — the workspace just opened below.</p>
+                                <p class="text-xs text-txt-secondary">A new Job has been created. The workspace just opened below.</p>
                             </div>
                         </div>
 
@@ -875,7 +875,7 @@
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                 <div class="flex items-center gap-3 min-w-0">
                                     <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                    <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                    <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                     <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                                 </div>
                                 <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -939,7 +939,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -1017,7 +1017,7 @@
                                     <i class="fas fa-cube text-txt-tertiary"></i>
                                 </div>
                                 <p class="text-sm text-txt-tertiary">No BoQ items yet.</p>
-                                <p class="text-[11px] text-txt-tertiary mt-1">Prices are set by suppliers via RFQ — add items, link them to a stage, then send out RFQs.</p>
+                                <p class="text-[11px] text-txt-tertiary mt-1">Prices are set by suppliers via RFQ. Add items, link them to a stage, then send out RFQs.</p>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1036,13 +1036,13 @@
                         <div data-subpanel="quotes" class="space-y-4 hidden">
                             <h3 class="font-head text-sm font-semibold text-txt-secondary uppercase tracking-wider">Supplier Quotes (0)</h3>
                             <div class="bg-surface border border-dashed border-bdr rounded-card p-6 text-center">
-                                <p class="text-sm text-txt-tertiary">No supplier quotes yet — add BoQ items, then send an RFQ.</p>
+                                <p class="text-sm text-txt-tertiary">No supplier quotes yet. Add BoQ items, then send an RFQ.</p>
                             </div>
                         </div>
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
-                            <p>Pick a template (Bathroom Reno is selected) and click <span class="text-yellow font-semibold">Apply</span> — or use the Next button.</p>
+                            <p>Pick a template (Bathroom Reno is selected) and click <span class="text-yellow font-semibold">Apply</span>, or use the Next button.</p>
                         </div>
                     </div>
                 </div>
@@ -1053,7 +1053,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -1079,7 +1079,7 @@
                         <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
                             <i class="fas fa-circle-check text-green mt-0.5"></i>
                             <div>
-                                <p class="text-sm font-semibold text-txt">Template applied — Bathroom Reno.</p>
+                                <p class="text-sm font-semibold text-txt">Template applied. Bathroom Reno.</p>
                                 <p class="text-xs text-txt-secondary">8 stages added in order. Drag to reorder, edit names, or delete any you don't need.</p>
                             </div>
                         </div>
@@ -1148,7 +1148,7 @@
                                 <span class="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-semibold bg-elevated text-txt-secondary border border-bdr shrink-0">7</span>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-semibold text-txt">Final Inspection</p>
-                                    <p class="text-[11px] text-txt-tertiary">Snag list, leak checks, photos — client sign-off required.</p>
+                                    <p class="text-[11px] text-txt-tertiary">Snag list, leak checks, photos. Client sign-off required.</p>
                                 </div>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/40"><i class="fas fa-shield-halved mr-1 text-[9px]"></i>Gate</span>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-tertiary">Pending</span>
@@ -1166,7 +1166,7 @@
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-arrow-right text-yellow mt-0.5"></i>
-                            <p>Stages are in. Next — switch to <span class="text-yellow font-semibold">BoQ</span> and add the line items each stage needs.</p>
+                            <p>Stages are in. Next, switch to <span class="text-yellow font-semibold">BoQ</span> and add the line items each stage needs.</p>
                         </div>
                     </div>
                 </div>
@@ -1177,7 +1177,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -1252,7 +1252,7 @@
                                     <tr class="border-b border-bdr-subtle">
                                         <td class="py-2 pl-3 pr-2"><input type="checkbox" class="accent-yellow w-3.5 h-3.5" disabled></td>
                                         <td class="py-2 pr-3 text-txt-tertiary">4</td>
-                                        <td class="py-2 pr-4">Floor waste — square chrome</td>
+                                        <td class="py-2 pr-4">Floor waste, square chrome</td>
                                         <td class="py-2 px-3 text-txt-secondary text-xs">4. Pipework &amp; Drainage</td>
                                         <td class="py-2 px-2 text-center text-xs">ea</td>
                                         <td class="py-2 px-2 text-right">2</td>
@@ -1294,7 +1294,7 @@
                         </div>
 
                         <p class="text-[11px] text-txt-tertiary">
-                            Highlighted rows are the four fixtures Marcus wants to source first. Prices are blank — they get set by suppliers via RFQ.
+                            Highlighted rows are the four fixtures Marcus wants to source first. Prices are blank. They get set by suppliers via RFQ.
                         </p>
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
@@ -1310,7 +1310,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -1375,7 +1375,7 @@
                             <div>
                                 <label for="rfq-message" class="text-xs text-txt-secondary font-semibold mb-1 block">Message</label>
                                 <textarea id="rfq-message" rows="3" readonly
-                                    class="w-full px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt cursor-default resize-none">Pricing on these four fixtures for a bathroom reno in Paddington. Need confirmed lead times — installing in week 3. Happy to swap brands if equivalent saves time/cost.</textarea>
+                                    class="w-full px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt cursor-default resize-none">Pricing on these four fixtures for a bathroom reno in Paddington. Need confirmed lead times, installing in week 3. Happy to swap brands if equivalent saves time/cost.</textarea>
                             </div>
 
                             <div class="flex justify-end">
@@ -1398,15 +1398,15 @@
                         <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
                             <i class="fas fa-circle-check text-green mt-0.5"></i>
                             <div class="flex-1">
-                                <p class="text-sm font-semibold text-txt">RFQ sent — Reece replied with pricing.</p>
-                                <p class="text-xs text-txt-secondary">Reece quoted $1,847 for the four fixtures, 2-day lead time. Order locked. (Skipping ahead — pretend the rough-in and waterproofing are done too.)</p>
+                                <p class="text-sm font-semibold text-txt">RFQ sent. Reece replied with pricing.</p>
+                                <p class="text-xs text-txt-secondary">Reece quoted $1,847 for the four fixtures, 2-day lead time. Order locked. (Skipping ahead. Pretend the rough-in and waterproofing are done too.)</p>
                             </div>
                         </div>
 
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -1474,7 +1474,7 @@
 
                         <div class="rounded-card border border-bdr bg-overlay p-3 text-sm text-txt-secondary flex items-start gap-3">
                             <i class="fas fa-shuffle text-yellow mt-0.5"></i>
-                            <span>Click Send — we'll switch to <span class="text-blue font-semibold">Sarah</span> next so she can sign off.</span>
+                            <span>Click Send. We'll switch to <span class="text-blue font-semibold">Sarah</span> next so she can sign off.</span>
                         </div>
                     </div>
                 </div>
@@ -1493,7 +1493,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -1503,7 +1503,7 @@
 
                         <div class="flex items-center gap-2 px-3 py-2 bg-blue/10 border border-blue/30 rounded-card text-xs text-txt-secondary">
                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">View Only</span>
-                            <span>You're viewing this job as the client. Only Marcus can edit — you can sign off on gates.</span>
+                            <span>You're viewing this job as the client. Only Marcus can edit. You can sign off on gates.</span>
                         </div>
 
                         <div class="rounded-card border-2 border-yellow bg-yellow/10 px-4 py-3 flex items-center gap-3">
@@ -1512,8 +1512,8 @@
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow"></span>
                             </span>
                             <div class="flex-1">
-                                <p class="text-sm font-semibold text-txt">Action required — a stage advancement request needs your approval</p>
-                                <p class="text-xs text-txt-secondary mt-0.5">Final Inspection (Gate) — review and sign below.</p>
+                                <p class="text-sm font-semibold text-txt">Action required. A stage advancement request needs your approval.</p>
+                                <p class="text-xs text-txt-secondary mt-0.5">Final Inspection (Gate). Review and sign below.</p>
                             </div>
                         </div>
 
@@ -1568,7 +1568,7 @@
                                     <span class="text-sm text-txt">I've reviewed the photos and confirm the work is complete to the agreed scope.</span>
                                 </label>
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                                    <p class="text-[11px] text-txt-tertiary">Signed by Sarah O'Connor — recorded on the job timeline.</p>
+                                    <p class="text-[11px] text-txt-tertiary">Signed by Sarah O'Connor. Recorded on the job timeline.</p>
                                     <div class="flex gap-2">
                                         <button class="px-3 py-1.5 rounded-btn text-xs bg-surface border border-bdr text-txt-secondary cursor-default">Request Changes</button>
                                         <button data-action="sign-gate" class="pulse-ring px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
@@ -1582,7 +1582,7 @@
                         <div class="rounded-card border border-orange/30 bg-orange/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-flag-checkered text-orange mt-0.5"></i>
                             <div>
-                                <p class="font-semibold">End of demo — for now.</p>
+                                <p class="font-semibold">End of demo, for now.</p>
                                 <p class="text-txt-secondary text-xs mt-0.5">Sarah's signature unlocks Stage 8 (Install Fixtures). Next time we'll add the install + handover and the close-out review.</p>
                             </div>
                         </div>
@@ -1604,7 +1604,7 @@
                         </h2>
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
                             Marcus just sent Reece an RFQ for the four bathroom fixtures on Sarah's job. Watch how
-                            Dan at the Reece Paddington branch turns it around in 22 minutes — RFQ in, catalogue auto-matched,
+                            Dan at the Reece Paddington branch turns it around in 22 minutes. RFQ in, catalogue auto-matched,
                             draft adjusted, sent. Marcus accepts. Order locks.
                         </p>
 
@@ -1628,7 +1628,7 @@
                                     <i class="fas fa-paper-plane text-sm"></i>
                                 </div>
                                 <p class="text-sm font-semibold text-txt mb-0.5">One-click send</p>
-                                <p class="text-xs text-txt-tertiary">Trade accepts — order confirmed.</p>
+                                <p class="text-xs text-txt-tertiary">Trade accepts. Order confirmed.</p>
                             </div>
                         </div>
 
@@ -1636,7 +1636,7 @@
                             <div class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold border" style="background:rgba(103,228,170,0.15); color:#67E4AA; border-color:rgba(103,228,170,0.4);">DM</div>
                             <div class="text-left">
                                 <p class="text-sm font-semibold text-txt">Dan Murray</p>
-                                <p class="text-xs text-txt-tertiary">Quote Desk · Reece Plumbing — Paddington branch</p>
+                                <p class="text-xs text-txt-tertiary">Quote Desk &middot; Reece Plumbing &middot; Paddington branch</p>
                             </div>
                         </div>
                     </div>
@@ -1648,8 +1648,8 @@
                         <div class="toast-in rounded-card border border-yellow/50 bg-yellow/10 p-3 flex items-start gap-3">
                             <i class="fas fa-bell text-yellow mt-0.5"></i>
                             <div>
-                                <p class="text-sm font-semibold text-txt">New RFQ — Babbitt Plumbing (Marcus O'Brien) · 4 items.</p>
-                                <p class="text-xs text-txt-secondary">Bathroom Reno — Paddington · deadline in 3 days · expected order $1,800–$2,000.</p>
+                                <p class="text-sm font-semibold text-txt">New RFQ from Babbitt Plumbing (Marcus O'Brien) &middot; 4 items.</p>
+                                <p class="text-xs text-txt-secondary">Bathroom Reno, Paddington &middot; deadline in 3 days &middot; expected order $1,800 to $2,000.</p>
                             </div>
                         </div>
 
@@ -1659,7 +1659,7 @@
                                 <button class="px-3 py-1.5 rounded-btn text-xs font-medium bg-surface border border-bdr text-txt-tertiary cursor-default">
                                     <i class="fas fa-bolt mr-1"></i> Auto-price ON
                                 </button>
-                                <button class="px-3 py-1.5 rounded-btn text-xs font-medium bg-surface border border-bdr text-txt-tertiary cursor-default">Reece — Paddington</button>
+                                <button class="px-3 py-1.5 rounded-btn text-xs font-medium bg-surface border border-bdr text-txt-tertiary cursor-default">Reece &middot; Paddington</button>
                             </div>
                         </div>
 
@@ -1731,7 +1731,7 @@
                                             </div>
                                         </td>
                                         <td class="py-2.5 px-3">
-                                            <p class="text-sm text-txt-secondary">Apartment fit-out — Block C</p>
+                                            <p class="text-sm text-txt-secondary">Apartment fit-out &middot; Block C</p>
                                             <p class="text-[11px] text-txt-tertiary">Surry Hills, NSW 2010</p>
                                         </td>
                                         <td class="py-2.5 px-3 text-center"><span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">23</span></td>
@@ -1764,7 +1764,7 @@
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">RFQ</span>
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">New</span>
                                     </div>
-                                    <h2 class="font-head text-xl font-bold text-txt">Bathroom Reno — Paddington</h2>
+                                    <h2 class="font-head text-xl font-bold text-txt">Bathroom Reno, Paddington</h2>
                                     <p class="text-xs text-txt-tertiary">From Babbitt Plumbing (Marcus O'Brien) · sent 4m ago · deadline in 3 days</p>
                                 </div>
                                 <button data-action="draft-quote" class="pulse-ring px-4 py-2 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition shrink-0">
@@ -1790,7 +1790,7 @@
                                             <tr><td class="py-1.5 pr-3">Heated towel rail (chrome)</td><td class="py-1.5 px-2 text-center text-xs">ea</td><td class="py-1.5 pl-2 text-right">1</td></tr>
                                         </tbody>
                                     </table>
-                                    <p class="text-[11px] text-txt-tertiary pt-2 border-t border-bdr-subtle">Pricing on these four fixtures for a bathroom reno in Paddington. Need confirmed lead times — installing in week 3. Happy to swap brands if equivalent saves time/cost.</p>
+                                    <p class="text-[11px] text-txt-tertiary pt-2 border-t border-bdr-subtle">Pricing on these four fixtures for a bathroom reno in Paddington. Need confirmed lead times, installing in week 3. Happy to swap brands if equivalent saves time/cost.</p>
                                 </div>
                                 <div class="bg-body border border-bdr-subtle rounded-card p-4 space-y-3">
                                     <div>
@@ -1813,7 +1813,7 @@
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
-                            <p>Click <span class="text-yellow font-semibold">Draft Quote</span> — we'll auto-match items to your catalogue.</p>
+                            <p>Click <span class="text-yellow font-semibold">Draft Quote</span>. We'll auto-match items to your catalogue.</p>
                         </div>
                     </div>
                 </div>
@@ -1823,7 +1823,7 @@
                     <div class="space-y-4">
                         <div class="flex items-center gap-3">
                             <button data-action="back-to-rfq" class="text-txt-secondary hover:text-txt text-sm">&larr; RFQ #091</button>
-                            <h2 class="font-head text-xl font-bold text-txt">Quote — Bathroom Reno</h2>
+                            <h2 class="font-head text-xl font-bold text-txt">Quote &middot; Bathroom Reno</h2>
                             <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-bdr text-txt-secondary">Draft</span>
                         </div>
 
@@ -1831,7 +1831,7 @@
                             <i class="fas fa-circle-check text-green mt-0.5"></i>
                             <div>
                                 <p class="text-sm font-semibold text-txt">4 of 4 items matched to your catalogue.</p>
-                                <p class="text-xs text-txt-secondary">SKUs and BTC codes pulled in. Prices pre-filled from your latest list — adjust any line below.</p>
+                                <p class="text-xs text-txt-secondary">SKUs and BTC codes pulled in. Prices pre-filled from your latest list. Adjust any line below.</p>
                             </div>
                         </div>
 
@@ -1850,7 +1850,7 @@
                                     <tr class="border-b border-bdr-subtle">
                                         <td class="py-2 px-3">
                                             <p class="font-medium">Methven vanity mixer set</p>
-                                            <p class="text-[11px] text-txt-tertiary">Tāku — chrome</p>
+                                            <p class="text-[11px] text-txt-tertiary">Tāku &middot; chrome</p>
                                         </td>
                                         <td class="py-2 px-2 font-mono text-[11px] text-txt-secondary">MTK-VAN<br><span class="text-txt-tertiary">PLB-04-122</span></td>
                                         <td class="py-2 px-2 text-center">1</td>
@@ -1862,7 +1862,7 @@
                                     <tr class="border-b border-bdr-subtle">
                                         <td class="py-2 px-3">
                                             <p class="font-medium">Phoenix shower mixer + rail</p>
-                                            <p class="text-[11px] text-txt-tertiary">Vivid Slimline — chrome</p>
+                                            <p class="text-[11px] text-txt-tertiary">Vivid Slimline &middot; chrome</p>
                                         </td>
                                         <td class="py-2 px-2 font-mono text-[11px] text-txt-secondary">PHX-SHR-VS<br><span class="text-txt-tertiary">PLB-04-201</span></td>
                                         <td class="py-2 px-2 text-center">1</td>
@@ -1916,8 +1916,8 @@
                             <div class="bg-surface border border-bdr rounded-card p-3 space-y-1">
                                 <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Delivery</p>
                                 <select id="quote-delivery" class="focus-ring w-full px-2 py-1.5 text-sm bg-input border border-bdr rounded-input text-txt">
-                                    <option selected>Free — within 5km of branch</option>
-                                    <option>$45 — outside 5km</option>
+                                    <option selected>Free, within 5km of branch</option>
+                                    <option>$45, outside 5km</option>
                                     <option>Pickup only</option>
                                 </select>
                             </div>
@@ -1931,7 +1931,7 @@
 
                         <div class="bg-surface border border-bdr rounded-card p-3 space-y-1">
                             <label for="quote-notes" class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Notes to Marcus (optional)</label>
-                            <textarea id="quote-notes" rows="2" placeholder="e.g. Caroma matte black available on request — same price."
+                            <textarea id="quote-notes" rows="2" placeholder="e.g. Caroma matte black available on request, same price."
                                 class="focus-ring w-full px-2 py-1.5 text-sm bg-input border border-bdr rounded-input text-txt placeholder:text-txt-tertiary resize-none"></textarea>
                         </div>
 
@@ -1991,7 +1991,7 @@
                                 </div>
                                 <div class="bg-body border border-bdr-subtle rounded-card p-3">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-0.5">Delivery</p>
-                                    <p class="text-txt font-medium" id="review-delivery">Free — within 5km of branch</p>
+                                    <p class="text-txt font-medium" id="review-delivery">Free, within 5km of branch</p>
                                 </div>
                             </div>
 
@@ -2004,7 +2004,7 @@
 
                         <div class="rounded-card border border-bdr bg-overlay p-3 text-sm text-txt-secondary flex items-start gap-3">
                             <i class="fas fa-clock text-yellow mt-0.5"></i>
-                            <span>Marcus gets a notification — most tradies accept fast quotes within minutes.</span>
+                            <span>Marcus gets a notification. Most tradies accept fast quotes within minutes.</span>
                         </div>
                     </div>
                 </div>
@@ -2015,7 +2015,7 @@
                         <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
                             <i class="fas fa-trophy text-green mt-0.5"></i>
                             <div class="flex-1">
-                                <p class="text-sm font-semibold text-txt">🎉 Marcus O'Brien accepted your quote — order #R-08421 confirmed.</p>
+                                <p class="text-sm font-semibold text-txt">🎉 Marcus O'Brien accepted your quote. Order #R-08421 confirmed.</p>
                                 <p class="text-xs text-txt-secondary">22 minutes from RFQ to win. The job's BoQ is now linked to this order.</p>
                             </div>
                         </div>
@@ -2027,7 +2027,7 @@
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Confirmed</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
-                                <span>Reece — Paddington</span><span>·</span><span>Just now</span>
+                                <span>Reece &middot; Paddington</span><span>·</span><span>Just now</span>
                             </div>
                         </div>
 
@@ -2093,7 +2093,7 @@
                         <div class="rounded-card border border-orange/30 bg-orange/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-flag-checkered text-orange mt-0.5"></i>
                             <div>
-                                <p class="font-semibold">End of demo — for now.</p>
+                                <p class="font-semibold">End of demo, for now.</p>
                                 <p class="text-txt-secondary text-xs mt-0.5">Next time we'll add the supplier-side delivery scheduling, the warehouse pack list, and the driver run sheet.</p>
                             </div>
                         </div>
@@ -2116,7 +2116,7 @@
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
                             Day 2 of Sarah's bathroom strip-out. Marcus opens the cavity behind the old vanity
                             and spots a fibrous sheet that looks a lot like asbestos. He needs to clarify with
-                            Sarah — then log it formally so everyone's covered.
+                            Sarah, then log it formally so everyone's covered.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
@@ -2132,7 +2132,7 @@
                                     <i class="fas fa-user-check text-sm"></i>
                                 </div>
                                 <p class="text-sm font-semibold text-txt mb-0.5">Owner confirms</p>
-                                <p class="text-xs text-txt-tertiary">Sarah replies from her phone — same thread.</p>
+                                <p class="text-xs text-txt-tertiary">Sarah replies from her phone, same thread.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-4">
                                 <div class="w-9 h-9 rounded-input bg-orange/15 text-orange flex items-center justify-center mb-2">
@@ -2156,7 +2156,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -2215,7 +2215,7 @@
                                                 <span class="text-sm font-semibold text-txt">Sarah O'Connor</span>
                                                 <span class="text-[10px] text-txt-tertiary">Yesterday 4:42 PM</span>
                                             </div>
-                                            <p class="text-sm text-txt leading-relaxed">Hi Marcus — gate code is <span class="font-mono bg-elevated px-1 py-0.5 rounded text-[12px]">4421#</span>. Side door's unlocked, bathroom's the second on the right. Skip's arriving Wed AM.</p>
+                                            <p class="text-sm text-txt leading-relaxed">Hi Marcus, gate code is <span class="font-mono bg-elevated px-1 py-0.5 rounded text-[12px]">4421#</span>. Side door's unlocked, bathroom's the second on the right. Skip's arriving Wed AM.</p>
                                         </div>
                                     </div>
 
@@ -2241,7 +2241,7 @@
                                     <!-- Marcus typing prompt -->
                                     <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                                         <i class="fas fa-lightbulb text-yellow mt-0.5"></i>
-                                        <p>Marcus just opened the cavity wall — type a question to Sarah and hit <span class="text-yellow font-semibold">Send</span>.</p>
+                                        <p>Marcus just opened the cavity wall. Type a question to Sarah and hit <span class="text-yellow font-semibold">Send</span>.</p>
                                     </div>
                                 </div>
 
@@ -2251,7 +2251,7 @@
                                         <button class="text-txt-tertiary hover:text-txt text-base shrink-0" title="Attach">
                                             <i class="fas fa-paperclip"></i>
                                         </button>
-                                        <textarea id="inc-composer" rows="2" class="flex-1 bg-transparent text-sm text-txt placeholder:text-txt-tertiary resize-none focus:outline-none" placeholder="Hey Sarah — quick one, the place is pre-1990 right? I've found a fibrous sheet behind the old vanity that looks like asbestos…"></textarea>
+                                        <textarea id="inc-composer" rows="2" class="flex-1 bg-transparent text-sm text-txt placeholder:text-txt-tertiary resize-none focus:outline-none" placeholder="Hey Sarah, quick one. The place is pre-1990 right? I've found a fibrous sheet behind the old vanity that looks like asbestos…"></textarea>
                                         <div class="flex items-center gap-2 shrink-0">
                                             <span class="hidden sm:flex items-center gap-1 px-2 py-1 rounded-badge text-[10px] font-semibold bg-elevated border border-bdr-subtle text-txt-secondary">
                                                 <i class="fas fa-image text-[10px]"></i> 2
@@ -2294,7 +2294,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                             </div>
                             <div class="flex items-center gap-2 text-xs text-txt-tertiary font-mono">
@@ -2343,7 +2343,7 @@
                                                 <span class="text-[10px] text-txt-tertiary">Just now</span>
                                                 <span class="text-[10px] text-green flex items-center gap-1"><i class="fas fa-check"></i> Sent</span>
                                             </div>
-                                            <p class="text-sm text-txt leading-relaxed mb-2">Hey Sarah — quick one. The place is pre-1990 right? I've just opened the cavity behind the old vanity and found a fibrous sheet that looks a lot like asbestos. Pulling these two photos for you to eyeball. Stopping work on the strip-out till we're sorted.</p>
+                                            <p class="text-sm text-txt leading-relaxed mb-2">Hey Sarah, quick one. The place is pre-1990 right? I've just opened the cavity behind the old vanity and found a fibrous sheet that looks a lot like asbestos. Pulling these two photos for you to eyeball. Stopping work on the strip-out till we're sorted.</p>
 
                                             <!-- Photo attachments -->
                                             <div class="grid grid-cols-2 gap-2 max-w-md">
@@ -2374,7 +2374,7 @@
 
                                 <div class="border-t border-bdr px-3 py-3">
                                     <div class="bg-input border border-bdr-subtle rounded-input px-3 py-2.5 text-sm text-txt-tertiary">
-                                        Composer disabled — waiting for Sarah's reply…
+                                        Composer disabled. Waiting for Sarah's reply…
                                     </div>
                                 </div>
                             </div>
@@ -2401,7 +2401,7 @@
                             <i class="fas fa-mobile-screen text-blue mt-0.5"></i>
                             <div class="flex-1">
                                 <p class="text-sm font-semibold text-txt">Switched to Sarah's phone view.</p>
-                                <p class="text-xs text-txt-secondary">She's at her office — push notification just landed.</p>
+                                <p class="text-xs text-txt-secondary">She's at her office. Push notification just landed.</p>
                             </div>
                         </div>
 
@@ -2437,7 +2437,7 @@
                                             <span class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold shrink-0" style="background:rgba(246,181,0,0.2); color:#F6B500;">MO</span>
                                             <div class="max-w-[80%]">
                                                 <div class="bg-surface text-txt rounded-2xl rounded-bl-sm px-3 py-2 text-sm leading-snug">
-                                                    Hey Sarah — quick one. The place is pre-1990 right? I've found a fibrous sheet behind the old vanity that looks like asbestos. Stopping work till we're sorted.
+                                                    Hey Sarah, quick one. The place is pre-1990 right? I've found a fibrous sheet behind the old vanity that looks like asbestos. Stopping work till we're sorted.
                                                 </div>
                                                 <div class="grid grid-cols-2 gap-1.5 mt-1.5 max-w-[260px]">
                                                     <div class="aspect-[4/3] rounded-lg border border-bdr-subtle bg-elevated flex items-center justify-center">
@@ -2455,7 +2455,7 @@
                                         <div class="flex justify-end">
                                             <div class="max-w-[80%]">
                                                 <div class="bg-blue/20 border border-blue/30 text-txt rounded-2xl rounded-br-sm px-3 py-2 text-sm leading-snug">
-                                                    Yep, built 1962. Last reno was 2003 — the bathroom wasn't touched then so anything behind the vanity is original. Don't push further till we're sure. Happy to engage a licensed assessor today if you log it on the job. <span class="text-blue">🙏</span>
+                                                    Yep, built 1962. Last reno was 2003, the bathroom wasn't touched then so anything behind the vanity is original. Don't push further till we're sure. Happy to engage a licensed assessor today if you log it on the job. <span class="text-blue">🙏</span>
                                                 </div>
                                                 <p class="text-[10px] text-txt-tertiary mt-1 text-right">Draft · ready to send</p>
                                             </div>
@@ -2495,7 +2495,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Work paused</span>
                             </div>
                         </div>
@@ -2525,7 +2525,7 @@
                                                 <span class="text-sm font-semibold text-txt">Sarah O'Connor</span>
                                                 <span class="text-[10px] text-txt-tertiary">Today 9:18 AM</span>
                                             </div>
-                                            <p class="text-sm text-txt leading-relaxed">Yep, built 1962. Last reno was 2003 — the bathroom wasn't touched then so anything behind the vanity is original. Don't push further till we're sure. Happy to engage a licensed assessor today if you log it on the job. 🙏</p>
+                                            <p class="text-sm text-txt leading-relaxed">Yep, built 1962. Last reno was 2003, the bathroom wasn't touched then so anything behind the vanity is original. Don't push further till we're sure. Happy to engage a licensed assessor today if you log it on the job. 🙏</p>
                                         </div>
                                     </div>
 
@@ -2537,7 +2537,7 @@
                                                 <span class="text-sm font-semibold text-txt">Marcus O'Brien</span>
                                                 <span class="text-[10px] text-txt-tertiary">Just now</span>
                                             </div>
-                                            <p class="text-sm text-txt leading-relaxed">Cheers Sarah, agreed. Logging it now — you'll get a notification to acknowledge once it's filed. Won't touch the cavity again till the assessor's been through.</p>
+                                            <p class="text-sm text-txt leading-relaxed">Cheers Sarah, agreed. Logging it now. You'll get a notification to acknowledge once it's filed. Won't touch the cavity again till the assessor's been through.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -2582,7 +2582,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Work paused</span>
                             </div>
                         </div>
@@ -2613,7 +2613,7 @@
                                 <!-- Title -->
                                 <div>
                                     <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Title</label>
-                                    <input type="text" value="Suspected asbestos sheeting behind cavity wall — bathroom strip-out" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring">
+                                    <input type="text" value="Suspected asbestos sheeting behind cavity wall, bathroom strip-out" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring">
                                 </div>
 
                                 <!-- Severity -->
@@ -2631,8 +2631,8 @@
                                 <div>
                                     <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Category</label>
                                     <select class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring">
-                                        <option>Hazardous material — asbestos suspected</option>
-                                        <option>Hazardous material — lead paint</option>
+                                        <option>Hazardous material &middot; asbestos suspected</option>
+                                        <option>Hazardous material &middot; lead paint</option>
                                         <option>Structural / load-bearing concern</option>
                                         <option>Electrical hazard</option>
                                         <option>Plumbing / water damage</option>
@@ -2643,12 +2643,12 @@
                                 <!-- Description -->
                                 <div>
                                     <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Description</label>
-                                    <textarea rows="4" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring leading-relaxed">Opened cavity behind the original vanity (Day 2 strip-out). Found a fibrous cement-style sheet that has the appearance of asbestos. Property built 1962, last reno 2003 (bathroom not touched then) — owner has confirmed building age and pre-1990 construction. Work paused on the strip-out pending licensed asbestos assessor.</textarea>
+                                    <textarea rows="4" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt focus-ring leading-relaxed">Opened cavity behind the original vanity (Day 2 strip-out). Found a fibrous cement-style sheet that has the appearance of asbestos. Property built 1962, last reno 2003 (bathroom not touched then). Owner has confirmed building age and pre-1990 construction. Work paused on the strip-out pending licensed asbestos assessor.</textarea>
                                 </div>
 
                                 <!-- Linked photos -->
                                 <div>
-                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Evidence — linked from chat</label>
+                                    <label class="text-xs text-txt-secondary font-semibold mb-1.5 block">Evidence (linked from chat)</label>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-badge text-[11px] bg-elevated border border-bdr-subtle text-txt-secondary">
                                             <i class="fas fa-image text-[10px]"></i> IMG_4421.jpg
@@ -2716,7 +2716,7 @@
                                 </div>
                                 <div class="bg-elevated/50 border border-bdr-subtle rounded-card p-3 text-xs text-txt-tertiary">
                                     <i class="fas fa-circle-info text-blue mr-1"></i>
-                                    Babbitt never auto-resumes a paused job — only the Owner's acknowledgement plus your re-start can do that.
+                                    Babbitt never auto-resumes a paused job. Only the Owner's acknowledgement plus your re-start can do that.
                                 </div>
                             </aside>
                         </div>
@@ -2738,7 +2738,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
                                 <button class="text-txt-secondary text-sm cursor-default">&larr; Jobs</button>
-                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation — Paddington</h2>
+                                <h2 class="font-head text-xl font-bold text-txt truncate">Plumber needed for bathroom renovation, Paddington</h2>
                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/20 text-orange border border-orange/40">Paused · Incident open</span>
                             </div>
                         </div>
@@ -2765,14 +2765,14 @@
                                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/30">High severity</span>
                                                 <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-elevated text-txt-secondary border border-bdr-subtle">Hazardous material</span>
                                             </div>
-                                            <h3 class="font-head text-lg font-semibold text-txt leading-tight">Suspected asbestos sheeting behind cavity wall — bathroom strip-out</h3>
+                                            <h3 class="font-head text-lg font-semibold text-txt leading-tight">Suspected asbestos sheeting behind cavity wall, bathroom strip-out</h3>
                                             <p class="text-[11px] text-txt-tertiary mt-1">Filed by Marcus O'Brien · Today 9:23 AM · Awaiting owner acknowledgement</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="p-5 space-y-4">
-                                    <p class="text-sm text-txt-secondary leading-relaxed">Opened cavity behind the original vanity (Day 2 strip-out). Found a fibrous cement-style sheet that has the appearance of asbestos. Property built 1962, last reno 2003 — owner confirmed building age. Work paused pending licensed asbestos assessor.</p>
+                                    <p class="text-sm text-txt-secondary leading-relaxed">Opened cavity behind the original vanity (Day 2 strip-out). Found a fibrous cement-style sheet that has the appearance of asbestos. Property built 1962, last reno 2003. Owner confirmed building age. Work paused pending licensed asbestos assessor.</p>
 
                                     <!-- Evidence -->
                                     <div>
@@ -2864,7 +2864,7 @@
 
                                 <div class="rounded-card border border-green/30 bg-green/5 p-3 text-sm text-txt flex items-start gap-3">
                                     <i class="fas fa-circle-check text-green mt-0.5"></i>
-                                    <p>End of demo. The audit trail — chat, photos, incident, sign-offs — all stays linked to this Job for the life of the project.</p>
+                                    <p>End of demo. The audit trail (chat, photos, incident, sign-offs) all stays linked to this Job for the life of the project.</p>
                                 </div>
                             </aside>
                         </div>
@@ -2885,7 +2885,7 @@
                             Tools down. Time to natter with the mob.
                         </h2>
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
-                            Marcus jumps into the Network tab between jobs — catches up on a community thread, throws
+                            Marcus jumps into the Network tab between jobs. He catches up on a community thread, throws
                             in a comment, and finds a friend request waiting from another sparky he's worked with before.
                         </p>
 
@@ -3136,7 +3136,7 @@
                                         <span class="font-semibold text-txt-secondary">@modteam</span>
                                         <span>· 18 Apr</span>
                                     </div>
-                                    <h4 class="text-sm font-semibold text-txt">Community rules — read before posting</h4>
+                                    <h4 class="text-sm font-semibold text-txt">Community rules &middot; read before posting</h4>
                                     <p class="text-xs text-txt-secondary line-clamp-2">No undercutting threads, no marketplace links, name-check verified members only…</p>
                                     <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1">
                                         <span><i class="fas fa-arrow-up mr-1"></i>62</span>
@@ -3144,7 +3144,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Featured post — Marcus's target -->
+                                <!-- Featured post (Marcus's target) -->
                                 <div data-action="open-post-thread" class="pulse-ring bg-surface border border-yellow/40 rounded-card p-4 space-y-2 cursor-pointer hover:border-yellow transition-colors">
                                     <div class="flex items-center gap-2 text-[11px] text-txt-tertiary flex-wrap">
                                         <span class="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-semibold" style="background:rgba(96,205,226,0.2); color:#60CDE2;">JS</span>
@@ -3175,7 +3175,7 @@
                                         <span>· Sparky · 4h ago</span>
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Win</span>
                                     </div>
-                                    <h4 class="text-sm font-semibold text-txt">Switchboard upgrade in Bondi — RCBOs everywhere, owner stoked</h4>
+                                    <h4 class="text-sm font-semibold text-txt">Switchboard upgrade in Bondi. RCBOs everywhere, owner stoked</h4>
                                     <p class="text-xs text-txt-secondary leading-relaxed line-clamp-2">Old porcelain fuses, ceramic neutrals, the lot. New SB came up clean, all type-tested gear, 6 hours total. Insurer's happy.</p>
                                     <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1.5 border-t border-bdr-subtle">
                                         <span><i class="fas fa-arrow-up mr-1"></i>41</span>
@@ -3191,7 +3191,7 @@
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-yellow/15 text-yellow border border-yellow/40">Discussion</span>
                                     </div>
                                     <h4 class="text-sm font-semibold text-txt">Anyone else getting hammered on after-hours callout pricing pushback?</h4>
-                                    <p class="text-xs text-txt-secondary leading-relaxed line-clamp-2">Third one this week — owner expects 9am rates at 11pm. Curious how the rest of you frame it on the quote.</p>
+                                    <p class="text-xs text-txt-secondary leading-relaxed line-clamp-2">Third one this week. Owner expects 9am rates at 11pm. Curious how the rest of you frame it on the quote.</p>
                                     <div class="flex items-center gap-4 text-[11px] text-txt-tertiary pt-1.5 border-t border-bdr-subtle">
                                         <span><i class="fas fa-arrow-up mr-1"></i>28</span>
                                         <span><i class="fas fa-comment mr-1"></i>22</span>
@@ -3204,9 +3204,9 @@
                                 <div class="bg-surface border border-bdr rounded-card p-4 space-y-2">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Rules</p>
                                     <ol class="space-y-1.5 text-xs text-txt-secondary list-decimal list-inside">
-                                        <li>Verified trades only — no marketing accounts.</li>
+                                        <li>Verified trades only. No marketing accounts.</li>
                                         <li>No undercut threads. Help, don't snipe.</li>
-                                        <li>Photos beat opinions — show the work.</li>
+                                        <li>Photos beat opinions. Show the work.</li>
                                         <li>Disagree on the post, not the person.</li>
                                     </ol>
                                 </div>
@@ -3302,7 +3302,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                                 <span class="font-semibold text-txt-secondary">Liam Tran</span>
                                                 <span>· Sparky · 52m ago</span>
                                             </div>
-                                            <p class="text-sm text-txt leading-relaxed">Use Pat at <span class="font-semibold">Inner-East Asbestos Audits</span> — fast, NATA-aligned, sends you the air-monitor pack and SafeWork form already filled. 0412-318-409. Tell him Liam sent you.</p>
+                                            <p class="text-sm text-txt leading-relaxed">Use Pat at <span class="font-semibold">Inner-East Asbestos Audits</span>. Fast, NATA-aligned, sends you the air-monitor pack and SafeWork form already filled. 0412-318-409. Tell him Liam sent you.</p>
                                             <div class="flex items-center gap-3 text-[10px] text-txt-tertiary mt-1.5">
                                                 <button class="hover:text-blue cursor-default">Reply</button>
                                                 <button class="hover:text-txt cursor-default">Share</button>
@@ -3358,7 +3358,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                                 <span>· Plumber · Just now</span>
                                                 <span class="px-1.5 py-0.5 rounded-badge text-[9px] font-semibold bg-green/20 text-green border border-green/40">Posted</span>
                                             </div>
-                                            <p id="net-marcus-comment-body" class="text-sm text-txt leading-relaxed">Same boat — Paddo terrace, found sheeting behind a vanity yesterday. Pat from Inner-East was on site within 4 hours. Worth keeping his number on the toolbox door.</p>
+                                            <p id="net-marcus-comment-body" class="text-sm text-txt leading-relaxed">Same boat. Paddo terrace, found sheeting behind a vanity yesterday. Pat from Inner-East was on site within 4 hours. Worth keeping his number on the toolbox door.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -3367,7 +3367,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div id="net-composer" class="px-5 pb-5">
                                     <div class="bg-elevated border border-bdr-subtle rounded-card p-3 space-y-2">
                                         <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Replying to Jess Salim</p>
-                                        <textarea id="net-comment-input" rows="3" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt placeholder:text-txt-tertiary resize-none focus:outline-none focus-ring leading-relaxed" placeholder="Same boat — Paddo terrace, found sheeting behind a vanity yesterday. Pat from Inner-East was on site within 4 hours…"></textarea>
+                                        <textarea id="net-comment-input" rows="3" class="w-full bg-input border border-bdr rounded-input px-3 py-2 text-sm text-txt placeholder:text-txt-tertiary resize-none focus:outline-none focus-ring leading-relaxed" placeholder="Same boat. Paddo terrace, found sheeting behind a vanity yesterday. Pat from Inner-East was on site within 4 hours…"></textarea>
                                         <div class="flex items-center justify-between gap-2">
                                             <div class="flex items-center gap-2 text-[10px] text-txt-tertiary">
                                                 <i class="fas fa-paperclip"></i>
@@ -3389,7 +3389,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div id="net-comment-done" class="hidden px-5 pb-5 step-fade">
                                     <div class="rounded-card border border-green/30 bg-green/5 p-3 text-sm text-txt flex items-start gap-3">
                                         <i class="fas fa-circle-check text-green mt-0.5"></i>
-                                        <p>Comment posted. <span class="text-txt-secondary">Hit <span class="text-yellow font-semibold">Continue</span> below — there's a new connection waiting.</span></p>
+                                        <p>Comment posted. <span class="text-txt-secondary">Hit <span class="text-yellow font-semibold">Continue</span> below. There's a new connection waiting.</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -3399,14 +3399,14 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div class="bg-surface border border-bdr rounded-card p-4 space-y-3">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Try it</p>
                                     <ol class="space-y-2 text-xs text-txt-secondary list-decimal list-inside">
-                                        <li>Click the <span class="text-green font-semibold">▲ upvote</span> on the post — score will tick up.</li>
+                                        <li>Click the <span class="text-green font-semibold">▲ upvote</span> on the post. Score will tick up.</li>
                                         <li>Type or accept the pre-filled draft, then hit <span class="text-yellow font-semibold">Post Comment</span>.</li>
                                         <li>Click <span class="text-yellow font-semibold">Continue</span> below to move on.</li>
                                     </ol>
                                 </div>
                                 <div class="bg-elevated/50 border border-bdr-subtle rounded-card p-3 text-xs text-txt-tertiary">
                                     <i class="fas fa-circle-info text-blue mr-1"></i>
-                                    Post upvotes and helpful comments earn community karma — visible on your public profile.
+                                    Post upvotes and helpful comments earn community karma. Visible on your public profile.
                                 </div>
                             </aside>
                         </div>
@@ -3420,13 +3420,13 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                             <i class="fas fa-user-plus text-blue mt-0.5"></i>
                             <div class="flex-1">
                                 <p class="text-sm font-semibold text-txt">Liam Tran sent you a friend request.</p>
-                                <p class="text-xs text-txt-secondary">"Saw your comment on Jess's post — looks like we've worked next to each other on Glenmore Rd."</p>
+                                <p class="text-xs text-txt-secondary">"Saw your comment on Jess's post. Looks like we've worked next to each other on Glenmore Rd."</p>
                             </div>
                         </div>
 
                         <h2 class="font-head text-2xl font-bold text-txt">Network</h2>
 
-                        <!-- Tab bar — Connections active -->
+                        <!-- Tab bar (Connections active) -->
                         <div class="border-b border-bdr overflow-x-auto">
                             <nav class="flex gap-0 -mb-px whitespace-nowrap">
                                 <button class="px-4 py-2.5 text-sm border-b-2 border-transparent text-txt-secondary cursor-default">Feed</button>
@@ -3601,16 +3601,16 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Why this might be a good connection</p>
                                     <ul class="space-y-1.5 text-xs text-txt-secondary">
                                         <li class="flex items-center gap-2"><i class="fas fa-people-group text-yellow text-[10px]"></i>You're both in <span class="text-txt font-semibold">Sydney Sparkies &amp; Plumbers Co-Op</span> + 1 other community</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-user-group text-blue text-[10px]"></i><span class="text-txt font-semibold">3 mutual connections</span> — Sarah O'Connor, Daniel Tranh, Jess Salim</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-handshake text-green text-[10px]"></i>Worked on the same street twice — Glenmore Rd, Paddington</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-user-group text-blue text-[10px]"></i><span class="text-txt font-semibold">3 mutual connections</span>: Sarah O'Connor, Daniel Tranh, Jess Salim</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-handshake text-green text-[10px]"></i>Worked on the same street twice: Glenmore Rd, Paddington</li>
                                     </ul>
                                 </div>
 
                                 <!-- Recent endorsement -->
                                 <div class="bg-elevated/60 border border-bdr-subtle rounded-card p-3">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5">Recent endorsement</p>
-                                    <p class="text-xs text-txt italic leading-relaxed">"Liam handled the rough-in on a 1920s terrace I project-managed last month — clean cable runs, photos before close-up, paperwork before the cheque. Will book again."</p>
-                                    <p class="text-[10px] text-txt-tertiary mt-1.5">— Sarah O'Connor · Property Owner · 12 Apr</p>
+                                    <p class="text-xs text-txt italic leading-relaxed">"Liam handled the rough-in on a 1920s terrace I project-managed last month. Clean cable runs, photos before close-up, paperwork before the cheque. Will book again."</p>
+                                    <p class="text-[10px] text-txt-tertiary mt-1.5">Sarah O'Connor &middot; Property Owner &middot; 12 Apr</p>
                                 </div>
                             </div>
 
@@ -3718,7 +3718,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 </div>
                                 <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                                     <i class="fas fa-flag-checkered text-yellow mt-0.5"></i>
-                                    <p>End of demo. Network engagement — communities, comments, connections — feeds your trust score and surfaces you to better-fit jobs.</p>
+                                    <p>End of demo. Network engagement (communities, comments, connections) feeds your trust score and surfaces you to better-fit jobs.</p>
                                 </div>
                             </aside>
                         </div>
@@ -3740,7 +3740,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                         </h2>
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
                             Sarah just bought a 3-bed terrace in Paddington. Before she posts jobs against it,
-                            she sets up the property record — address, structure, rooms — once.
+                            she sets up the property record (address, structure, rooms) once.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
@@ -3756,7 +3756,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                     <i class="fas fa-door-open text-sm"></i>
                                 </div>
                                 <p class="text-sm font-semibold text-txt mb-0.5">Rooms &amp; areas</p>
-                                <p class="text-xs text-txt-tertiary">Kitchen, baths, garage — each tagged.</p>
+                                <p class="text-xs text-txt-tertiary">Kitchen, baths, garage. Each tagged.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-4">
                                 <div class="w-9 h-9 rounded-input bg-green/15 text-green flex items-center justify-center mb-2">
@@ -3812,12 +3812,12 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div class="bg-surface/40 border border-dashed border-bdr rounded-card p-4 h-full min-h-[260px]">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Property roles supported</p>
                                     <ul class="space-y-2 text-xs text-txt-secondary">
-                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Owner</span> — owns the property outright.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Property Manager</span> — managing on behalf of an owner.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Strata committee</span> — building / body corporate.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Tenant</span> — renting or occupying.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Owner</span>: owns the property outright.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Property Manager</span>: managing on behalf of an owner.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Strata committee</span>: building / body corporate.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-blue mt-0.5 text-[10px]"></i><span><span class="text-txt font-semibold">Tenant</span>: renting or occupying.</span></li>
                                     </ul>
-                                    <p class="text-[11px] text-txt-tertiary mt-3 leading-relaxed">You can hold multiple roles across a portfolio — and even multiple roles on the same property.</p>
+                                    <p class="text-[11px] text-txt-tertiary mt-3 leading-relaxed">You can hold multiple roles across a portfolio, and even multiple roles on the same property.</p>
                                 </div>
                             </div>
                         </div>
@@ -4023,7 +4023,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                         <div class="rounded-card border border-blue/30 bg-blue/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-lightbulb text-blue mt-0.5"></i>
-                            <span>Tip — rooms unlock the <span class="text-blue font-semibold">Access &amp; Constraints</span> pack that pre-fills tradies on job day.</span>
+                            <span>Tip: rooms unlock the <span class="text-blue font-semibold">Access &amp; Constraints</span> pack that pre-fills tradies on job day.</span>
                         </div>
                     </div>
                 </div>
@@ -4045,7 +4045,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                             <li class="text-blue flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-blue/20 text-blue border border-blue/60 flex items-center justify-center text-[10px]">3</span> Access</li>
                         </ol>
 
-                        <p class="text-xs text-txt-secondary leading-relaxed">This pack pre-fills into any job created on this property — tradies see it before arriving on site.</p>
+                        <p class="text-xs text-txt-secondary leading-relaxed">This pack pre-fills into any job created on this property. Tradies see it before arriving on site.</p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div class="bg-surface border border-bdr rounded-card p-3">
@@ -4058,11 +4058,11 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-3">
                                 <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5"><i class="fas fa-key mr-1"></i>Site access</p>
-                                <p class="text-sm text-txt leading-snug">Key safe under porch — code on file. Two dogs (friendly). Owner usually on-site Wednesdays.</p>
+                                <p class="text-sm text-txt leading-snug">Key safe under porch, code on file. Two dogs (friendly). Owner usually on-site Wednesdays.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-3">
                                 <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1.5"><i class="fas fa-triangle-exclamation mr-1"></i>Notes</p>
-                                <p class="text-sm text-txt leading-snug">Heritage overlay — no facade changes. Asbestos cleared (2024 report on file).</p>
+                                <p class="text-sm text-txt leading-snug">Heritage overlay, no facade changes. Asbestos cleared (2024 report on file).</p>
                             </div>
                         </div>
 
@@ -4177,7 +4177,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                         </h2>
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
                             Liam runs a 14-property rental portfolio in Bondi &amp; Coogee.
-                            Unit 3 at 42 Beach Rd needs tiling — and the listing should auto-pull every room, access note,
+                            Unit 3 at 42 Beach Rd needs tiling, and the listing should auto-pull every room, access note,
                             and constraint from the property record.
                         </p>
 
@@ -4194,7 +4194,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                     <i class="fas fa-paperclip text-sm"></i>
                                 </div>
                                 <p class="text-sm font-semibold text-txt mb-0.5">Attach property context</p>
-                                <p class="text-xs text-txt-tertiary">Rooms, access, constraints — auto.</p>
+                                <p class="text-xs text-txt-tertiary">Rooms, access, constraints. Auto.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-4">
                                 <div class="w-9 h-9 rounded-input bg-blue/15 text-blue flex items-center justify-center mb-2">
@@ -4290,7 +4290,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-arrow-up text-yellow mt-0.5"></i>
-                            <p>Open <span class="text-yellow font-semibold">42 Beach Rd · Unit 3</span> — that's where the tiling is needed.</p>
+                            <p>Open <span class="text-yellow font-semibold">42 Beach Rd · Unit 3</span>. That's where the tiling is needed.</p>
                         </div>
                     </div>
                 </div>
@@ -4369,7 +4369,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                             <div class="lg:col-span-5 space-y-3">
                                 <div class="bg-surface border border-yellow/40 rounded-card p-4 shadow-card-hover">
                                     <p class="text-[11px] uppercase tracking-wider text-yellow font-semibold mb-2"><i class="fas fa-bolt mr-1"></i>Next action</p>
-                                    <p class="text-sm text-txt mb-3 leading-snug">The ensuite reno is overdue. Create a marketplace listing — Babbitt will attach this property as context for tradies.</p>
+                                    <p class="text-sm text-txt mb-3 leading-snug">The ensuite reno is overdue. Create a marketplace listing. Babbitt will attach this property as context for tradies.</p>
                                     <button data-action="open-pm-listing" class="pulse-ring w-full px-4 py-2.5 rounded-btn text-sm font-semibold bg-yellow text-txt-inverse hover:brightness-110 transition">
                                         <i class="fas fa-bullhorn mr-1"></i> Create Listing for this Property
                                     </button>
@@ -4420,7 +4420,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                         <div>
                             <label class="text-sm text-txt-secondary font-semibold">Title</label>
-                            <input value="Ensuite re-tile — Unit 3, Bondi (PM-managed)"
+                            <input value="Ensuite re-tile &middot; Unit 3, Bondi (PM-managed)"
                                 class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt" readonly>
                         </div>
 
@@ -4472,12 +4472,12 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                         <div class="rounded-card border border-blue/30 bg-blue/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-shield-halved text-blue mt-0.5"></i>
-                            <span>Owner M. Chen will be CC'd on every quote. Standing PM authority: <span class="text-blue font-semibold">$2,500</span> — anything higher needs owner sign-off.</span>
+                            <span>Owner M. Chen will be CC'd on every quote. Standing PM authority: <span class="text-blue font-semibold">$2,500</span>. Anything higher needs owner sign-off.</span>
                         </div>
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-info-circle text-yellow mt-0.5"></i>
-                            <span>Hit <span class="text-yellow font-semibold">Publish Listing</span> — verified tilers near Bondi will see it instantly.</span>
+                            <span>Hit <span class="text-yellow font-semibold">Publish Listing</span>. Verified tilers near Bondi will see it instantly.</span>
                         </div>
                     </div>
                 </div>
@@ -4488,7 +4488,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                         <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
                             <i class="fas fa-circle-check text-green mt-0.5"></i>
                             <div>
-                                <p class="text-sm font-semibold text-txt">Listing published — 12 tilers notified.</p>
+                                <p class="text-sm font-semibold text-txt">Listing published. 12 tilers notified.</p>
                                 <p class="text-xs text-txt-secondary">Owner M. Chen received a copy. Quotes will land in the linked property's project.</p>
                             </div>
                         </div>
@@ -4511,7 +4511,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-green/15 text-green border border-green/40">Active</span>
                                         <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-blue/15 text-blue border border-blue/40">PM</span>
                                     </div>
-                                    <p class="text-sm font-semibold text-txt leading-snug mb-1.5">Ensuite re-tile — Unit 3, Bondi (PM-managed)</p>
+                                    <p class="text-sm font-semibold text-txt leading-snug mb-1.5">Ensuite re-tile &middot; Unit 3, Bondi (PM-managed)</p>
                                     <div class="flex items-center gap-1.5 px-2 py-1 mb-1.5 rounded-input bg-elevated border border-bdr-subtle w-fit">
                                         <i class="fas fa-link text-green text-[10px]"></i>
                                         <span class="text-[11px] text-txt-secondary">Linked to <span class="text-txt font-semibold">42 Beach Rd · U3</span></span>
@@ -4527,10 +4527,10 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div class="bg-surface border border-bdr rounded-card p-4">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Why this works for PMs</p>
                                     <ul class="space-y-2 text-sm text-txt-secondary">
-                                        <li class="flex items-start gap-2"><i class="fas fa-paperclip text-green mt-1 text-xs"></i><span>Property record auto-fills room, access, hours — tradies see real site info, not a vague brief.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-user-shield text-blue mt-1 text-xs"></i><span>Owner is CC'd on every quote — no surprises, no shadow approvals.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-gavel text-yellow mt-1 text-xs"></i><span>Standing PM authority cap respected — quotes above $2,500 prompt owner sign-off.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-folder-tree text-orange mt-1 text-xs"></i><span>Awarded job becomes a workspace under this property — every receipt stays attached.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-paperclip text-green mt-1 text-xs"></i><span>Property record auto-fills room, access, hours. Tradies see real site info, not a vague brief.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-user-shield text-blue mt-1 text-xs"></i><span>Owner is CC'd on every quote. No surprises, no shadow approvals.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-gavel text-yellow mt-1 text-xs"></i><span>Standing PM authority cap respected. Quotes above $2,500 prompt owner sign-off.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-folder-tree text-orange mt-1 text-xs"></i><span>Awarded job becomes a workspace under this property. Every receipt stays attached.</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -4539,8 +4539,8 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                 </div>
 
                 <!-- ═══════════════════════════════════════════════════════
-                     FLOW 8 — Strata committee sets a rule + opens a vote
-                     on a common area
+                     FLOW 8 — Strata committee records a decision on a
+                     contractor quote (committee straw poll, reference only)
                      ═══════════════════════════════════════════════════ -->
 
                 <!-- ═══ ST-STEP 1 — Intro ═══ -->
@@ -4550,11 +4550,11 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                             Strata Committee Flow
                         </span>
                         <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
-                            Set a rule. Open a vote. Move on.
+                            Record the committee's call. Link the quote. Move on.
                         </h2>
                         <p class="text-txt-secondary text-base sm:text-lg mb-8 leading-relaxed">
-                            Priya chairs the strata committee at Harbour Heights. Lot owners keep storing junk in the fire stairwell.
-                            She needs a by-law and a binding vote — both in the same record where the building lives.
+                            Priya chairs the strata committee at Harbour Heights. Three roof rectification quotes have come in.
+                            She needs the committee to record its preference against the building's record, ready for the strata manager and the OC.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
@@ -4562,27 +4562,27 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div class="w-9 h-9 rounded-input flex items-center justify-center mb-2" style="background:rgba(192,132,252,0.12); color:#C084FC;">
                                     <i class="fas fa-building-shield text-sm"></i>
                                 </div>
-                                <p class="text-sm font-semibold text-txt mb-0.5">Pick a common area</p>
-                                <p class="text-xs text-txt-tertiary">Foyer, stairs, parking, rooftop.</p>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Pick the works item</p>
+                                <p class="text-xs text-txt-tertiary">Roof, lift, balcony, garden.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-4">
                                 <div class="w-9 h-9 rounded-input bg-yellow/15 text-yellow flex items-center justify-center mb-2">
                                     <i class="fas fa-scale-balanced text-sm"></i>
                                 </div>
-                                <p class="text-sm font-semibold text-txt mb-0.5">Draft the rule</p>
-                                <p class="text-xs text-txt-tertiary">Title, scope, category, effective.</p>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Draft the motion</p>
+                                <p class="text-xs text-txt-tertiary">Title, quote, scope, close window.</p>
                             </div>
                             <div class="bg-surface border border-bdr rounded-card p-4">
                                 <div class="w-9 h-9 rounded-input bg-green/15 text-green flex items-center justify-center mb-2">
                                     <i class="fas fa-check-to-slot text-sm"></i>
                                 </div>
-                                <p class="text-sm font-semibold text-txt mb-0.5">Open the vote</p>
-                                <p class="text-xs text-txt-tertiary">Owners vote in-app or by reply.</p>
+                                <p class="text-sm font-semibold text-txt mb-0.5">Record the count</p>
+                                <p class="text-xs text-txt-tertiary">Committee straw poll, in-app or by reply.</p>
                             </div>
                         </div>
 
                         <p class="text-[11px] text-txt-tertiary mt-6 leading-relaxed max-w-md mx-auto">
-                            <i class="fas fa-circle-info mr-1"></i> Babbitt keeps strata operations light in V1 — no full strata platform, just the by-law / vote layer over the building's record.
+                            <i class="fas fa-circle-info mr-1"></i> Reference-only ledger. Formal resolutions, ballots and meeting minutes stay with the OC and its strata manager. Babbitt records the committee's call, nothing more.
                         </p>
                     </div>
                 </div>
@@ -4608,8 +4608,8 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
                             <div class="lg:col-span-7 space-y-3">
                                 <div class="flex items-center justify-between">
-                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Common areas</p>
-                                    <p class="text-[11px] text-txt-tertiary">5 zones · pick to set a rule</p>
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Works items</p>
+                                    <p class="text-[11px] text-txt-tertiary">5 items · pick to record the committee's call</p>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
@@ -4617,158 +4617,144 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                             <span class="w-7 h-7 rounded-full bg-blue/15 text-blue flex items-center justify-center text-xs"><i class="fas fa-door-closed"></i></span>
                                             <p class="text-sm text-txt font-semibold">Lobby &amp; Foyer</p>
                                         </div>
-                                        <p class="text-[11px] text-txt-tertiary">3 by-laws · 0 open votes</p>
+                                        <p class="text-[11px] text-txt-tertiary">No open quotes</p>
                                     </div>
                                     <button data-action="pick-firestair" class="bg-surface border rounded-card p-3 text-left hover:brightness-110 transition-colors pulse-ring" style="border-color:rgba(192,132,252,0.45);">
                                         <div class="flex items-center gap-2 mb-1">
-                                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs" style="background:rgba(192,132,252,0.15); color:#C084FC;"><i class="fas fa-stairs"></i></span>
-                                            <p class="text-sm text-txt font-semibold">Fire Stair · Tower B</p>
-                                            <span class="ml-auto px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/40">Issue raised</span>
+                                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs" style="background:rgba(192,132,252,0.15); color:#C084FC;"><i class="fas fa-house-chimney"></i></span>
+                                            <p class="text-sm text-txt font-semibold">Roof &middot; Tower B</p>
+                                            <span class="ml-auto px-1.5 py-0.5 rounded-badge text-[10px] font-semibold bg-orange/15 text-orange border border-orange/40">Quotes returned</span>
                                         </div>
-                                        <p class="text-[11px] text-txt-tertiary">2 by-laws · 0 open votes · 3 incident reports (90d)</p>
+                                        <p class="text-[11px] text-txt-tertiary">3 rectification quotes returned this week &middot; no committee call recorded</p>
                                     </button>
                                     <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
                                         <div class="flex items-center gap-2 mb-1">
                                             <span class="w-7 h-7 rounded-full bg-green/15 text-green flex items-center justify-center text-xs"><i class="fas fa-tree"></i></span>
                                             <p class="text-sm text-txt font-semibold">Rooftop garden</p>
                                         </div>
-                                        <p class="text-[11px] text-txt-tertiary">1 by-law · 0 open votes</p>
+                                        <p class="text-[11px] text-txt-tertiary">No open quotes</p>
                                     </div>
                                     <div class="bg-surface border border-bdr rounded-card p-3 opacity-70">
                                         <div class="flex items-center gap-2 mb-1">
                                             <span class="w-7 h-7 rounded-full bg-yellow/15 text-yellow flex items-center justify-center text-xs"><i class="fas fa-square-parking"></i></span>
                                             <p class="text-sm text-txt font-semibold">Basement parking</p>
                                         </div>
-                                        <p class="text-[11px] text-txt-tertiary">4 by-laws · 1 open vote · ends Fri</p>
+                                        <p class="text-[11px] text-txt-tertiary">1 line-marking quote &middot; poll ends Fri</p>
                                     </div>
                                     <div class="bg-surface border border-bdr rounded-card p-3 opacity-70 sm:col-span-2">
                                         <div class="flex items-center gap-2 mb-1">
                                             <span class="w-7 h-7 rounded-full bg-blue/15 text-blue flex items-center justify-center text-xs"><i class="fas fa-water-ladder"></i></span>
                                             <p class="text-sm text-txt font-semibold">Pool deck (shared, both towers)</p>
                                         </div>
-                                        <p class="text-[11px] text-txt-tertiary">5 by-laws · 0 open votes</p>
+                                        <p class="text-[11px] text-txt-tertiary">No open quotes</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="lg:col-span-5 space-y-3">
                                 <div class="bg-surface border rounded-card p-3" style="border-color:rgba(192,132,252,0.30);">
                                     <p class="text-[11px] uppercase tracking-wider font-semibold mb-1.5" style="color:#C084FC;"><i class="fas fa-triangle-exclamation mr-1"></i>Foreman flag</p>
-                                    <p class="text-sm text-txt leading-snug mb-1">3 incidents on Tower B fire stair in 90 days — items blocking egress.</p>
-                                    <p class="text-[11px] text-txt-tertiary">Suggested: open a by-law and binding vote within 14 days to satisfy Strata Schemes Mgmt Act 137.</p>
+                                    <p class="text-sm text-txt leading-snug mb-1">3 roof rectification quotes returned on Tower B in the last week.</p>
+                                    <p class="text-[11px] text-txt-tertiary">Suggested: record the committee's preferred quote so the strata manager and OC can pick it up.</p>
                                 </div>
                                 <div class="bg-surface/40 border border-dashed border-bdr rounded-card p-4 text-center">
                                     <i class="fas fa-hand-pointer text-txt-tertiary mb-2"></i>
-                                    <p class="text-xs text-txt-tertiary max-w-[220px] mx-auto">Open the highlighted area to begin the rule + vote flow.</p>
+                                    <p class="text-xs text-txt-tertiary max-w-[220px] mx-auto">Open the highlighted item to record the committee's call.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ═══ ST-STEP 3 — Rule editor ═══ -->
+                <!-- ═══ ST-STEP 3 — Motion editor ═══ -->
                 <div class="step hidden" data-flow="strata-votes-rules" data-step="3">
                     <div class="max-w-2xl mx-auto space-y-6">
                         <div class="flex items-center gap-3 flex-wrap">
                             <button data-action="back-to-strata-hub" class="text-txt-secondary hover:text-txt text-sm">&larr; Governance</button>
-                            <h2 class="font-head text-2xl font-bold text-txt">New By-law</h2>
-                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold border" style="background:rgba(192,132,252,0.12); color:#C084FC; border-color:rgba(192,132,252,0.45);">Fire Stair · Tower B</span>
+                            <h2 class="font-head text-2xl font-bold text-txt">Record committee motion</h2>
+                            <span class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold border" style="background:rgba(192,132,252,0.12); color:#C084FC; border-color:rgba(192,132,252,0.45);">Roof &middot; Tower B</span>
                         </div>
 
                         <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
-                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">1</span> Rule</li>
+                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">1</span> Motion</li>
                             <li class="w-4 h-px bg-bdr"></li>
-                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">2</span> Vote</li>
+                            <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">2</span> Poll</li>
                             <li class="w-4 h-px bg-bdr"></li>
                             <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">3</span> Broadcast</li>
                         </ol>
 
                         <div>
                             <label class="text-sm text-txt-secondary font-semibold">Title</label>
-                            <input value="By-law 18 — No storage in Tower B fire stairwell"
+                            <input value="Motion 18: Roof rectification, Allcoast Roofing quote"
                                 class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt" readonly>
                         </div>
 
                         <div>
                             <label class="text-sm text-txt-secondary font-semibold">Body</label>
-                            <textarea rows="5" readonly class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt resize-none">No lot owner, resident or visitor may place or store personal items (bicycles, prams, boxes, recyclables, etc.) in any part of the Tower B fire stairwell at any time. This includes landings, half-landings and treads. The committee may remove items left after 48 hours' written notice and charge the responsible lot $80 administration + actual disposal cost. The intent is to keep the egress path clear at all times in compliance with the National Construction Code section D2.20.</textarea>
+                            <textarea rows="5" readonly class="focus-ring w-full mt-1 px-3 py-2 text-sm bg-input border border-bdr rounded-input text-txt resize-none">The committee records its preferred quote for the Tower B roof rectification works. Three quotes have been returned and attached: Allcoast Roofing ($82,400), Crown Metal Roofing ($91,150), Northside Cladding ($88,900). The committee's preferred quote is Allcoast Roofing on scope, warranty (10 years) and timeline. This record is indicative only. The strata manager will prepare the formal resolution for the OC's next general meeting.</textarea>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="text-sm text-txt-secondary font-semibold">Category</label>
                                 <div class="mt-1 px-3 py-2 rounded-input bg-input border border-orange/40 text-sm text-orange font-semibold flex items-center gap-1.5">
-                                    <i class="fas fa-fire-extinguisher text-xs"></i> Safety
+                                    <i class="fas fa-hammer text-xs"></i> Capital works
                                 </div>
                             </div>
                             <div>
                                 <label class="text-sm text-txt-secondary font-semibold">Scope</label>
-                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">Tower B only (8 lots)</div>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">Building-wide (16 lots)</div>
                             </div>
                             <div>
-                                <label class="text-sm text-txt-secondary font-semibold">Effective</label>
-                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">On vote pass</div>
+                                <label class="text-sm text-txt-secondary font-semibold">Status</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">Indicative &middot; not the OC ballot</div>
                             </div>
                         </div>
 
                         <div class="bg-surface border border-bdr rounded-card p-3">
-                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Attachments</p>
+                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Attached quotes</p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-pdf text-orange text-[10px]"></i>NCC-D2.20.pdf</span>
-                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-image text-blue text-[10px]"></i>stairwell-photo-1.jpg</span>
-                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-lines text-green text-[10px]"></i>incident-summary.md</span>
+                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-pdf text-orange text-[10px]"></i>Allcoast-Roofing-quote.pdf</span>
+                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-pdf text-orange text-[10px]"></i>Crown-Metal-quote.pdf</span>
+                                <span class="px-2 py-1 rounded-input bg-input border border-bdr text-xs text-txt flex items-center gap-1.5"><i class="fas fa-file-pdf text-orange text-[10px]"></i>Northside-Cladding-quote.pdf</span>
                             </div>
                         </div>
 
                         <div class="rounded-card border border-yellow/30 bg-yellow/5 p-3 text-sm text-txt flex items-start gap-3">
                             <i class="fas fa-arrow-right text-yellow mt-0.5"></i>
-                            <span>Hit <span class="text-yellow font-semibold">Configure Vote</span> to set quorum + window.</span>
+                            <span>Hit <span class="text-yellow font-semibold">Open Straw Poll</span> to set the close window.</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- ═══ ST-STEP 4 — Vote setup ═══ -->
+                <!-- ═══ ST-STEP 4 — Straw poll setup ═══ -->
                 <div class="step hidden" data-flow="strata-votes-rules" data-step="4">
                     <div class="max-w-2xl mx-auto space-y-6">
                         <div class="flex items-center gap-3 flex-wrap">
-                            <button data-action="back-to-strata-rule" class="text-txt-secondary hover:text-txt text-sm">&larr; Rule</button>
-                            <h2 class="font-head text-2xl font-bold text-txt">Configure Vote</h2>
+                            <button data-action="back-to-strata-rule" class="text-txt-secondary hover:text-txt text-sm">&larr; Motion</button>
+                            <h2 class="font-head text-2xl font-bold text-txt">Open Straw Poll</h2>
                         </div>
 
                         <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
-                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Rule</li>
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Motion</li>
                             <li class="w-4 h-px bg-bdr"></li>
-                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">2</span> Vote</li>
+                            <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">2</span> Poll</li>
                             <li class="w-4 h-px bg-bdr"></li>
                             <li class="text-txt-tertiary flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-surface text-txt-tertiary border border-bdr flex items-center justify-center text-[10px]">3</span> Broadcast</li>
                         </ol>
 
-                        <div>
-                            <span class="text-sm text-txt-secondary font-semibold">Resolution type</span>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
-                                <div class="p-3 rounded-card text-left cursor-default border" style="background:rgba(192,132,252,0.10); border-color:rgba(192,132,252,0.60);">
-                                    <p class="text-sm font-semibold text-txt">Special resolution</p>
-                                    <p class="text-[11px] text-txt-tertiary">75% threshold · binding by-law</p>
-                                </div>
-                                <div class="p-3 rounded-card bg-input border border-bdr text-left opacity-60 cursor-default">
-                                    <p class="text-sm font-semibold text-txt">Simple majority</p>
-                                    <p class="text-[11px] text-txt-tertiary">50% + 1 · committee decision</p>
-                                </div>
-                                <div class="p-3 rounded-card bg-input border border-bdr text-left opacity-60 cursor-default">
-                                    <p class="text-sm font-semibold text-txt">Unanimous</p>
-                                    <p class="text-[11px] text-txt-tertiary">100% · only for special items</p>
-                                </div>
-                            </div>
-                            <p class="text-[11px] text-txt-tertiary mt-1">Tower B by-law change requires a special resolution under SSMA s 141.</p>
+                        <div class="rounded-card border p-3 text-sm leading-snug" style="background:rgba(192,132,252,0.06); border-color:rgba(192,132,252,0.30); color:#C084FC;">
+                            <p class="font-semibold mb-0.5"><i class="fas fa-circle-info mr-1"></i>Indicative committee poll &middot; not the OC ballot of record</p>
+                            <p class="text-[11px] text-txt-secondary leading-relaxed">Babbitt records the count and the linked quotes. The formal ballot, quorum and threshold determinations remain with the strata manager and the OC under the Strata Schemes Management Act. No legal effect is created here.</p>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="text-sm text-txt-secondary font-semibold">Quorum</label>
-                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">25% of eligible lots (2 of 8)</div>
+                                <label class="text-sm text-txt-secondary font-semibold">Choices</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">YES &middot; NO &middot; Abstain</div>
                             </div>
                             <div>
-                                <label class="text-sm text-txt-secondary font-semibold">Voting basis</label>
-                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">1 lot = 1 vote</div>
+                                <label class="text-sm text-txt-secondary font-semibold">Basis</label>
+                                <div class="mt-1 px-3 py-2 rounded-input bg-input border border-bdr text-sm text-txt">One response per lot, indicative</div>
                             </div>
                             <div>
                                 <label class="text-sm text-txt-secondary font-semibold">Open</label>
@@ -4782,18 +4768,18 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                         <div class="bg-surface border border-bdr rounded-card p-3">
                             <div class="flex items-center justify-between mb-2">
-                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Eligible voters · 8 lots (Tower B)</p>
+                                <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Recipients &middot; 8 lots (Tower B owners)</p>
                                 <button class="text-[11px] text-txt-secondary hover:text-txt cursor-default">Edit list</button>
                             </div>
                             <div class="flex flex-wrap gap-1.5">
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-301 · M. Chen</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-302 · J. Pham</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-401 · L. Russo</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-402 · S. Patel</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-501 · K. Watanabe</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-502 · M. O'Brien</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-601 · S. O'Connor</span>
-                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-602 · P. Nair (you)</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-301 &middot; M. Chen</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-302 &middot; J. Pham</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-401 &middot; L. Russo</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-402 &middot; S. Patel</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-501 &middot; K. Watanabe</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-502 &middot; M. O'Brien</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-601 &middot; S. O'Connor</span>
+                                <span class="px-2 py-1 rounded-badge bg-input border border-bdr text-[11px] text-txt-secondary">B-602 &middot; P. Nair (you)</span>
                             </div>
                         </div>
 
@@ -4808,14 +4794,14 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                 <div class="step hidden" data-flow="strata-votes-rules" data-step="5">
                     <div class="max-w-3xl mx-auto space-y-6">
                         <div class="flex items-center gap-3 flex-wrap">
-                            <button data-action="back-to-strata-vote" class="text-txt-secondary hover:text-txt text-sm">&larr; Vote</button>
+                            <button data-action="back-to-strata-vote" class="text-txt-secondary hover:text-txt text-sm">&larr; Poll</button>
                             <h2 class="font-head text-2xl font-bold text-txt">Broadcast Preview</h2>
                         </div>
 
                         <ol class="flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold">
-                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Rule</li>
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Motion</li>
                             <li class="w-4 h-px bg-bdr"></li>
-                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Vote</li>
+                            <li class="text-green flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-green text-txt-inverse border border-green flex items-center justify-center"><i class="fas fa-check text-[10px]"></i></span> Poll</li>
                             <li class="w-4 h-px bg-bdr"></li>
                             <li class="flex items-center gap-1.5" style="color:#C084FC;"><span class="w-5 h-5 rounded-full border flex items-center justify-center text-[10px]" style="background:rgba(192,132,252,0.18); border-color:rgba(192,132,252,0.6);">3</span> Broadcast</li>
                         </ol>
@@ -4825,23 +4811,23 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div class="bg-surface border border-bdr rounded-card overflow-hidden">
                                     <div class="px-4 py-2.5 border-b border-bdr bg-elevated text-[11px] text-txt-tertiary flex items-center gap-2">
                                         <i class="fas fa-envelope text-yellow"></i>
-                                        <span>To: 8 lot owners · Cc: Building manager · Reply-to: SP24871 strata mailbox</span>
+                                        <span>To: 8 lot owners &middot; Cc: Building manager &middot; Reply-to: SP24871 strata mailbox</span>
                                     </div>
                                     <div class="p-4 space-y-3">
-                                        <p class="text-sm font-semibold text-txt">[Harbour Heights · SP24871] Vote opens tomorrow — By-law 18</p>
+                                        <p class="text-sm font-semibold text-txt">[Harbour Heights &middot; SP24871] Committee poll: roof rectification quote</p>
                                         <p class="text-xs text-txt-secondary leading-relaxed">Hi Tower B owner,</p>
-                                        <p class="text-xs text-txt-secondary leading-relaxed">The committee is opening a special resolution to add <span class="text-txt">By-law 18 — No storage in Tower B fire stairwell</span>. Three incidents in the last 90 days flagged egress items in the stairwell, and the National Construction Code requires the path stays clear.</p>
+                                        <p class="text-xs text-txt-secondary leading-relaxed">The committee is recording its preferred quote on the Tower B roof rectification works. Three quotes are attached: <span class="text-txt">Allcoast Roofing, Crown Metal, Northside Cladding</span>. The committee's preference is Allcoast on scope, warranty and timeline.</p>
                                         <div class="rounded-input border border-bdr bg-input p-3">
-                                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Quick vote</p>
+                                            <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">Indicate your view</p>
                                             <div class="flex flex-wrap gap-2">
-                                                <span class="px-3 py-1.5 rounded-btn bg-green/15 text-green border border-green/40 text-xs font-semibold cursor-default">Vote YES</span>
-                                                <span class="px-3 py-1.5 rounded-btn bg-orange/15 text-orange border border-orange/40 text-xs font-semibold cursor-default">Vote NO</span>
+                                                <span class="px-3 py-1.5 rounded-btn bg-green/15 text-green border border-green/40 text-xs font-semibold cursor-default">Support</span>
+                                                <span class="px-3 py-1.5 rounded-btn bg-orange/15 text-orange border border-orange/40 text-xs font-semibold cursor-default">Object</span>
                                                 <span class="px-3 py-1.5 rounded-btn bg-elevated border border-bdr text-txt-secondary text-xs cursor-default">Abstain</span>
                                             </div>
-                                            <p class="text-[11px] text-txt-tertiary mt-2">Tap any choice to vote — link binds to your lot record.</p>
+                                            <p class="text-[11px] text-txt-tertiary mt-2">Indicative only. Logged against your lot for the committee's record.</p>
                                         </div>
-                                        <p class="text-[11px] text-txt-tertiary leading-relaxed">Closes 5pm AEST, 14 days from open. Quorum: 2 lots. Threshold: 75% YES of votes cast.</p>
-                                        <p class="text-[11px] text-txt-tertiary">— P. Nair (Chair) · sent via Babbitt Strata</p>
+                                        <p class="text-[11px] text-txt-tertiary leading-relaxed">Closes 5pm AEST, 14 days from open. This is a committee straw poll, not the OC's formal ballot. The strata manager will prepare the formal resolution for the OC's next general meeting.</p>
+                                        <p class="text-[11px] text-txt-tertiary">P. Nair (Chair) &middot; sent via Babbitt Strata</p>
                                     </div>
                                 </div>
                             </div>
@@ -4850,32 +4836,32 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                 <div class="bg-surface border border-bdr rounded-card p-3">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Channels</p>
                                     <ul class="space-y-1.5 text-xs text-txt">
-                                        <li class="flex items-center gap-2"><i class="fas fa-envelope text-yellow text-[10px] w-3"></i> Email · 8 owners</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-mobile-screen text-blue text-[10px] w-3"></i> Babbitt push · 8 owners</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-print text-txt-secondary text-[10px] w-3"></i> Mailbox notice · 8 lots (PDF)</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-envelope text-yellow text-[10px] w-3"></i> Email &middot; 8 owners</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-mobile-screen text-blue text-[10px] w-3"></i> Babbitt push &middot; 8 owners</li>
+                                        <li class="flex items-center gap-2"><i class="fas fa-print text-txt-secondary text-[10px] w-3"></i> Mailbox notice &middot; 8 lots (PDF)</li>
                                     </ul>
                                 </div>
                                 <div class="bg-surface border border-bdr rounded-card p-3">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">Audit trail</p>
-                                    <p class="text-xs text-txt-secondary leading-snug">Every vote is timestamped, IP-stamped, and bound to the lot record. The full register is exportable for the next AGM minutes.</p>
+                                    <p class="text-xs text-txt-secondary leading-snug">Every response is timestamped and bound to the lot record. The register is exportable for the OC and its strata manager.</p>
                                 </div>
                                 <div class="rounded-card border p-3 text-sm text-txt flex items-start gap-3" style="background:rgba(192,132,252,0.08); border-color:rgba(192,132,252,0.30);">
                                     <i class="fas fa-arrow-right mt-0.5" style="color:#C084FC;"></i>
-                                    <span>Hit <span class="font-semibold" style="color:#C084FC;">Open Vote</span> to send the broadcast.</span>
+                                    <span>Hit <span class="font-semibold" style="color:#C084FC;">Open Poll</span> to send the broadcast.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ═══ ST-STEP 6 — Live tally / result ═══ -->
+                <!-- ═══ ST-STEP 6 — Recorded result (committee straw poll) ═══ -->
                 <div class="step hidden" data-flow="strata-votes-rules" data-step="6">
                     <div class="space-y-4">
                         <div class="toast-in rounded-card border border-green/40 bg-green/10 p-3 flex items-start gap-3">
                             <i class="fas fa-circle-check text-green mt-0.5"></i>
                             <div>
-                                <p class="text-sm font-semibold text-txt">Vote opened — 8 owners notified.</p>
-                                <p class="text-xs text-txt-secondary">Live tally below — owners can vote at any time until the close window. Showing simulated result 14 days later.</p>
+                                <p class="text-sm font-semibold text-txt">Poll opened. 8 owners notified.</p>
+                                <p class="text-xs text-txt-secondary">Live count below. Owners can respond at any time until the close window. Showing simulated outcome 14 days later.</p>
                             </div>
                         </div>
 
@@ -4883,17 +4869,17 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                             <div class="lg:col-span-7 bg-surface border border-bdr rounded-card p-4">
                                 <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
                                     <div>
-                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Result · SP24871</p>
-                                        <h3 class="font-head text-lg font-bold text-txt">By-law 18 — No storage in Tower B fire stairwell</h3>
+                                        <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold">Recorded &middot; SP24871</p>
+                                        <h3 class="font-head text-lg font-bold text-txt">Motion 18: Roof rectification, Allcoast Roofing quote</h3>
                                     </div>
-                                    <span class="px-2 py-1 rounded-badge text-xs font-bold bg-green/15 text-green border border-green/40">PASSED · 87.5%</span>
+                                    <span class="px-2 py-1 rounded-badge text-xs font-bold bg-green/15 text-green border border-green/40">RECORDED &middot; 87.5% support</span>
                                 </div>
 
                                 <div class="space-y-3">
                                     <div>
                                         <div class="flex items-center justify-between text-[11px] mb-1">
-                                            <span class="text-green font-semibold">YES · 7 lots</span>
-                                            <span class="text-txt-tertiary">87.5% · threshold 75%</span>
+                                            <span class="text-green font-semibold">Support &middot; 7 lots</span>
+                                            <span class="text-txt-tertiary">87.5% of responses</span>
                                         </div>
                                         <div class="h-2 bg-input rounded-full overflow-hidden border border-bdr-subtle">
                                             <div class="h-full bg-green" style="width:87.5%"></div>
@@ -4901,7 +4887,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                     </div>
                                     <div>
                                         <div class="flex items-center justify-between text-[11px] mb-1">
-                                            <span class="text-orange font-semibold">NO · 1 lot</span>
+                                            <span class="text-orange font-semibold">Object &middot; 1 lot</span>
                                             <span class="text-txt-tertiary">12.5%</span>
                                         </div>
                                         <div class="h-2 bg-input rounded-full overflow-hidden border border-bdr-subtle">
@@ -4910,8 +4896,8 @@ Bonus points if they're across NSW SafeWork notification too.</p>
                                     </div>
                                     <div>
                                         <div class="flex items-center justify-between text-[11px] mb-1">
-                                            <span class="text-txt-secondary font-semibold">Abstain · 0</span>
-                                            <span class="text-txt-tertiary">Turnout 100%</span>
+                                            <span class="text-txt-secondary font-semibold">Abstain &middot; 0</span>
+                                            <span class="text-txt-tertiary">Participation 8 / 8</span>
                                         </div>
                                         <div class="h-2 bg-input rounded-full overflow-hidden border border-bdr-subtle"></div>
                                     </div>
@@ -4919,37 +4905,39 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-4 border-t border-bdr-subtle">
                                     <div class="bg-input border border-bdr rounded-input p-2 text-center">
-                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Cast</p>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Responses</p>
                                         <p class="text-sm font-head font-bold text-txt">8 / 8</p>
                                     </div>
                                     <div class="bg-input border border-bdr rounded-input p-2 text-center">
-                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Quorum</p>
-                                        <p class="text-sm font-head font-bold text-green">Met</p>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Participation</p>
+                                        <p class="text-sm font-head font-bold text-txt">100%</p>
                                     </div>
                                     <div class="bg-input border border-bdr rounded-input p-2 text-center">
                                         <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Type</p>
-                                        <p class="text-sm font-head font-bold text-txt">Special</p>
+                                        <p class="text-sm font-head font-bold text-txt">Straw poll</p>
                                     </div>
                                     <div class="bg-input border border-bdr rounded-input p-2 text-center">
-                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Effective</p>
-                                        <p class="text-sm font-head font-bold text-txt">Today</p>
+                                        <p class="text-[10px] uppercase tracking-wider text-txt-tertiary font-semibold">Status</p>
+                                        <p class="text-sm font-head font-bold text-txt">Logged</p>
                                     </div>
                                 </div>
+
+                                <p class="text-[11px] text-txt-tertiary mt-3 leading-relaxed"><i class="fas fa-circle-info mr-1"></i>Indicative committee record. The formal resolution, if required, sits with the OC under the Strata Schemes Management Act.</p>
                             </div>
 
                             <div class="lg:col-span-5 space-y-3">
                                 <div class="bg-surface border border-bdr rounded-card p-3">
                                     <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-2">What happens next</p>
                                     <ul class="space-y-2 text-sm text-txt-secondary">
-                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-green mt-1 text-xs"></i><span>By-law 18 is now in force on the Fire Stair · Tower B record.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-file-export text-blue mt-1 text-xs"></i><span>Result auto-attached to next AGM minutes pack.</span></li>
-                                        <li class="flex items-start gap-2"><i class="fas fa-bell text-yellow mt-1 text-xs"></i><span>Future incident reports on this area pre-link to the by-law.</span></li>
-                                        <li class="flex items-start gap-2" style="color:#C084FC;"><i class="fas fa-folder-tree mt-1 text-xs"></i><span class="text-txt-secondary">Audit trail downloadable any time from Governance &gt; Votes.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-circle-check text-green mt-1 text-xs"></i><span>Committee call logged against Tower B roof works.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-file-export text-blue mt-1 text-xs"></i><span>Record exportable for the strata manager and the OC.</span></li>
+                                        <li class="flex items-start gap-2"><i class="fas fa-bell text-yellow mt-1 text-xs"></i><span>Allcoast quote pre-linked to the works ticket if the OC adopts the motion.</span></li>
+                                        <li class="flex items-start gap-2" style="color:#C084FC;"><i class="fas fa-folder-tree mt-1 text-xs"></i><span class="text-txt-secondary">Full register downloadable any time from Governance &gt; Records.</span></li>
                                     </ul>
                                 </div>
                                 <div class="bg-surface border border-bdr rounded-card p-3 text-center">
-                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">One dissenting vote</p>
-                                    <p class="text-xs text-txt-secondary leading-snug">B-401 (L. Russo) voted NO — comment attached. Visible to committee only.</p>
+                                    <p class="text-[11px] uppercase tracking-wider text-txt-tertiary font-semibold mb-1">One objecting response</p>
+                                    <p class="text-xs text-txt-secondary leading-snug">B-401 (L. Russo) objected. Comment attached. Visible to committee only.</p>
                                 </div>
                             </div>
                         </div>
@@ -4990,7 +4978,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
         </section>
 
         <p class="text-center text-[11px] text-txt-tertiary pt-4">
-            This is a UI walkthrough — not a live application. No data is sent anywhere.
+            This is a UI walkthrough, not a live application. No data is sent anywhere.
         </p>
     </main>
 
@@ -5011,7 +4999,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
         // ── Flow definitions ──────────────────────────────────────
         const FLOWS = {
           'property-owner-listing': {
-            title: 'Property Owner — Create a Listing',
+            title: 'Property Owner: Create a Listing',
             steps: [
               { n: 1, label: 'Intro',          caption: 'A quick story before we dive in.',  url: 'babbitt.app/welcome',         actor: 'sarah', next: 'Begin Demo' },
               { n: 2, label: 'Marketplace',    caption: 'Empty My Listings tab.',            url: 'babbitt.app/marketplace',     actor: 'sarah', next: 'Open New Listing' },
@@ -5021,18 +5009,18 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             ],
           },
           'trade-respond-and-stage': {
-            title: 'Trade — Quote, Get Awarded, Stage the Job',
+            title: 'Trade: Quote, Get Awarded, Stage the Job',
             steps: [
               { n: 1,  label: 'Intro',          caption: 'Meet Marcus and Sarah.',                                 url: 'babbitt.app/welcome',          actor: 'marcus', next: 'Begin Demo' },
               { n: 2,  label: 'Marketplace',    caption: 'Marcus browses the feed for plumbing jobs.',             url: 'babbitt.app/marketplace',      actor: 'marcus', next: 'Open Listing' },
               { n: 3,  label: 'Listing',        caption: "Sarah's bathroom-reno listing detail.",                  url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Respond' },
               { n: 4,  label: 'Quote',          caption: 'Marcus fills out his quote.',                            url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Submit Quote' },
-              { n: 5,  label: 'Submitted',      caption: 'Quote submitted — stage: Quoting.',                      url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Switch to Sarah' },
+              { n: 5,  label: 'Submitted',      caption: 'Quote submitted, stage: Quoting.',                      url: 'babbitt.app/marketplace/abc',  actor: 'marcus', next: 'Switch to Sarah' },
               { n: 6,  label: 'Owner Reviews',  caption: 'Sarah opens her listing and sees the quote.',            url: 'babbitt.app/marketplace/abc',  actor: 'sarah',  next: 'Accept Quote' },
-              { n: 7,  label: 'Awarded',        caption: 'Quote accepted — a Job is created.',                     url: 'babbitt.app/marketplace/abc',  actor: 'sarah',  next: 'Switch to Marcus' },
+              { n: 7,  label: 'Awarded',        caption: 'Quote accepted. A Job is created.',                     url: 'babbitt.app/marketplace/abc',  actor: 'sarah',  next: 'Switch to Marcus' },
               { n: 8,  label: 'Job Shell',      caption: 'Marcus opens the Job workspace.',                        url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Open Staging / BoQ' },
-              { n: 9,  label: 'Staging',        caption: 'Empty Staging tab — pick a template.',                   url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Apply Template' },
-              { n: 10, label: 'Template',       caption: 'Bathroom Reno template — 8 stages applied.',             url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Add BoQ Items' },
+              { n: 9,  label: 'Staging',        caption: 'Empty Staging tab. Pick a template.',                   url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Apply Template' },
+              { n: 10, label: 'Template',       caption: 'Bathroom Reno template, 8 stages applied.',             url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Add BoQ Items' },
               { n: 11, label: 'BoQ',            caption: 'Add line items linked to stages.',                       url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Send RFQ' },
               { n: 12, label: 'RFQ',            caption: 'Pick suppliers and send the RFQ.',                       url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Request Sign-off' },
               { n: 13, label: 'Sign-off Req',   caption: 'Marcus requests Sarah to sign the gate.',                url: 'babbitt.app/jobs/xyz',         actor: 'marcus', next: 'Switch to Sarah' },
@@ -5040,23 +5028,23 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             ],
           },
           'tradie-incident-chat': {
-            title: 'Trade × Owner — Site Issue, Group Chat, Raise Incident',
+            title: 'Trade × Owner: Site Issue, Group Chat, Raise Incident',
             steps: [
               { n: 1, label: 'Intro',          caption: "Marcus finds something on site.",                          url: 'babbitt.app/welcome',         actor: 'marcus', next: 'Begin Demo' },
               { n: 2, label: 'Job Chat',       caption: "Marcus opens the Job thread to ask Sarah.",                url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Send Message' },
               { n: 3, label: 'Message sent',   caption: 'Question + 2 photos delivered to the thread.',             url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Switch to Sarah' },
               { n: 4, label: "Owner's phone",  caption: "Sarah sees the alert and drafts a reply.",                 url: 'm.babbitt.app/threads/xyz',       actor: 'sarah',  next: 'Switch to Marcus' },
-              { n: 5, label: 'Reply received', caption: 'Marcus reads the reply — Babbitt suggests an Incident.',   url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Open Incidents' },
-              { n: 6, label: 'New Incident',   caption: 'Form pre-filled from chat — review and submit.',           url: 'babbitt.app/jobs/xyz/incidents/new', actor: 'marcus', next: 'Submit Incident' },
-              { n: 7, label: 'Logged',         caption: 'Audit trail captured — owner + compliance notified.',      url: 'babbitt.app/jobs/xyz/incidents/INC-2026-0428-01', actor: 'marcus', next: 'Restart Demo' },
+              { n: 5, label: 'Reply received', caption: 'Marcus reads the reply. Babbitt suggests an Incident.',   url: 'babbitt.app/jobs/xyz/chat',   actor: 'marcus', next: 'Open Incidents' },
+              { n: 6, label: 'New Incident',   caption: 'Form pre-filled from chat. Review and submit.',           url: 'babbitt.app/jobs/xyz/incidents/new', actor: 'marcus', next: 'Submit Incident' },
+              { n: 7, label: 'Logged',         caption: 'Audit trail captured. Owner + compliance notified.',      url: 'babbitt.app/jobs/xyz/incidents/INC-2026-0428-01', actor: 'marcus', next: 'Restart Demo' },
             ],
           },
           'tradie-network-community': {
-            title: 'Trade · Network — Community, Post, New Connection',
+            title: 'Trade · Network: Community, Post, New Connection',
             steps: [
               { n: 1, label: 'Intro',          caption: 'Marcus dips into the Network.',                              url: 'babbitt.app/welcome',                          actor: 'marcus', next: 'Begin Demo' },
               { n: 2, label: 'Communities',    caption: 'Communities he has joined and a few worth discovering.',     url: 'babbitt.app/network/communities',              actor: 'marcus', next: 'Open Community' },
-              { n: 3, label: 'Inside',         caption: 'Sydney Sparkies & Plumbers Co-Op — recent posts.',           url: 'babbitt.app/network/communities/sydney-sparkies-plumbers', actor: 'marcus', next: 'Open Post' },
+              { n: 3, label: 'Inside',         caption: 'Sydney Sparkies & Plumbers Co-Op, recent posts.',           url: 'babbitt.app/network/communities/sydney-sparkies-plumbers', actor: 'marcus', next: 'Open Post' },
               { n: 4, label: 'Thread',         caption: 'Read, upvote, drop a comment.',                              url: 'babbitt.app/network/communities/sydney-sparkies-plumbers/p/asbestos-recco', actor: 'marcus', next: 'Continue' },
               { n: 5, label: 'New Request',    caption: 'A friend request from Liam Tran has just landed.',           url: 'babbitt.app/network/connections',              actor: 'marcus', next: 'View Profile' },
               { n: 6, label: 'Quick View',     caption: "Liam's profile in the side panel.",                          url: 'babbitt.app/network/connections?preview=liam-tran', actor: 'marcus', next: 'Accept Request' },
@@ -5064,46 +5052,46 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             ],
           },
           'supplier-rfq': {
-            title: 'Supplier — Quote an RFQ from a Tradie',
+            title: 'Supplier: Quote an RFQ from a Tradie',
             steps: [
               { n: 1, label: 'Intro',     caption: "Suppliers win on speed.",                              url: 'babbitt.app/welcome',                actor: 'dan',    next: 'Begin Demo' },
               { n: 2, label: 'Inbox',     caption: "Marcus's RFQ landed in the queue.",                    url: 'babbitt.app/quote-desk',             actor: 'dan',    next: 'Open RFQ' },
               { n: 3, label: 'RFQ',       caption: 'Items, message, deadline.',                            url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Draft Quote' },
-              { n: 4, label: 'Draft',     caption: 'Catalogue-matched prices — adjust as needed.',         url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Review &amp; Send' },
+              { n: 4, label: 'Draft',     caption: 'Catalogue-matched prices. Adjust as needed.',         url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Review &amp; Send' },
               { n: 5, label: 'Send',      caption: 'Final summary before sending.',                        url: 'babbitt.app/quote-desk/rfq/091',     actor: 'dan',    next: 'Send Quote' },
-              { n: 6, label: 'Won',       caption: 'Marcus accepted — order confirmed.',                   url: 'babbitt.app/quote-desk/orders/8421', actor: 'dan',    next: 'Restart Demo' },
+              { n: 6, label: 'Won',       caption: 'Marcus accepted. Order confirmed.',                   url: 'babbitt.app/quote-desk/orders/8421', actor: 'dan',    next: 'Restart Demo' },
             ],
           },
           'property-owner-register': {
-            title: 'Property Owner — Register a Property + Rooms',
+            title: 'Property Owner: Register a Property + Rooms',
             steps: [
               { n: 1, label: 'Intro',    caption: 'Sarah just bought a Paddington terrace.',          url: 'babbitt.app/welcome',                  actor: 'sarah', next: 'Begin Demo' },
-              { n: 2, label: 'Portfolio',caption: 'Empty register — start with Add Property.',         url: 'babbitt.app/portfolio',                actor: 'sarah', next: 'Add Property' },
+              { n: 2, label: 'Portfolio',caption: 'Empty register. Start with Add Property.',         url: 'babbitt.app/portfolio',                actor: 'sarah', next: 'Add Property' },
               { n: 3, label: 'Property', caption: 'Address, type, structure, role.',                   url: 'babbitt.app/portfolio/new',            actor: 'sarah', next: 'Next: Rooms' },
-              { n: 4, label: 'Rooms',    caption: '5 rooms tagged — each with floor + area.',          url: 'babbitt.app/portfolio/new/rooms',      actor: 'sarah', next: 'Next: Access' },
+              { n: 4, label: 'Rooms',    caption: '5 rooms tagged, each with floor + area.',          url: 'babbitt.app/portfolio/new/rooms',      actor: 'sarah', next: 'Next: Access' },
               { n: 5, label: 'Access',   caption: 'Access pack pre-fills future jobs on this property.',url: 'babbitt.app/portfolio/new/access',     actor: 'sarah', next: 'Register Property' },
               { n: 6, label: 'Live',     caption: 'Property is now in your register.',                 url: 'babbitt.app/portfolio',                actor: 'sarah', next: 'Restart Demo' },
             ],
           },
           'pm-listing-from-property': {
-            title: 'Property Manager — List Work for a Managed Property',
+            title: 'Property Manager: List Work for a Managed Property',
             steps: [
               { n: 1, label: 'Intro',     caption: 'Liam manages 14 properties.',                                          url: 'babbitt.app/welcome',                       actor: 'liam', next: 'Begin Demo' },
-              { n: 2, label: 'Portfolio', caption: '14 managed properties — pick the one needing work.',                   url: 'babbitt.app/portfolio?role=pm',             actor: 'liam', next: 'Open Property' },
-              { n: 3, label: 'Property',  caption: 'Unit 3 record — ensuite reno overdue.',                                url: 'babbitt.app/portfolio/u-bondi-42-3',         actor: 'liam', next: 'Create Listing' },
+              { n: 2, label: 'Portfolio', caption: '14 managed properties. Pick the one needing work.',                   url: 'babbitt.app/portfolio?role=pm',             actor: 'liam', next: 'Open Property' },
+              { n: 3, label: 'Property',  caption: 'Unit 3 record, ensuite reno overdue.',                                url: 'babbitt.app/portfolio/u-bondi-42-3',         actor: 'liam', next: 'Create Listing' },
               { n: 4, label: 'Listing',   caption: 'New listing with the property auto-attached.',                          url: 'babbitt.app/marketplace/new?property=u-bondi-42-3', actor: 'liam', next: 'Publish Listing' },
-              { n: 5, label: 'Live',      caption: 'Listing live — owner CC\'d, property-linked.',                           url: 'babbitt.app/marketplace',                   actor: 'liam', next: 'Restart Demo' },
+              { n: 5, label: 'Live',      caption: 'Listing live, owner CC\'d, property-linked.',                           url: 'babbitt.app/marketplace',                   actor: 'liam', next: 'Restart Demo' },
             ],
           },
           'strata-votes-rules': {
-            title: 'Strata Committee — Set a By-law &amp; Open a Vote',
+            title: 'Strata Committee. Record a Motion &amp; Open a Straw Poll',
             steps: [
-              { n: 1, label: 'Intro',     caption: 'Priya chairs Harbour Heights strata.',                          url: 'babbitt.app/welcome',                                       actor: 'priya', next: 'Begin Demo' },
-              { n: 2, label: 'Governance',caption: 'Common areas register — pick the fire stair.',                  url: 'babbitt.app/strata/sp24871/governance',                      actor: 'priya', next: 'Open Area' },
-              { n: 3, label: 'Rule',      caption: 'Draft By-law 18 — no storage in egress path.',                  url: 'babbitt.app/strata/sp24871/by-laws/new',                     actor: 'priya', next: 'Configure Vote' },
-              { n: 4, label: 'Vote',      caption: 'Special resolution · 75% · 14-day window.',                     url: 'babbitt.app/strata/sp24871/by-laws/new/vote',                actor: 'priya', next: 'Preview Broadcast' },
-              { n: 5, label: 'Broadcast', caption: 'Channels selected — owners receive email + push.',               url: 'babbitt.app/strata/sp24871/by-laws/new/broadcast',           actor: 'priya', next: 'Open Vote' },
-              { n: 6, label: 'Result',    caption: '14 days later — by-law PASSED 87.5%.',                          url: 'babbitt.app/strata/sp24871/by-laws/18',                      actor: 'priya', next: 'Restart Demo' },
+              { n: 1, label: 'Intro',     caption: 'Priya chairs Harbour Heights strata.',                                       url: 'babbitt.app/welcome',                                       actor: 'priya', next: 'Begin Demo' },
+              { n: 2, label: 'Governance',caption: 'Works items register. Pick the Tower B roof.',                              url: 'babbitt.app/strata/sp24871/governance',                      actor: 'priya', next: 'Open Item' },
+              { n: 3, label: 'Motion',    caption: 'Draft Motion 18: Allcoast Roofing quote selected.',                          url: 'babbitt.app/strata/sp24871/motions/new',                     actor: 'priya', next: 'Open Straw Poll' },
+              { n: 4, label: 'Poll',      caption: 'Indicative committee poll. 14-day close window.',                            url: 'babbitt.app/strata/sp24871/motions/new/poll',                actor: 'priya', next: 'Preview Broadcast' },
+              { n: 5, label: 'Broadcast', caption: 'Channels selected. Owners receive email and push.',                          url: 'babbitt.app/strata/sp24871/motions/new/broadcast',           actor: 'priya', next: 'Open Poll' },
+              { n: 6, label: 'Recorded',  caption: '14 days later. Committee call logged, 87.5% support.',                       url: 'babbitt.app/strata/sp24871/motions/18',                      actor: 'priya', next: 'Restart Demo' },
             ],
           },
         };
@@ -5111,8 +5099,8 @@ Bonus points if they're across NSW SafeWork notification too.</p>
         // ── Sample data for flow 1 ────────────────────────────────
         const SAMPLE = {
           listing_type: 'quote_request',
-          title: 'Plumber needed for bathroom renovation — Paddington',
-          description: 'Full bathroom strip-out and reinstall in a 3-bed terrace. Need a licensed plumber for rough-in and fit-off — vanity, shower, toilet, mixer taps. Tiler and waterproofer separate. Materials supplied. Site access weekdays 7am–4pm.',
+          title: 'Plumber needed for bathroom renovation, Paddington',
+          description: 'Full bathroom strip-out and reinstall in a 3-bed terrace. Need a licensed plumber for rough-in and fit-off: vanity, shower, toilet, mixer taps. Tiler and waterproofer separate. Materials supplied. Site access weekdays 7am–4pm.',
           category: 'plumbing',
           suburb: 'Paddington',
           state: 'NSW',
@@ -5130,7 +5118,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
         const QUOTE_SAMPLE = {
           price: '2400',
           availability: 'within_1_week',
-          message: "Happy to take this on — I've done bathroom rough-in/fit-off near Paddington recently. Can start within a week, 5 working days on site, all licences current.",
+          message: "Happy to take this on. I've done bathroom rough-in/fit-off near Paddington recently. Can start within a week, 5 working days on site, all licences current.",
         };
         const AVAIL_LABEL = {
           immediate: 'Immediate',
@@ -5430,7 +5418,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           const btn = $('#quote-discount-btn');
           if (btn) {
             btn.innerHTML = quoteState.discountApplied
-              ? '<i class="fas fa-circle-check text-green mr-1"></i>5% applied — click to remove'
+              ? '<i class="fas fa-circle-check text-green mr-1"></i>5% applied. Click to remove'
               : 'Apply 5% trade discount';
             btn.classList.toggle('text-green', quoteState.discountApplied);
             btn.classList.toggle('border-green/40', quoteState.discountApplied);
@@ -5461,7 +5449,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           quoteState.lead = ($('#quote-lead') || {}).value || quoteState.lead;
           quoteState.delivery = ($('#quote-delivery') || {}).value || quoteState.delivery;
           if ($('#review-lead')) $('#review-lead').textContent = quoteState.lead || '2 business days delivery';
-          if ($('#review-delivery')) $('#review-delivery').textContent = quoteState.delivery || 'Free — within 5km of branch';
+          if ($('#review-delivery')) $('#review-delivery').textContent = quoteState.delivery || 'Free, within 5km of branch';
         }
 
         // ── Flow 2: Staging / BoQ sub-tab switcher ────────────────
@@ -5641,7 +5629,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           } else if (activeFlow === 'supplier-rfq') {
             quoteState = { discountApplied: false, lead: '', delivery: '' };
             const ql = $('#quote-lead');     if (ql) ql.value = '2 business days delivery';
-            const qd = $('#quote-delivery'); if (qd) qd.value = 'Free — within 5km of branch';
+            const qd = $('#quote-delivery'); if (qd) qd.value = 'Free, within 5km of branch';
             const qn = $('#quote-notes');    if (qn) qn.value = '';
             recomputeQuote();
             syncQuoteToReview();
