@@ -2,15 +2,36 @@
    BABBITT LANDING — Interactions
    ════════════════════════════════════════════════════════════ */
 
-/* ── 1. Word Cycling (hero headline — four sync'd slots) ── */
+/* ── 1. Word Cycling (hero headline — five sync'd slots: eyebrow + noun/verb/obj/single) ──
+   Source of truth: Departments/MARKETING_BRAND/MKT-P010 - Landing V2/1- Outbound - Sent 14-05-26/0- Hero/Block Hero.md
+   20 quartets across three ICPs (Tradies 7, Property 7, Suppliers 6). */
 (function () {
-    var tracks = [
-        { el: document.getElementById('c-noun'),   words: ['trade', 'craft', 'skill', 'work'] },
-        { el: document.getElementById('c-verb'),    words: ['builds', 'shapes', 'defines', 'proves'] },
-        { el: document.getElementById('c-obj'),     words: ['home', 'building', 'project', 'community'] },
-        { el: document.getElementById('c-single'),  words: ['Remembered', 'Verified', 'Trusted', 'Proven'] }
+    var entries = [
+        // Tradies (4 — rows that pass the pub test)
+        { eyebrow: 'Built for trades',    noun: 'Experience', verb: 'plans',    obj: 'job',      single: 'Resourced'  },
+        { eyebrow: 'Built for trades',    noun: 'Trade',      verb: 'builds',   obj: 'home',     single: 'Remembered' },
+        { eyebrow: 'Built for trades',    noun: 'hands',      verb: 'renovate', obj: 'property', single: 'Rewarded'   },
+        { eyebrow: 'Built for trades',    noun: 'licence',    verb: 'backs',    obj: 'build',    single: 'Recorded'   },
+        // Property (3 — rows that pass the pub test)
+        { eyebrow: 'Built for property',  noun: 'property',  verb: 'holds',   obj: 'story',   single: 'Remembered' },
+        { eyebrow: 'Built for property',  noun: 'portfolio', verb: 'shapes',  obj: 'career',  single: 'Respected'  },
+        { eyebrow: 'Built for property',  noun: 'asset',     verb: 'secures', obj: 'tenancy', single: 'Remains'    },
+        // Suppliers (6)
+        { eyebrow: 'Built for suppliers', noun: 'product',    verb: 'starts',   obj: 'build',          single: 'Remembered' },
+        { eyebrow: 'Built for suppliers', noun: 'stocklist',  verb: 'converts', obj: 'BoQ',            single: 'Relieved'   },
+        { eyebrow: 'Built for suppliers', noun: 'delivery',   verb: 'moves',    obj: 'timeline',       single: 'Required'   },
+        { eyebrow: 'Built for suppliers', noun: 'reputation', verb: 'earns',    obj: 'loyal customer', single: 'Returned'   },
+        { eyebrow: 'Built for suppliers', noun: 'expertise',  verb: 'guides',   obj: 'order',          single: 'Respected'  },
+        { eyebrow: 'Built for suppliers', noun: 'shipment',   verb: 'delivers', obj: 'con-note',       single: 'Recorded'   }
     ];
-    // Bail if none of the elements exist
+
+    var tracks = [
+        { el: document.getElementById('c-eyebrow'), key: 'eyebrow' },
+        { el: document.getElementById('c-noun'),    key: 'noun'    },
+        { el: document.getElementById('c-verb'),    key: 'verb'    },
+        { el: document.getElementById('c-obj'),     key: 'obj'     },
+        { el: document.getElementById('c-single'),  key: 'single'  }
+    ];
     var active = tracks.filter(function (t) { return t.el; });
     if (!active.length) return;
 
@@ -21,9 +42,9 @@
             t.el.classList.add('anim-out');
         });
         setTimeout(function () {
-            i = (i + 1) % active[0].words.length;
+            i = (i + 1) % entries.length;
             active.forEach(function (t) {
-                t.el.textContent = t.words[i];
+                t.el.textContent = entries[i][t.key];
                 t.el.classList.remove('anim-out');
                 t.el.classList.add('anim-in');
             });
@@ -31,7 +52,7 @@
                 active.forEach(function (t) { t.el.classList.remove('anim-in'); });
             }, 300);
         }, 300);
-    }, 2800);
+    }, 3500);
 })();
 
 /* ── 2. Partner — hover effect + blue sweep form ── */
@@ -110,15 +131,45 @@
         });
     }
 
-    // Pricing "Lock founding rate" — handled by the pricing-builder IIFE when
-    // a checkout endpoint is configured. Falls back to the sweep form here so
-    // the button still works on environments without the Worker deployed.
+    // Any element marked .js-open-babbitt60 also opens the application overlay
+    document.querySelectorAll('.js-open-babbitt60').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            openSweep();
+        });
+    });
+
+    // Pricing "Lock the early bird offer" — opens the placeholder waitlist modal
+    // (#pbLockModal). When the real waitlist form is wired in by Ky Anh, the
+    // body of #pbLockModal is replaced; this handler does not need to change.
+    // The Stripe checkout IIFE still runs first if `data-checkout-endpoint` is
+    // set on #pricingBuilder; if it isn't, the placeholder modal opens here.
+    var lockModal     = document.getElementById('pbLockModal');
+    var lockModalBg   = lockModal ? lockModal.querySelector('.pb-modal-backdrop') : null;
+    var lockCloseEls  = lockModal ? lockModal.querySelectorAll('[data-lock-close]') : [];
+
+    function openLockModal() {
+        if (!lockModal) return;
+        lockModal.classList.add('is-open');
+        lockModal.setAttribute('aria-hidden', 'false');
+    }
+    function closeLockModal() {
+        if (!lockModal) return;
+        lockModal.classList.remove('is-open');
+        lockModal.setAttribute('aria-hidden', 'true');
+    }
+    lockCloseEls.forEach(function (el) { el.addEventListener('click', closeLockModal); });
+    if (lockModalBg) lockModalBg.addEventListener('click', closeLockModal);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lockModal && lockModal.classList.contains('is-open')) closeLockModal();
+    });
+
     if (btnWaitlist) {
         btnWaitlist.addEventListener('click', function () {
             var pb = document.getElementById('pricingBuilder');
             var endpoint = pb && pb.getAttribute('data-checkout-endpoint');
             if (endpoint) return; // handled by Stripe checkout IIFE
-            openSweep();
+            openLockModal();
         });
     }
 
@@ -995,9 +1046,47 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 setupFees: [
                     { id: 'catalogueSetup', name: 'Catalogue setup', amount: 200, explainLink: true }
                 ]
+            },
+            propertyManager: {
+                setupFees: [
+                    { id: 'portfolioUpload', name: 'Portfolio bulk upload', amount: 200, explainLink: true }
+                ]
+            },
+            strata: {
+                setupFees: [
+                    { id: 'lotsUpload', name: 'Lots bulk upload', amount: 200, explainLink: true }
+                ]
             }
         }
     };
+
+    var COPY = (typeof window !== 'undefined' && window.BABBITT_PRICING_COPY) || null;
+
+    /* Per-account addon locks. If an addon is locked for the active account,
+       render it as a fixed "included free" row instead of an adjustable control.
+       Trades + Supplier accounts get the 2 free properties baked in; need more →
+       upgrade to a Property account. */
+    var ACCOUNT_ADDON_LOCKS = {
+        trades:   { properties: { quantity: 2, note: 'Need more? Add a Property account.' } },
+        supplier: { properties: { quantity: 2, note: 'Need more? Add a Property account.' } }
+    };
+    function getAddonLock(account, addonId) {
+        return (ACCOUNT_ADDON_LOCKS[account] && ACCOUNT_ADDON_LOCKS[account][addonId]) || null;
+    }
+
+    // Property picker (popup) elements
+    var propertyChip       = builder.querySelector('.pb-account-chip[data-account="property"]');
+    var propertySublabelEl = propertyChip ? propertyChip.querySelector('[data-property-sublabel]') : null;
+    var pickerModal        = document.getElementById('pbPropertyPickerModal');
+    var pickerCards        = pickerModal ? pickerModal.querySelectorAll('.pb-property-card') : [];
+    var pickerCloseEls     = pickerModal ? pickerModal.querySelectorAll('[data-property-picker-close]') : [];
+
+    // Setup-modal content slots (variant-driven via BABBITT_PRICING_COPY.setupFees)
+    var setupEyebrowEl = setupModal ? setupModal.querySelector('[data-setup-eyebrow]') : null;
+    var setupTitleEl   = setupModal ? setupModal.querySelector('[data-setup-title]') : null;
+    var setupLeadEl    = setupModal ? setupModal.querySelector('[data-setup-lead]') : null;
+    var setupListEl    = setupModal ? setupModal.querySelector('[data-setup-list]') : null;
+    var setupNoteEl    = setupModal ? setupModal.querySelector('[data-setup-note]') : null;
 
     var BABBITT_60 = {
         availableFor: 'yearly-only',
@@ -1117,15 +1206,108 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         });
     });
 
+    // Per-ICP tier-list content swap — driven by BABBITT_PRICING_COPY.features
+    function populateTierFeatures() {
+        if (!COPY || !COPY.features) return;
+        var accountKey = state.account;
+        var bundle = COPY.features[accountKey];
+        if (!bundle) return;
+        tierCards.forEach(function (card) {
+            var tier = card.getAttribute('data-tier');
+            var list = bundle[tier];
+            var ul = card.querySelector('.pb-tier-list');
+            if (!ul || !list) return;
+            ul.innerHTML = list.map(function (item) {
+                return '<li>' + item + '</li>';
+            }).join('');
+        });
+    }
+
+    // Variant-driven setup modal copy — sourced from BABBITT_PRICING_COPY.setupFees
+    function populateSetupModal() {
+        if (!setupModal || !COPY || !COPY.setupFees) return;
+        var variant = COPY.setupFees[state.account];
+        if (!variant) return;
+        if (setupEyebrowEl) setupEyebrowEl.textContent = variant.eyebrow || '';
+        if (setupTitleEl)   setupTitleEl.innerHTML     = (variant.title || '').replace(/\$/g, '&#36;');
+        if (setupLeadEl)    setupLeadEl.textContent    = variant.lead || '';
+        if (setupListEl)    setupListEl.innerHTML      = (variant.bullets || [])
+            .map(function (b) { return '<li>' + b + '</li>'; }).join('');
+        if (setupNoteEl)    setupNoteEl.textContent    = variant.note || '';
+    }
+
+    // Property picker (popup) — modal that resolves Property → Manager / Owner / Strata
+    function openPropertyPicker() {
+        if (!pickerModal) return;
+        pickerModal.classList.add('is-open');
+        pickerModal.setAttribute('aria-hidden', 'false');
+        // Mark the currently-resolved sub-type, if any
+        var resolved = propertyChip ? propertyChip.getAttribute('data-account-resolved') : '';
+        pickerCards.forEach(function (card) {
+            var match = card.getAttribute('data-property-type') === resolved;
+            card.classList.toggle('is-selected', match);
+            if (match) { try { card.focus(); } catch (e) {} }
+        });
+    }
+    function closePropertyPicker() {
+        if (!pickerModal) return;
+        pickerModal.classList.remove('is-open');
+        pickerModal.setAttribute('aria-hidden', 'true');
+    }
+    function selectPropertyType(typeKey, labelText) {
+        if (!propertyChip) return;
+        propertyChip.setAttribute('data-account-resolved', typeKey);
+        if (propertySublabelEl) propertySublabelEl.textContent = labelText || '';
+        // Activate Property chip and clear others
+        accountChips.forEach(function (c) {
+            var active = c === propertyChip;
+            c.classList.toggle('is-active', active);
+            c.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        state.account = typeKey;
+        state.accountFee = totalSetupFees(state.account);
+        populateTierFeatures();
+        renderAddons();
+        renderTotals();
+        closePropertyPicker();
+    }
+
+    // Picker card wiring
+    pickerCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+            var typeKey = card.getAttribute('data-property-type');
+            var labelEl = card.querySelector('.pb-property-name');
+            var label   = labelEl ? labelEl.textContent.trim() : '';
+            selectPropertyType(typeKey, label);
+        });
+    });
+    pickerCloseEls.forEach(function (el) {
+        el.addEventListener('click', closePropertyPicker);
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && pickerModal && pickerModal.classList.contains('is-open')) closePropertyPicker();
+    });
+
     // Account type
     accountChips.forEach(function (chip) {
         chip.addEventListener('click', function () {
+            // Property chip is a popup trigger, not a direct account setter
+            if (chip === propertyChip) {
+                openPropertyPicker();
+                return;
+            }
             accountChips.forEach(function (c) {
                 c.classList.toggle('is-active', c === chip);
                 c.setAttribute('aria-selected', c === chip ? 'true' : 'false');
             });
+            // Clear any previously-resolved Property sub-type sublabel when switching to non-Property
+            if (propertyChip && chip !== propertyChip && propertySublabelEl) {
+                propertySublabelEl.textContent = '';
+                propertyChip.setAttribute('data-account-resolved', '');
+            }
             state.account = chip.getAttribute('data-account');
             state.accountFee = totalSetupFees(state.account);
+            populateTierFeatures();
             renderAddons();
             renderTotals();
         });
@@ -1165,6 +1347,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     // Setup fee modal wiring
     function openSetupModal() {
         if (!setupModal) return;
+        populateSetupModal();
         setupModal.classList.add('is-open');
         setupModal.setAttribute('aria-hidden', 'false');
     }
@@ -1221,6 +1404,37 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         addonsContainer.appendChild(addonsLabel);
 
         list.forEach(function (addon) {
+            // Locked addon for this account? Render fixed "included free" row, no controls.
+            var lock = getAddonLock(state.account, addon.id);
+            if (lock) {
+                // Pin state to the locked quantity so totals + downstream checks (Tier 2 unlock) see it
+                if (!state.addons[addon.id]) {
+                    state.addons[addon.id] = {
+                        name: addon.name,
+                        monthly: addon.monthly,
+                        yearly: addon.yearly,
+                        freeQty: addon.freeQty || 0,
+                        quantity: lock.quantity
+                    };
+                } else {
+                    state.addons[addon.id].quantity = lock.quantity;
+                }
+
+                var lockedRow = document.createElement('div');
+                lockedRow.className = 'pb-addon pb-addon--locked';
+                lockedRow.innerHTML =
+                    '<div class="pb-addon-info">' +
+                        '<div class="pb-addon-name">' + addon.name + '</div>' +
+                        '<div class="pb-addon-qty">' + lock.quantity + ' included free &middot; ' + lock.note + '</div>' +
+                    '</div>' +
+                    '<div class="pb-addon-controls">' +
+                        '<span class="pb-qty-locked">' + lock.quantity + '</span>' +
+                    '</div>' +
+                    '<div class="pb-addon-price">$0.00</div>';
+                addonsContainer.appendChild(lockedRow);
+                return; // skip the adjustable render path below
+            }
+
             var qty = (state.addons[addon.id] && state.addons[addon.id].quantity) || 0;
             var price = state.billing === 'yearly' ? addon.yearly : addon.monthly;
             var unit = addon.perGB ? 'GB' : (addon.perItem ? 'each' : '');
@@ -1240,7 +1454,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 '</div>' +
                 '<div class="pb-addon-controls">' +
                     '<button type="button" class="pb-qty-btn pb-qty-minus" aria-label="Decrease ' + addon.name + '">−</button>' +
-                    '<span class="pb-qty-display">' + qty + '</span>' +
+                    '<input type="number" class="pb-qty-input" min="0" step="1" inputmode="numeric" value="' + qty + '" aria-label="' + addon.name + ' quantity" />' +
                     '<button type="button" class="pb-qty-btn pb-qty-plus" aria-label="Increase ' + addon.name + '">+</button>' +
                 '</div>' +
                 '<div class="pb-addon-price">$' + line.toFixed(2) + '</div>';
@@ -1248,6 +1462,35 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 
             row.querySelector('.pb-qty-minus').addEventListener('click', function () { decreaseQty(addon.id); });
             row.querySelector('.pb-qty-plus').addEventListener('click', function () { increaseQty(addon); });
+
+            var qtyInput = row.querySelector('.pb-qty-input');
+            if (qtyInput) {
+                qtyInput.addEventListener('change', function () {
+                    var newQty = Math.max(0, Math.floor(Number(qtyInput.value) || 0));
+                    if (addon.id === 'noads' && state.tier === 'free') newQty = Math.min(1, newQty);
+                    if (!state.addons[addon.id]) {
+                        state.addons[addon.id] = {
+                            name: addon.name,
+                            monthly: addon.monthly,
+                            yearly: addon.yearly,
+                            freeQty: addon.freeQty || 0,
+                            quantity: 0
+                        };
+                    }
+                    state.addons[addon.id].quantity = newQty;
+                    renderAddons();
+                    renderTotals();
+                    updateTier2Card();
+                });
+                qtyInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        qtyInput.blur();
+                    }
+                });
+                // Select-on-focus so it's easy to overwrite the current value
+                qtyInput.addEventListener('focus', function () { qtyInput.select(); });
+            }
         });
 
         // Shake the setup fee row when supplier just selected
@@ -1431,6 +1674,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 
     // Initialise
     state.accountFee = totalSetupFees(state.account);
+    populateTierFeatures();
     renderAddons();
     renderTotals();
     updateTier2Card();

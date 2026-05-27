@@ -2290,9 +2290,26 @@ body.partner-hover .dim-overlay {
 
 /* ── Why Carousel ──────────────────────────────────────── */
 .why {
-    min-height: 720vh;
+    min-height: 840vh; /* 120vh per card × 7 cards */
     background: var(--bg-base);
     position: relative;
+}
+
+/* Networking card — placeholder evidence panel until @ky-anh wires the mock */
+.evidence-panel--network .evidence-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--text-tertiary);
+    font-style: italic;
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-input);
+    background: rgba(246, 181, 0, 0.04);
 }
 
 .why-stage-wrap {
@@ -4738,6 +4755,16 @@ body.partner-hover .dim-overlay {
     color: var(--ticket-ink);
 }
 
+.ticket-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.65vw, 17px);
+    line-height: 1.45;
+    font-weight: 400;
+    color: #3a3631;
+    margin: 4px 0 6px;
+    max-width: 58ch;
+}
+
 .ticket-meta {
     display: flex;
     align-items: center;
@@ -4899,6 +4926,118 @@ body.partner-hover .dim-overlay {
 .foreman-msg strong { font-weight: 700; }
 .foreman-action em,
 .foreman-msg em { font-style: italic; color: #B07F00; font-weight: 600; }
+
+/* Foreman flagged-items: 3 chips, click to reveal message (CSS-only via radio + label) */
+.foreman-flagged {
+    display: grid;
+    gap: 8px;
+}
+
+.foreman-flagged .foreman-lead {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #2a2823;
+}
+
+.foreman-flagged .foreman-radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.foreman-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.foreman-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(42, 40, 35, 0.22);
+    background: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    line-height: 1.3;
+    color: #4a4742;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.foreman-chip:hover {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(42, 40, 35, 0.45);
+    color: #2a2823;
+}
+
+.foreman-radio[id$="-1"]:checked ~ .foreman-chips label[for$="-1"],
+.foreman-radio[id$="-2"]:checked ~ .foreman-chips label[for$="-2"],
+.foreman-radio[id$="-3"]:checked ~ .foreman-chips label[for$="-3"] {
+    background: #2a2823;
+    color: #fff8e7;
+    border-color: #2a2823;
+}
+
+.foreman-radio:focus-visible ~ .foreman-chips label[for$="-1"]:nth-of-type(1),
+.foreman-radio:focus-visible ~ .foreman-chips label[for$="-2"]:nth-of-type(2),
+.foreman-radio:focus-visible ~ .foreman-chips label[for$="-3"]:nth-of-type(3) {
+    outline: 2px solid #2A8AA1;
+    outline-offset: 2px;
+}
+
+.foreman-flagged .foreman-message {
+    display: none;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #2a2823;
+    margin: 0;
+    min-height: 2.4em;
+}
+
+.foreman-radio[id$="-1"]:checked ~ .foreman-message[data-msg="1"],
+.foreman-radio[id$="-2"]:checked ~ .foreman-message[data-msg="2"],
+.foreman-radio[id$="-3"]:checked ~ .foreman-message[data-msg="3"] {
+    display: block;
+}
+
+/* Outbound-link indicator on chips: implies Foreman takes you there */
+.foreman-chip::after {
+    content: "\2197"; /* ↗ */
+    font-size: 10px;
+    margin-left: 4px;
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+}
+.foreman-chip:hover::after { opacity: 0.9; }
+.foreman-radio[id$="-1"]:checked ~ .foreman-chips label[for$="-1"]::after,
+.foreman-radio[id$="-2"]:checked ~ .foreman-chips label[for$="-2"]::after,
+.foreman-radio[id$="-3"]:checked ~ .foreman-chips label[for$="-3"]::after {
+    opacity: 1;
+}
+
+/* Inline hyperlink inside Foreman messages (demonstrative only) */
+.foreman-link {
+    color: #2A8AA1;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+.foreman-link:hover { color: #1A6B85; }
+.foreman-link::after {
+    content: "\2197"; /* ↗ */
+    font-size: 10px;
+    margin-left: 2px;
+    opacity: 0.85;
+}
 
 /* 3-up stamps */
 .ticket-stamps {
@@ -6887,6 +7026,104 @@ body.partner-hover .dim-overlay {
 
 .pb-account-chip.is-active .pb-account-icon { opacity: 1; }
 
+/* Property chip — sub-label + caret (popup trigger) */
+.pb-account-chip--has-sub {
+    position: relative;
+}
+.pb-account-chip .pb-account-sublabel {
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.01em;
+    opacity: 0.8;
+}
+.pb-account-chip .pb-account-sublabel:not(:empty)::before {
+    content: "·";
+    margin: 0 4px;
+    opacity: 0.7;
+}
+.pb-account-chip .pb-account-caret {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-left: 2px;
+}
+.pb-account-chip.is-active .pb-account-caret { opacity: 0.95; }
+
+/* Tenant footnote under the account row */
+.pb-tenant-note {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+    opacity: 0.85;
+}
+
+/* Property picker modal — card grid */
+.pb-modal-inner--picker { max-width: 640px; }
+
+.pb-property-picker {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.pb-property-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px 14px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    border-radius: var(--radius-input);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color var(--motion-fast), transform var(--motion-fast), background-color var(--motion-fast);
+}
+
+.pb-property-card:hover,
+.pb-property-card:focus-visible {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.pb-property-card.is-selected {
+    border-color: var(--yellow);
+    background: rgba(246, 181, 0, 0.06);
+}
+
+.pb-property-icon {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(246, 181, 0, 0.12);
+    color: var(--yellow);
+    font-size: 16px;
+}
+
+.pb-property-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.pb-property-desc {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+    .pb-property-picker {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ── Tier cards ── */
 .pb-tier-grid {
     display: grid;
@@ -7210,6 +7447,60 @@ body.partner-hover .dim-overlay {
     font-variant-numeric: tabular-nums;
 }
 
+/* Editable quantity input (kept beside the +/- buttons) */
+.pb-qty-input {
+    width: 44px;
+    height: 22px;
+    padding: 0 4px;
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-primary);
+    background: transparent;
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    transition: border-color var(--motion-fast);
+}
+.pb-qty-input::-webkit-outer-spin-button,
+.pb-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.pb-qty-input:focus {
+    border-color: var(--yellow);
+    outline: none;
+}
+.pb-qty-input:hover {
+    border-color: var(--border-strong);
+}
+
+/* Locked addon row — fixed quantity, no controls (e.g. Properties for Trades/Supplier) */
+.pb-addon--locked .pb-addon-qty {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+.pb-qty-locked {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 22px;
+    padding: 0 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: rgba(246, 181, 0, 0.08);
+    border: 1px dashed var(--border-default);
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+}
+
 .pb-addon.is-shake {
     animation: pb-shake 0.55s ease-in-out;
 }
@@ -7343,6 +7634,20 @@ body.partner-hover .dim-overlay {
     text-align: center;
     line-height: 1.5;
 }
+.pb-quote-fine .js-open-babbitt60 {
+    color: var(--yellow);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.pb-quote-fine .js-open-babbitt60:hover { opacity: 0.85; }
+
+.section-lead .js-open-babbitt60 {
+    color: var(--yellow);
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.section-lead .js-open-babbitt60:hover { opacity: 0.85; }
 
 /* ── Pricing builder setup-fee explainer modal ── */
 .pb-modal {
