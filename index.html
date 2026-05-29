@@ -102,6 +102,48 @@
         </div>
     </div> -->
 
+    <!-- Yellow sweep — user waitlist (wired to "Who Babbitt is for" room-modal CTAs) -->
+    <div class="yellow-sweep" id="userWaitlistSweep"></div>
+    <div class="sweep-message" id="userWaitlistMessage">
+        <div class="sweep-content">
+            <p class="sweep-title">Every job. Your name on it.</p>
+            <form class="sweep-form" id="waitlistForm" action="https://formsubmit.co/58459ab88c06eacf2b587fb2888464e5" method="POST">
+                <input type="hidden" name="_captcha" value="true">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_format" value="plain">
+                <input type="hidden" name="_url" value="https://babbitt-app.github.io">
+                <input type="hidden" name="_next" value="https://babbitt-app.github.io/#user_waitlist_submitted">
+                <input type="hidden" name="_subject" value="New Waitlist Signup - Babbitt">
+                <input type="hidden" name="_autoresponse" value="Thank you for your interest in Babbitt! We'll be in touch soon.">
+                <input type="hidden" name="entry_point" id="waitlistEntryPoint" value="">
+                <div class="form-row">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                </div>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="company" placeholder="Your Company Name (if any)">
+                <select name="userType" id="waitlistUserType" aria-placeholder="Your Profession" required>
+                    <option value ="">Your Profession</option>
+                    <option value="trades">Trades & Specialists</option>
+                    <option value="property_manager">Property Manager</option>
+                    <option value="property_owner">Property Owner</option>
+                    <option value="strata">Strata</option>
+                    <option value="supplier">Suppliers & Enterprise Contractors</option>
+                    <option value="tenant">Tenant</option>
+                    <option value="other">Other</option>
+                </select>
+                <textarea name="Your thoughts" rows="3" maxlength="300" placeholder="Anything on your mind about Babbitt? Let us know"></textarea>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="terms" required>
+                    <span>I agree to the terms and conditions</span>
+                </label>
+                <div id="formMessage" class="form-message"></div>
+                <button type="submit" class="btn btn-submit-sweep" id="submitBtn">Secure My Spot</button>
+            </form>
+            <p class="sweep-hint">Click outside to close</p>
+        </div>
+    </div>
+
     <!-- ═══ Nav ═══ -->
     <nav class="navbar nav--yellow">
         <div class="container nav-inner">
@@ -633,26 +675,51 @@
                     <p class="why-card-body">When the client asks for more, a variation opens inside the job with scope, price and approval attached. Work moves forward once it is signed. Every change stays pinned to the job, so the invoice follows the work instead of the argument.</p>
                 </article>
                 <article class="why-card" data-why-index="6" data-why-label="Your story, drafted from your data.">
-                    <!-- TODO @ky-anh — Networking evidence panel.
-                         Suggested mock content:
-                           - Crumb: babbitt.app/network/articles/your-job-slug
-                           - Stage: a Foreman-drafted article card. Photo placeholder top, "Drafted from job:bathroom_reno" tag,
-                             author = the user's business, "Posted · 2h ago".
-                           - Strip: "3 articles published · 14 backlinks · 2,400 views off-platform"
-                         Match the visual language of evidence-panel--stakeholders / --property / --rating. -->
                     <div class="why-card-visual evidence-panel evidence-panel--network" aria-hidden="true">
                         <div class="evidence-bar">
-                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>network<span class="evidence-sep">/</span><span class="evidence-crumb-id">article_draft</span></span>
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>network<span class="evidence-sep">/</span><span class="evidence-crumb-id">article_07</span></span>
                             <span class="evidence-status"><span class="evidence-dot"></span>posted</span>
                         </div>
                         <div class="evidence-stage">
-                            <div class="evidence-placeholder">Article preview placeholder &middot; Ky Anh to mock the Foreman-drafted article card here</div>
+                            <div class="article-card">
+                                <div class="article-hero">
+                                    <svg class="article-hero-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                                        <circle cx="8.5" cy="10" r="1.4" fill="currentColor"/>
+                                        <path d="M3.5 17l5-5 4 4 3-3 5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="article-hero-caption">photo &middot; finished bathroom</span>
+                                    <span class="article-hero-tag">from job:bathroom_reno</span>
+                                </div>
+                                <div class="article-body">
+                                    <div class="article-attribution">
+                                        <span class="article-foreman-avatar">
+                                            <img src="Foreman_Pic.png" alt="" />
+                                        </span>
+                                        <span class="article-foreman-meta">
+                                            <span class="article-foreman-eyebrow">Drafted by Foreman</span>
+                                            <span class="article-foreman-source">from 4 closed jobs &middot; Mar to Apr '26</span>
+                                        </span>
+                                        <span class="article-foreman-pill">SEO ready</span>
+                                    </div>
+                                    <h4 class="article-headline">How we turned a leaking 1962 ensuite into a heritage retreat in nine days.</h4>
+                                    <p class="article-snippet">The slab was rotten under the cistern. We pulled it back to the bearer, set a new fall to the waste, and laid herringbone porcelain over a fresh membrane.</p>
+                                    <div class="article-foot">
+                                        <span class="article-author">
+                                            <span class="article-author-mark">PB</span>
+                                            <span class="article-author-name">Paddington Bath Co.</span>
+                                        </span>
+                                        <span class="article-meta">Posted &middot; 2h ago</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="evidence-strip">
+                        <div class="evidence-strip evidence-strip--network">
                             <span class="strip-item"><i class="strip-num">3</i> articles</span>
                             <span class="strip-sep"></span>
                             <span class="strip-item"><i class="strip-num">14</i> backlinks</span>
-                            <span class="strip-sep"></span>
+                            <span class="strip-sep strip-sep--hide-sm"></span>
+                            <span class="strip-item strip-item--collapse-sm"><i class="strip-num">2,400</i> views off-platform</span>
                             <span class="strip-item strip-item--ok">indexed</span>
                         </div>
                     </div>
@@ -933,24 +1000,88 @@
         </div>
     </div>
 
-    <!-- ═══ TODO @ky-anh — Lock Early Bird waitlist form ═══
-         Fired by the pricing-page "Lock the early bird offer" button (#btnWaitlistCta).
-         Replace the placeholder body below with the real waitlist form:
-           - capture: name, email, ABN/business name, ICP
-           - read state from the pricing-builder (account, tier, addons, billing) — already
-             available via `state` inside the pricing-builder IIFE in script.js; expose if needed
-           - POST to your waitlist endpoint
-           - show success in-modal (do NOT navigate away from the page)
-         The current handler just opens this modal — see IIFE "3. Yellow Sweep" in script.js. -->
+    <!-- ═══ Lock Early Bird waitlist form ═══
+         Fired by the pricing-page "Lock the early bird offer" button (#btnWaitlistCta)
+         when no Stripe `data-checkout-endpoint` is set. Captures the user's pricing-builder
+         selection as hidden context. Submits via AJAX to FormSubmit.co so the page does
+         NOT navigate away — the success state is rendered in-modal. -->
     <div class="pb-modal" id="pbLockModal" aria-hidden="true">
         <div class="pb-modal-backdrop" data-lock-close></div>
-        <div class="pb-modal-inner" role="dialog" aria-modal="true" aria-labelledby="pbLockTitle">
+        <div class="pb-modal-inner pb-modal-inner--lock" role="dialog" aria-modal="true" aria-labelledby="pbLockTitle">
             <button class="pb-modal-close" id="pbLockClose" aria-label="Close" data-lock-close>&times;</button>
-            <span class="pb-modal-eyebrow">Early bird &middot; waitlist</span>
+            <span class="pb-modal-eyebrow">Early bird &middot; lock the price</span>
             <h3 id="pbLockTitle" class="pb-modal-title">Lock your early bird offer</h3>
-            <p class="pb-modal-lead">Placeholder &mdash; waitlist form to be wired in by Ky Anh. The user&rsquo;s current pricing-builder selection (account, tier, add-ons, billing cycle) is in <code>state</code> and ready to POST.</p>
-            <p class="pb-modal-note">Modal must not navigate the page. Keep the success state in-overlay.</p>
-            <button class="btn btn-primary pb-modal-confirm" type="button" data-lock-close>Close</button>
+            <p class="pb-modal-lead">Hold this price for year one. No card charged &mdash; we&rsquo;ll email when your account is ready.</p>
+
+            <!-- Plan snapshot (populated from window.babbittPricing.getState() on open) -->
+            <div class="pb-lock-snapshot" id="pbLockSnapshot" aria-live="polite">
+                <div class="pb-lock-snapshot-row">
+                    <span class="pb-lock-snapshot-label">Account</span>
+                    <span class="pb-lock-snapshot-value" data-snap="account">&mdash;</span>
+                </div>
+                <div class="pb-lock-snapshot-row">
+                    <span class="pb-lock-snapshot-label">Tier</span>
+                    <span class="pb-lock-snapshot-value" data-snap="tier">&mdash;</span>
+                </div>
+                <div class="pb-lock-snapshot-row">
+                    <span class="pb-lock-snapshot-label">Billing</span>
+                    <span class="pb-lock-snapshot-value" data-snap="billing">&mdash;</span>
+                </div>
+                <div class="pb-lock-snapshot-row" data-snap-row="addons" hidden>
+                    <span class="pb-lock-snapshot-label">Add-ons</span>
+                    <span class="pb-lock-snapshot-value" data-snap="addons">&mdash;</span>
+                </div>
+                <div class="pb-lock-snapshot-row" data-snap-row="babbitt60" hidden>
+                    <span class="pb-lock-snapshot-label">Babbitt 60</span>
+                    <span class="pb-lock-snapshot-value" data-snap="babbitt60">applied</span>
+                </div>
+                <div class="pb-lock-snapshot-row pb-lock-snapshot-row--total">
+                    <span class="pb-lock-snapshot-label">Total</span>
+                    <span class="pb-lock-snapshot-value" data-snap="total">&mdash;</span>
+                </div>
+                <p class="pb-lock-snapshot-savings" data-snap="savings"></p>
+            </div>
+
+            <form class="pb-lock-form" id="pbLockForm" novalidate>
+                <input type="hidden" name="_subject" value="New Early Bird Lock Request - Babbitt">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="plan_account"   id="pbLockPlanAccount">
+                <input type="hidden" name="plan_tier"      id="pbLockPlanTier">
+                <input type="hidden" name="plan_billing"   id="pbLockPlanBilling">
+                <input type="hidden" name="plan_addons"    id="pbLockPlanAddons">
+                <input type="hidden" name="plan_babbitt60" id="pbLockPlanBabbitt60">
+                <input type="hidden" name="plan_total"     id="pbLockPlanTotal">
+
+                <div class="pb-lock-form-row">
+                    <input type="text" name="firstName" placeholder="First name" required>
+                    <input type="text" name="lastName"  placeholder="Last name"  required>
+                </div>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="businessName" placeholder="Business name / ABN" required>
+                <select name="icp" id="pbLockIcp" required>
+                    <option value="">Your role</option>
+                    <option value="trades_owner">Trades &middot; owner / principal</option>
+                    <option value="trades_team">Trades &middot; team / employee</option>
+                    <option value="property_owner">Property owner / investor</option>
+                    <option value="property_manager">Property manager</option>
+                    <option value="strata">Strata manager</option>
+                    <option value="supplier">Supplier / distributor</option>
+                    <option value="enterprise">Enterprise contractor</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="pb-lock-form-message" id="pbLockFormMessage" role="status"></div>
+                <button type="submit" class="btn btn-primary pb-modal-confirm pb-lock-submit" id="pbLockSubmit">Lock my early bird offer</button>
+                <p class="pb-lock-fine">No card charged. We&rsquo;ll email you when onboarding opens.</p>
+            </form>
+
+            <!-- Success state — revealed after AJAX submit succeeds -->
+            <div class="pb-lock-success" id="pbLockSuccess" hidden>
+                <div class="pb-lock-success-icon" aria-hidden="true">&#10003;</div>
+                <h4 class="pb-lock-success-title">Your offer is locked in.</h4>
+                <p class="pb-lock-success-body">We&rsquo;ve saved your plan and will email when onboarding opens. The early bird price holds for year one.</p>
+                <button type="button" class="btn btn-primary pb-modal-confirm" data-lock-close>Close</button>
+            </div>
         </div>
     </div>
 
@@ -1134,7 +1265,7 @@
                     </div>
                     <div class="stamp" role="listitem">
                         <span class="stamp-label">No Onboarding</span>
-                        <span class="stamp-value">Easy Stup</span>
+                        <span class="stamp-value">Easy Setup</span>
                         <span class="stamp-foot">No onboarding call, no sales pitch</span>
                     </div>
                 </div>

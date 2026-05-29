@@ -690,6 +690,24 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         });
     }
 
+    // User waitlist form (fired from "Who Babbitt is for" room-modal CTAs)
+    var waitlistForm = document.getElementById('waitlistForm');
+    var waitlistMsg  = document.getElementById('formMessage');
+    var waitlistBtn  = document.getElementById('submitBtn');
+    if (waitlistForm) {
+        waitlistForm.addEventListener('submit', function () {
+            if (waitlistBtn) {
+                waitlistBtn.disabled = true;
+                waitlistBtn.textContent = 'Submitting...';
+            }
+            if (waitlistMsg) {
+                waitlistMsg.textContent = 'Submitting your details...';
+                waitlistMsg.className = 'form-message';
+            }
+            sessionStorage.setItem('formSubmitted', 'user_waitlist');
+        });
+    }
+
     // Detect return from successful FormSubmit redirect
     var submitted = sessionStorage.getItem('formSubmitted');
     if (submitted) {
@@ -705,6 +723,20 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             if (sweepMsg)    sweepMsg.classList.add('active');
             if (successEl) {
                 successEl.textContent = "Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.";
+                successEl.className = 'form-message success';
+            }
+        } else if (submitted === 'user_waitlist') {
+            var userSweep    = document.getElementById('userWaitlistSweep');
+            var userSweepMsg = document.getElementById('userWaitlistMessage');
+            if (waitlistForm && waitlistMsg) {
+                waitlistForm.style.display = 'none';
+                waitlistMsg.textContent = "Thank you for joining the waitlist. We'll be in touch soon.";
+                waitlistMsg.className = 'form-message success';
+            }
+            if (userSweep)    userSweep.classList.add('active');
+            if (userSweepMsg) userSweepMsg.classList.add('active');
+            if (successEl) {
+                successEl.textContent = "Thank you for joining the waitlist. We'll be in touch soon.";
                 successEl.className = 'form-message success';
             }
         } else if (successEl) {
@@ -1011,6 +1043,66 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     if (backdrop) backdrop.addEventListener('click', close);
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+})();
+
+/* ── 13b. User Waitlist Sweep — fired from "Who Babbitt is for" room-modal CTAs ── */
+(function () {
+    var sweep      = document.getElementById('userWaitlistSweep');
+    var sweepMsg   = document.getElementById('userWaitlistMessage');
+    var entryInput = document.getElementById('waitlistEntryPoint');
+    var userType   = document.getElementById('waitlistUserType');
+    var ctaEls     = document.querySelectorAll('[data-room-cta]');
+    var roomModal  = document.getElementById('roomModal');
+    if (!sweep || !sweepMsg || !ctaEls.length) return;
+
+    var sweepContent = sweepMsg.querySelector('.sweep-content');
+
+    // Maps the CTA's role context onto the form's userType <select> option value.
+    var ROLE_TO_USERTYPE = {
+        trades:   'trades',
+        supplier: 'supplier',
+        manager:  'property_manager',
+        strata:   'strata',
+        owner:    'property_owner',
+        tenant:   'tenant'
+    };
+
+    function closeRoomModal() {
+        if (!roomModal) return;
+        roomModal.classList.remove('is-open');
+        roomModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function openSweep() {
+        sweep.classList.add('active');
+        sweepMsg.classList.add('active');
+    }
+
+    function closeSweep() {
+        sweepMsg.classList.remove('active');
+        setTimeout(function () { sweep.classList.remove('active'); }, 300);
+    }
+
+    ctaEls.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            var role = el.getAttribute('data-room-cta') || '';
+            if (entryInput) entryInput.value = role;
+            if (userType && ROLE_TO_USERTYPE[role]) userType.value = ROLE_TO_USERTYPE[role];
+            closeRoomModal();
+            openSweep();
+        });
+    });
+
+    sweep.addEventListener('click', closeSweep);
+    if (sweepContent) {
+        sweepContent.addEventListener('click', function (e) { e.stopPropagation(); });
+    }
+    sweepMsg.addEventListener('click', closeSweep);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sweepMsg.classList.contains('active')) closeSweep();
     });
 })();
 
@@ -1678,5 +1770,187 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     renderAddons();
     renderTotals();
     updateTier2Card();
+
+    // Expose a state snapshot so the #pbLockModal form can capture the user's
+    // current pricing-builder selection (account, tier, billing, add-ons, total).
+    if (typeof window !== 'undefined') {
+        window.babbittPricing = {
+            getState: function () {
+                var addons = {};
+                Object.keys(state.addons).forEach(function (k) {
+                    var a = state.addons[k];
+                    if (a && a.quantity > 0) addons[k] = { quantity: a.quantity };
+                });
+                return {
+                    billing:     state.billing,
+                    account:     state.account,
+                    tier:        state.tier,
+                    tierCost:    state.tierCost,
+                    accountFee:  state.accountFee,
+                    babbitt60:   !!state.babbitt60,
+                    addons:      addons,
+                    totalText:   totalEl        ? totalEl.textContent        : '',
+                    savingsText: savingsDisplay ? savingsDisplay.textContent : ''
+                };
+            }
+        };
+    }
 })();
 
+/* ── 15. Lock Early Bird modal form — populates from pricing state, AJAX-submits ── */
+(function () {
+    var modal     = document.getElementById('pbLockModal');
+    var form      = document.getElementById('pbLockForm');
+    var snapshot  = document.getElementById('pbLockSnapshot');
+    var successEl = document.getElementById('pbLockSuccess');
+    var msgEl     = document.getElementById('pbLockFormMessage');
+    var submitBtn = document.getElementById('pbLockSubmit');
+    if (!modal || !form) return;
+
+    var hidden = {
+        account:   document.getElementById('pbLockPlanAccount'),
+        tier:      document.getElementById('pbLockPlanTier'),
+        billing:   document.getElementById('pbLockPlanBilling'),
+        addons:    document.getElementById('pbLockPlanAddons'),
+        babbitt60: document.getElementById('pbLockPlanBabbitt60'),
+        total:     document.getElementById('pbLockPlanTotal')
+    };
+
+    var ACCOUNT_LABELS = {
+        trades:          'Trades',
+        property:        'Property',
+        propertyOwner:   'Property · Owner',
+        propertyManager: 'Property · Manager',
+        strata:          'Property · Strata',
+        propertyTenant:  'Property · Tenant',
+        supplier:        'Supplier'
+    };
+    var TIER_LABELS = {
+        free:  'Free',
+        tier1: 'Tier 1',
+        tier2: 'Tier 2'
+    };
+    var ADDON_LABELS = {
+        noads:      'Remove ads',
+        fleet:      'Fleet',
+        staff:      'Staff',
+        properties: 'Properties',
+        storage:    'Storage'
+    };
+
+    function formatAddons(addons) {
+        var keys = Object.keys(addons || {});
+        if (!keys.length) return '';
+        return keys.map(function (k) {
+            var q = addons[k].quantity;
+            var label = ADDON_LABELS[k] || k;
+            return q > 1 ? label + ' \u00D7' + q : label;
+        }).join(', ');
+    }
+
+    function setSnap(key, val) {
+        var el = snapshot && snapshot.querySelector('[data-snap="' + key + '"]');
+        if (el) el.textContent = val;
+    }
+
+    function toggleSnapRow(name, on) {
+        var row = snapshot && snapshot.querySelector('[data-snap-row="' + name + '"]');
+        if (row) row.hidden = !on;
+    }
+
+    function populateFromState() {
+        var state = (window.babbittPricing && window.babbittPricing.getState)
+            ? window.babbittPricing.getState() : null;
+        if (!state) return;
+
+        var accountLabel = ACCOUNT_LABELS[state.account] || state.account;
+        var tierLabel    = TIER_LABELS[state.tier] || state.tier;
+        var addonsText   = formatAddons(state.addons);
+        var billingLabel = state.billing === 'yearly' ? 'Yearly' : 'Monthly';
+
+        setSnap('account', accountLabel);
+        setSnap('tier',    tierLabel);
+        setSnap('billing', billingLabel);
+        setSnap('total',   state.totalText || '\u2014');
+        setSnap('savings', state.savingsText || '');
+
+        toggleSnapRow('addons', !!addonsText);
+        if (addonsText) setSnap('addons', addonsText);
+        toggleSnapRow('babbitt60', !!state.babbitt60);
+
+        if (hidden.account)   hidden.account.value   = accountLabel;
+        if (hidden.tier)      hidden.tier.value      = tierLabel;
+        if (hidden.billing)   hidden.billing.value   = billingLabel;
+        if (hidden.addons)    hidden.addons.value    = addonsText || 'none';
+        if (hidden.babbitt60) hidden.babbitt60.value = state.babbitt60 ? 'yes' : 'no';
+        if (hidden.total)     hidden.total.value     = state.totalText || '';
+    }
+
+    function resetForm() {
+        form.style.display = '';
+        if (snapshot)  snapshot.hidden  = false;
+        if (successEl) successEl.hidden = true;
+        if (msgEl) {
+            msgEl.textContent = '';
+            msgEl.className = 'pb-lock-form-message';
+        }
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Lock my early bird offer';
+        }
+    }
+
+    function showSuccess() {
+        form.style.display = 'none';
+        if (snapshot)  snapshot.hidden  = true;
+        if (successEl) successEl.hidden = false;
+    }
+
+    // When #pbLockModal opens, reset and populate from current pricing state.
+    var observer = new MutationObserver(function () {
+        if (modal.classList.contains('is-open')) {
+            resetForm();
+            populateFromState();
+        }
+    });
+    observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+
+    // AJAX submit to FormSubmit.co so the page does NOT navigate away.
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting\u2026';
+        }
+        if (msgEl) {
+            msgEl.textContent = '';
+            msgEl.className = 'pb-lock-form-message';
+        }
+
+        fetch('https://formsubmit.co/ajax/58459ab88c06eacf2b587fb2888464e5', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+        }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+                if (!res.ok || (data && data.success === 'false')) {
+                    throw new Error((data && data.message) || 'Submission failed. Please try again.');
+                }
+                showSuccess();
+            });
+        }).catch(function (err) {
+            if (msgEl) {
+                msgEl.textContent = (err && err.message) || 'Submission failed. Please try again.';
+                msgEl.className = 'pb-lock-form-message pb-lock-form-message--error';
+            }
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Lock my early bird offer';
+            }
+        });
+    });
+})();
