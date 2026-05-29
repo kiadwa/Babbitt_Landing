@@ -1,0 +1,181 @@
+Trades:
+
+
+	Free:	
+		Job listing
+		Job finding
+		Job management
+		Personalize Profile
+		Networking, Community and Chat features
+		Basic AI-powered overview report
+		12 confirmed jobs per year
+	Tier 1:
+		10GB storage
+		All Free tier features included
+		CodeChecker included
+		Ads removed
+		P2P Payments with Stripe*
+		Automatic quote and invoice generation
+		Advanced AI assistant in your workflow
+		Team and staff management
+		Sub-contractor and staff hiring
+		AI-drafted SEO articles
+		Custom Branding
+		Fleet management
+		Per-job chat + inbox
+		Document upload and image upload
+		
+		[*stripe fees apply]
+	Tier 2: 
+		100 GB storage
+		All Tier 1 features included
+		Agentic AI in your workflow
+		Dedicated customer support
+		No fees per transaction in app
+		Prioritized at job bidding
+		Franchisee + multi-location accounts
+		Business accounting
+		Networking + marketing dashboards
+
+
+Supplier:
+	Free:	
+		Job/Order listing
+		Job/Order finding
+		Order management, quoting, invoice printing
+		Personalize Profile
+		Networking, Community and Chat features
+		Basic Ai-powered overview
+		12 confirmed orders per year
+	Tier 1:
+		10GB storage
+		All Free tier features included
+		CodeChecker included
+		Catalogue setup
+		Ads removed
+		P2P Payments with Stripe*
+		Automatic quote and invoice generation
+		Advanced AI assistant in your workflow
+		Team and staff management 
+		Sub-contractor and hiring
+		Route planning and digital con-notes
+		AI-drafted SEO articles
+		Per-order chat + inbox
+		Document upload and image upload
+
+		[*stripe fees apply]
+	Tier 2:
+		100GB storage
+		All Tier 1 features included
+		Inventory management
+		Unlimited team and staff management
+		Real time Delivery tracking
+		No transaction fee
+
+Property Owner:
+	Free: 	
+		Job listing
+		2 Properties
+		Verify your property on Babbitt
+		Realtime job tracking
+		Basic AI-powered overview report
+		Connect your Strata scheme or manager
+		Maintenance schedule
+		Project planning
+
+	Tier 1:
+		10GB of storage
+		All free tiers features included
+		Ads removed
+		Advanced AI assistant in your workflow
+		Manage Up to 10 properties
+		Pre-sale record handoff
+		Document upload and image upload
+		In-depth property record and condition overview
+		Per-property chat
+		Local opportunity radar 
+		AI drafted SEO articles
+		Project Moodboards
+		Foreman owner briefings
+		Compliance log per address
+
+	Tier 2:
+		100GB of storage
+		All Tier 1 features included
+		No In-app payment fee
+		10 properties and beyond
+		Schedule Rental Payments in app
+
+
+Property Manager:
+	Free:
+		Job listing (3 jobs/year)
+		2 Property records
+		Tenant Management
+		Owner Management
+		Realtime job tracking
+		Basic AI-powered overview report
+		Quote approvals
+
+	Tier 1:
+		10GB storage
+		Unlimited portfolio scale
+		All free tiers features included
+		Ads removed
+		Advanced AI assistant in your workflow
+		Link lot to strata notices
+		Pre-sale record handoff
+		Document upload and image upload
+		In-depth property record and condition overview
+		Per-property chat
+		Agency-wide trades list
+		Self Serve Tenant Inspections
+		Agency profile 
+		AI drafted SEO articles
+
+	Tier 2:
+		100GB of storage
+		All Tier 1 features included
+		No In-app payment fee
+		10 properties and beyond
+		Unlimited Tenants slots per property
+		Automatic quote and invoice generation
+		Schedule Rental Payments in app
+
+
+
+Strata:
+	Free:
+		Job listing 
+		4 Lot schemes
+		Realtime job tracking
+		Full management features
+		Basic AI-powered overview report
+		Scheme noticeboard + access notes
+		Lot-owner noticeboard in networking 
+
+	Tier 1:
+		10GB storage
+		Unlimited lots in scheme
+		All free tiers features included
+		Ads removed
+		Advanced AI assistant in your workflow
+		Bulk upload lots
+		Foreman AI scheme briefings		
+		Document upload and image upload
+		In-depth property record and condition overview
+		Live voting on motions
+		Per-property chat
+		Agency-wide trades list
+		Self Serve Tenant Inspections
+		Agency profile 
+		AI drafted SEO articles
+		Document library
+		Per-motion + per-works chat
+		
+	Tier 2:
+		100GB of storage
+		Agentic Foreman AI
+		All Tier 1 features included
+		And much more
+

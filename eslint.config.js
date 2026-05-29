@@ -7,7 +7,7 @@ import js from '@eslint/js';
 export default [
     js.configs.recommended,
     {
-        files: ['script.js', 'demo/**/*.js', 'qrlanding/**/*.js'],
+        files: ['script.js', 'pricing-copy.js', 'demo/**/*.js', 'qrlanding/**/*.js'],
         languageOptions: {
             ecmaVersion: 2020,
             sourceType: 'script',

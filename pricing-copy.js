@@ -12,130 +12,190 @@
 (function () {
     'use strict';
 
-    var TIER2_SHARED = [
-        'Agentic Foreman AI',
-        'AI Plan reader + estimates',
-        'Customer follow-up automations',
-        'Weather warnings + AI rescheduling',
-        'Franchisee + multi-location accounts',
-        'Business accounting',
-        'Networking + marketing dashboards',
-        'Cross-user m² benchmark'
-    ];
-
     window.BABBITT_PRICING_COPY = {
-        /* Short feature labels per account, per tier — for the pricing-builder boxes.
-         * Tier 2 is universal across ICPs (see finalcopy.md §"Tier 2"). */
+        /* Short feature labels per account, per tier — for the pricing-builder boxes. */
         features: {
             trades: {
                 free: [
-                    'Basic job management',
-                    '2 properties',
-                    'Business registration',
-                    'Basic AI features',
-                    '12 confirmed jobs / year'
+                    'Job listing',
+                    'Job finding',
+                    'Job management',
+                    'Personalize Profile',
+                    'Networking, Community and Chat features',
+                    'Basic AI-powered overview report',
+                    '12 confirmed jobs per year'
                 ],
                 tier1: [
-                    'Unlimited jobs',
-                    'Foreman AI on every job',
-                    'Code Checker · 25 q/mo',
-                    'P2P payments via Stripe',
-                    'Full Business page',
-                    'Custom branding everywhere',
-                    'Sub-contractor + hire pipeline',
-                    'Fleet register with GVM',
-                    'AI-drafted articles + public profile',
-                    'Per-job chat + Inbox'
+                    '10GB storage',
+                    'All Free tier features included',
+                    'CodeChecker included',
+                    'Ads removed',
+                    'P2P Payments with Stripe*',
+                    'Automatic quote and invoice generation',
+                    'Advanced AI assistant in your workflow',
+                    'Team and staff management',
+                    'Sub-contractor and staff hiring',
+                    'AI-drafted SEO articles',
+                    'Custom Branding',
+                    'Fleet management',
+                    'Per-job chat + inbox',
+                    'Document upload and image upload',
+                    '[*Stripe fees apply]'
                 ],
-                tier2: TIER2_SHARED
+                tier2: [
+                    '100 GB storage',
+                    'All Tier 1 features included',
+                    'Agentic AI in your workflow',
+                    'Dedicated customer support',
+                    'No fees per transaction in app',
+                    'Prioritized at job bidding',
+                    'Franchisee + multi-location accounts',
+                    'Business accounting',
+                    'Networking + marketing dashboards'
+                ]
             },
             propertyManager: {
                 free: [
-                    'Basic property management',
-                    '2 properties',
-                    'Tenant invitations',
-                    'Basic AI features',
+                    'Job listing (3 jobs/year)',
+                    '2 Property records',
+                    'Tenant Management',
+                    'Owner Management',
+                    'Real-time job tracking',
+                    'Basic AI-powered overview report',
                     'Quote approvals'
                 ],
                 tier1: [
+                    '10GB storage',
                     'Unlimited portfolio scale',
-                    'Foreman daily portfolio briefings',
-                    'Recurring maintenance packages',
-                    'Budget actuals per property',
-                    'Free tenant + owner invites',
-                    'Full Business page',
-                    'Saved trades agency-wide',
-                    'Compliance log per address',
-                    'Agency profile + AI articles',
-                    'Per-property chat that fans out'
+                    'All Free tier features included',
+                    'Ads removed',
+                    'Advanced AI assistant in your workflow',
+                    'Link lot to strata notices',
+                    'Pre-sale record handoff',
+                    'Document upload and image upload',
+                    'In-depth property record and condition overview',
+                    'Per-property chat',
+                    'Agency-wide trades list',
+                    'Self serve tenant inspections',
+                    'Agency profile',
+                    'AI-drafted SEO articles'
                 ],
-                tier2: TIER2_SHARED
+                tier2: [
+                    '100GB storage',
+                    'All Tier 1 features included',
+                    'No in-app payment fee',
+                    '10 properties and beyond',
+                    'Unlimited tenant slots per property',
+                    'Automatic quote and invoice generation',
+                    'Schedule rental payments in app'
+                ]
             },
             propertyOwner: {
                 free: [
-                    'Basic property management',
-                    '2 properties free',
-                    'Job tracking',
-                    'Basic AI features',
+                    'Job listing',
+                    '2 Properties',
+                    'Verify your property on Babbitt',
+                    'Real-time job tracking',
+                    'Basic AI-powered overview report',
+                    'Connect your strata scheme or manager',
+                    'Maintenance schedule',
                     'Project planning'
                 ],
                 tier1: [
-                    'Properties beyond 2',
-                    'Foreman owner briefings',
-                    'P2P payments to trades',
-                    'Full Business page',
-                    'Project planning + moodboards',
-                    'Maintenance schedule per address',
-                    'Connect your trade network',
+                    '10GB storage',
+                    'All Free tier features included',
+                    'Ads removed',
+                    'Advanced AI assistant in your workflow',
+                    'Manage up to 10 properties',
                     'Pre-sale record handoff',
-                    'Public profile per address',
-                    'Per-property chat'
+                    'Document upload and image upload',
+                    'In-depth property record and condition overview',
+                    'Per-property chat',
+                    'Local opportunity radar',
+                    'AI-drafted SEO articles',
+                    'Project moodboards',
+                    'Foreman owner briefings',
+                    'Compliance log per address'
                 ],
-                tier2: TIER2_SHARED
+                tier2: [
+                    '100GB storage',
+                    'All Tier 1 features included',
+                    'No in-app payment fee',
+                    '10 properties and beyond',
+                    'Schedule rental payments in app'
+                ]
             },
             strata: {
                 free: [
-                    'Basic scheme management',
-                    '4 lots free (chair’s account)',
-                    'Common works tracking',
-                    'Basic AI features',
-                    'Lot register'
+                    'Job listing',
+                    '4 lot schemes',
+                    'Real-time job tracking',
+                    'Full management features',
+                    'Basic AI-powered overview report',
+                    'Scheme noticeboard + access notes',
+                    'Lot-owner noticeboard in networking'
                 ],
                 tier1: [
+                    '10GB storage',
                     'Unlimited lots in scheme',
-                    'Foreman scheme briefings',
-                    'Common works workflow',
+                    'All Free tier features included',
+                    'Ads removed',
+                    'Advanced AI assistant in your workflow',
+                    'Bulk upload lots',
+                    'Foreman AI scheme briefings',
+                    'Document upload and image upload',
+                    'In-depth property record and condition overview',
                     'Live voting on motions',
-                    'Recurring maintenance packages',
-                    'Scheme noticeboard + access notes',
-                    'Pending-scheme auto-onboard',
+                    'Per-property chat',
+                    'Agency-wide trades list',
+                    'Self serve tenant inspections',
+                    'Agency profile',
+                    'AI-drafted SEO articles',
                     'Document library',
-                    'Lot-owner network + newsletter',
                     'Per-motion + per-works chat'
                 ],
-                tier2: TIER2_SHARED
+                tier2: [
+                    '100GB storage',
+                    'Agentic Foreman AI',
+                    'All Tier 1 features included',
+                    'And much more'
+                ]
             },
             supplier: {
                 free: [
-                    'Basic order management',
-                    'Receive RFQs',
-                    'Customer accounts',
-                    'Basic AI features',
-                    'Quote drafting'
+                    'Job/Order listing',
+                    'Job/Order finding',
+                    'Order management, quoting, invoice printing',
+                    'Personalize Profile',
+                    'Networking, Community and Chat features',
+                    'Basic AI-powered overview',
+                    '12 confirmed orders per year'
                 ],
                 tier1: [
-                    'Full Pack-Ship-Fleet dashboards',
-                    'Foreman AI on the order queue',
-                    'Dispatch + run sheet, GVM-aware',
-                    'Free driver + warehouse logins',
-                    'Customer accounts CRM',
-                    'Advanced marketplace offers',
-                    'P2P payments + reconciliation',
-                    'Compliance hub',
-                    'Local opportunity radar + AI articles',
-                    'Per-order chat threaded'
+                    '10GB storage',
+                    'All Free tier features included',
+                    'CodeChecker included',
+                    'Catalogue setup',
+                    'Ads removed',
+                    'P2P Payments with Stripe*',
+                    'Automatic quote and invoice generation',
+                    'Advanced AI assistant in your workflow',
+                    'Team and staff management',
+                    'Sub-contractor and hiring',
+                    'Route planning and digital con-notes',
+                    'AI-drafted SEO articles',
+                    'Per-order chat + inbox',
+                    'Document upload and image upload',
+                    '[*Stripe fees apply]'
                 ],
-                tier2: TIER2_SHARED
+                tier2: [
+                    '100GB storage',
+                    'All Tier 1 features included',
+                    'Inventory management',
+                    'Unlimited team and staff management',
+                    'Real-time delivery tracking',
+                    'No transaction fee'
+                ]
             }
         },
 
