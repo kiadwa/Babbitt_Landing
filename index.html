@@ -242,12 +242,20 @@
 
                     <div class="peek-split" aria-label="Choose a product">
                         <a class="peek-half peek-half--babbitt" href="/demo">
+                            <span class="peek-half-chip peek-half-chip--soon peek-half-chip--corner peek-half-chip--corner-tl">
+                                <span class="peek-half-chip-dot" aria-hidden="true"></span>
+                                Coming soon
+                            </span>
                             <span class="peek-half-content">
                                 <img class="peek-half-logo" src="babbitt-compact-logo.svg" alt="">
                                 <img class="peek-half-wordmark" src="babbitt-wordmark.svg" alt="Babbitt">
                             </span>
                         </a>
                         <a class="peek-half peek-half--cc" href="https://codechecker.babbitt.app" target="_blank" rel="noopener">
+                            <span class="peek-half-chip peek-half-chip--live peek-half-chip--corner">
+                                <span class="peek-half-chip-dot" aria-hidden="true"></span>
+                                Live
+                            </span>
                             <span class="peek-half-content">
                                 <img class="peek-half-logo" src="CodeChecker_icon_black.png" alt="">
                                 <img class="peek-half-wordmark" src="codechecker-wordmark.svg" alt="CodeChecker">
@@ -817,6 +825,48 @@
         </div>
     </section>
 
+    <!-- ═══ CodeChecker bundle ═══ -->
+    <section class="codechecker-section" id="codechecker" aria-label="CodeChecker included with Babbitt">
+        <div class="container codechecker-inner">
+            <div class="section-header">
+                <img class="codechecker-logo" src="CodeChecker_icon_trans.png" alt="CodeChecker logo" />
+                <span class="section-eyebrow">INCLUDED &middot; CODECHECKER BY <img class="babbitt-wordmark-inline babbitt-wordmark-inline--eyebrow" src="babbitt-wordmark.svg" alt="Babbitt" /></span>
+                <h2 class="section-title"><span class="codechecker-brand">CodeChecker</span>. Free with your <img class="babbitt-wordmark-inline babbitt-wordmark-inline--title" src="babbitt-wordmark.svg" alt="Babbitt" /> subscription.</h2>
+                <p class="section-lead"><img class="babbitt-wordmark-inline babbitt-wordmark-inline--lead" src="babbitt-wordmark.svg" alt="Babbitt" /> subscribers get CodeChecker included &mdash; normally $190 a year standalone, here it is bundled. 100 queries a month, same login, results saved against your jobs.</p>
+            </div>
+
+            <div class="codechecker-grid">
+                <article class="codechecker-card">
+                    <span class="codechecker-card-eyebrow">Ask the code</span>
+                    <h3 class="codechecker-card-title">Query the NCC like a colleague who has read every page.</h3>
+                </article>
+                <article class="codechecker-card">
+                    <span class="codechecker-card-eyebrow">Cited, not guessed</span>
+                    <h3 class="codechecker-card-title">Every answer points at the clause.</h3>
+                </article>
+                <article class="codechecker-card">
+                    <span class="codechecker-card-eyebrow">Free with <img class="babbitt-wordmark-inline babbitt-wordmark-inline--card" src="babbitt-wordmark.svg" alt="Babbitt" /></span>
+                    <h3 class="codechecker-card-title">$190 a year of value, $0 extra to you.</h3>
+                </article>
+            </div>
+
+            <div class="codechecker-strip" role="list">
+                <span class="codechecker-strip-item" role="listitem"><strong>100</strong> queries / month included</span>
+                <span class="codechecker-strip-sep" aria-hidden="true"></span>
+                <span class="codechecker-strip-item" role="listitem"><strong>Indexed</strong> from the NCC</span>
+                <span class="codechecker-strip-sep" aria-hidden="true"></span>
+                <span class="codechecker-strip-item" role="listitem"><strong>$190/yr</strong> value, bundled at no cost</span>
+            </div>
+
+            <div class="codechecker-cta-row">
+                <a class="btn btn-primary codechecker-cta" href="https://codechecker.babbitt.app" target="_blank" rel="noopener noreferrer">
+                    Checkout CodeChecker
+                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ═══ Waitlist ═══ -->
     <section class="waitlist" id="waitlist">
         <div class="glow-orb glow-orb-center"></div>
@@ -899,7 +949,7 @@
                                     <div class="pb-tier-period">/month, billed yearly</div>
                                     <div class="pb-tier-storage">10 GB storage</div>
                                     <ul class="pb-tier-list">
-                                        <li>CodeChecker (25 q / mo)</li>
+                                        <li><strong>CodeChecker included</strong></li>
                                         <li>Untracked fleet</li>
                                         <li>AI decision support</li>
                                         <li>Unlimited sub-contractors</li>
@@ -918,6 +968,7 @@
                                     <div class="pb-tier-period">/month, billed yearly</div>
                                     <div class="pb-tier-storage">100 GB storage</div>
                                     <ul class="pb-tier-list">
+                                        <li><strong>CodeChecker included</strong></li>
                                         <li>Dedicated support</li>
                                         <li>Full API access</li>
                                         <li>Advanced reporting</li>

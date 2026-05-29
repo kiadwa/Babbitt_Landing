@@ -20,8 +20,6 @@
         'Franchisee + multi-location accounts',
         'Business accounting',
         'Networking + marketing dashboards',
-        'In-app advertising portal',
-        'Babbitt-native P2P + escrow',
         'Cross-user m² benchmark'
     ];
 
