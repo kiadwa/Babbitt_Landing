@@ -4497,6 +4497,92 @@ body.partner-hover .dim-overlay {
     border: 1px solid var(--text-tertiary);
 }
 
+/* Sheet annotation — handwritten-style note pointing readers at the
+   interactive rooms. Sits between the scale bar (bottom-left) and the
+   compass rose (bottom-right). */
+.sheet-note {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    pointer-events: none;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--bg-base);
+    border: 1px dashed var(--text-tertiary);
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.sheet-note-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--yellow) 22%, transparent);
+    color: var(--yellow);
+    font-size: 9px;
+    letter-spacing: 0;
+}
+
+.sheet-note-text {
+    color: var(--text-secondary);
+}
+
+.sheet-note-arrow {
+    color: var(--yellow);
+    font-size: 13px;
+    letter-spacing: 0;
+    animation: sheet-note-nudge 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes sheet-note-nudge {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sheet-note-arrow { animation: none; }
+}
+
+/* Narrow viewports — bottom row gets crowded by scale + compass,
+   so dock the note to the top-right corner of the sheet instead. */
+@media (max-width: 760px) {
+    .sheet-note {
+        top: clamp(56px, 9vw, 88px);
+        right: clamp(20px, 4vw, 36px);
+        left: auto;
+        bottom: auto;
+        transform: none;
+        padding: 5px 10px;
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        gap: 8px;
+    }
+
+    .sheet-note-text { max-width: 50vw; white-space: normal; line-height: 1.3; }
+}
+
+@media (max-width: 480px) {
+    .sheet-note {
+        position: static;
+        align-self: center;
+        margin: 14px auto 4px;
+        transform: none;
+    }
+
+    .floorplan-sheet { padding-top: 18px; }
+}
+
 /* The plan grid — 3 wing groups in a "<" arrangement.
    Field (Trades + Supplier) on the left spans full height; a branching
    corridor splits to Management (top-right: Manager + Strata) and
@@ -4758,6 +4844,45 @@ body.partner-hover .dim-overlay {
 .room:hover .room-num,
 .room:focus-visible .room-num {
     color: var(--role-color);
+}
+
+/* Corner chevron — affordance hint that the rectangle is clickable.
+   Sits opposite the room-tag (top-left), above the watermark (bottom-right). */
+.room-cue {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    z-index: 3;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    border: 1px solid color-mix(in srgb, var(--text-tertiary) 60%, transparent);
+    border-radius: 2px;
+    background: var(--bg-base);
+    opacity: 0.55;
+    pointer-events: none;
+    transition:
+        color 0.4s ease,
+        border-color 0.4s ease,
+        opacity 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.room:hover .room-cue,
+.room:focus-visible .room-cue {
+    opacity: 1;
+    color: var(--role-color);
+    border-color: var(--role-color);
+    transform: translate(2px, -2px);
+}
+
+/* Narrow viewports — room cells get tight; the chevron crowds the
+   room-name text. Hide it on phones since touch already implies tappable. */
+@media (max-width: 640px) {
+    .room-cue { display: none; }
 }
 
 /* Per-role colour — distinct accent for every room */
