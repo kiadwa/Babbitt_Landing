@@ -716,31 +716,6 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         });
     }
 
-    /* Cross-OS scroll normalisation.
-       The carousel is driven by window.scrollY against .why-stage-wrap (a
-       sticky overflow:hidden container). On Mac trackpads, Safari/Firefox
-       sometimes absorb wheel deltas into the overflow:hidden node instead
-       of bubbling to window scroll — which makes scrolling INSIDE the
-       frame feel different (or stuck) compared to OUTSIDE.
-       Fix: when a wheel event fires inside the carousel frame and the page
-       still has room to scroll in that direction, forward the delta
-       directly to window.scrollBy. Skipped on non-desktop (carousel inert)
-       and on horizontal-dominant scrolls (trackpad swipe gestures). */
-    if (wrap) {
-        wrap.addEventListener('wheel', function (e) {
-            if (!shouldRun()) return;
-            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-            var dy = e.deltaY;
-            if (e.deltaMode === 1) dy *= 16;                       // lines → px
-            else if (e.deltaMode === 2) dy *= window.innerHeight;  // pages → px
-            var maxY = (document.documentElement.scrollHeight || 0) - window.innerHeight;
-            var atTop    = window.scrollY <= 0       && dy < 0;
-            var atBottom = window.scrollY >= maxY    && dy > 0;
-            if (atTop || atBottom) return; // let native at-edge behavior pass
-            e.preventDefault();
-            window.scrollBy(0, dy);
-        }, { passive: false });
-    }
 })();
 
 /* ── 5. Hero Cursor Glare ── */
