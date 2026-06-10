@@ -222,7 +222,7 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         var x = (e.clientX - rect.left) / rect.width - 0.5;
         var y = (e.clientY - rect.top) / rect.height - 0.5;
         card.style.transform =
-            'perspective(900px) rotateY(' + (x * 6.5) + 'deg) rotateX(' + (-y * 6.5) + 'deg) scale3d(0.94,0.94,0.94)';
+            'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) scale3d(0.94,0.94,0.94)';
         card.style.boxShadow =
             (-x * 22) + 'px ' + (y * 22) + 'px 38px rgba(0,0,0,0.32), ' +
             (-x * 6) + 'px ' + (y * 6) + 'px 12px rgba(0,0,0,0.18)';
