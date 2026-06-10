@@ -425,6 +425,14 @@
                 </h2>
             </div>
 
+            <!-- Carousel navigation arrows — shown/hidden by IIFE 4d -->
+            <button type="button" id="whyArrowLeft" class="why-arrow why-arrow--left is-hidden" aria-label="Previous card">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button type="button" id="whyArrowRight" class="why-arrow why-arrow--right" aria-label="Next card">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
             <div class="why-stage">
                 <article class="why-card" data-why-index="0" data-why-label="One job. Every stakeholder.">
                     <div class="why-card-visual evidence-panel evidence-panel--stakeholders" aria-hidden="true">
@@ -2416,6 +2424,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/>
         </svg>
+        <span class="scroll-top-label" aria-hidden="true">Back to top</span>
     </button>
 
     <script src="pricing-copy.js"></script>
