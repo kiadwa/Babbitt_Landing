@@ -708,45 +708,54 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         });
     }
 
-    // Detect return from successful FormSubmit redirect
-    var submitted = sessionStorage.getItem('formSubmitted');
-    if (submitted) {
-        if (submitted === 'babbitt60') {
-            var yellowSweep = document.getElementById('yellowSweep');
-            var sweepMsg    = document.getElementById('sweepMessage');
-            if (b60Form && b60Msg) {
-                b60Form.style.display = 'none';
-                b60Msg.textContent = "Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.";
-                b60Msg.className = 'form-message success';
-            }
-            if (yellowSweep) yellowSweep.classList.add('active');
-            if (sweepMsg)    sweepMsg.classList.add('active');
-            if (successEl) {
-                successEl.textContent = "Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.";
-                successEl.className = 'form-message success';
-            }
-        } else if (submitted === 'user_waitlist') {
-            var userSweep    = document.getElementById('userWaitlistSweep');
-            var userSweepMsg = document.getElementById('userWaitlistMessage');
-            if (waitlistForm && waitlistMsg) {
-                waitlistForm.style.display = 'none';
-                waitlistMsg.textContent = "Thank you for joining the waitlist. We'll be in touch soon.";
-                waitlistMsg.className = 'form-message success';
-            }
-            if (userSweep)    userSweep.classList.add('active');
-            if (userSweepMsg) userSweepMsg.classList.add('active');
-            if (successEl) {
-                successEl.textContent = "Thank you for joining the waitlist. We'll be in touch soon.";
-                successEl.className = 'form-message success';
-            }
-        } else if (successEl) {
-            successEl.textContent = submitted === 'partner'
-                ? "Thank you for your partnership enquiry. We'll be in touch soon."
-                : "Thank you for joining the waitlist. We'll be in touch soon.";
-            successEl.className = 'form-message success';
-            successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+    // Detect return from successful FormSubmit redirect — show inline banner.
+    // Driven by sessionStorage (set on submit) with URL-hash as fallback,
+    // so the banner still renders if sessionStorage was cleared cross-redirect
+    // (e.g. mobile Safari ITP, private browsing).
+    var banner      = document.getElementById('successBanner');
+    var bannerText  = document.getElementById('successBannerText');
+    var bannerClose = document.getElementById('successBannerClose');
+    var bannerTimer = null;
+
+    function hideBanner() {
+        if (!banner) return;
+        banner.classList.remove('is-visible');
+        setTimeout(function () { banner.hidden = true; }, 320);
+        if (bannerTimer) { clearTimeout(bannerTimer); bannerTimer = null; }
+    }
+
+    function showBanner(text) {
+        if (!banner || !bannerText) return;
+        bannerText.textContent = text;
+        banner.hidden = false;
+        // Force reflow so the transform transition runs from the offscreen state
+        void banner.offsetWidth;
+        banner.classList.add('is-visible');
+        if (bannerTimer) clearTimeout(bannerTimer);
+        bannerTimer = setTimeout(hideBanner, 8000);
+    }
+
+    if (bannerClose) bannerClose.addEventListener('click', hideBanner);
+
+    var HASH_TO_KEY = {
+        '#babbitt60_submitted':     'babbitt60',
+        '#user_waitlist_submitted': 'user_waitlist',
+        '#partner_waitlist':        'partner',
+        '#partner_submitted':       'partner'
+    };
+    var SUCCESS_TEXT = {
+        babbitt60:     'Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.',
+        user_waitlist: "Thank you for joining the waitlist. We'll be in touch soon.",
+        partner:       "Thank you for your partnership enquiry. We'll be in touch soon."
+    };
+
+    var key = sessionStorage.getItem('formSubmitted') || HASH_TO_KEY[location.hash] || '';
+    if (key && SUCCESS_TEXT[key]) {
+        showBanner(SUCCESS_TEXT[key]);
         sessionStorage.removeItem('formSubmitted');
+        if (HASH_TO_KEY[location.hash]) {
+            history.replaceState(null, '', location.pathname + location.search);
+        }
     }
 
     // Partner form submission
@@ -1931,7 +1940,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             msgEl.className = 'pb-lock-form-message';
         }
 
-        fetch('https://formsubmit.co/ajax/58459ab88c06eacf2b587fb2888464e5', {
+        fetch('https://formsubmit.co/ajax/db2386c230f1fd46e7c207920bbf4508', {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
             body: new FormData(form)

@@ -1695,6 +1695,76 @@ body.partner-hover .dim-overlay {
     border: 1px solid rgba(208, 64, 48, 0.2);
 }
 
+/* Inline success banner (post-FormSubmit redirect) */
+.success-banner {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    z-index: 1000;
+    width: calc(100% - 32px);
+    max-width: 560px;
+    background: var(--bg-elevated);
+    border: 1px solid rgba(103, 228, 170, 0.45);
+    border-radius: var(--radius-button);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+    transform: translate(-50%, -200%);
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.success-banner.is-visible {
+    transform: translate(-50%, 0);
+}
+
+.success-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+}
+
+.success-banner-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: rgba(103, 228, 170, 0.18);
+    color: var(--green);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.success-banner-text {
+    flex: 1;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--text-primary);
+}
+
+.success-banner-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    padding: 4px 8px;
+    transition: color var(--motion-fast);
+}
+
+.success-banner-close:hover { color: var(--text-primary); }
+
+@media (max-width: 480px) {
+    .success-banner { top: 12px; }
+    .success-banner-inner { padding: 12px 14px; gap: 10px; }
+    .success-banner-text { font-size: 13px; }
+}
+
 /* Waitlist perks */
 .waitlist-perks {
     max-width: 900px;
