@@ -222,7 +222,7 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         var x = (e.clientX - rect.left) / rect.width - 0.5;
         var y = (e.clientY - rect.top) / rect.height - 0.5;
         card.style.transform =
-            'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) scale3d(0.94,0.94,0.94)';
+            'perspective(900px) rotateY(' + (x * 6.5) + 'deg) rotateX(' + (-y * 6.5) + 'deg) scale3d(0.94,0.94,0.94)';
         card.style.boxShadow =
             (-x * 22) + 'px ' + (y * 22) + 'px 38px rgba(0,0,0,0.32), ' +
             (-x * 6) + 'px ' + (y * 6) + 'px 12px rgba(0,0,0,0.18)';
@@ -235,6 +235,32 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         card.style.boxShadow = '';
     });
 });
+
+/* ── 4b2. Demo Card — click-confirmation pulse ── */
+(function () {
+    document.querySelectorAll('.peek-half').forEach(function (half) {
+        half.addEventListener('click', function (e) {
+            e.preventDefault();
+            var href = half.getAttribute('href');
+            if (!href) return;
+            half.classList.add('peek-half--clicked');
+            var isExternal = href.indexOf('http') === 0 || half.getAttribute('target') === '_blank';
+            setTimeout(function () {
+                half.classList.remove('peek-half--clicked');
+                if (isExternal) {
+                    window.open(href, '_blank', 'noopener');
+                } else {
+                    var target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        window.location.href = href;
+                    }
+                }
+            }, 200);
+        });
+    });
+})();
 
 /* ── 4c. Hero Scroll-Out Fold ──
    Scroll-tied. As the hero scrolls past the top of the viewport, the four
@@ -666,6 +692,27 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     });
 
     update();
+})();
+
+/* ── 8c. Hero Scroll Cue — hide once hero has scrolled out of view ── */
+(function () {
+    var cue  = document.getElementById('heroScrollCue');
+    var hero = document.getElementById('hero');
+    if (!cue || !hero) return;
+
+    var observer = new IntersectionObserver(
+        function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    cue.classList.remove('is-hidden');
+                } else {
+                    cue.classList.add('is-hidden');
+                }
+            });
+        },
+        { threshold: 0.15 }
+    );
+    observer.observe(hero);
 })();
 
 /* ── 9. Form Submission (FormSubmit.co with built-in captcha) ── */
