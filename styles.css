@@ -1503,26 +1503,14 @@ body.partner-hover .dim-overlay {
 /* ════════════════════════════════════════════════════════════
    CODECHECKER BUNDLE SECTION
    ════════════════════════════════════════════════════════════ */
-/* Code Checker sits on Babbitt White to signal a different product —
-   echoing the white product demo card in the hero mosaic.
-   A black→white gradient fades in at the top to soften the seam. */
+/* CodeChecker sits on the brand dark surface — the yellow accents in the
+   wordmark "it" and the CodeChecker H2 only sing on dark. */
 .codechecker-section {
     position: relative;
     padding: 100px 0 100px;
-    background: #F0EDE8;
-    color: #1C1A17;
+    background: var(--bg-base);
+    color: var(--text-primary);
     overflow: hidden;
-}
-.codechecker-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 140px;
-    background: linear-gradient(to bottom, var(--bg-base) 0%, #F0EDE8 100%);
-    pointer-events: none;
-    z-index: 0;
 }
 
 .codechecker-inner {
@@ -1532,7 +1520,7 @@ body.partner-hover .dim-overlay {
 }
 
 .codechecker-brand {
-    color: #B07F00;
+    color: var(--yellow);
 }
 
 .babbitt-wordmark-inline {
@@ -1552,15 +1540,15 @@ body.partner-hover .dim-overlay {
     margin-right: 0.18em;
 }
 .babbitt-wordmark-inline--eyebrow {
-    height: 0.85em;
-    transform: translateY(0.12em);
-    margin-left: 0.18em;
+    height: 1.55em;
+    transform: translateY(0.32em);
+    margin-left: 0.32em;
     opacity: 0.85;
 }
 .babbitt-wordmark-inline--card {
-    height: 0.85em;
-    transform: translateY(0.12em);
-    margin-left: 0.18em;
+    height: 1.55em;
+    transform: translateY(0.32em);
+    margin-left: 0.32em;
 }
 
 .codechecker-logo {
@@ -1589,17 +1577,17 @@ body.partner-hover .dim-overlay {
 
 .codechecker-card {
     padding: 28px;
-    border: 1px solid rgba(28, 26, 23, 0.12);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-card, 12px);
-    background: rgba(28, 26, 23, 0.03);
+    background: var(--bg-surface);
     display: flex;
     flex-direction: column;
     gap: 12px;
     transition: border-color var(--motion-fast), background var(--motion-fast), transform var(--motion-fast);
 }
 .codechecker-card:hover {
-    border-color: rgba(176, 127, 0, 0.5);
-    background: rgba(246, 181, 0, 0.08);
+    border-color: rgba(246, 181, 0, 0.5);
+    background: rgba(246, 181, 0, 0.06);
     transform: translateY(-2px);
 }
 
@@ -1608,21 +1596,21 @@ body.partner-hover .dim-overlay {
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #B07F00;
+    color: var(--yellow);
 }
 
 .codechecker-card-title {
     font-family: var(--font-display);
     font-size: 20px;
     line-height: 1.25;
-    color: #1C1A17;
+    color: var(--text-primary);
     margin: 0;
 }
 
 .codechecker-card-body {
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(28, 26, 23, 0.7);
+    color: var(--text-secondary);
     margin: 0;
 }
 
@@ -1635,15 +1623,15 @@ body.partner-hover .dim-overlay {
     margin: 36px auto 0;
     padding: 16px 22px;
     max-width: 760px;
-    border: 1px solid rgba(28, 26, 23, 0.12);
+    border: 1px solid var(--border-default);
     border-radius: 999px;
-    background: rgba(28, 26, 23, 0.04);
+    background: var(--bg-surface);
     font-size: 13px;
-    color: rgba(28, 26, 23, 0.7);
+    color: var(--text-secondary);
     text-align: center;
 }
 .codechecker-strip-item strong {
-    color: #B07F00;
+    color: var(--yellow);
     font-weight: 700;
     margin-right: 4px;
 }
@@ -1651,24 +1639,11 @@ body.partner-hover .dim-overlay {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: rgba(28, 26, 23, 0.25);
+    background: var(--border-strong);
 }
 
-/* Section-header text overrides for the white panel */
-.codechecker-section .section-title {
-    color: #1C1A17;
-}
-.codechecker-section .section-lead {
-    color: rgba(28, 26, 23, 0.72);
-}
-.codechecker-section .section-eyebrow {
-    color: rgba(28, 26, 23, 0.6);
-}
-.codechecker-section .babbitt-wordmark-inline {
-    filter: invert(1) brightness(0.18);
-}
 .codechecker-section .codechecker-logo {
-    filter: drop-shadow(0 4px 16px rgba(176, 127, 0, 0.35));
+    filter: drop-shadow(0 4px 16px rgba(246, 181, 0, 0.35));
 }
 
 @media (max-width: 520px) {
