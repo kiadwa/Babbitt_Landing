@@ -55,6 +55,70 @@
     }, 3500);
 })();
 
+/* ── 1b. Incentive Bridge — role/value cycling + tap-to-toggle reveal ──
+   Paired with the in-between section (hero → who-is-babbitt-for). Default
+   surface shows a cycling "Every <role> gets <value>." line; hover or tap
+   opens the yellow surface with Bruno's product quote (see styles.css
+   "INCENTIVE BRIDGE" block for the clip-path open animation). */
+(function () {
+    var pairs = [
+        { role: 'trade',             value: 'paid faster'      },
+        { role: 'supplier',          value: 'loyal customers'  },
+        { role: 'property manager',  value: 'less admin'       },
+        { role: 'strata',            value: 'clean records'    },
+        { role: 'owner',             value: 'a full history'   },
+        { role: 'tenant',            value: 'clear repairs'    }
+    ];
+    var roleEl  = document.getElementById('c-incentive-role');
+    var valueEl = document.getElementById('c-incentive-value');
+    var card    = document.getElementById('incentiveCard');
+    if (!roleEl || !valueEl) return;
+
+    var i = 0;
+    setInterval(function () {
+        [roleEl, valueEl].forEach(function (el) {
+            el.classList.remove('anim-in');
+            el.classList.add('anim-out');
+        });
+        setTimeout(function () {
+            i = (i + 1) % pairs.length;
+            roleEl.textContent  = pairs[i].role;
+            valueEl.textContent = pairs[i].value;
+            [roleEl, valueEl].forEach(function (el) {
+                el.classList.remove('anim-out');
+                el.classList.add('anim-in');
+            });
+            setTimeout(function () {
+                [roleEl, valueEl].forEach(function (el) { el.classList.remove('anim-in'); });
+            }, 300);
+        }, 300);
+    }, 3500);
+
+    if (!card) return;
+
+    // Touch devices have no :hover — tap toggles the open state.
+    var isTouch = window.matchMedia('(hover: none)').matches;
+    function setOpen(open) {
+        card.classList.toggle('is-open', open);
+        card.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    if (isTouch) {
+        card.addEventListener('click', function () {
+            setOpen(!card.classList.contains('is-open'));
+        });
+    }
+    // Keyboard: Enter/Space opens (and Escape closes) for non-touch too.
+    card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setOpen(!card.classList.contains('is-open'));
+        } else if (e.key === 'Escape') {
+            setOpen(false);
+            card.blur();
+        }
+    });
+})();
+
 /* ── 2. Partner — hover effect + blue sweep form ── */
 (function () {
     var btnPartner    = document.getElementById('btnPartner');
@@ -123,11 +187,17 @@
         }, 300);
     }
 
-    // Nav "Secure Your Spot" — open immediately
+    // Nav "Babbitt 60" — scroll to the explainer section, not open the form.
+    // Users land on the section, read the explainer, then hit "Apply" there.
     if (btnNavCta) {
         btnNavCta.addEventListener('click', function (e) {
             e.preventDefault();
-            openSweep();
+            var section = document.getElementById('babbitt60');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                openSweep();
+            }
         });
     }
 
@@ -186,6 +256,34 @@
     });
 })();
 
+/* ── 3b. Babbitt 60 explainer modal ── */
+(function () {
+    var modal = document.getElementById('b60ExplainerModal');
+    if (!modal) return;
+    var openEls  = document.querySelectorAll('[data-open-b60-explainer]');
+    var closeEls = modal.querySelectorAll('[data-b60-explainer-close]');
+
+    function open() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+    function close() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+
+    openEls.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            open();
+        });
+    });
+    closeEls.forEach(function (el) { el.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+})();
+
 /* ── 4. 3D Tilt Cards (cursor-driven perspective) ── */
 document.querySelectorAll('.tilt-card').forEach(function (card) {
     card.addEventListener('mousemove', function (e) {
@@ -221,11 +319,12 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         var rect = card.getBoundingClientRect();
         var x = (e.clientX - rect.left) / rect.width - 0.5;
         var y = (e.clientY - rect.top) / rect.height - 0.5;
+        // Softened tilt — rotation 10°→6°, zoom-out 0.94→0.97, shadows lighter.
         card.style.transform =
-            'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) scale3d(0.94,0.94,0.94)';
+            'perspective(900px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) scale3d(0.97,0.97,0.97)';
         card.style.boxShadow =
-            (-x * 22) + 'px ' + (y * 22) + 'px 38px rgba(0,0,0,0.32), ' +
-            (-x * 6) + 'px ' + (y * 6) + 'px 12px rgba(0,0,0,0.18)';
+            (-x * 14) + 'px ' + (y * 14) + 'px 30px rgba(0,0,0,0.26), ' +
+            (-x * 4) + 'px ' + (y * 4) + 'px 10px rgba(0,0,0,0.14)';
     });
 
     card.addEventListener('mouseleave', function () {
@@ -236,28 +335,37 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     });
 });
 
-/* ── 4b2. Demo Card — click-confirmation pulse ── */
+/* ── 4b2. Demo Card — click-confirmation overlay + route ── */
 (function () {
     document.querySelectorAll('.peek-half').forEach(function (half) {
         half.addEventListener('click', function (e) {
             e.preventDefault();
             var href = half.getAttribute('href');
             if (!href) return;
+            // Show the confirmation overlay long enough for the user to read
+            // "Jumping to demo…" / "Opening Code Checker…" before we route.
             half.classList.add('peek-half--clicked');
             var isExternal = href.indexOf('http') === 0 || half.getAttribute('target') === '_blank';
             setTimeout(function () {
-                half.classList.remove('peek-half--clicked');
                 if (isExternal) {
                     window.open(href, '_blank', 'noopener');
-                } else {
+                    // Leave the overlay visible briefly after open — feels less
+                    // jarring than snapping back to the default card.
+                    setTimeout(function () {
+                        half.classList.remove('peek-half--clicked');
+                    }, 400);
+                } else if (href.charAt(0) === '#') {
                     var target = document.querySelector(href);
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        window.location.href = href;
                     }
+                    setTimeout(function () {
+                        half.classList.remove('peek-half--clicked');
+                    }, 600);
+                } else {
+                    window.location.href = href;
                 }
-            }, 200);
+            }, 520);
         });
     });
 })();
@@ -607,6 +715,32 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
             scrollToCard(target);
         });
     }
+
+    /* Cross-OS scroll normalisation.
+       The carousel is driven by window.scrollY against .why-stage-wrap (a
+       sticky overflow:hidden container). On Mac trackpads, Safari/Firefox
+       sometimes absorb wheel deltas into the overflow:hidden node instead
+       of bubbling to window scroll — which makes scrolling INSIDE the
+       frame feel different (or stuck) compared to OUTSIDE.
+       Fix: when a wheel event fires inside the carousel frame and the page
+       still has room to scroll in that direction, forward the delta
+       directly to window.scrollBy. Skipped on non-desktop (carousel inert)
+       and on horizontal-dominant scrolls (trackpad swipe gestures). */
+    if (wrap) {
+        wrap.addEventListener('wheel', function (e) {
+            if (!shouldRun()) return;
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+            var dy = e.deltaY;
+            if (e.deltaMode === 1) dy *= 16;                       // lines → px
+            else if (e.deltaMode === 2) dy *= window.innerHeight;  // pages → px
+            var maxY = (document.documentElement.scrollHeight || 0) - window.innerHeight;
+            var atTop    = window.scrollY <= 0       && dy < 0;
+            var atBottom = window.scrollY >= maxY    && dy > 0;
+            if (atTop || atBottom) return; // let native at-edge behavior pass
+            e.preventDefault();
+            window.scrollBy(0, dy);
+        }, { passive: false });
+    }
 })();
 
 /* ── 5. Hero Cursor Glare ── */
@@ -728,25 +862,45 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     update();
 })();
 
-/* ── 8c. Hero Scroll Cue — hide once hero has scrolled out of view ── */
+/* ── 8c. Hero Scroll Cue — fade as soon as the user starts scrolling ── */
 (function () {
-    var cue  = document.getElementById('heroScrollCue');
-    var hero = document.getElementById('hero');
-    if (!cue || !hero) return;
+    var cue = document.getElementById('heroScrollCue');
+    if (!cue) return;
 
-    var observer = new IntersectionObserver(
-        function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    cue.classList.remove('is-hidden');
-                } else {
-                    cue.classList.add('is-hidden');
-                }
-            });
-        },
-        { threshold: 0.15 }
-    );
-    observer.observe(hero);
+    var FADE_AT = 80;
+    function update() {
+        if (window.scrollY > FADE_AT) cue.classList.add('is-hidden');
+        else                          cue.classList.remove('is-hidden');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
+
+/* ── 8d. Demo Role Selector — swap embedded iframe + CTA on chip click ── */
+(function () {
+    var chips    = document.querySelectorAll('.demo-role-chip');
+    var frame    = document.getElementById('demoEmbedFrame');
+    var urlLabel = document.getElementById('demoEmbedUrl');
+    var openCta  = document.getElementById('demoOpenFullCta');
+    if (!chips.length || !frame) return;
+
+    function select(flow) {
+        chips.forEach(function (c) {
+            var on = c.getAttribute('data-flow') === flow;
+            c.classList.toggle('is-active', on);
+            c.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
+        frame.src = '/demo/?embed=1&flow=' + encodeURIComponent(flow);
+        if (urlLabel) urlLabel.textContent = 'babbitt.app/demo?flow=' + flow;
+        if (openCta)  openCta.href = '/demo?flow=' + flow;
+    }
+
+    chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            var flow = chip.getAttribute('data-flow');
+            if (flow) select(flow);
+        });
+    });
 })();
 
 /* ── 9. Form Submission (FormSubmit.co with built-in captcha) ── */

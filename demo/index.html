@@ -69,14 +69,64 @@
       #demoFinale.is-on { display: block; }
 
       /* Embed mode — when /demo is loaded inside the landing page iframe (?embed=1).
-         Hides the demo's own chrome so the landing page provides the framing. */
+         Hides the demo's own chrome so the landing page provides the framing.
+         User feedback: the iframe was scrolling internally because demo content
+         (857px) overflowed the 700px iframe — strip redundant chrome so it fits. */
       html.is-embed, body.is-embed { min-height: 0 !important; height: auto !important; }
       body.is-embed > header { display: none !important; }
-      body.is-embed main { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+      body.is-embed main {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        --tw-space-y-reverse: 0;
+      }
+      /* Tighten the space-y-6 separators between sections so the demo packs in. */
+      body.is-embed main > * + * { margin-top: 12px !important; }
       body.is-embed::before { opacity: 0.02; } /* slightly soften grain inside the frame */
       /* The step viewport's 600px floor pads short flows; drop it in embed so the
          iframe can tighten around the real content. */
-      body.is-embed #stepViewport { min-height: 0 !important; }
+      body.is-embed #stepViewport { min-height: 0 !important; padding: 0.75rem 1rem !important; }
+      /* Flow picker is REDUNDANT in embed — the landing page chips above the
+         iframe already select the flow. Hide to reclaim ~85px. */
+      body.is-embed #flowPicker { display: none !important; }
+      /* The "Active flow" header card still shows step counter/dots — tighten it. */
+      body.is-embed main > section:first-of-type { padding: 10px 14px !important; }
+      body.is-embed #flowTitle { font-size: 1rem !important; }
+      /* Footer "UI walkthrough" disclaimer — redundant in embed, the iframe IS
+         the disclaimer. Hide to reclaim ~30px. */
+      body.is-embed main > p:last-of-type { display: none !important; }
+
+      /* Demo controls bar — sticky-bottom so the Begin Demo / Next button is
+         ALWAYS in the viewport. User feedback: people miss the button because
+         it sits below the fold on 720-900px laptops. */
+      .demo-controls {
+        position: sticky;
+        bottom: 12px;
+        z-index: 40;
+        background: rgba(19, 18, 16, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 10px 14px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+      }
+      /* Subtle pulse on the next button so the eye lands there immediately */
+      #nextBtn { animation: nextPulse 2.4s ease-in-out infinite; }
+      @keyframes nextPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(246, 181, 0, 0.55); }
+        50%      { box-shadow: 0 0 0 8px rgba(246, 181, 0, 0); }
+      }
+      /* In embed mode the demo sits in a fixed-height iframe; drop the sticky
+         behaviour and the pulse so the embed reads cleanly. */
+      body.is-embed .demo-controls {
+        position: static;
+        background: transparent;
+        backdrop-filter: none;
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+      body.is-embed #nextBtn { animation: none; }
 
       @media (prefers-reduced-motion: reduce) {
         .pulse-ring,
@@ -171,11 +221,11 @@
             </div>
 
             <!-- Step viewport -->
-            <div id="stepViewport" class="p-4 sm:p-8 min-h-[600px] relative">
+            <div id="stepViewport" class="p-4 sm:p-6 min-h-[420px] relative">
 
                 <!-- ═══ STEP 1 — Intro ═══ -->
                 <div class="step step-fade" data-flow="property-owner-listing" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-yellow/15 text-yellow border border-yellow/40 mb-4">
                             Property Owner Flow
                         </span>
@@ -475,7 +525,7 @@
 
                 <!-- ═══ TR-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="trade-respond-and-stage" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-yellow/15 text-yellow border border-yellow/40 mb-4">
                             Trade × Property Owner
                         </span>
@@ -1595,7 +1645,7 @@
 
                 <!-- ═══ SR-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="supplier-rfq" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-green/15 text-green border border-green/40 mb-4">
                             Supplier
                         </span>
@@ -2106,7 +2156,7 @@
 
                 <!-- ═══ INC-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="tradie-incident-chat" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-orange/15 text-orange border border-orange/40 mb-4">
                             Trade × Owner Flow
                         </span>
@@ -2877,7 +2927,7 @@
 
                 <!-- ═══ NET-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="tradie-network-community" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-blue/15 text-blue border border-blue/40 mb-4">
                             Network · Trade Flow
                         </span>
@@ -3731,7 +3781,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                 <!-- ═══ PR-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="property-owner-register" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-blue/15 text-blue border border-blue/40 mb-4">
                             Property Owner Flow
                         </span>
@@ -4168,7 +4218,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                 <!-- ═══ PM-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="pm-listing-from-property" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-green/15 text-green border border-green/40 mb-4">
                             Property Manager Flow
                         </span>
@@ -4545,7 +4595,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
                 <!-- ═══ ST-STEP 1 — Intro ═══ -->
                 <div class="step hidden" data-flow="strata-votes-rules" data-step="1">
-                    <div class="max-w-2xl mx-auto text-center py-8 sm:py-12">
+                    <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
                         <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold mb-4 border" style="background:rgba(192,132,252,0.12); color:#C084FC; border-color:rgba(192,132,252,0.45);">
                             Strata Committee Flow
                         </span>
@@ -4947,8 +4997,8 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             </div>
         </section>
 
-        <!-- ═══ Controls ═══ -->
-        <section class="flex items-center justify-between gap-2">
+        <!-- ═══ Controls (sticky-bottom in standalone, static in embed) ═══ -->
+        <section class="demo-controls flex items-center justify-between gap-2">
             <button id="prevBtn" class="px-4 py-2 rounded-btn text-sm bg-surface border border-bdr text-txt-secondary hover:text-txt hover:border-bdr-strong disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
                 <i class="fas fa-arrow-left mr-1"></i> Prev
             </button>

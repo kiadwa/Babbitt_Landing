@@ -1503,20 +1503,36 @@ body.partner-hover .dim-overlay {
 /* ════════════════════════════════════════════════════════════
    CODECHECKER BUNDLE SECTION
    ════════════════════════════════════════════════════════════ */
+/* Code Checker sits on Babbitt White to signal a different product —
+   echoing the white product demo card in the hero mosaic.
+   A black→white gradient fades in at the top to soften the seam. */
 .codechecker-section {
     position: relative;
-    padding: 100px 0;
-    background: var(--bg-base);
+    padding: 100px 0 100px;
+    background: #F0EDE8;
+    color: #1C1A17;
     overflow: hidden;
+}
+.codechecker-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(to bottom, var(--bg-base) 0%, #F0EDE8 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .codechecker-inner {
     position: relative;
     z-index: 1;
+    margin-top: 80px;
 }
 
 .codechecker-brand {
-    color: var(--yellow);
+    color: #B07F00;
 }
 
 .babbitt-wordmark-inline {
@@ -1573,17 +1589,17 @@ body.partner-hover .dim-overlay {
 
 .codechecker-card {
     padding: 28px;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid rgba(28, 26, 23, 0.12);
     border-radius: var(--radius-card, 12px);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(28, 26, 23, 0.03);
     display: flex;
     flex-direction: column;
     gap: 12px;
     transition: border-color var(--motion-fast), background var(--motion-fast), transform var(--motion-fast);
 }
 .codechecker-card:hover {
-    border-color: rgba(246, 181, 0, 0.4);
-    background: rgba(246, 181, 0, 0.04);
+    border-color: rgba(176, 127, 0, 0.5);
+    background: rgba(246, 181, 0, 0.08);
     transform: translateY(-2px);
 }
 
@@ -1592,21 +1608,21 @@ body.partner-hover .dim-overlay {
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: #B07F00;
 }
 
 .codechecker-card-title {
     font-family: var(--font-display);
     font-size: 20px;
     line-height: 1.25;
-    color: var(--text-primary);
+    color: #1C1A17;
     margin: 0;
 }
 
 .codechecker-card-body {
     font-size: 14px;
     line-height: 1.6;
-    color: var(--text-secondary);
+    color: rgba(28, 26, 23, 0.7);
     margin: 0;
 }
 
@@ -1619,15 +1635,15 @@ body.partner-hover .dim-overlay {
     margin: 36px auto 0;
     padding: 16px 22px;
     max-width: 760px;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid rgba(28, 26, 23, 0.12);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(28, 26, 23, 0.04);
     font-size: 13px;
-    color: var(--text-secondary);
+    color: rgba(28, 26, 23, 0.7);
     text-align: center;
 }
 .codechecker-strip-item strong {
-    color: var(--yellow);
+    color: #B07F00;
     font-weight: 700;
     margin-right: 4px;
 }
@@ -1635,7 +1651,24 @@ body.partner-hover .dim-overlay {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: var(--border-subtle);
+    background: rgba(28, 26, 23, 0.25);
+}
+
+/* Section-header text overrides for the white panel */
+.codechecker-section .section-title {
+    color: #1C1A17;
+}
+.codechecker-section .section-lead {
+    color: rgba(28, 26, 23, 0.72);
+}
+.codechecker-section .section-eyebrow {
+    color: rgba(28, 26, 23, 0.6);
+}
+.codechecker-section .babbitt-wordmark-inline {
+    filter: invert(1) brightness(0.18);
+}
+.codechecker-section .codechecker-logo {
+    filter: drop-shadow(0 4px 16px rgba(176, 127, 0, 0.35));
 }
 
 @media (max-width: 520px) {
@@ -2304,10 +2337,56 @@ body.partner-hover .dim-overlay {
 .peek--demo:hover     .peek-arrow,
 .peek--demo:hover     .peek-eyebrow { color: var(--yellow); }
 
-/* Lanes card — hover reveals 6 role shortcuts. Default state hides the
-   grid; eyebrow + title + arrow remain. On hover those fade out and the
-   grid fades + slides in, with each button independently clickable. */
+/* Lanes card — "What" — icon-above-title centered stack, then on hover
+   reveals 6 role shortcuts. Default state hides the grid; eyebrow + icon
+   + title + arrow remain. On hover those fade out and the grid fades +
+   slides in, with each button independently clickable. */
 .peek--lanes { position: relative; }
+
+/* Stacked centered layout for the What block (icon → title) */
+.peek--lanes-stacked {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 22px;
+    gap: 14px;
+}
+.peek--lanes-stacked .peek-eyebrow {
+    color: var(--yellow);
+    margin-bottom: 4px;
+}
+.peek-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(246, 181, 0, 0.12);
+    border: 1px solid rgba(246, 181, 0, 0.45);
+    color: var(--yellow);
+    font-size: 26px;
+    transition: transform 0.3s ease, background-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+.peek--lanes-stacked .peek-title {
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.05;
+    text-align: center;
+}
+.peek--lanes-stacked .peek-arrow {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    align-self: auto;
+    font-size: 22px;
+}
+.peek--lanes-stacked:hover .peek-icon,
+.peek--lanes-stacked:focus-within .peek-icon {
+    background: rgba(246, 181, 0, 0.22);
+    box-shadow: 0 0 0 4px rgba(246, 181, 0, 0.15);
+    transform: translateY(-2px);
+}
 .peek-roles {
     position: absolute;
     inset: 18px;
@@ -2329,9 +2408,11 @@ body.partner-hover .dim-overlay {
 .peek--lanes:hover  .peek-eyebrow,
 .peek--lanes:hover  .peek-title,
 .peek--lanes:hover  .peek-arrow,
+.peek--lanes:hover  .peek-icon,
 .peek--lanes:focus-within .peek-eyebrow,
 .peek--lanes:focus-within .peek-title,
-.peek--lanes:focus-within .peek-arrow {
+.peek--lanes:focus-within .peek-arrow,
+.peek--lanes:focus-within .peek-icon {
     opacity: 0;
     transition: opacity 0.2s ease;
 }
@@ -2527,34 +2608,137 @@ body.partner-hover .dim-overlay {
 .peek-half--babbitt:hover {
     cursor: pointer;
     background:
-        radial-gradient(circle at 22% 22%, rgba(246, 181, 0, 0.28), transparent 55%),
+        radial-gradient(circle at 22% 22%, rgba(246, 181, 0, 0.38), transparent 60%),
         var(--bg-elevated);
-    box-shadow: inset 0 0 0 2px rgba(246, 181, 0, 0.55),
-                0 0 24px rgba(246, 181, 0, 0.2);
+    box-shadow: inset 0 0 0 2px rgba(246, 181, 0, 0.75),
+                0 0 32px rgba(246, 181, 0, 0.28);
 }
 .peek-half--babbitt:hover .peek-half-content {
-    transform: translate(-50%, -50%) scale(1.06);
+    transform: translate(-50%, -50%) scale(1.08);
     transition: transform 0.18s ease;
 }
 .peek-half--cc:hover {
     cursor: pointer;
-    background: #e8e3d8;
-    box-shadow: inset 0 0 0 2px rgba(31, 168, 96, 0.55),
-                0 0 24px rgba(31, 168, 96, 0.18);
+    background: #e0d9c8;
+    box-shadow: inset 0 0 0 2px rgba(31, 168, 96, 0.75),
+                0 0 32px rgba(31, 168, 96, 0.28);
 }
 .peek-half--cc:hover .peek-half-content {
-    transform: translate(-50%, -50%) scale(1.06);
+    transform: translate(-50%, -50%) scale(1.08);
     transition: transform 0.18s ease;
 }
 
-/* Click-confirmation pulse keyframe */
+/* Per-half CTA chip — explains where the click leads. Hidden by default,
+   reveals on hover so the affordance feels deliberate, not noisy. */
+.peek-half-cta {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+}
+.peek-half--babbitt .peek-half-cta {
+    color: #1a1a1a;
+    background: var(--yellow);
+    box-shadow: 0 6px 16px rgba(246, 181, 0, 0.35);
+}
+.peek-half--cc .peek-half-cta {
+    color: #f4f1e9;
+    background: #0f5a2e;
+    box-shadow: 0 6px 16px rgba(15, 90, 46, 0.35);
+}
+.peek-half:hover .peek-half-cta,
+.peek-half:focus-visible .peek-half-cta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Click-confirmation overlay — fills the half with a clear "going there"
+   message so the user sees their click registered before navigation. The
+   half is clipped to a triangle on hover; padding shifts the overlay
+   content to the triangle's visual centroid (1/3, 1/3 for Babbitt;
+   2/3, 2/3 for CC) instead of the geometric center of the bounding box. */
+.peek-half-confirm {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+    z-index: 3;
+}
+.peek-half--babbitt .peek-half-confirm {
+    background: var(--yellow);
+    color: #1a1a1a;
+    padding: 0 34% 34% 0;
+}
+.peek-half--cc .peek-half-confirm {
+    background: #0f5a2e;
+    color: #f4f1e9;
+    padding: 34% 0 0 34%;
+}
+.peek-half-confirm-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.12);
+    font-size: 16px;
+}
+.peek-half--cc .peek-half-confirm-icon {
+    background: rgba(255, 255, 255, 0.18);
+}
+.peek-half-confirm-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+.peek-half--clicked .peek-half-confirm {
+    opacity: 1;
+}
+.peek-half--clicked .peek-half-confirm-icon {
+    animation: peekHalfConfirmIconBounce 0.6s ease-out 0.05s infinite;
+}
+
+/* Click pulse on the logo+content stack — kept (a touch slower so it
+   reads as deliberate feedback, not a flicker). */
 @keyframes peekHalfClickPulse {
-    0%   { opacity: 1; }
-    40%  { opacity: 0.55; transform: translate(-50%, -50%) scale(1.14); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+    35%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1.18); }
+    100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.24); }
 }
 .peek-half--clicked .peek-half-content {
-    animation: peekHalfClickPulse 0.2s ease-out forwards;
+    animation: peekHalfClickPulse 0.32s ease-out forwards;
+}
+
+@keyframes peekHalfConfirmIconBounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(3px); }
+}
+.peek-half--cc.peek-half--clicked .peek-half-confirm-icon {
+    /* Code Checker opens external — arrow has its own diagonal direction;
+       skip the vertical bounce and use a subtle pulse instead. */
+    animation: peekHalfConfirmIconPulse 0.6s ease-out 0.05s infinite;
+}
+@keyframes peekHalfConfirmIconPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.12); }
 }
 .peek--demo:hover .peek-eyebrow,
 .peek--demo:hover .peek-title,
@@ -2657,7 +2841,7 @@ body.partner-hover .dim-overlay {
 
 /* ── Why Carousel ──────────────────────────────────────── */
 .why {
-    min-height: 840vh; /* 120vh per card × 7 cards */
+    min-height: 560vh; /* 80vh per card × 7 cards — keeps cards readable without scroll-jacking the page */
     background: var(--bg-base);
     position: relative;
 }
@@ -3044,37 +3228,42 @@ body.partner-hover .dim-overlay {
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(246, 181, 0, 0.12);
-    border: 1px solid rgba(246, 181, 0, 0.35);
+    background: rgba(246, 181, 0, 0.14);
+    border: 1px solid rgba(246, 181, 0, 0.45);
     border-radius: 999px;
     color: var(--yellow);
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     opacity: 1;
     visibility: visible;
     transition:
         opacity var(--motion-standard),
         visibility 0s linear 0s,
         background-color var(--motion-fast),
-        transform var(--motion-standard);
-    animation: why-arrow-breathe 2.4s ease-in-out infinite;
+        transform var(--motion-standard),
+        box-shadow var(--motion-standard);
+    animation: why-arrow-pulse 1.8s ease-out infinite;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
 .why-arrow:hover,
 .why-arrow:focus-visible {
-    background: rgba(246, 181, 0, 0.22);
+    background: var(--yellow);
+    color: #1a1a1a;
     outline: none;
     animation: none;
-    transform: translateY(-50%) scale(1.08);
+    transform: translateY(-50%) scale(1.12);
+    box-shadow: 0 0 0 6px rgba(246, 181, 0, 0.18),
+                0 8px 24px rgba(246, 181, 0, 0.35);
 }
 .why-arrow:focus-visible {
-    box-shadow: 0 0 0 3px rgba(246, 181, 0, 0.4);
+    box-shadow: 0 0 0 3px rgba(246, 181, 0, 0.45),
+                0 8px 24px rgba(246, 181, 0, 0.35);
 }
 .why-arrow.is-hidden {
     opacity: 0;
@@ -3085,21 +3274,62 @@ body.partner-hover .dim-overlay {
         visibility 0s linear 200ms;
 }
 .why-arrow--left {
-    /* Centered 16px to the left of the stage left edge.
-       Stage left edge = 50% - half-stage-width.
-       Arrow center = 50% - half-stage-width - 16px - 22px (half arrow). */
-    left: calc(50% - min(320px, 28vw) - 54px);
+    /* Centered 16px to the left of the stage left edge. */
+    left: calc(50% - min(320px, 28vw) - 56px);
 }
 .why-arrow--right {
-    /* Centered 16px to the right of the stage right edge.
-       Stage right edge = 50% + half-stage-width (from left).
-       Use left: calc(50% + half-stage-width + 16px). */
+    /* Centered 16px to the right of the stage right edge. */
     left: calc(50% + min(320px, 28vw) + 16px);
 }
 
-@keyframes why-arrow-breathe {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.55; }
+/* "Click or scroll" affordance label — appears on arrow hover so users
+   know both interactions are supported. */
+.why-arrow::after {
+    content: 'Click or scroll';
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(28, 26, 23, 0.92);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-fast), transform var(--motion-fast);
+}
+.why-arrow:hover::after,
+.why-arrow:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(2px);
+}
+
+@keyframes why-arrow-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(246, 181, 0, 0.55),
+                    0 0 0 0 rgba(246, 181, 0, 0.0);
+        transform: translateY(-50%) scale(1);
+    }
+    60% {
+        box-shadow: 0 0 0 14px rgba(246, 181, 0, 0),
+                    0 0 0 0 rgba(246, 181, 0, 0);
+        transform: translateY(-50%) scale(1.04);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(246, 181, 0, 0),
+                    0 0 0 0 rgba(246, 181, 0, 0);
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .why-arrow { animation: none; }
 }
 
 .why-card {
@@ -4846,29 +5076,42 @@ body.partner-hover .dim-overlay {
     color: var(--role-color);
 }
 
-/* Corner chevron — affordance hint that the rectangle is clickable.
-   Sits opposite the room-tag (top-left), above the watermark (bottom-right). */
+/* Click affordance pill — bottom-right of each room.
+   Resting state: dim chevron only. Hover: pill expands with "Click to enter". */
 .room-cue {
     position: absolute;
-    top: 14px;
+    bottom: 14px;
     right: 14px;
-    width: 22px;
-    height: 22px;
-    display: grid;
-    place-items: center;
     z-index: 3;
-    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--text-tertiary);
     border: 1px solid color-mix(in srgb, var(--text-tertiary) 60%, transparent);
-    border-radius: 2px;
-    background: var(--bg-base);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-base) 90%, transparent);
     opacity: 0.55;
     pointer-events: none;
+    overflow: hidden;
     transition:
-        color 0.4s ease,
-        border-color 0.4s ease,
-        opacity 0.4s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        opacity 0.35s ease,
+        background 0.35s ease,
         transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.room-cue::after {
+    content: 'Click to enter';
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    transition: max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease 0.05s;
 }
 
 .room:hover .room-cue,
@@ -4876,7 +5119,18 @@ body.partner-hover .dim-overlay {
     opacity: 1;
     color: var(--role-color);
     border-color: var(--role-color);
-    transform: translate(2px, -2px);
+    background: color-mix(in srgb, var(--role-color) 12%, var(--bg-base));
+    transform: translate(-2px, -2px);
+}
+.room:hover .room-cue::after,
+.room:focus-visible .room-cue::after {
+    max-width: 160px;
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .room-cue::after { content: 'Tap to enter'; max-width: 160px; opacity: 1; }
+    .room-cue { opacity: 0.85; }
 }
 
 /* Narrow viewports — room cells get tight; the chevron crowds the
@@ -5101,8 +5355,99 @@ body.partner-hover .dim-overlay {
     font-size: 12px;
     color: var(--text-tertiary);
     letter-spacing: 0.01em;
-    max-width: 340px;
+    max-width: 460px;
     line-height: 1.5;
+}
+
+/* Right-column wrapper inside the 2-col demo-board grid */
+.demo-board-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* ── Role-based demo selector ──────────────────────────────
+   Six chips, one per role; clicking swaps the embedded iframe
+   and updates the "open full walkthrough" CTA href. */
+.demo-roles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 22px;
+}
+@media (min-width: 1280px) {
+    .demo-roles { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+.demo-role-chip {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 14px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--bg-elevated) 50%, transparent);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border-color var(--motion-fast),
+        background var(--motion-fast),
+        transform var(--motion-fast),
+        box-shadow var(--motion-fast);
+}
+.demo-role-chip:hover,
+.demo-role-chip:focus-visible {
+    outline: none;
+    transform: translateY(-2px);
+    border-color: var(--yellow);
+    box-shadow: 0 8px 24px -16px rgba(246, 181, 0, 0.55);
+}
+.demo-role-chip.is-active {
+    border-color: var(--yellow);
+    background: color-mix(in srgb, var(--yellow) 10%, var(--bg-elevated));
+    box-shadow: 0 6px 18px -10px rgba(246, 181, 0, 0.55);
+}
+.demo-role-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--yellow) 18%, transparent);
+    color: var(--yellow);
+    font-size: 12px;
+}
+.demo-role-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+}
+.demo-role-flow {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+}
+.demo-role-chip.is-active .demo-role-flow {
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
+}
+
+@media (max-width: 1100px) {
+    .demo-roles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+    .demo-roles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .demo-role-chip { padding: 12px; }
+}
+
+.demo-board-cta-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
 }
 
 /* ── Embedded /demo iframe ──────────────────────────────────
@@ -5210,12 +5555,9 @@ body.partner-hover .dim-overlay {
     transition: height var(--motion-standard);
 }
 
-/* ── Side-by-side pair: desktop frame + phone mock ──────── */
+/* ── Demo embed (single desktop frame; mobile bezel retired) ─ */
 .demo-embed-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: start;
-    gap: clamp(20px, 2.2vw, 36px);
+    display: block;
     min-width: 0;
 }
 
@@ -5650,35 +5992,53 @@ body.partner-hover .dim-overlay {
 }
 
 /* Workspace tab strip — flat echo of the real product's tab bar */
+/* Workspace label strip — non-interactive labels of what the workspace contains.
+   Muted on purpose so users don't try to click them like tabs. */
 .ws-tabs {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 0;
-    overflow-x: auto;
-    border-bottom: 1px solid var(--ticket-rule);
-    margin: 0 -4px;
-    padding: 0 4px;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    align-items: center;
+    border-bottom: 1px dashed color-mix(in srgb, var(--ticket-rule) 70%, transparent);
+    margin: 0;
+    padding: 0 0 10px;
+    cursor: default;
 }
-.ws-tabs::-webkit-scrollbar { display: none; }
+.ws-tabs::before {
+    content: 'Includes';
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-tertiary) 75%, transparent);
+    margin-right: 6px;
+    user-select: none;
+}
 
 .ws-tab {
     flex: 0 0 auto;
-    padding: 9px 14px;
+    padding: 2px 0;
     font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: #8a857d;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, var(--text-tertiary) 90%, transparent);
+    border: 0;
+    margin: 0;
     white-space: nowrap;
+    cursor: default;
+    user-select: none;
+}
+.ws-tab:not(:last-child)::after {
+    content: '·';
+    margin-left: 10px;
+    color: color-mix(in srgb, var(--text-tertiary) 50%, transparent);
 }
 
 .ws-tab.is-active {
-    color: #B07F00;
-    border-bottom-color: var(--yellow);
-    font-weight: 700;
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
+    font-weight: 600;
 }
 
 /* ◢ section divider */
@@ -6499,8 +6859,7 @@ body.partner-hover .dim-overlay {
 
 /* Workspace tab strip — green active variant */
 .ws-tabs--green .ws-tab.is-active {
-    color: #145E37;
-    border-bottom-color: #1F8A56;
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
 }
 
 /* Foreman panel — green variant for Property briefing */
@@ -6808,8 +7167,7 @@ body.partner-hover .dim-overlay {
 .spec-divider--plum { color: #3A2270; }
 
 .ws-tabs--plum .ws-tab.is-active {
-    color: #3A2270;
-    border-bottom-color: #6E3FB5;
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
 }
 
 .foreman-panel--plum {
@@ -7065,8 +7423,7 @@ body.partner-hover .dim-overlay {
 .spec-divider--amber { color: #6E3D0D; }
 
 .ws-tabs--amber .ws-tab.is-active {
-    color: #6E3D0D;
-    border-bottom-color: #C97A30;
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
 }
 
 .foreman-panel--amber {
@@ -7362,8 +7719,7 @@ body.partner-hover .dim-overlay {
 .spec-divider--coral { color: #7C1F38; }
 
 .ws-tabs--coral .ws-tab.is-active {
-    color: #7C1F38;
-    border-bottom-color: #D14A6B;
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
 }
 
 .foreman-panel--coral {
@@ -8809,6 +9165,187 @@ body.partner-hover .dim-overlay {
 }
 
 /* ════════════════════════════════════════════════════════════
+   BABBITT 60 — dedicated explainer section + modal
+   ════════════════════════════════════════════════════════════ */
+.b60 {
+    position: relative;
+    padding: 120px 0 140px;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+.b60::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, color-mix(in srgb, var(--yellow) 10%, transparent) 0%, transparent 70%),
+        radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--yellow) 6%, transparent) 0%, transparent 50%);
+    pointer-events: none;
+}
+.b60-inner { position: relative; z-index: 1; }
+.b60 .section-eyebrow { color: var(--yellow); letter-spacing: 0.14em; }
+.b60 .section-title { color: var(--text-primary); }
+.b60 .section-lead { color: color-mix(in srgb, var(--text-primary) 75%, transparent); max-width: 720px; margin-left: auto; margin-right: auto; }
+
+.b60-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 56px 0 48px;
+}
+.b60-card {
+    position: relative;
+    padding: 28px 24px;
+    background: color-mix(in srgb, var(--text-primary) 4%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text-primary) 10%, transparent);
+    border-radius: 14px;
+    transition: border-color var(--motion-fast, 220ms) ease, transform var(--motion-fast, 220ms) ease, background var(--motion-fast, 220ms) ease;
+}
+.b60-card:hover {
+    border-color: color-mix(in srgb, var(--yellow) 60%, transparent);
+    background: color-mix(in srgb, var(--yellow) 5%, transparent);
+    transform: translateY(-3px);
+}
+.b60-card-eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+.b60-card-title {
+    font-family: var(--font-display, inherit);
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    color: var(--text-primary);
+}
+.b60-card p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--text-primary) 72%, transparent);
+    margin: 0;
+}
+.b60-card p strong { color: var(--text-primary); font-weight: 600; }
+
+.b60-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+.b60-apply {
+    background: var(--yellow);
+    color: var(--bg-base);
+    font-weight: 600;
+}
+.b60 .btn-tertiary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid color-mix(in srgb, var(--text-primary) 30%, transparent);
+    padding: 12px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+}
+.b60 .btn-tertiary:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.b60-fine {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+    color: color-mix(in srgb, var(--text-primary) 55%, transparent);
+}
+.b60-fine-tbd {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-left: 6px;
+    border: 1px dashed color-mix(in srgb, var(--yellow) 60%, transparent);
+    border-radius: 6px;
+    color: var(--yellow);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+}
+
+@media (max-width: 1024px) {
+    .b60-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .b60 { padding: 80px 0 90px; }
+    .b60-grid { grid-template-columns: 1fr; gap: 14px; margin: 40px 0 32px; }
+    .b60-card { padding: 22px 20px; }
+    .b60-cta-row { flex-direction: column; align-items: stretch; }
+}
+
+/* Lock Early Bird modal — Babbitt 60 lifetime upsell line */
+.pb-lock-b60-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    margin: 14px 0 18px;
+    background: color-mix(in srgb, var(--yellow) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--yellow) 35%, transparent);
+    border-radius: 10px;
+}
+.pb-lock-b60-icon { color: var(--yellow); font-size: 18px; line-height: 1.4; flex-shrink: 0; }
+.pb-lock-b60-line p { margin: 0; font-size: 14px; line-height: 1.5; color: inherit; }
+.pb-lock-b60-line strong { color: var(--yellow); }
+.pb-lock-b60-explain {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--yellow);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    font: inherit;
+    font-size: inherit;
+}
+.pb-lock-b60-explain:hover { color: color-mix(in srgb, var(--yellow) 80%, var(--text-primary)); }
+
+/* Explainer modal — extends .pb-modal */
+.pb-modal-inner--b60 {
+    max-width: 640px;
+    text-align: left;
+}
+.b60-explainer-body {
+    margin-top: 18px;
+    color: color-mix(in srgb, var(--text-primary) 85%, transparent);
+}
+.b60-explainer-body p { line-height: 1.6; margin: 0 0 14px; }
+.b60-explainer-body h4 {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin: 22px 0 10px;
+    font-weight: 600;
+}
+.b60-explainer-body ul { margin: 0 0 14px; padding-left: 22px; }
+.b60-explainer-body li { line-height: 1.55; margin-bottom: 8px; font-size: 15px; }
+.b60-explainer-body strong { color: var(--text-primary); font-weight: 600; }
+.b60-explainer-tbd {
+    margin-top: 18px;
+    padding: 10px 14px;
+    border: 1px dashed color-mix(in srgb, var(--yellow) 50%, transparent);
+    border-radius: 8px;
+    color: var(--yellow);
+    font-size: 13px;
+    font-style: italic;
+}
+.b60-explainer-cta {
+    margin-top: 22px;
+    text-align: center;
+}
+
+/* ════════════════════════════════════════════════════════════
    SCROLL-TO-TOP — floating FAB, fades in after scroll
    ════════════════════════════════════════════════════════════ */
 .scroll-top {
@@ -8895,4 +9432,193 @@ body.partner-hover .dim-overlay {
     .scroll-top.is-visible {
         transition: opacity var(--motion-fast), visibility 0s linear 0s;
     }
+}
+
+/* ════════════════════════════════════════════════════════════
+   INCENTIVE BRIDGE — cycling words → quote reveal on hover
+   Inverted peek--demo: yellow surface opens from center via
+   clip-path circle (rather than halves closing in).
+   ════════════════════════════════════════════════════════════ */
+.incentive-bridge {
+    background: var(--bg-base);
+    padding: 96px 0 64px;
+}
+
+.incentive-bridge > .container {
+    display: flex;
+    justify-content: center;
+}
+
+.incentive-card {
+    position: relative;
+    width: 100%;
+    max-width: 980px;
+    min-height: 280px;
+    border-radius: var(--radius-card);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    overflow: hidden;
+    cursor: pointer;
+    isolation: isolate;
+    transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.incentive-card:hover,
+.incentive-card:focus-visible,
+.incentive-card.is-open {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+    outline: none;
+}
+
+/* ── Default face (dark, cycling line) ── */
+.incentive-default {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+    padding: 48px 56px;
+    min-height: 280px;
+    transition: opacity 280ms ease 80ms;
+}
+
+.incentive-eyebrow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.incentive-line {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text-primary);
+    max-width: 18ch;
+}
+
+.incentive-line .cycle {
+    color: var(--yellow);
+    min-width: 4ch;
+}
+
+.incentive-hint {
+    position: absolute;
+    right: 28px;
+    bottom: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    transition: color 220ms ease, transform 220ms ease;
+}
+
+.incentive-hint-arrow {
+    display: inline-block;
+    transform: translateY(1px);
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.incentive-card:hover .incentive-hint,
+.incentive-card.is-open .incentive-hint {
+    color: var(--text-secondary);
+}
+
+.incentive-card:hover .incentive-hint-arrow,
+.incentive-card.is-open .incentive-hint-arrow {
+    transform: translate(4px, -4px) rotate(-12deg);
+}
+
+/* ── Reveal face (yellow surface opens from center) ── */
+.incentive-reveal {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 64px;
+    background: var(--yellow);
+    color: #1a1a1a;
+    /* Collapsed circle at center */
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+}
+
+.incentive-card:hover .incentive-reveal,
+.incentive-card:focus-within .incentive-reveal,
+.incentive-card.is-open .incentive-reveal {
+    /* Expand outward past the corners (~70% covers any rectangle) */
+    clip-path: circle(140% at 50% 50%);
+    pointer-events: auto;
+}
+
+.incentive-card:hover .incentive-default,
+.incentive-card:focus-within .incentive-default,
+.incentive-card.is-open .incentive-default {
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+
+.incentive-quote {
+    position: relative;
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    text-align: left;
+    max-width: 64ch;
+    margin: 0;
+    padding-left: 28px;
+    border-left: 3px solid #1a1a1a;
+}
+
+.incentive-reveal-mark {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 14px;
+    color: #1a1a1a;
+    opacity: 0.55;
+}
+
+@media (max-width: 720px) {
+    .incentive-bridge { padding: 64px 0 40px; }
+    .incentive-card { min-height: 240px; }
+    .incentive-default { padding: 36px 28px 56px; min-height: 240px; gap: 14px; }
+    .incentive-line { font-size: clamp(24px, 6vw, 32px); max-width: none; }
+    .incentive-hint {
+        right: auto;
+        left: 28px;
+        bottom: 18px;
+    }
+    .incentive-reveal { padding: 36px 28px; }
+    .incentive-quote {
+        font-size: 16px;
+        line-height: 1.5;
+        padding-left: 18px;
+        border-left-width: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .incentive-reveal { transition: opacity 200ms ease; clip-path: none; opacity: 0; }
+    .incentive-card:hover .incentive-reveal,
+    .incentive-card:focus-within .incentive-reveal,
+    .incentive-card.is-open .incentive-reveal { opacity: 1; clip-path: none; }
+    .incentive-hint-arrow { transition: none; }
 }
