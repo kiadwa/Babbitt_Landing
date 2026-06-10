@@ -419,6 +419,8 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
 
     var cards  = Array.prototype.slice.call(stage.querySelectorAll('.why-card'));
     var thumbs = Array.prototype.slice.call(wrap.querySelectorAll('.why-thumb'));
+    var arrowLeft  = document.getElementById('whyArrowLeft');
+    var arrowRight = document.getElementById('whyArrowRight');
     if (cards.length === 0) return;
 
     var NUM = cards.length;
@@ -506,6 +508,21 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
             titleEl.textContent = label;
             indexEl.textContent = (idx + 1 < 10 ? '0' : '') + (idx + 1);
         }
+
+        // Show/hide arrows at carousel edges
+        if (arrowLeft)  arrowLeft.classList.toggle('is-hidden',  idx <= 0);
+        if (arrowRight) arrowRight.classList.toggle('is-hidden', idx >= LAST);
+    }
+
+    /* Scroll the page so the carousel rests on a given card index (0-based).
+       The carousel maps scrollY in [sectionTop, sectionTop + scrollRange]
+       to card indices [0, LAST]. We invert to find the target scrollY. */
+    function scrollToCard(targetIdx) {
+        if (!shouldRun()) return;
+        capture(); // refresh metrics in case of resize
+        var fraction = LAST > 0 ? targetIdx / LAST : 0;
+        var targetY = sectionTop + fraction * scrollRange;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
     }
 
     function resetAll() {
@@ -518,6 +535,9 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
             thumbs[j].style.transform = '';
             thumbs[j].style.opacity = '';
         }
+        // Arrows are hidden in non-desktop layout via CSS; clear JS state too
+        if (arrowLeft)  arrowLeft.classList.add('is-hidden');
+        if (arrowRight) arrowRight.classList.add('is-hidden');
         wrap.classList.remove('is-animating');
         lastIndex = -1;
     }
@@ -547,6 +567,20 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     window.addEventListener('resize', onResize);
     if (reduceMotionMq.addEventListener) reduceMotionMq.addEventListener('change', onResize);
     if (desktopMq.addEventListener) desktopMq.addEventListener('change', onResize);
+
+    // Arrow click handlers — advance one tile in each direction
+    if (arrowLeft) {
+        arrowLeft.addEventListener('click', function () {
+            var target = Math.max(0, lastIndex < 0 ? 0 : lastIndex - 1);
+            scrollToCard(target);
+        });
+    }
+    if (arrowRight) {
+        arrowRight.addEventListener('click', function () {
+            var target = Math.min(LAST, lastIndex < 0 ? 1 : lastIndex + 1);
+            scrollToCard(target);
+        });
+    }
 })();
 
 /* ── 5. Hero Cursor Glare ── */
