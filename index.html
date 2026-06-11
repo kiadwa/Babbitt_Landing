@@ -831,8 +831,8 @@
         </div>
     </section>
 
-    <!-- ═══ Live Demo Board ═══ -->
-    <section class="demo-board" id="demo">
+    <!-- ═══ Live Demo Board — "Who are you? What demo would you like to play?" ═══ -->
+    <section class="demo-board demo-board--selector" id="demo">
         <div class="perspective-grid-wrap demo-board-bg" aria-hidden="true">
             <div class="perspective-grid"></div>
         </div>
@@ -843,68 +843,116 @@
                     <span class="demo-board-live-dot" aria-hidden="true"></span>
                     Live walkthrough
                 </span>
-                <h2 class="section-title demo-board-title">We got you covered, see why Babbitt is different</h2>
-                <p class="demo-board-fine">Pick the role that fits — we load the matching walkthrough.</p>
+                <h2 class="section-title demo-board-title">Who are you? What demo would you like to play?</h2>
+                <p class="demo-board-fine">Pick your role &mdash; we open the matching walkthrough.</p>
+                <ul class="demo-board-facts" aria-label="What to expect">
+                    <li><i class="fas fa-check" aria-hidden="true"></i>No login &mdash; opens in a new tab</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i>About 90 seconds per flow</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i>Skip ahead or jump between steps</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i>Real screens, real data &mdash; just no save</li>
+                </ul>
             </header>
 
             <div class="demo-board-content">
-            <div class="demo-roles anim-up" role="radiogroup" aria-label="Pick a role to load its demo">
-                <button type="button" class="demo-role-chip is-active" data-flow="trade-respond-and-stage" data-tone="yellow" role="radio" aria-checked="true">
-                    <span class="demo-role-icon"><i class="fas fa-wrench" aria-hidden="true"></i></span>
-                    <span class="demo-role-name">Trade</span>
-                    <span class="demo-role-flow">Quote &amp; stage a job</span>
-                </button>
-                <button type="button" class="demo-role-chip" data-flow="supplier-rfq" data-tone="green" role="radio" aria-checked="false">
-                    <span class="demo-role-icon"><i class="fas fa-box" aria-hidden="true"></i></span>
-                    <span class="demo-role-name">Supplier</span>
-                    <span class="demo-role-flow">Reply to an RFQ</span>
-                </button>
-                <button type="button" class="demo-role-chip" data-flow="pm-listing-from-property" data-tone="green" role="radio" aria-checked="false">
-                    <span class="demo-role-icon"><i class="fas fa-building" aria-hidden="true"></i></span>
-                    <span class="demo-role-name">Property Manager</span>
-                    <span class="demo-role-flow">List work for a property</span>
-                </button>
-                <button type="button" class="demo-role-chip" data-flow="strata-votes-rules" data-tone="yellow" role="radio" aria-checked="false">
-                    <span class="demo-role-icon"><i class="fas fa-users" aria-hidden="true"></i></span>
-                    <span class="demo-role-name">Strata</span>
-                    <span class="demo-role-flow">Run a committee motion</span>
-                </button>
-                <button type="button" class="demo-role-chip" data-flow="property-owner-listing" data-tone="blue" role="radio" aria-checked="false">
-                    <span class="demo-role-icon"><i class="fas fa-home" aria-hidden="true"></i></span>
-                    <span class="demo-role-name">Property Owner</span>
-                    <span class="demo-role-flow">Post a job</span>
-                </button>
-                <button type="button" class="demo-role-chip" data-flow="tradie-incident-chat" data-tone="yellow" role="radio" aria-checked="false">
-                    <span class="demo-role-icon"><i class="fas fa-hard-hat" aria-hidden="true"></i></span>
-                    <span class="demo-role-name">Tenant</span>
-                    <span class="demo-role-flow">Report a site incident</span>
-                </button>
-            </div>
-
-            <div class="demo-embed-pair anim-up">
-                <div class="demo-embed demo-embed--desktop">
-                    <div class="demo-embed-chrome" aria-hidden="true">
-                        <span class="demo-embed-dot" style="background:#FF8A4C"></span>
-                        <span class="demo-embed-dot" style="background:#F6B500"></span>
-                        <span class="demo-embed-dot" style="background:#67E4AA"></span>
-                        <span class="demo-embed-url" id="demoEmbedUrl">babbitt.app/demo?flow=trade-respond-and-stage</span>
-                        <span class="demo-embed-live"><span class="demo-embed-live-dot"></span>Interactive</span>
-                    </div>
-                    <iframe
-                        id="demoEmbedFrame"
-                        class="demo-embed-frame"
-                        src="/demo/?embed=1&amp;flow=trade-respond-and-stage"
-                        title="Babbitt &middot; Interactive product walkthrough"
-                        loading="lazy"
-                        referrerpolicy="same-origin"></iframe>
-                </div>
+            <div class="demo-roles demo-roles--routed anim-up" role="list" aria-label="Pick a role to open its demo">
+                <a class="demo-role-chip" href="/demo?flow=trade-respond-and-stage" data-flow="trade-respond-and-stage" data-tone="yellow" role="listitem">
+                    <span class="demo-role-chip-head">
+                        <span class="demo-role-icon"><i class="fas fa-wrench" aria-hidden="true"></i></span>
+                        <span class="demo-role-meta">
+                            <span class="demo-role-name">Trade</span>
+                            <span class="demo-role-flow">Quote &amp; stage a job</span>
+                        </span>
+                    </span>
+                    <ul class="demo-role-preview" aria-hidden="true">
+                        <li>Read the BoQ and price by line</li>
+                        <li>Stage the day with materials &amp; crew</li>
+                        <li>Confirm back to the property team</li>
+                    </ul>
+                    <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
+                </a>
+                <a class="demo-role-chip" href="/demo?flow=supplier-rfq" data-flow="supplier-rfq" data-tone="green" role="listitem">
+                    <span class="demo-role-chip-head">
+                        <span class="demo-role-icon"><i class="fas fa-box" aria-hidden="true"></i></span>
+                        <span class="demo-role-meta">
+                            <span class="demo-role-name">Supplier</span>
+                            <span class="demo-role-flow">Reply to an RFQ</span>
+                        </span>
+                    </span>
+                    <ul class="demo-role-preview" aria-hidden="true">
+                        <li>See the lines you can fulfil</li>
+                        <li>Quote against the BoQ in one pass</li>
+                        <li>Reserve stock ready for dispatch</li>
+                    </ul>
+                    <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
+                </a>
+                <a class="demo-role-chip" href="/demo?flow=pm-listing-from-property" data-flow="pm-listing-from-property" data-tone="green" role="listitem">
+                    <span class="demo-role-chip-head">
+                        <span class="demo-role-icon"><i class="fas fa-building" aria-hidden="true"></i></span>
+                        <span class="demo-role-meta">
+                            <span class="demo-role-name">Property Manager</span>
+                            <span class="demo-role-flow">List work for a property</span>
+                        </span>
+                    </span>
+                    <ul class="demo-role-preview" aria-hidden="true">
+                        <li>Pick a property from your portfolio</li>
+                        <li>Brief the job and set the budget</li>
+                        <li>Match against the Babbitt 60</li>
+                    </ul>
+                    <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
+                </a>
+                <a class="demo-role-chip" href="/demo?flow=strata-votes-rules" data-flow="strata-votes-rules" data-tone="yellow" role="listitem">
+                    <span class="demo-role-chip-head">
+                        <span class="demo-role-icon"><i class="fas fa-users" aria-hidden="true"></i></span>
+                        <span class="demo-role-meta">
+                            <span class="demo-role-name">Strata</span>
+                            <span class="demo-role-flow">Run a committee motion</span>
+                        </span>
+                    </span>
+                    <ul class="demo-role-preview" aria-hidden="true">
+                        <li>Draft a motion against the scheme</li>
+                        <li>Collect live votes from lot owners</li>
+                        <li>Roll the result into a works job</li>
+                    </ul>
+                    <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
+                </a>
+                <a class="demo-role-chip" href="/demo?flow=property-owner-listing" data-flow="property-owner-listing" data-tone="blue" role="listitem">
+                    <span class="demo-role-chip-head">
+                        <span class="demo-role-icon"><i class="fas fa-home" aria-hidden="true"></i></span>
+                        <span class="demo-role-meta">
+                            <span class="demo-role-name">Property Owner</span>
+                            <span class="demo-role-flow">Post a job</span>
+                        </span>
+                    </span>
+                    <ul class="demo-role-preview" aria-hidden="true">
+                        <li>Verify your property record</li>
+                        <li>Describe the work, attach photos</li>
+                        <li>Pick a quote and lock the date</li>
+                    </ul>
+                    <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
+                </a>
+                <a class="demo-role-chip" href="/demo?flow=tradie-incident-chat" data-flow="tradie-incident-chat" data-tone="yellow" role="listitem">
+                    <span class="demo-role-chip-head">
+                        <span class="demo-role-icon"><i class="fas fa-hard-hat" aria-hidden="true"></i></span>
+                        <span class="demo-role-meta">
+                            <span class="demo-role-name">Tenant</span>
+                            <span class="demo-role-flow">Report a site incident</span>
+                        </span>
+                    </span>
+                    <ul class="demo-role-preview" aria-hidden="true">
+                        <li>Capture a photo and the location</li>
+                        <li>Route to your PM or owner instantly</li>
+                        <li>Track the fix from one chat thread</li>
+                    </ul>
+                    <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
+                </a>
             </div>
 
             <div class="demo-board-cta-row anim-up">
-                <a class="demo-board-master-cta" id="demoOpenFullCta" href="/demo?flow=trade-respond-and-stage">
-                    <span class="demo-board-master-cta-label">Try the demo and open the full walkthrough</span>
-                    <span class="demo-board-master-cta-arrow" aria-hidden="true">&rarr;</span>
+                <a class="demo-board-master-cta" href="/demo">
+                    <span>Not sure? Open the canonical walkthrough</span>
+                    <i class="fas fa-arrow-right demo-board-master-cta-arrow" aria-hidden="true"></i>
                 </a>
+                <span class="demo-board-cta-note">All six flows on one screen. Pick from the role chips inside.</span>
             </div>
             </div><!-- /.demo-board-content -->
 
@@ -971,14 +1019,6 @@
             </div>
 
             <div class="pricing-builder" id="pricingBuilder" data-checkout-endpoint="">
-                <!-- Top controls: billing toggle -->
-                <div class="pb-controls">
-                    <div class="pb-billing" role="tablist" aria-label="Billing cycle">
-                        <button class="pb-chip is-active" data-billing="yearly" role="tab" aria-selected="true">Yearly · save 50%</button>
-                        <button class="pb-chip" data-billing="monthly" role="tab" aria-selected="false">Monthly</button>
-                    </div>
-                </div>
-
                 <div class="pb-layout">
                     <!-- LEFT: builder -->
                     <div class="pb-main">
@@ -990,17 +1030,38 @@
                                     <span class="pb-account-icon"><i class="fas fa-hard-hat" aria-hidden="true"></i></span>
                                     <span class="pb-account-label">Trades</span>
                                 </button>
-                                <button class="pb-account-chip pb-account-chip--has-sub" data-account="property" data-account-resolved="" role="tab" aria-selected="false" aria-haspopup="dialog" aria-controls="pbPropertyPickerModal">
+                                <button class="pb-account-chip pb-account-chip--has-sub" data-account="property" data-account-resolved="" role="tab" aria-selected="false" aria-expanded="false" aria-controls="pbPropertySubchips">
                                     <span class="pb-account-icon"><i class="fas fa-building" aria-hidden="true"></i></span>
                                     <span class="pb-account-label">Property</span>
                                     <span class="pb-account-sublabel" data-property-sublabel></span>
-                                    <span class="pb-account-caret" aria-hidden="true">&#9662;</span>
                                 </button>
                                 <button class="pb-account-chip" data-account="supplier" role="tab" aria-selected="false">
                                     <span class="pb-account-icon"><i class="fas fa-boxes" aria-hidden="true"></i></span>
                                     <span class="pb-account-label">Supplier</span>
                                 </button>
                             </div>
+
+                            <!-- Inline property sub-type chips — shown when Property is active.
+                                 Replaces the old pbPropertyPickerModal so users see Manager/Owner/Strata
+                                 without a popup. -->
+                            <div class="pb-property-subchips" id="pbPropertySubchips" role="tablist" aria-label="Property role" hidden>
+                                <button type="button" class="pb-property-subchip" data-property-type="propertyOwner" role="tab" aria-selected="false">
+                                    <span class="pb-property-subchip-icon"><i class="fas fa-house" aria-hidden="true"></i></span>
+                                    <span class="pb-property-subchip-name">Owner</span>
+                                    <span class="pb-property-subchip-desc">Investor, landlord or owner-occupier.</span>
+                                </button>
+                                <button type="button" class="pb-property-subchip" data-property-type="propertyManager" role="tab" aria-selected="false">
+                                    <span class="pb-property-subchip-icon"><i class="fas fa-building" aria-hidden="true"></i></span>
+                                    <span class="pb-property-subchip-name">Manager</span>
+                                    <span class="pb-property-subchip-desc">Agency or in-house portfolio.</span>
+                                </button>
+                                <button type="button" class="pb-property-subchip" data-property-type="strata" role="tab" aria-selected="false">
+                                    <span class="pb-property-subchip-icon"><i class="fas fa-users" aria-hidden="true"></i></span>
+                                    <span class="pb-property-subchip-name">Strata</span>
+                                    <span class="pb-property-subchip-desc">Body corporate, committee, common works.</span>
+                                </button>
+                            </div>
+
                             <p class="pb-tenant-note">Tenants don&rsquo;t subscribe. They&rsquo;re invited free by their PM or owner.</p>
                         </div>
 
@@ -1063,7 +1124,7 @@
                                         <li>Remove ads</li>
                                     </ul>
                                     <div class="pb-tier-trigger" id="pbTier2Trigger">
-                                        <strong>Unlocks at</strong><br>20+ staff or 50+ properties
+                                        <strong>Unlocks at v2</strong><br>20+ staff or 50+ properties
                                     </div>
                                 </article>
                             </div>
@@ -1076,6 +1137,14 @@
                             <span class="pb-quote-eyebrow">YOUR QUOTE</span>
                             <h3 class="pb-quote-title">Early bird offer</h3>
                         </header>
+
+                        <div class="pb-quote-billing">
+                            <span class="pb-quote-billing-label">Billing</span>
+                            <div class="pb-billing" role="tablist" aria-label="Billing cycle">
+                                <button class="pb-chip is-active" data-billing="yearly" role="tab" aria-selected="true">Yearly · save 50%</button>
+                                <button class="pb-chip" data-billing="monthly" role="tab" aria-selected="false">Monthly</button>
+                            </div>
+                        </div>
 
                         <div class="pb-quote-line pb-quote-line--tier">
                             <span id="pbTierLabel">Tier 1</span>
@@ -1223,33 +1292,6 @@
         </div>
     </div>
 
-    <!-- ═══ Pricing Builder — Property sub-type picker ═══ -->
-    <div class="pb-modal" id="pbPropertyPickerModal" aria-hidden="true">
-        <div class="pb-modal-backdrop" data-property-picker-close></div>
-        <div class="pb-modal-inner pb-modal-inner--picker" role="dialog" aria-modal="true" aria-labelledby="pbPropertyPickerTitle">
-            <button class="pb-modal-close" id="pbPropertyPickerClose" aria-label="Close" data-property-picker-close>&times;</button>
-            <span class="pb-modal-eyebrow">Property &middot; choose your role</span>
-            <h3 id="pbPropertyPickerTitle" class="pb-modal-title">Which side of the property are you on?</h3>
-            <div class="pb-property-picker" id="pbPropertyPickerCards" role="list">
-                <button type="button" class="pb-property-card" role="listitem" data-property-type="propertyManager">
-                    <span class="pb-property-icon"><i class="fas fa-building" aria-hidden="true"></i></span>
-                    <span class="pb-property-name">Manager</span>
-                    <span class="pb-property-desc">Agency, in-house, residential or commercial. Run a portfolio of properties.</span>
-                </button>
-                <button type="button" class="pb-property-card" role="listitem" data-property-type="propertyOwner">
-                    <span class="pb-property-icon"><i class="fas fa-house" aria-hidden="true"></i></span>
-                    <span class="pb-property-name">Owner</span>
-                    <span class="pb-property-desc">Investor, landlord or owner-occupier. Keep the record against your home.</span>
-                </button>
-                <button type="button" class="pb-property-card" role="listitem" data-property-type="strata">
-                    <span class="pb-property-icon"><i class="fas fa-users" aria-hidden="true"></i></span>
-                    <span class="pb-property-name">Strata</span>
-                    <span class="pb-property-desc">Body corporate, owners corporation or committee. Common works and lot votes.</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- ═══ Join the Babbitt 60 ═══ -->
     <section class="b60" id="babbitt60">
         <div class="container b60-inner">
@@ -1332,16 +1374,83 @@
                 <h2 class="section-title">The people behind Babbitt</h2>
             </div>
             <div class="founders-grid">
-                <a href="https://www.linkedin.com/in/bruno-babbitt-australia/" target="_blank" rel="noopener noreferrer" class="founder-card tilt-card anim-up">
+                <div class="founder-card tilt-card anim-up">
                     <div class="founder-avatar">BP</div>
                     <h3>Bruno Panucci</h3>
                     <p class="founder-role">Founder</p>
-                </a>
-                <a href="https://www.linkedin.com/in/anh-ky-pham/" target="_blank" rel="noopener noreferrer" class="founder-card tilt-card anim-up">
+                </div>
+                <div class="founder-card tilt-card anim-up">
                     <div class="founder-avatar">KA</div>
                     <h3>Ky Anh Pham</h3>
                     <p class="founder-role">Co-Founder</p>
-                </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Contact ═══ -->
+    <section class="contact" id="contact" aria-label="Contact Babbitt">
+        <div class="container contact-inner">
+            <div class="section-header">
+                <span class="section-eyebrow">CONTACT US</span>
+                <h2 class="section-title">Got a question? Get in touch.</h2>
+                <p class="section-lead">Product, pricing, partnership &mdash; we read every message.</p>
+            </div>
+
+            <div class="contact-grid">
+                <form class="contact-form" id="contactForm" action="https://formsubmit.co/db2386c230f1fd46e7c207920bbf4508" method="POST">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_format" value="plain">
+                    <input type="hidden" name="_url" value="https://babbitt.app">
+                    <input type="hidden" name="_next" value="https://babbitt.app/#contact_submitted">
+                    <input type="hidden" name="_subject" value="New General Enquiry - Babbitt">
+                    <input type="hidden" name="_autoresponse" value="Thanks for reaching out to Babbitt. We've received your message and will reply soon.">
+
+                    <div class="form-row">
+                        <input type="text" name="firstName" placeholder="First Name" required>
+                        <input type="text" name="lastName" placeholder="Last Name" required>
+                    </div>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="topic" placeholder="What's this about? (optional)">
+                    <textarea name="message" rows="4" maxlength="800" placeholder="Your message" required></textarea>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the terms and conditions</span>
+                    </label>
+                    <div id="contactFormMessage" class="form-message"></div>
+                    <button type="submit" class="btn btn-primary contact-submit" id="contactSubmitBtn">Send message</button>
+                </form>
+
+                <aside class="contact-side" aria-label="Follow Babbitt">
+                    <p class="contact-side-eyebrow">Or follow along</p>
+                    <ul class="contact-socials" role="list">
+                        <li>
+                            <a href="#" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on X">
+                                <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                                <span>X / Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:hello@babbitt.app" class="contact-social" aria-label="Email Babbitt">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <span>hello@babbitt.app</span>
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
             </div>
         </div>
     </section>

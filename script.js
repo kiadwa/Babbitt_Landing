@@ -851,32 +851,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     update();
 })();
 
-/* ── 8d. Demo Role Selector — swap embedded iframe + CTA on chip click ── */
-(function () {
-    var chips    = document.querySelectorAll('.demo-role-chip');
-    var frame    = document.getElementById('demoEmbedFrame');
-    var urlLabel = document.getElementById('demoEmbedUrl');
-    var openCta  = document.getElementById('demoOpenFullCta');
-    if (!chips.length || !frame) return;
-
-    function select(flow) {
-        chips.forEach(function (c) {
-            var on = c.getAttribute('data-flow') === flow;
-            c.classList.toggle('is-active', on);
-            c.setAttribute('aria-checked', on ? 'true' : 'false');
-        });
-        frame.src = '/demo/?embed=1&flow=' + encodeURIComponent(flow);
-        if (urlLabel) urlLabel.textContent = 'babbitt.app/demo?flow=' + flow;
-        if (openCta)  openCta.href = '/demo?flow=' + flow;
-    }
-
-    chips.forEach(function (chip) {
-        chip.addEventListener('click', function () {
-            var flow = chip.getAttribute('data-flow');
-            if (flow) select(flow);
-        });
-    });
-})();
+/* ── 8d. Demo Role Selector — chips are anchors that route to /demo?flow=…
+   No embedded iframe; navigation is the browser default on the <a> tags. ── */
 
 /* ── 9. Form Submission (FormSubmit.co with built-in captcha) ── */
 (function () {
@@ -951,12 +927,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         '#babbitt60_submitted':     'babbitt60',
         '#user_waitlist_submitted': 'user_waitlist',
         '#partner_waitlist':        'partner',
-        '#partner_submitted':       'partner'
+        '#partner_submitted':       'partner',
+        '#contact_submitted':       'contact'
     };
     var SUCCESS_TEXT = {
         babbitt60:     'Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.',
         user_waitlist: "Thank you for joining the waitlist. We'll be in touch soon.",
-        partner:       "Thank you for your partnership enquiry. We'll be in touch soon."
+        partner:       "Thank you for your partnership enquiry. We'll be in touch soon.",
+        contact:       "Thanks for the message. We've got it and will reply soon."
     };
 
     var key = sessionStorage.getItem('formSubmitted') || HASH_TO_KEY[location.hash] || '';
@@ -981,6 +959,24 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 partnerMsg.className = 'form-message';
             }
             sessionStorage.setItem('formSubmitted', 'partner');
+        });
+    }
+
+    // General inquiries (contact) form
+    var contactForm = document.getElementById('contactForm');
+    var contactMsg  = document.getElementById('contactFormMessage');
+    var contactBtn  = document.getElementById('contactSubmitBtn');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function () {
+            if (contactBtn) {
+                contactBtn.disabled = true;
+                contactBtn.textContent = 'Sending...';
+            }
+            if (contactMsg) {
+                contactMsg.textContent = 'Sending your message...';
+                contactMsg.className = 'form-message';
+            }
+            sessionStorage.setItem('formSubmitted', 'contact');
         });
     }
 })();
@@ -1360,12 +1356,12 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             },
             propertyManager: {
                 setupFees: [
-                    { id: 'portfolioUpload', name: 'Portfolio bulk upload', amount: 200, explainLink: true }
+                    { id: 'portfolioUpload', name: 'Bulk upload lots under management', amount: 200, explainLink: true, optional: true }
                 ]
             },
             strata: {
                 setupFees: [
-                    { id: 'lotsUpload', name: 'Lots bulk upload', amount: 200, explainLink: true }
+                    { id: 'lotsUpload', name: 'Bulk upload lots under management', amount: 200, explainLink: true, optional: true }
                 ]
             }
         }
@@ -1385,12 +1381,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         return (ACCOUNT_ADDON_LOCKS[account] && ACCOUNT_ADDON_LOCKS[account][addonId]) || null;
     }
 
-    // Property picker (popup) elements
+    // Property sub-type — inline chip row (replaces the old picker modal).
+    // The Property account chip activates the row and defaults to Owner; clicking
+    // a sub-chip resolves the account to propertyOwner / propertyManager / strata.
     var propertyChip       = builder.querySelector('.pb-account-chip[data-account="property"]');
     var propertySublabelEl = propertyChip ? propertyChip.querySelector('[data-property-sublabel]') : null;
-    var pickerModal        = document.getElementById('pbPropertyPickerModal');
-    var pickerCards        = pickerModal ? pickerModal.querySelectorAll('.pb-property-card') : [];
-    var pickerCloseEls     = pickerModal ? pickerModal.querySelectorAll('[data-property-picker-close]') : [];
+    var propertySubchipsEl = document.getElementById('pbPropertySubchips');
+    var propertySubchips   = propertySubchipsEl ? propertySubchipsEl.querySelectorAll('.pb-property-subchip') : [];
+    var DEFAULT_PROPERTY_TYPE = 'propertyOwner';
 
     // Setup-modal content slots (variant-driven via BABBITT_PRICING_COPY.setupFees)
     var setupEyebrowEl = setupModal ? setupModal.querySelector('[data-setup-eyebrow]') : null;
@@ -1426,7 +1424,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         tierCost: 30,
         accountFee: 0,
         babbitt60: false,
-        addons: {}
+        addons: {},
+        // Tracks which optional setup fees the user has ticked. Cleared when
+        // the active account changes so a PM toggle doesn't carry over to Strata.
+        optedInSetupFees: {}
     };
 
     function getSetupFees(account) {
@@ -1435,7 +1436,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
 
     function totalSetupFees(account) {
-        return getSetupFees(account).reduce(function (sum, fee) { return sum + fee.amount; }, 0);
+        return getSetupFees(account).reduce(function (sum, fee) {
+            if (fee.optional && !state.optedInSetupFees[fee.id]) return sum;
+            return sum + fee.amount;
+        }, 0);
     }
 
     function isTier2Eligible() {
@@ -1465,7 +1469,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             card.classList.remove('is-unlocked');
             card.setAttribute('aria-disabled', 'true');
             if (tier2Trigger) {
-                tier2Trigger.innerHTML = '<strong>Unlocks at</strong><br>20+ staff or 50+ properties';
+                tier2Trigger.innerHTML = '<strong>Unlocks at v2</strong><br>20+ staff or 50+ properties';
             }
         }
     }
@@ -1547,76 +1551,76 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         if (setupNoteEl)    setupNoteEl.textContent    = variant.note || '';
     }
 
-    // Property picker (popup) — modal that resolves Property → Manager / Owner / Strata
-    function openPropertyPicker() {
-        if (!pickerModal) return;
-        pickerModal.classList.add('is-open');
-        pickerModal.setAttribute('aria-hidden', 'false');
-        // Mark the currently-resolved sub-type, if any
-        var resolved = propertyChip ? propertyChip.getAttribute('data-account-resolved') : '';
-        pickerCards.forEach(function (card) {
-            var match = card.getAttribute('data-property-type') === resolved;
-            card.classList.toggle('is-selected', match);
-            if (match) { try { card.focus(); } catch (e) {} }
-        });
+    // Show/hide the inline sub-chip row.
+    function setPropertySubchipsVisible(visible) {
+        if (!propertySubchipsEl) return;
+        propertySubchipsEl.hidden = !visible;
+        if (propertyChip) propertyChip.setAttribute('aria-expanded', visible ? 'true' : 'false');
     }
-    function closePropertyPicker() {
-        if (!pickerModal) return;
-        pickerModal.classList.remove('is-open');
-        pickerModal.setAttribute('aria-hidden', 'true');
-    }
+
+    // Apply selected property sub-type — updates state, sublabel, and chip aria-selected.
     function selectPropertyType(typeKey, labelText) {
         if (!propertyChip) return;
         propertyChip.setAttribute('data-account-resolved', typeKey);
         if (propertySublabelEl) propertySublabelEl.textContent = labelText || '';
-        // Activate Property chip and clear others
+        // Mark the matching sub-chip as selected
+        propertySubchips.forEach(function (sc) {
+            var match = sc.getAttribute('data-property-type') === typeKey;
+            sc.setAttribute('aria-selected', match ? 'true' : 'false');
+        });
+        // Ensure Property is the active account chip
         accountChips.forEach(function (c) {
             var active = c === propertyChip;
             c.classList.toggle('is-active', active);
             c.setAttribute('aria-selected', active ? 'true' : 'false');
         });
         state.account = typeKey;
+        state.optedInSetupFees = {};
         state.accountFee = totalSetupFees(state.account);
         populateTierFeatures();
         renderAddons();
         renderTotals();
-        closePropertyPicker();
     }
 
-    // Picker card wiring
-    pickerCards.forEach(function (card) {
-        card.addEventListener('click', function () {
-            var typeKey = card.getAttribute('data-property-type');
-            var labelEl = card.querySelector('.pb-property-name');
-            var label   = labelEl ? labelEl.textContent.trim() : '';
+    // Sub-chip wiring
+    propertySubchips.forEach(function (sc) {
+        sc.addEventListener('click', function () {
+            var typeKey = sc.getAttribute('data-property-type');
+            var nameEl  = sc.querySelector('.pb-property-subchip-name');
+            var label   = nameEl ? nameEl.textContent.trim() : '';
             selectPropertyType(typeKey, label);
         });
-    });
-    pickerCloseEls.forEach(function (el) {
-        el.addEventListener('click', closePropertyPicker);
-    });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && pickerModal && pickerModal.classList.contains('is-open')) closePropertyPicker();
     });
 
     // Account type
     accountChips.forEach(function (chip) {
         chip.addEventListener('click', function () {
-            // Property chip is a popup trigger, not a direct account setter
             if (chip === propertyChip) {
-                openPropertyPicker();
+                // Reveal sub-chips and resolve to last-picked sub-type, or default to Owner.
+                var resolved = propertyChip.getAttribute('data-account-resolved') || DEFAULT_PROPERTY_TYPE;
+                var match    = Array.prototype.find.call(propertySubchips, function (sc) {
+                    return sc.getAttribute('data-property-type') === resolved;
+                });
+                var label    = match && match.querySelector('.pb-property-subchip-name')
+                    ? match.querySelector('.pb-property-subchip-name').textContent.trim()
+                    : 'Owner';
+                setPropertySubchipsVisible(true);
+                selectPropertyType(resolved, label);
                 return;
             }
             accountChips.forEach(function (c) {
                 c.classList.toggle('is-active', c === chip);
                 c.setAttribute('aria-selected', c === chip ? 'true' : 'false');
             });
-            // Clear any previously-resolved Property sub-type sublabel when switching to non-Property
-            if (propertyChip && chip !== propertyChip && propertySublabelEl) {
-                propertySublabelEl.textContent = '';
+            // Hide sub-chips and clear any resolved Property sub-type when switching away.
+            if (propertyChip && chip !== propertyChip) {
+                if (propertySublabelEl) propertySublabelEl.textContent = '';
                 propertyChip.setAttribute('data-account-resolved', '');
+                propertySubchips.forEach(function (sc) { sc.setAttribute('aria-selected', 'false'); });
+                setPropertySubchipsVisible(false);
             }
             state.account = chip.getAttribute('data-account');
+            state.optedInSetupFees = {};
             state.accountFee = totalSetupFees(state.account);
             populateTierFeatures();
             renderAddons();
@@ -1686,22 +1690,50 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             addonsContainer.appendChild(setupLabel);
 
             setupFees.forEach(function (fee) {
+                var isOptedIn = !fee.optional || !!state.optedInSetupFees[fee.id];
+                var displayPrice = isOptedIn ? fee.amount : 0;
+
                 var row = document.createElement('div');
-                row.className = 'pb-addon';
+                row.className = 'pb-addon' + (fee.optional ? ' pb-addon--optional' : '');
                 row.setAttribute('data-setup-fee', fee.id);
+
+                var controlsHtml = fee.optional
+                    ? '<div class="pb-addon-controls">' +
+                        '<label class="pb-setup-toggle">' +
+                          '<input type="checkbox" class="pb-setup-toggle-input" ' + (isOptedIn ? 'checked' : '') + ' aria-label="Add ' + fee.name + '" />' +
+                          '<span class="pb-setup-toggle-slider" aria-hidden="true"></span>' +
+                        '</label>' +
+                      '</div>'
+                    : '';
+
                 row.innerHTML =
                     '<div class="pb-addon-info">' +
                         '<div class="pb-addon-name">' + fee.name +
                             (fee.explainLink ? ' <button type="button" class="pb-explain">why?</button>' : '') +
                         '</div>' +
-                        '<div class="pb-addon-qty">one-time</div>' +
+                        '<div class="pb-addon-qty">' +
+                            (fee.optional ? 'Optional &middot; one-time &middot; manual upload is default' : 'one-time') +
+                        '</div>' +
                     '</div>' +
-                    '<div class="pb-addon-price">$' + fee.amount.toFixed(2) + '</div>';
+                    controlsHtml +
+                    '<div class="pb-addon-price">$' + displayPrice.toFixed(2) + '</div>';
                 addonsContainer.appendChild(row);
 
                 if (fee.explainLink) {
                     var btn = row.querySelector('.pb-explain');
                     if (btn) btn.addEventListener('click', function (e) { e.stopPropagation(); openSetupModal(); });
+                }
+
+                if (fee.optional) {
+                    var toggleInput = row.querySelector('.pb-setup-toggle-input');
+                    if (toggleInput) {
+                        toggleInput.addEventListener('change', function () {
+                            state.optedInSetupFees[fee.id] = toggleInput.checked;
+                            state.accountFee = totalSetupFees(state.account);
+                            renderAddons();
+                            renderTotals();
+                        });
+                    }
                 }
             });
         }

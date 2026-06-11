@@ -128,7 +128,7 @@
             strata: {
                 free: [
                     'Job listing',
-                    '4 lot schemes',
+                    '2 lot schemes',
                     'Real-time job tracking',
                     'Full management features',
                     'Basic AI-powered overview report',
