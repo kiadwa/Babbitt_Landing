@@ -2451,6 +2451,11 @@ body.partner-hover .dim-overlay {
    slides in, with each button independently clickable. */
 .peek--lanes { position: relative; }
 
+/* Mobile-only tap overlay — hover-reveal panel is suppressed on small
+   screens, so a transparent anchor covers the card to route a tap to
+   #features. Hidden on desktop where the role grid handles routing. */
+.peek-lanes-tap { display: none; }
+
 /* Stacked centered layout for the What block (icon → title) */
 .peek--lanes-stacked {
     align-items: center;
@@ -4392,7 +4397,7 @@ body.partner-hover .dim-overlay {
         display: flex;
         flex-direction: column;
         overflow: visible;
-        padding: 60px 20px;
+        padding: 56px 20px 64px;
         gap: 24px;
     }
     .why-header {
@@ -4400,7 +4405,12 @@ body.partner-hover .dim-overlay {
         right: auto;
         padding-bottom: 0;
         margin-bottom: 8px;
+        text-align: center;
+        align-items: center;
     }
+    .why-title { font-size: clamp(20px, 5vw, 28px); justify-content: center; }
+    /* Static section thesis on mobile — the per-card "01" index is desktop-only */
+    .why-index { display: none; }
     .why-stage {
         position: static;
         transform: none;
@@ -4408,29 +4418,72 @@ body.partner-hover .dim-overlay {
         height: auto;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        border: 1px solid var(--border-default);
+        gap: 28px;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+        border-radius: 0;
     }
     .why-card {
         position: static;
         inset: auto;
-        padding: 28px 24px;
-        transform: none !important;
+        padding: 24px 22px;
+        gap: 18px;
         opacity: 1 !important;
+        transform: none !important;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-card);
     }
-    /* Uniform card visual height on tablet/mobile */
-    .why-card-visual { height: 240px; }
+    /* Let card artwork grow to fit on mobile — fixed height clipped key
+       proof-points (e.g. the yellow "Tied to" anchor on the rating card). */
+    .why-card-visual { height: auto; min-height: 240px; }
     .why-thumb { display: none; }
     /* Hide carousel arrows in stacked layout */
     .why-arrow { display: none; }
+
+    /* Cross-panel: breadcrumb gets a sensible truncation so the verified
+       status badge on the right stays visible at narrow widths. */
+    .evidence-bar { gap: 8px; }
+    .evidence-crumb {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+    }
+    .evidence-status { flex-shrink: 0; }
+
+    /* Cross-panel: footer strip wraps instead of clipping its right item. */
+    .evidence-strip {
+        flex-wrap: wrap;
+        row-gap: 6px;
+        overflow: visible;
+    }
+    .evidence-strip .strip-item--ok { margin-left: 0; }
 }
 
 @media (max-width: 480px) {
-    .why-stage-wrap { padding: 40px 16px; }
-    .why-card { padding: 20px 16px; }
-    .why-card-visual { height: 200px; }
+    .why-stage-wrap { padding: 40px 14px 48px; gap: 20px; }
+    .why-stage { gap: 22px; }
+    .why-card { padding: 20px 16px; gap: 14px; }
+    .why-card-visual { min-height: 200px; }
     .why-card-headline { font-size: 20px; }
     .why-card-body { font-size: 14px; }
+
+    /* Rating panel — tighten so 4.9 + quote + anchor pill + strip all fit
+       without clipping the proof point. */
+    .evidence-panel--rating .evidence-stage { padding: 12px 14px; gap: 4px; }
+    .evidence-panel--rating .review-card { padding: 10px 12px; gap: 4px; }
+    .evidence-panel--rating .review-head { gap: 8px; }
+    .evidence-panel--rating .review-score { font-size: 22px; }
+    .evidence-panel--rating .review-stars { font-size: 11px; letter-spacing: 0.12em; }
+    .evidence-panel--rating .review-quote { font-size: 11px; line-height: 1.4; }
+    .evidence-panel--rating .review-wire { height: 14px; }
+    .evidence-panel--rating .review-anchor { padding: 6px 10px; column-gap: 8px; }
+    .evidence-panel--rating .anchor-slug { font-size: 12px; }
+    .evidence-panel--rating .anchor-meta { font-size: 9px; }
 }
 
 /* ── Mosaic — Responsive ───────────────────────── */
@@ -4465,6 +4518,127 @@ body.partner-hover .dim-overlay {
     .peek-title { font-size: 18px; }
     .peek-eyebrow { font-size: 10px; }
     .peek-arrow { font-size: 22px; }
+}
+
+/* ── Hero peek cards — mobile interaction fixes ──────────────
+   On narrow viewports the desktop hover-reveal patterns break:
+   - .peek--lanes role grid (sw≈207 inside w≈138 cards) overflows
+     and the hover never fires on touch, so the card felt dead.
+   - .peek--demo diagonal clip-path split crammed the two logos
+     into ~80px triangles, clipping the CodeChecker wordmark.
+   Replace both with always-visible, always-tappable layouts. */
+@media (max-width: 640px) {
+    /* Lanes: hide the overflowing role grid and surface a single
+       full-card tap that routes to #features (matches what every
+       individual chip linked to anyway). Keeps the default
+       eyebrow/icon/title/arrow visible. */
+    .peek--lanes .peek-roles { display: none; }
+    .peek-lanes-tap {
+        display: block;
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        border-radius: inherit;
+    }
+    /* No more hover-fade of the default content since the panel
+       can never reveal — keep everything legible. */
+    .peek--lanes:hover .peek-eyebrow,
+    .peek--lanes:hover .peek-title,
+    .peek--lanes:hover .peek-arrow,
+    .peek--lanes:hover .peek-icon,
+    .peek--lanes:focus-within .peek-eyebrow,
+    .peek--lanes:focus-within .peek-title,
+    .peek--lanes:focus-within .peek-arrow,
+    .peek--lanes:focus-within .peek-icon {
+        opacity: 1;
+    }
+
+    /* Demo: drop the diagonal clip-path split and show both halves
+       side-by-side, each its own tappable destination, always
+       visible. Hide the default eyebrow/title/arrow that the
+       hover-reveal would normally cover up. */
+    .peek--demo { padding: 0; overflow: hidden; }
+    .peek--demo > .peek-eyebrow,
+    .peek--demo > .peek-title,
+    .peek--demo > .peek-arrow { display: none; }
+    .peek-split {
+        position: static;
+        display: flex;
+        pointer-events: auto;
+        height: 100%;
+        min-height: 110px;
+    }
+    .peek-half {
+        position: relative;
+        inset: auto;
+        flex: 1 1 50%;
+        clip-path: none !important;
+        opacity: 1;
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 8px;
+        transition: background 0.18s ease;
+    }
+    .peek-half-content,
+    .peek-half--babbitt .peek-half-content,
+    .peek-half--cc .peek-half-content {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        gap: 6px;
+    }
+    .peek-half-logo { width: 24px; height: 24px; }
+    .peek-half--cc .peek-half-logo { width: 26px; height: 26px; margin-left: 0; }
+    .peek-half-wordmark { width: 60px; max-width: 100%; }
+    .peek-half--cc .peek-half-wordmark { width: 64px; max-width: 100%; }
+    .peek-half { padding: 14px 4px; }
+    .peek-half-cta { display: none; }
+    /* Corner chips would overlap the centred logo at this size. */
+    .peek-half-chip--corner { display: none; }
+    /* Confirm overlay still fires on tap — re-centre it and drop the
+       desktop triangle-centroid padding which would push content past
+       the narrow tile width. */
+    .peek-half-confirm {
+        position: absolute;
+        inset: 0;
+        padding: 0 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+    /* Confirm label is too tight inside a ~80px tile (uppercase
+       "CODECHECKER" can't word-break). Icon alone is enough as a
+       tap-acknowledged signal before the navigation fires. */
+    .peek-half-confirm-label { display: none; }
+
+    /* Desktop's per-half :hover state re-applies the centroid translate
+       (`translate(-50%, -50%) scale(1.08)`) and an inset-2px border-glow
+       — both designed for the diagonal triangle layout. On mobile that
+       shifts the logo off-centre and paints a stray rectangle around the
+       half. Reset both, keep a quieter tap feedback via background only. */
+    .peek-half--babbitt:hover,
+    .peek-half--babbitt:focus-visible {
+        box-shadow: none;
+        background:
+            radial-gradient(circle at 25% 25%, rgba(246, 181, 0, 0.28), transparent 60%),
+            var(--bg-elevated);
+    }
+    .peek-half--cc:hover,
+    .peek-half--cc:focus-visible {
+        box-shadow: none;
+        background: #ece6d6;
+    }
+    .peek-half--babbitt:hover .peek-half-content,
+    .peek-half--cc:hover .peek-half-content,
+    .peek-half--babbitt:focus-visible .peek-half-content,
+    .peek-half--cc:focus-visible .peek-half-content {
+        transform: none;
+    }
 }
 
 /* Mobile dropdown — match yellow nav theme */
@@ -4523,8 +4697,12 @@ body.partner-hover .dim-overlay {
         height: auto;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        border: 1px solid var(--border-default);
+        gap: 28px;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+        border-radius: 0;
     }
     .why-card {
         position: static;
@@ -4532,6 +4710,9 @@ body.partner-hover .dim-overlay {
         transform: none !important;
         opacity: 1 !important;
         transition: none !important;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-card);
     }
     .why-thumb { display: none; }
 }
@@ -5296,15 +5477,26 @@ body.partner-hover .dim-overlay {
     .wing-label, .corridor { display: none; }
     .room--trades   { grid-column: 1 / 2; grid-row: 1 / 2; }
     .room--supplier { grid-column: 2 / 3; grid-row: 1 / 2; }
-    .room--manager  { grid-column: 1 / 2; grid-row: 2 / 3; }
+    /* Reset desktop "20% wider than Tenant" margin-right that leaks
+       onto mobile and squeezes Manager/Owner 10px narrower than their
+       grid cell, visibly breaking the 1fr/1fr balance. */
+    .room--manager  { grid-column: 1 / 2; grid-row: 2 / 3; margin-right: 0; }
     .room--strata   { grid-column: 2 / 3; grid-row: 2 / 3; }
-    .room--owner    { grid-column: 1 / 2; grid-row: 3 / 4; }
+    .room--owner    { grid-column: 1 / 2; grid-row: 3 / 4; margin-right: 0; }
     .room--tenant   { grid-column: 2 / 3; grid-row: 3 / 4; }
     .floorplan-titleblock { font-size: 9px; }
     .tb-cell { padding: 6px 10px; }
-    .room-name { font-size: 20px; }
+    /* Allow long names (e.g. "Property Manager") to wrap inside their
+       cell — at 20px the single-line desktop default overflows the
+       ~150px content area and breaks the 1fr/1fr grid balance. */
+    .room-name {
+        font-size: 19px;
+        white-space: normal;
+        line-height: 1.05;
+        word-break: break-word;
+    }
     .room-watermark { font-size: 48px; right: 12px; bottom: 12px; }
-    .room-tag { top: 14px; left: 14px; }
+    .room-tag { top: 14px; left: 14px; right: 14px; }
     .room-dim { display: none; }
     .sheet-compass { width: 36px; height: 36px; bottom: 14px; right: 16px; font-size: 10px; }
     .compass-needle { border-bottom-width: 10px; top: 3px; }
@@ -6863,7 +7055,16 @@ a.demo-role-chip {
 .stub-meta  { letter-spacing: 0.12em; text-transform: uppercase; font-size: 10px; }
 
 @media (max-width: 520px) {
-    .stub-meta { display: none; }
+    .ticket-stub { flex-wrap: wrap; row-gap: 6px; }
+    .stub-spacer { flex-basis: 100%; height: 0; }
+    .stub-meta {
+        flex: 1 1 100%;
+        text-align: left;
+        letter-spacing: 0.08em;
+        font-size: 9.5px;
+        line-height: 1.4;
+        white-space: normal;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9617,11 +9818,41 @@ a.demo-role-chip {
 .b60 .section-title { color: var(--text-primary); }
 .b60 .section-lead { color: color-mix(in srgb, var(--text-primary) 75%, transparent); max-width: 720px; margin-left: auto; margin-right: auto; }
 
+.b60-everyoneelse-line {
+    max-width: 680px;
+    margin: 28px auto 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--text-primary) 65%, transparent);
+}
+
+.b60-closer {
+    text-align: center;
+    margin: 40px auto 32px;
+}
+.b60-closer-line {
+    font-family: var(--font-display, inherit);
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+}
+.b60-closer-tag {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin: 0;
+    font-weight: 600;
+}
+
 .b60-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    margin: 56px 0 48px;
+    margin: 48px 0 8px;
 }
 .b60-card {
     position: relative;
@@ -9768,6 +9999,17 @@ a.demo-role-chip {
     color: var(--yellow);
     font-size: 13px;
     font-style: italic;
+}
+.b60-explainer-closer {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid color-mix(in srgb, var(--text-primary) 12%, transparent);
+    font-family: var(--font-display, inherit);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--text-primary);
+    text-align: center;
+    letter-spacing: -0.01em;
 }
 .b60-explainer-cta {
     margin-top: 22px;

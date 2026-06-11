@@ -673,6 +673,11 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         if (arrowLeft)  arrowLeft.classList.add('is-hidden');
         if (arrowRight) arrowRight.classList.add('is-hidden');
         wrap.classList.remove('is-animating');
+        // In stacked (non-carousel) layout the cycling title has no meaning —
+        // each card carries its own headline. Anchor the section with a
+        // static thesis line and drop the per-card index.
+        titleEl.textContent = 'Built around the work.';
+        indexEl.textContent = '';
         lastIndex = -1;
     }
 
