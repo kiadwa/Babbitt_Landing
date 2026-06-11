@@ -1797,7 +1797,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 '</div>' +
                 '<div class="pb-addon-controls">' +
                     '<button type="button" class="pb-qty-btn pb-qty-minus" aria-label="Decrease ' + addon.name + '">−</button>' +
-                    '<input type="number" class="pb-qty-input" min="0" step="1" inputmode="numeric" value="' + qty + '" aria-label="' + addon.name + ' quantity" />' +
+                    '<input type="number" name="pb-qty-' + addon.id + '" class="pb-qty-input" min="0" step="1" inputmode="numeric" value="' + qty + '" aria-label="' + addon.name + ' quantity" />' +
                     '<button type="button" class="pb-qty-btn pb-qty-plus" aria-label="Increase ' + addon.name + '">+</button>' +
                 '</div>' +
                 '<div class="pb-addon-price">$' + line.toFixed(2) + '</div>';

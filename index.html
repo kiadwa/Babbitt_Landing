@@ -35,12 +35,12 @@
                 <input type="hidden" name="_subject" value="New Babbitt 60 Application">
                 <input type="hidden" name="_autoresponse" value="Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.">
                 <div class="form-row">
-                    <input type="text" name="firstName" placeholder="First Name" required>
-                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="text" name="firstName" id="b60-firstName" autocomplete="given-name" aria-label="First name" placeholder="First Name" required>
+                    <input type="text" name="lastName" id="b60-lastName" autocomplete="family-name" aria-label="Last name" placeholder="Last Name" required>
                 </div>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="company" placeholder="Your Company Name (if any)">
-                <select name="userType" required>
+                <input type="email" name="email" id="b60-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
+                <input type="text" name="company" id="b60-company" autocomplete="organization" aria-label="Company name" placeholder="Your Company Name (if any)">
+                <select name="userType" id="b60-userType" aria-label="Your profession" required>
                     <option value="">Your Profession</option>
                     <option value="trades">Trades & Specialists</option>
                     <option value="property_manager">Property Manager</option>
@@ -49,9 +49,9 @@
                     <option value="supplier">Suppliers & Enterprise Contractors</option>
                     <option value="other">Other</option>
                 </select>
-                <textarea name="whyBabbitt60" rows="3" maxlength="500" placeholder="What's your thought so far about Babbitt, we would love to know? (1–2 sentences)" required></textarea>
-                <label class="checkbox-label">
-                    <input type="checkbox" name="terms" required>
+                <textarea name="whyBabbitt60" id="b60-whyBabbitt60" aria-label="Your thoughts about Babbitt" rows="3" maxlength="500" placeholder="What's your thought so far about Babbitt, we would love to know? (1–2 sentences)" required></textarea>
+                <label class="checkbox-label" for="b60-terms">
+                    <input type="checkbox" name="terms" id="b60-terms" required>
                     <span>I agree to the terms and conditions</span>
                 </label>
                 <div id="babbitt60FormMessage" class="form-message"></div>
@@ -117,12 +117,12 @@
                 <input type="hidden" name="_autoresponse" value="Thank you for your interest in Babbitt! We'll be in touch soon.">
                 <input type="hidden" name="entry_point" id="waitlistEntryPoint" value="">
                 <div class="form-row">
-                    <input type="text" name="firstName" placeholder="First Name" required>
-                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="text" name="firstName" id="wl-firstName" autocomplete="given-name" aria-label="First name" placeholder="First Name" required>
+                    <input type="text" name="lastName" id="wl-lastName" autocomplete="family-name" aria-label="Last name" placeholder="Last Name" required>
                 </div>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="company" placeholder="Your Company Name (if any)">
-                <select name="userType" id="waitlistUserType" aria-placeholder="Your Profession" required>
+                <input type="email" name="email" id="wl-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
+                <input type="text" name="company" id="wl-company" autocomplete="organization" aria-label="Company name" placeholder="Your Company Name (if any)">
+                <select name="userType" id="waitlistUserType" aria-label="Your profession" required>
                     <option value ="">Your Profession</option>
                     <option value="trades">Trades & Specialists</option>
                     <option value="property_manager">Property Manager</option>
@@ -132,9 +132,9 @@
                     <option value="tenant">Tenant</option>
                     <option value="other">Other</option>
                 </select>
-                <textarea name="Your thoughts" rows="3" maxlength="300" placeholder="Anything on your mind about Babbitt? Let us know"></textarea>
-                <label class="checkbox-label">
-                    <input type="checkbox" name="terms" required>
+                <textarea name="Your thoughts" id="wl-thoughts" aria-label="Your thoughts about Babbitt" rows="3" maxlength="300" placeholder="Anything on your mind about Babbitt? Let us know"></textarea>
+                <label class="checkbox-label" for="wl-terms">
+                    <input type="checkbox" name="terms" id="wl-terms" required>
                     <span>I agree to the terms and conditions</span>
                 </label>
                 <div id="formMessage" class="form-message"></div>
@@ -1261,12 +1261,12 @@
                 <input type="hidden" name="plan_total"     id="pbLockPlanTotal">
 
                 <div class="pb-lock-form-row">
-                    <input type="text" name="firstName" placeholder="First name" required>
-                    <input type="text" name="lastName"  placeholder="Last name"  required>
+                    <input type="text" name="firstName" id="pbLock-firstName" autocomplete="given-name" aria-label="First name" placeholder="First name" required>
+                    <input type="text" name="lastName"  id="pbLock-lastName"  autocomplete="family-name" aria-label="Last name"  placeholder="Last name"  required>
                 </div>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="businessName" placeholder="Business name / ABN" required>
-                <select name="icp" id="pbLockIcp" required>
+                <input type="email" name="email" id="pbLock-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
+                <input type="text" name="businessName" id="pbLock-businessName" autocomplete="organization" aria-label="Business name or ABN" placeholder="Business name / ABN" required>
+                <select name="icp" id="pbLockIcp" aria-label="Your role" required>
                     <option value="">Your role</option>
                     <option value="trades_owner">Trades &middot; owner / principal</option>
                     <option value="trades_team">Trades &middot; team / employee</option>
@@ -1408,14 +1408,14 @@
                     <input type="hidden" name="_autoresponse" value="Thanks for reaching out to Babbitt. We've received your message and will reply soon.">
 
                     <div class="form-row">
-                        <input type="text" name="firstName" placeholder="First Name" required>
-                        <input type="text" name="lastName" placeholder="Last Name" required>
+                        <input type="text" name="firstName" id="contact-firstName" autocomplete="given-name" aria-label="First name" placeholder="First Name" required>
+                        <input type="text" name="lastName" id="contact-lastName" autocomplete="family-name" aria-label="Last name" placeholder="Last Name" required>
                     </div>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="text" name="topic" placeholder="What's this about? (optional)">
-                    <textarea name="message" rows="4" maxlength="800" placeholder="Your message" required></textarea>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terms" required>
+                    <input type="email" name="email" id="contact-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
+                    <input type="text" name="topic" id="contact-topic" aria-label="Topic" placeholder="What's this about? (optional)">
+                    <textarea name="message" id="contact-message" aria-label="Your message" rows="4" maxlength="800" placeholder="Your message" required></textarea>
+                    <label class="checkbox-label" for="contact-terms">
+                        <input type="checkbox" name="terms" id="contact-terms" required>
                         <span>I agree to the terms and conditions</span>
                     </label>
                     <div id="contactFormMessage" class="form-message"></div>
@@ -2569,10 +2569,10 @@
                         <!-- Report panel (mocked) -->
                         <form class="report-panel" aria-label="Report an issue (preview)" onsubmit="return false;">
                             <span class="panel-eyebrow">Report an issue</span>
-                            <label class="report-row">
+                            <div class="report-row">
                                 <span class="report-label">What&rsquo;s up?</span>
                                 <span class="report-input report-input--readonly">Bathroom, ensuite leak under sink</span>
-                            </label>
+                            </div>
                             <div class="report-chips" role="list">
                                 <span class="report-chip is-on" role="listitem">Bathroom</span>
                                 <span class="report-chip" role="listitem">Kitchen</span>
@@ -2580,10 +2580,10 @@
                                 <span class="report-chip" role="listitem">Lock / Key</span>
                                 <span class="report-chip" role="listitem">Other</span>
                             </div>
-                            <label class="report-row">
+                            <div class="report-row">
                                 <span class="report-label">Photo</span>
                                 <span class="report-input report-input--photo"><i class="fas fa-camera" aria-hidden="true"></i> IMG_0231.jpg attached</span>
-                            </label>
+                            </div>
                             <button class="report-submit" type="button" aria-disabled="true">
                                 <i class="fas fa-paper-plane" aria-hidden="true"></i> Send to PM
                             </button>
