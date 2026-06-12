@@ -166,57 +166,14 @@
     });
 })();
 
-/* ── 3. Yellow Sweep — open Babbitt 60 application overlay ── */
+/* ── 3. Pricing "Lock the early bird offer" — open the placeholder lock modal ──
+   The Stripe checkout IIFE runs first if `data-checkout-endpoint` is set on
+   #pricingBuilder; if it isn't, the placeholder modal #pbLockModal opens here. */
 (function () {
-    var btnNavCta    = document.getElementById('btnNavCta');
     var btnWaitlist  = document.getElementById('btnWaitlistCta');
-    var yellowSweep  = document.getElementById('yellowSweep');
-    var sweepMsg     = document.getElementById('sweepMessage');
-    var sweepContent = sweepMsg ? sweepMsg.querySelector('.sweep-content') : null;
-    if (!yellowSweep || !sweepMsg) return;
-
-    function openSweep() {
-        yellowSweep.classList.add('active');
-        sweepMsg.classList.add('active');
-    }
-
-    function closeSweep() {
-        sweepMsg.classList.remove('active');
-        setTimeout(function () {
-            yellowSweep.classList.remove('active');
-        }, 300);
-    }
-
-    // Nav "Babbitt 60" — scroll to the explainer section, not open the form.
-    // Users land on the section, read the explainer, then hit "Apply" there.
-    if (btnNavCta) {
-        btnNavCta.addEventListener('click', function (e) {
-            e.preventDefault();
-            var section = document.getElementById('babbitt60');
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                openSweep();
-            }
-        });
-    }
-
-    // Any element marked .js-open-babbitt60 also opens the application overlay
-    document.querySelectorAll('.js-open-babbitt60').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            openSweep();
-        });
-    });
-
-    // Pricing "Lock the early bird offer" — opens the placeholder waitlist modal
-    // (#pbLockModal). When the real waitlist form is wired in by Ky Anh, the
-    // body of #pbLockModal is replaced; this handler does not need to change.
-    // The Stripe checkout IIFE still runs first if `data-checkout-endpoint` is
-    // set on #pricingBuilder; if it isn't, the placeholder modal opens here.
-    var lockModal     = document.getElementById('pbLockModal');
-    var lockModalBg   = lockModal ? lockModal.querySelector('.pb-modal-backdrop') : null;
-    var lockCloseEls  = lockModal ? lockModal.querySelectorAll('[data-lock-close]') : [];
+    var lockModal    = document.getElementById('pbLockModal');
+    var lockModalBg  = lockModal ? lockModal.querySelector('.pb-modal-backdrop') : null;
+    var lockCloseEls = lockModal ? lockModal.querySelectorAll('[data-lock-close]') : [];
 
     function openLockModal() {
         if (!lockModal) return;
@@ -228,6 +185,7 @@
         lockModal.classList.remove('is-open');
         lockModal.setAttribute('aria-hidden', 'true');
     }
+
     lockCloseEls.forEach(function (el) { el.addEventListener('click', closeLockModal); });
     if (lockModalBg) lockModalBg.addEventListener('click', closeLockModal);
     document.addEventListener('keydown', function (e) {
@@ -242,46 +200,6 @@
             openLockModal();
         });
     }
-
-    // Prevent clicks inside the form card from closing
-    if (sweepContent) {
-        sweepContent.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
-    }
-
-    // Close: click sweepMsg background (outside the form card)
-    sweepMsg.addEventListener('click', function () {
-        closeSweep();
-    });
-})();
-
-/* ── 3b. Babbitt 60 explainer modal ── */
-(function () {
-    var modal = document.getElementById('b60ExplainerModal');
-    if (!modal) return;
-    var openEls  = document.querySelectorAll('[data-open-b60-explainer]');
-    var closeEls = modal.querySelectorAll('[data-b60-explainer-close]');
-
-    function open() {
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-    }
-    function close() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-    }
-
-    openEls.forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            open();
-        });
-    });
-    closeEls.forEach(function (el) { el.addEventListener('click', close); });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
-    });
 })();
 
 /* ── 4. 3D Tilt Cards (cursor-driven perspective) ── */
@@ -314,6 +232,7 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     }, { once: true });
 
     card.addEventListener('mousemove', function (e) {
+        if (card.classList.contains('is-open')) return;
         var heroEl = card.closest('.hero');
         if (heroEl && heroEl.classList.contains('is-collapsing')) return;
         var rect = card.getBoundingClientRect();
@@ -328,12 +247,47 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     });
 
     card.addEventListener('mouseleave', function () {
+        if (card.classList.contains('is-open')) return;
         var heroEl = card.closest('.hero');
         if (heroEl && heroEl.classList.contains('is-collapsing')) return;
         card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)';
         card.style.boxShadow = '';
     });
 });
+
+/* ── 4b3. Mosaic Center — click-to-reveal product quote ──
+   Mirrors IIFE 1's incentive-card pattern: tap/click/keyboard toggles
+   `.is-open`, which lets CSS expand the yellow surface via clip-path
+   and fade out the default centre content. Tilt handlers above bail
+   when `.is-open` so the card sits flat while the quote is shown. */
+(function () {
+    var card = document.getElementById('mosaicCenterCard');
+    if (!card) return;
+
+    function setOpen(open) {
+        card.classList.toggle('is-open', open);
+        card.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+            // Reset any in-flight tilt so the open state starts flat.
+            card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)';
+            card.style.boxShadow = '';
+        }
+    }
+
+    card.addEventListener('click', function () {
+        setOpen(!card.classList.contains('is-open'));
+    });
+
+    card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setOpen(!card.classList.contains('is-open'));
+        } else if (e.key === 'Escape' && card.classList.contains('is-open')) {
+            setOpen(false);
+            card.blur();
+        }
+    });
+})();
 
 /* ── 4b2. Demo Card — click-confirmation overlay + route ── */
 (function () {
@@ -863,24 +817,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 (function () {
     var successEl = document.getElementById('waitlistSuccess');
 
-    // Babbitt 60 application form (lives inside the yellow sweep)
-    var b60Form = document.getElementById('babbitt60Form');
-    var b60Msg  = document.getElementById('babbitt60FormMessage');
-    var b60Btn  = document.getElementById('babbitt60SubmitBtn');
-    if (b60Form) {
-        b60Form.addEventListener('submit', function () {
-            if (b60Btn) {
-                b60Btn.disabled = true;
-                b60Btn.textContent = 'Submitting...';
-            }
-            if (b60Msg) {
-                b60Msg.textContent = 'Submitting your application...';
-                b60Msg.className = 'form-message';
-            }
-            sessionStorage.setItem('formSubmitted', 'babbitt60');
-        });
-    }
-
     // User waitlist form (fired from "Who Babbitt is for" room-modal CTAs)
     var waitlistForm = document.getElementById('waitlistForm');
     var waitlistMsg  = document.getElementById('formMessage');
@@ -929,14 +865,12 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     if (bannerClose) bannerClose.addEventListener('click', hideBanner);
 
     var HASH_TO_KEY = {
-        '#babbitt60_submitted':     'babbitt60',
         '#user_waitlist_submitted': 'user_waitlist',
         '#partner_waitlist':        'partner',
         '#partner_submitted':       'partner',
         '#contact_submitted':       'contact'
     };
     var SUCCESS_TEXT = {
-        babbitt60:     'Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.',
         user_waitlist: "Thank you for joining the waitlist. We'll be in touch soon.",
         partner:       "Thank you for your partnership enquiry. We'll be in touch soon.",
         contact:       "Thanks for the message. We've got it and will reply soon."
@@ -1349,8 +1283,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     var setupClose      = document.getElementById('pbSetupClose');
     var setupConfirm    = document.getElementById('pbSetupConfirm');
     var setupBackdrop   = setupModal ? setupModal.querySelector('.pb-modal-backdrop') : null;
-    var yellowSweep     = document.getElementById('yellowSweep');
-    var sweepMsg        = document.getElementById('sweepMessage');
 
     var PRICING = {
         accountModifiers: {
@@ -1402,12 +1334,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     var setupListEl    = setupModal ? setupModal.querySelector('[data-setup-list]') : null;
     var setupNoteEl    = setupModal ? setupModal.querySelector('[data-setup-note]') : null;
 
-    var BABBITT_60 = {
-        availableFor: 'yearly-only',
-        addonsDiscount: 100, // 100% off add-ons for 12 months
-        note: 'Introductory offer — yearly billing only.'
-    };
-
     var tierAddons = {
         free: [
             { id: 'noads',     name: 'Remove ads',         monthly: 11,  yearly: 5.50 },
@@ -1428,7 +1354,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         tier: 'tier1',
         tierCost: 30,
         accountFee: 0,
-        babbitt60: false,
         addons: {},
         // Tracks which optional setup fees the user has ticked. Cleared when
         // the active account changes so a PM toggle doesn't carry over to Strata.
@@ -1447,42 +1372,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         }, 0);
     }
 
-    function isTier2Eligible() {
-        var staff = (state.addons.staff && state.addons.staff.quantity) || 0;
-        var props = (state.addons.properties && state.addons.properties.quantity) || 0;
-        return staff >= 20 || props >= 50;
-    }
-
     function updateTier2Card() {
         var card = builder.querySelector('.pb-tier[data-tier="tier2"]');
         if (!card) return;
-        var eligible = isTier2Eligible();
-        if (eligible) {
-            card.classList.add('is-unlocked');
-            card.setAttribute('aria-disabled', 'false');
-            if (tier2Trigger) {
-                tier2Trigger.innerHTML = '<button type="button" class="pb-tier-cta" id="pbTier2Cta">Register interest</button>';
-                var ctaBtn = document.getElementById('pbTier2Cta');
-                if (ctaBtn) {
-                    ctaBtn.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        openCampaignModal();
-                    });
-                }
-            }
-        } else {
-            card.classList.remove('is-unlocked');
-            card.setAttribute('aria-disabled', 'true');
-            if (tier2Trigger) {
-                tier2Trigger.innerHTML = '<strong>Unlocks at v2</strong><br>20+ staff or 50+ properties';
-            }
+        card.classList.remove('is-unlocked');
+        card.setAttribute('aria-disabled', 'true');
+        if (tier2Trigger) {
+            tier2Trigger.innerHTML = '<strong>Unlocks at v2</strong><br>20+ staff or 50+ properties';
         }
-    }
-
-    function openCampaignModal() {
-        if (!yellowSweep || !sweepMsg) return;
-        yellowSweep.classList.add('active');
-        sweepMsg.classList.add('active');
     }
 
     // Billing toggle
@@ -1490,13 +1387,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         chip.addEventListener('click', function () {
             var next = chip.getAttribute('data-billing');
             if (next === state.billing) return;
-            if (state.babbitt60 && next === 'monthly') {
-                var ok = window.confirm(
-                    'Switching to monthly will remove your Babbitt 60 offer.\n\nContinue?'
-                );
-                if (!ok) return;
-                state.babbitt60 = false;
-            }
             billingChips.forEach(function (c) {
                 c.classList.toggle('is-active', c === chip);
                 c.setAttribute('aria-selected', c === chip ? 'true' : 'false');
@@ -1636,9 +1526,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     // Tier selection
     tierCards.forEach(function (card) {
         card.addEventListener('click', function () {
-            if (card.getAttribute('data-tier') === 'tier2') {
-                if (!isTier2Eligible()) return;
-            }
+            if (card.getAttribute('data-tier') === 'tier2') return;
             tierCards.forEach(function (c) {
                 c.classList.toggle('is-selected', c === card);
                 c.setAttribute('aria-checked', c === card ? 'true' : 'false');
@@ -1890,8 +1778,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             return sum + (price * chargeable);
         }, 0);
 
-        var b60AddonDiscount = (state.babbitt60 && state.billing === 'yearly') ? addonsCostBase : 0;
-        var addonsCost = addonsCostBase - b60AddonDiscount;
+        var addonsCost = addonsCostBase;
 
         var subtotal = state.tierCost + addonsCost;
         var gst = subtotal * 0.10;
@@ -1904,12 +1791,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         // Discount line
         if (discountLine) {
             discountLine.innerHTML = '';
-            if (state.babbitt60 && state.billing === 'yearly') {
-                var badge = document.createElement('div');
-                badge.className = 'pb-discount-badge';
-                badge.innerHTML = '✦ Babbitt 60 active · add-ons free for 12 months';
-                discountLine.appendChild(badge);
-            }
         }
 
         // Total
@@ -1936,9 +1817,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         // Savings
         var monthlyTierPrice = parseFloat(builder.querySelector('.pb-tier[data-tier="' + state.tier + '"]').getAttribute('data-monthly'));
         var yearlyTierPrice  = parseFloat(builder.querySelector('.pb-tier[data-tier="' + state.tier + '"]').getAttribute('data-yearly'));
-        var tierSavings = (monthlyTierPrice - yearlyTierPrice) * 12;
-        var b60Savings  = (state.babbitt60 && state.billing === 'yearly') ? addonsCostBase * 12 : 0;
-        var totalSavings = tierSavings + b60Savings;
+        var totalSavings = (monthlyTierPrice - yearlyTierPrice) * 12;
 
         if (savingsDisplay) {
             savingsDisplay.innerHTML = '';
@@ -1978,7 +1857,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             billing:   state.billing,
             account:   state.account,
             tier:      state.tier,
-            babbitt60: !!state.babbitt60,
             addons:    addons,
         };
     }
@@ -1988,11 +1866,13 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             e.preventDefault();
             e.stopImmediatePropagation();
 
-            // Free tier has no paid items — fall back to waitlist sweep form
+            // Free tier has no paid items — open the placeholder lock modal instead
             if (state.tier === 'free' && state.accountFee === 0) {
-                var pb = document.getElementById('yellowSweep');
-                var sm = document.getElementById('sweepMessage');
-                if (pb && sm) { pb.classList.add('active'); sm.classList.add('active'); }
+                var lockModal = document.getElementById('pbLockModal');
+                if (lockModal) {
+                    lockModal.classList.add('is-open');
+                    lockModal.setAttribute('aria-hidden', 'false');
+                }
                 return;
             }
 
@@ -2043,7 +1923,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                     tier:        state.tier,
                     tierCost:    state.tierCost,
                     accountFee:  state.accountFee,
-                    babbitt60:   !!state.babbitt60,
                     addons:      addons,
                     totalText:   totalEl        ? totalEl.textContent        : '',
                     savingsText: savingsDisplay ? savingsDisplay.textContent : ''
@@ -2068,7 +1947,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         tier:      document.getElementById('pbLockPlanTier'),
         billing:   document.getElementById('pbLockPlanBilling'),
         addons:    document.getElementById('pbLockPlanAddons'),
-        babbitt60: document.getElementById('pbLockPlanBabbitt60'),
         total:     document.getElementById('pbLockPlanTotal')
     };
 
@@ -2132,13 +2010,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 
         toggleSnapRow('addons', !!addonsText);
         if (addonsText) setSnap('addons', addonsText);
-        toggleSnapRow('babbitt60', !!state.babbitt60);
 
         if (hidden.account)   hidden.account.value   = accountLabel;
         if (hidden.tier)      hidden.tier.value      = tierLabel;
         if (hidden.billing)   hidden.billing.value   = billingLabel;
         if (hidden.addons)    hidden.addons.value    = addonsText || 'none';
-        if (hidden.babbitt60) hidden.babbitt60.value = state.babbitt60 ? 'yes' : 'no';
         if (hidden.total)     hidden.total.value     = state.totalText || '';
     }
 

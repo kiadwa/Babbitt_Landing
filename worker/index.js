@@ -65,7 +65,7 @@ function toCents(amount) {
 }
 
 function validateAndPrice(payload) {
-  const { billing, account, tier, addons = {}, babbitt60 = false } = payload || {};
+  const { billing, account, tier, addons = {} } = payload || {};
 
   if (!VALID_BILLING.includes(billing))   throw new Error('Invalid billing');
   if (!VALID_ACCOUNTS.includes(account))  throw new Error('Invalid account');
@@ -99,10 +99,6 @@ function validateAndPrice(payload) {
     if (def.maxQty && qty > def.maxQty) throw new Error(`Addon ${def.id} exceeds max`);
     const chargeable = Math.max(0, qty - (def.freeQty || 0));
     if (chargeable === 0) continue;
-
-    // Babbitt 60 zeroes out add-on cost for yearly billing (first 12 months).
-    // For checkout simplicity we omit add-ons entirely when the offer is active.
-    if (babbitt60 && billing === 'yearly') continue;
 
     const unitMonthly = billing === 'yearly' ? def.yearly : def.monthly;
     const unit = billing === 'yearly' ? unitMonthly * 12 : unitMonthly;

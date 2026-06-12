@@ -245,7 +245,7 @@
                     'Guided AI migration of your property data',
                     'Owner and tenant invitations sent against every property',
                     'Existing trades and contractor lists carried across',
-                    'Faster first-month dispatch with the Babbitt 60 network'
+                    'Faster first-month dispatch against verified trades'
                 ],
                 note: 'One-time fee. New properties added thereafter are included in your plan.'
             },

@@ -17,50 +17,6 @@
     <!-- Dim overlay — partner hover -->
     <div class="dim-overlay"></div>
 
-    <!-- Yellow sweep — Babbitt 60 application overlay -->
-    <div class="yellow-sweep" id="yellowSweep"></div>
-    <div class="sweep-message" id="sweepMessage">
-        <div class="sweep-content">
-            <form class="sweep-form" id="babbitt60Form" action="https://formsubmit.co/db2386c230f1fd46e7c207920bbf4508" method="POST">
-                <header class="sweep-form-header">
-                    <p class="sweep-form-eyebrow">Applications Now Open</p>
-                    <p class="sweep-form-title">The Babbitt 60</p>
-                    <p class="sweep-form-subline">By application only. We review every one.</p>
-                </header>
-                <input type="hidden" name="_captcha" value="true">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_format" value="plain">
-                <input type="hidden" name="_url" value="https://babbitt.app">
-                <input type="hidden" name="_next" value="https://babbitt.app/#babbitt60_submitted">
-                <input type="hidden" name="_subject" value="New Babbitt 60 Application">
-                <input type="hidden" name="_autoresponse" value="Thank you for applying to The Babbitt 60. We review every application and will be in touch soon.">
-                <div class="form-row">
-                    <input type="text" name="firstName" id="b60-firstName" autocomplete="given-name" aria-label="First name" placeholder="First Name" required>
-                    <input type="text" name="lastName" id="b60-lastName" autocomplete="family-name" aria-label="Last name" placeholder="Last Name" required>
-                </div>
-                <input type="email" name="email" id="b60-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
-                <input type="text" name="company" id="b60-company" autocomplete="organization" aria-label="Company name" placeholder="Your Company Name (if any)">
-                <select name="userType" id="b60-userType" aria-label="Your profession" required>
-                    <option value="">Your Profession</option>
-                    <option value="trades">Trades & Specialists</option>
-                    <option value="property_manager">Property Manager</option>
-                    <option value="property_owner">Property Owner</option>
-                    <option value="strata">Strata</option>
-                    <option value="supplier">Suppliers & Enterprise Contractors</option>
-                    <option value="other">Other</option>
-                </select>
-                <textarea name="whyBabbitt60" id="b60-whyBabbitt60" aria-label="Your thoughts about Babbitt" rows="3" maxlength="500" placeholder="What's your thought so far about Babbitt, we would love to know? (1–2 sentences)" required></textarea>
-                <label class="checkbox-label" for="b60-terms">
-                    <input type="checkbox" name="terms" id="b60-terms" required>
-                    <span>I agree to the terms and conditions</span>
-                </label>
-                <div id="babbitt60FormMessage" class="form-message"></div>
-                <button type="submit" class="btn btn-submit-sweep" id="babbitt60SubmitBtn">Submit Application</button>
-            </form>
-            <p class="sweep-hint">Click outside to close</p>
-        </div>
-    </div>
-
     <!-- Blue sweep — partner form overlay -->
     <!-- <div class="blue-sweep" id="blueSweep"></div>
     <div class="sweep-message sweep-partner" id="sweepPartner">
@@ -171,7 +127,6 @@
                 </span>
             </a>
             <div class="nav-links" id="navLinks">
-                <button class="btn nav-secure-btn" id="btnNavCta">Babbitt 60</button>
                 <a href="#features">What</a>
                 <a href="#why">Why</a>
                 <a href="#demo">Demo</a>
@@ -223,7 +178,12 @@
                     </div>
                 </div>
 
-                <div class="mosaic-card mosaic-center anim-hero delay-1">
+                <div class="mosaic-card mosaic-center anim-hero delay-1"
+                     id="mosaicCenterCard"
+                     role="button"
+                     tabindex="0"
+                     aria-expanded="false"
+                     aria-label="Tap to read what Babbitt is">
                     <span class="center-eyebrow cycle" id="c-eyebrow">Built for trades</span>
                     <div class="hero-headline center-headline">
                         <span class="hero-line">Your work</span>
@@ -232,6 +192,18 @@
                         <span class="hero-line"><span class="cycle" id="c-verb">plans</span> every <span class="cycle" id="c-obj">job</span>.</span>
                         <span class="hero-line feature-word"><span class="cycle" id="c-single">Resourced</span>.</span>
                         <span class="hero-line closing"><svg class="brand-logo-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 -270 1197 280" aria-label="Babbitt"><g fill="#F0EDE8"><path d="M 3.890625 0 L 38.609375 -247.9375 L 132.46875 -247.9375 C 146.039062 -247.9375 157.929688 -245.128906 168.140625 -239.515625 C 178.359375 -233.910156 185.972656 -225.972656 190.984375 -215.703125 C 196.003906 -205.429688 197.515625 -193.390625 195.515625 -179.578125 C 194.804688 -174.378906 193.414062 -168.914062 191.34375 -163.1875 C 189.28125 -157.46875 186.238281 -152.128906 182.21875 -147.171875 C 178.207031 -142.210938 172.898438 -138.316406 166.296875 -135.484375 C 173.960938 -133.585938 179.742188 -130.039062 183.640625 -124.84375 C 187.535156 -119.65625 190.160156 -113.664062 191.515625 -106.875 C 192.878906 -100.082031 193.410156 -93.234375 193.109375 -86.328125 C 192.816406 -79.421875 192.257812 -73.195312 191.4375 -67.65625 C 189.78125 -55.132812 184.847656 -43.765625 176.640625 -33.546875 C 168.441406 -23.335938 158.257812 -15.191406 146.09375 -9.109375 C 133.9375 -3.035156 121.007812 0 107.3125 0 Z M 63.21875 -44.984375 L 107.84375 -44.984375 C 113.988281 -44.984375 119.804688 -46.425781 125.296875 -49.3125 C 130.785156 -52.207031 135.390625 -56.191406 139.109375 -61.265625 C 142.828125 -66.347656 145.097656 -72.132812 145.921875 -78.625 C 146.753906 -84.0625 145.988281 -89.226562 143.625 -94.125 C 141.257812 -99.019531 137.773438 -103.003906 133.171875 -106.078125 C 128.566406 -109.148438 123.195312 -110.6875 117.0625 -110.6875 L 72.4375 -110.6875 Z M 78.8125 -154.953125 L 113.15625 -154.953125 C 120.238281 -154.953125 126.644531 -157.3125 132.375 -162.03125 C 138.101562 -166.757812 141.441406 -172.722656 142.390625 -179.921875 C 143.453125 -187.242188 141.707031 -192.851562 137.15625 -196.75 C 132.613281 -200.644531 126.800781 -202.59375 119.71875 -202.59375 L 85.359375 -202.59375 Z M 78.8125 -154.953125 "/></g><g fill="#F0EDE8" transform="translate(202.95, 0)"><path d="M 155.84375 -177.09375 L 208.96875 -177.09375 L 184.171875 0 L 130.875 0 L 130.515625 -15.9375 C 125.203125 -9.800781 118.972656 -4.84375 111.828125 -1.0625 C 104.691406 2.71875 96.695312 4.609375 87.84375 4.609375 C 74.613281 4.609375 62.597656 2.128906 51.796875 -2.828125 C 40.992188 -7.785156 31.84375 -14.660156 24.34375 -23.453125 C 16.851562 -32.253906 11.453125 -42.410156 8.140625 -53.921875 C 4.835938 -65.429688 4.128906 -77.800781 6.015625 -91.03125 C 7.785156 -103.65625 11.769531 -115.457031 17.96875 -126.4375 C 24.164062 -137.425781 31.957031 -147.082031 41.34375 -155.40625 C 50.738281 -163.726562 61.25 -170.25 72.875 -174.96875 C 84.5 -179.6875 96.570312 -182.046875 109.09375 -182.046875 C 119.238281 -182.046875 128.175781 -179.953125 135.90625 -175.765625 C 143.644531 -171.578125 150.347656 -166.351562 156.015625 -160.09375 Z M 93.5 -46.40625 C 100.820312 -46.40625 107.757812 -48.289062 114.3125 -52.0625 C 120.863281 -55.84375 126.382812 -60.921875 130.875 -67.296875 C 135.363281 -73.671875 138.140625 -80.753906 139.203125 -88.546875 C 140.265625 -96.335938 139.460938 -103.421875 136.796875 -109.796875 C 134.140625 -116.171875 130.066406 -121.242188 124.578125 -125.015625 C 119.085938 -128.796875 112.6875 -130.6875 105.375 -130.6875 C 98.050781 -130.6875 91.140625 -128.796875 84.640625 -125.015625 C 78.148438 -121.242188 72.722656 -116.171875 68.359375 -109.796875 C 63.992188 -103.421875 61.28125 -96.335938 60.21875 -88.546875 C 59.15625 -80.753906 59.921875 -73.671875 62.515625 -67.296875 C 65.109375 -60.921875 69.117188 -55.84375 74.546875 -52.0625 C 79.984375 -48.289062 86.300781 -46.40625 93.5 -46.40625 Z M 93.5 -46.40625 "/></g><g fill="#F0EDE8" transform="translate(418.65, 0)"><path d="M 127.328125 -182.046875 C 144.566406 -182.046875 159.675781 -177.851562 172.65625 -169.46875 C 185.644531 -161.09375 195.359375 -149.847656 201.796875 -135.734375 C 208.234375 -121.628906 210.210938 -106.019531 207.734375 -88.90625 C 205.960938 -76.03125 201.859375 -63.925781 195.421875 -52.59375 C 188.984375 -41.257812 180.863281 -31.3125 171.0625 -22.75 C 161.269531 -14.195312 150.410156 -7.5 138.484375 -2.65625 C 126.554688 2.1875 114.101562 4.609375 101.125 4.609375 C 91.789062 4.609375 83.671875 2.601562 76.765625 -1.40625 C 69.859375 -5.425781 64.101562 -10.503906 59.5 -16.640625 L 57.203125 0 L 4.078125 0 L 41.265625 -265.640625 L 94.390625 -265.640625 L 79.6875 -160.796875 C 86.0625 -167.054688 93.265625 -172.160156 101.296875 -176.109375 C 109.328125 -180.066406 118.003906 -182.046875 127.328125 -182.046875 Z M 107.671875 -46.75 C 114.992188 -46.75 121.929688 -48.640625 128.484375 -52.421875 C 135.035156 -56.203125 140.523438 -61.28125 144.953125 -67.65625 C 149.378906 -74.03125 152.125 -81.113281 153.1875 -88.90625 C 154.25 -96.570312 153.453125 -103.59375 150.796875 -109.96875 C 148.140625 -116.34375 144.09375 -121.445312 138.65625 -125.28125 C 133.226562 -129.125 126.851562 -131.046875 119.53125 -131.046875 C 112.332031 -131.046875 105.484375 -129.125 98.984375 -125.28125 C 92.492188 -121.445312 87.003906 -116.34375 82.515625 -109.96875 C 78.035156 -103.59375 75.265625 -96.570312 74.203125 -88.90625 C 73.140625 -81.113281 73.9375 -74.03125 76.59375 -67.65625 C 79.25 -61.28125 83.289062 -56.203125 88.71875 -52.421875 C 94.15625 -48.640625 100.472656 -46.75 107.671875 -46.75 Z M 107.671875 -46.75 "/></g><g fill="#F0EDE8" transform="translate(633.11, 0)"><path d="M 127.328125 -182.046875 C 144.566406 -182.046875 159.675781 -177.851562 172.65625 -169.46875 C 185.644531 -161.09375 195.359375 -149.847656 201.796875 -135.734375 C 208.234375 -121.628906 210.210938 -106.019531 207.734375 -88.90625 C 205.960938 -76.03125 201.859375 -63.925781 195.421875 -52.59375 C 188.984375 -41.257812 180.863281 -31.3125 171.0625 -22.75 C 161.269531 -14.195312 150.410156 -7.5 138.484375 -2.65625 C 126.554688 2.1875 114.101562 4.609375 101.125 4.609375 C 91.789062 4.609375 83.671875 2.601562 76.765625 -1.40625 C 69.859375 -5.425781 64.101562 -10.503906 59.5 -16.640625 L 57.203125 0 L 4.078125 0 L 41.265625 -265.640625 L 94.390625 -265.640625 L 79.6875 -160.796875 C 86.0625 -167.054688 93.265625 -172.160156 101.296875 -176.109375 C 109.328125 -180.066406 118.003906 -182.046875 127.328125 -182.046875 Z M 107.671875 -46.75 C 114.992188 -46.75 121.929688 -48.640625 128.484375 -52.421875 C 135.035156 -56.203125 140.523438 -61.28125 144.953125 -67.65625 C 149.378906 -74.03125 152.125 -81.113281 153.1875 -88.90625 C 154.25 -96.570312 153.453125 -103.59375 150.796875 -109.96875 C 148.140625 -116.34375 144.09375 -121.445312 138.65625 -125.28125 C 133.226562 -129.125 126.851562 -131.046875 119.53125 -131.046875 C 112.332031 -131.046875 105.484375 -129.125 98.984375 -125.28125 C 92.492188 -121.445312 87.003906 -116.34375 82.515625 -109.96875 C 78.035156 -103.59375 75.265625 -96.570312 74.203125 -88.90625 C 73.140625 -81.113281 73.9375 -74.03125 76.59375 -67.65625 C 79.25 -61.28125 83.289062 -56.203125 88.71875 -52.421875 C 94.15625 -48.640625 100.472656 -46.75 107.671875 -46.75 Z M 107.671875 -46.75 "/></g><g fill="#F6B500" transform="translate(845, 0)"><path d="M 28.6875 -177.09375 L 81.8125 -177.09375 L 57.03125 0 L 3.890625 0 Z M 58.265625 -195.515625 C 50.585938 -195.515625 44.503906 -198.050781 40.015625 -203.125 C 35.535156 -208.195312 33.828125 -214.515625 34.890625 -222.078125 C 35.953125 -229.515625 39.429688 -235.800781 45.328125 -240.9375 C 51.234375 -246.070312 57.960938 -248.640625 65.515625 -248.640625 C 72.953125 -248.640625 78.882812 -246.070312 83.3125 -240.9375 C 87.75 -235.800781 89.4375 -229.515625 88.375 -222.078125 C 87.3125 -214.515625 83.914062 -208.195312 78.1875 -203.125 C 72.457031 -198.050781 65.816406 -195.515625 58.265625 -195.515625 Z M 58.265625 -195.515625 "/></g><g fill="#F6B500" transform="translate(940.63, 0)"><path d="M 118.65625 -123.96875 L 88.546875 -123.96875 L 71.1875 0 L 18.0625 0 L 35.421875 -123.96875 L 12.390625 -123.96875 L 19.828125 -177.09375 L 42.859375 -177.09375 L 50.65625 -232.703125 L 103.78125 -232.703125 L 95.984375 -177.09375 L 126.09375 -177.09375 Z M 118.65625 -123.96875 "/></g><g fill="#F0EDE8" transform="translate(1067, 0)"><path d="M 118.65625 -123.96875 L 88.546875 -123.96875 L 71.1875 0 L 18.0625 0 L 35.421875 -123.96875 L 12.390625 -123.96875 L 19.828125 -177.09375 L 42.859375 -177.09375 L 50.65625 -232.703125 L 103.78125 -232.703125 L 95.984375 -177.09375 L 126.09375 -177.09375 Z M 118.65625 -123.96875 "/></g></svg></span>
+                    </div>
+
+                    <span class="mosaic-center-hint" aria-hidden="true">
+                        <span class="mosaic-center-hint-label">Click to read</span>
+                        <span class="mosaic-center-hint-arrow">&#8600;</span>
+                    </span>
+
+                    <div class="mosaic-center-reveal" aria-hidden="true">
+                        <blockquote class="mosaic-center-quote">
+                            Babbitt is the first record of construction built around the property itself, bringing trades, owners, property management, and suppliers onto a single accountable history rather than fragmenting them across individual tools.
+                        </blockquote>
+                        <span class="mosaic-center-reveal-mark" aria-hidden="true">&#9733;</span>
                     </div>
                 </div>
 
@@ -346,7 +318,7 @@
 
                     <div class="floorplan-titleblock" aria-hidden="true">
                         <span class="tb-cell tb-cell--label">Plan MVP.V1</span>
-                        <span class="tb-cell tb-cell--name">Babbitt</span>
+                        <span class="tb-cell tb-cell--label">Who's Babbitt for?</span>
                         <span class="tb-cell tb-cell--rev">Rev. 2026</span>
                     </div>
                     <span class="sheet-corner sheet-corner--tr" aria-hidden="true">
@@ -526,8 +498,8 @@
                             <span class="strip-item strip-item--ok">close-out pending</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">One job. Every stakeholder.</h3>
-                    <p class="why-card-body">Owners, tenants, managers, trades, subbies and suppliers all work from the same job record. Scope, approvals, orders, variations, delivery and close-out stay connected instead of splitting across inboxes, calls and portals. Everyone sees the same work, at the same address, with the same history.</p>
+                    <h3 class="why-card-headline">All your stakeholders in one place.</h3>
+                    <!-- <p class="why-card-body">Owners, tenants, managers, trades, subbies and suppliers all work from the same job record. Scope, approvals, orders, variations, delivery and close-out stay connected instead of splitting across inboxes, calls and portals. Everyone sees the same work, at the same address, with the same history.</p> -->
                 </article>
                 <article class="why-card" data-why-index="1" data-why-label="More than a job manager.">
                     <div class="why-card-visual evidence-panel evidence-panel--property" aria-hidden="true">
@@ -547,7 +519,7 @@
                                         <span class="row-date">Apr '26</span>
                                         <span class="row-type row-type--closeout">close-out</span>
                                         <span class="row-slug">bathroom_reno</span>
-                                        <span class="row-stamp">just archived</span>
+                                        <!-- <span class="row-stamp">just archived</span> -->
                                     </li>
                                     <li class="property-row">
                                         <span class="row-date">Sep '24</span>
@@ -576,8 +548,8 @@
                             <span class="strip-item strip-item--ok">record permanent</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">More than a job manager.</h3>
-                    <p class="why-card-body">Babbitt does not just help you run today's job. It turns every completed job into a permanent property record. What was scoped, approved, supplied, built and signed off stays useful after the invoice is paid.</p>
+                    <h3 class="why-card-headline">Every job stays on the property's record.</h3>
+                    <!-- <p class="why-card-body">Babbitt does not just help you run today's job. It turns every completed job into a permanent property record. What was scoped, approved, supplied, built and signed off stays useful after the invoice is paid.</p> -->
                 </article>
                 <article class="why-card" data-why-index="2" data-why-label="Ratings backed by real work.">
                     <div class="why-card-visual evidence-panel evidence-panel--rating" aria-hidden="true">
@@ -614,8 +586,8 @@
                             <span class="strip-item strip-item--ok">no pay-to-rank</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Ratings backed by real work.</h3>
-                    <p class="why-card-body">Reviews only mean something when they are tied to the job that earned them. Babbitt links reputation to signed close-outs, real properties and verified work, so trust is built from proof instead of paid visibility or empty profile claims.</p>
+                    <h3 class="why-card-headline">Your reputation, directly from the work you did.</h3>
+                    <!-- <p class="why-card-body">Reviews only mean something when they are tied to the job that earned them. Babbitt links reputation to signed close-outs, real properties and verified work, so trust is built from proof instead of paid visibility or empty profile claims.</p> -->
                 </article>
                 <article class="why-card" data-why-index="3" data-why-label="Free to start. Scales when you do.">
                     <div class="why-card-visual evidence-panel evidence-panel--plan" aria-hidden="true">
@@ -663,8 +635,8 @@
                             <span class="strip-item strip-item--ok">$0 to start</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Free to start. Scales with you.</h3>
-                    <p class="why-card-body">Babbitt is built to be affordable from day one. No pay-to-bid, no charge before there is real business value, and no heavy onboarding just to begin. The platform grows with the operator, portfolio or supply team using it.</p>
+                    <h3 class="why-card-headline">Easy to start, easy to thrive.</h3>
+                    <!-- <p class="why-card-body">Babbitt is built to be affordable from day one. No pay-to-bid, no charge before there is real business value, and no heavy onboarding just to begin. The platform grows with the operator, portfolio or supply team using it.</p> -->
                 </article>
                 <article class="why-card" data-why-index="4" data-why-label="A permanent maintenance log.">
                     <div class="why-card-visual evidence-panel evidence-panel--log" aria-hidden="true">
@@ -676,23 +648,23 @@
                             <ol class="log-timeline">
                                 <li class="log-entry log-entry--latest">
                                     <span class="log-date">14 Apr '26</span>
-                                    <span class="log-type log-type--closeout">close-out</span>
-                                    <span class="log-label">bathroom_reno</span>
+                                    <span class="log-type log-type--closeout">job</span>
+                                    <span class="log-label">Bathroom renovation</span>
                                 </li>
                                 <li class="log-entry">
                                     <span class="log-date">22 Jan '25</span>
                                     <span class="log-type log-type--warranty">warranty</span>
-                                    <span class="log-label">hot_water_unit · 5yr</span>
+                                    <span class="log-label">Hot water unit · 5yr</span>
                                 </li>
                                 <li class="log-entry">
                                     <span class="log-date">10 Sep '24</span>
                                     <span class="log-type log-type--inspection">inspection</span>
-                                    <span class="log-label">electrical_safety</span>
+                                    <span class="log-label">Electrical Safety</span>
                                 </li>
                                 <li class="log-entry">
                                     <span class="log-date">03 Mar '24</span>
-                                    <span class="log-type log-type--repair">repair</span>
-                                    <span class="log-label">roof_patch</span>
+                                    <span class="log-type log-type--repair">maintenance</span>
+                                    <span class="log-label">Roof Patch</span>
                                 </li>
                                 <li class="log-entry log-entry--faded">
                                     <span class="log-date">2019…</span>
@@ -708,25 +680,25 @@
                             <span class="strip-item strip-item--ok">1 inspection due</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">A permanent maintenance log.</h3>
-                    <p class="why-card-body">From con-note to close-out, every repair, inspection, product, warranty and approval can become part of the property's service history. The next person opening the property starts with context, not a blank page.</p>
+                    <h3 class="why-card-headline">Property management made easy. It's all there.</h3>
+                    <!-- <p class="why-card-body">From con-note to close-out, every repair, inspection, product, warranty and approval can become part of the property's service history. The next person opening the property starts with context, not a blank page.</p> -->
                 </article>
                 <article class="why-card" data-why-index="5" data-why-label="Get paid for scope creep.">
                     <div class="why-card-visual evidence-panel evidence-panel--variation" aria-hidden="true">
                         <div class="evidence-bar">
-                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>jobs<span class="evidence-sep">/</span>bathroom_reno<span class="evidence-sep">/</span><span class="evidence-crumb-id">variation_02</span></span>
+                            <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>jobs<span class="evidence-sep">/</span>bathroom_reno<span class="evidence-sep">/</span><span class="evidence-crumb-id">punch_list</span></span>
                             <span class="evidence-status"><span class="evidence-dot"></span>approved</span>
                         </div>
                         <div class="evidence-stage">
                             <div class="variation-card">
                                 <div class="variation-row variation-row--base">
                                     <span class="var-eyebrow">Base scope</span>
-                                    <span class="var-label">bathroom_reno · agreed Mar '26</span>
+                                    <span class="var-label">Bathroom Renovation · Agreed Mar '26</span>
                                     <span class="var-amount">A$4,200</span>
                                 </div>
                                 <div class="variation-connector" aria-hidden="true">
                                     <span class="connector-line"></span>
-                                    <span class="connector-tag">+ variation</span>
+                                    <span class="connector-tag">+ Punch list</span>
                                     <span class="connector-line"></span>
                                 </div>
                                 <div class="variation-row variation-row--new">
@@ -741,16 +713,16 @@
                             </div>
                         </div>
                         <div class="evidence-strip">
-                            <span class="strip-item"><i class="strip-num">2</i> variations</span>
+                            <span class="strip-item"><i class="strip-num">1</i> punch-list item</span>
                             <span class="strip-sep"></span>
-                            <span class="strip-item">approved <i class="strip-num">+A$680</i></span>
+                            <span class="strip-item">approved <i class="strip-num">+A$420</i></span>
                             <span class="strip-item strip-item--ok">invoice ready</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Get paid for scope creep.</h3>
-                    <p class="why-card-body">When the client asks for more, a variation opens inside the job with scope, price and approval attached. Work moves forward once it is signed. Every change stays pinned to the job, so the invoice follows the work instead of the argument.</p>
+                    <h3 class="why-card-headline">Scope creep is less scary. You see it coming.</h3>
+                    <!-- <p class="why-card-body">When the client asks for more, a variation opens inside the job with scope, price and approval attached. Work moves forward once it is signed. Every change stays pinned to the job, so the invoice follows the work instead of the argument.</p> -->
                 </article>
-                <article class="why-card" data-why-index="6" data-why-label="Your story, drafted from your data.">
+                <article class="why-card" data-why-index="6" data-why-label="Your story is seen and heard.">
                     <div class="why-card-visual evidence-panel evidence-panel--network" aria-hidden="true">
                         <div class="evidence-bar">
                             <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>network<span class="evidence-sep">/</span><span class="evidence-crumb-id">article_07</span></span>
@@ -760,8 +732,6 @@
                             <div class="article-card">
                                 <div class="article-hero article-hero--photo">
                                     <img class="article-hero-photo" src="Rend19.png" alt="Renovated terrace living room with oak floors and subway-tile feature wall" />
-                                    <span class="article-hero-caption">photo &middot; finished living room</span>
-                                    <span class="article-hero-tag">from job:terrace_reno</span>
                                 </div>
                                 <div class="article-body">
                                     <div class="article-attribution">
@@ -769,7 +739,7 @@
                                             <img src="Foreman_Pic.png" alt="" />
                                         </span>
                                         <span class="article-foreman-meta">
-                                            <span class="article-foreman-eyebrow">Drafted by Foreman</span>
+                                            <span class="article-foreman-eyebrow">Drafted by Foreman AI</span>
                                             <span class="article-foreman-source">from 4 closed jobs &middot; Mar to Apr '26</span>
                                         </span>
                                         <span class="article-foreman-pill">SEO ready</span>
@@ -787,16 +757,12 @@
                             </div>
                         </div>
                         <div class="evidence-strip evidence-strip--network">
-                            <span class="strip-item"><i class="strip-num">3</i> articles</span>
-                            <span class="strip-sep"></span>
-                            <span class="strip-item"><i class="strip-num">14</i> backlinks</span>
-                            <span class="strip-sep strip-sep--hide-sm"></span>
                             <span class="strip-item strip-item--collapse-sm"><i class="strip-num">2,400</i> views off-platform</span>
                             <span class="strip-item strip-item--ok">indexed</span>
                         </div>
                     </div>
                     <h3 class="why-card-headline">Your story, drafted from your data.</h3>
-                    <p class="why-card-body">Foreman drafts SEO-ready articles from your closed jobs, property records or catalogue updates. Add a photo, link to your profile, hit publish. Babbitt posts to the network and the open web. Built for people who build things, not the noise of social feeds.</p>
+                    <!-- <p class="why-card-body">Foreman drafts SEO-ready articles from your closed jobs, property records or catalogue updates. Add a photo, link to your profile, hit publish. Babbitt posts to the network and the open web. Built for people who build things, not the noise of social feeds.</p> -->
                 </article>
             </div>
 
@@ -897,7 +863,7 @@
                     <ul class="demo-role-preview" aria-hidden="true">
                         <li>Pick a property from your portfolio</li>
                         <li>Brief the job and set the budget</li>
-                        <li>Match against the Babbitt 60</li>
+                        <li>Match the job to verified trades</li>
                     </ul>
                     <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
                 </a>
@@ -1216,11 +1182,6 @@
             <h3 id="pbLockTitle" class="pb-modal-title">Lock your early bird offer</h3>
             <p class="pb-modal-lead">Hold this price for year one. We&rsquo;ll email you when onboarding opens.</p>
 
-            <div class="pb-lock-b60-line">
-                <span class="pb-lock-b60-icon" aria-hidden="true">&#9733;</span>
-                <p><strong>Apply for the Babbitt 60</strong> to lock this price for the <em>life</em> of your subscription. Selective. Yearly billing. Add-ons free for year one. <button type="button" class="pb-lock-b60-explain" data-open-b60-explainer>What&rsquo;s the Babbitt 60?</button></p>
-            </div>
-
             <!-- Plan snapshot (populated from window.babbittPricing.getState() on open) -->
             <div class="pb-lock-snapshot" id="pbLockSnapshot" aria-live="polite">
                 <div class="pb-lock-snapshot-row">
@@ -1239,10 +1200,6 @@
                     <span class="pb-lock-snapshot-label">Add-ons</span>
                     <span class="pb-lock-snapshot-value" data-snap="addons">&mdash;</span>
                 </div>
-                <div class="pb-lock-snapshot-row" data-snap-row="babbitt60" hidden>
-                    <span class="pb-lock-snapshot-label">Babbitt 60</span>
-                    <span class="pb-lock-snapshot-value" data-snap="babbitt60">Applied</span>
-                </div>
                 <div class="pb-lock-snapshot-row pb-lock-snapshot-row--total">
                     <span class="pb-lock-snapshot-label">Total</span>
                     <span class="pb-lock-snapshot-value" data-snap="total">&mdash;</span>
@@ -1258,7 +1215,6 @@
                 <input type="hidden" name="plan_tier"      id="pbLockPlanTier">
                 <input type="hidden" name="plan_billing"   id="pbLockPlanBilling">
                 <input type="hidden" name="plan_addons"    id="pbLockPlanAddons">
-                <input type="hidden" name="plan_babbitt60" id="pbLockPlanBabbitt60">
                 <input type="hidden" name="plan_total"     id="pbLockPlanTotal">
 
                 <div class="pb-lock-form-row">
@@ -1289,81 +1245,6 @@
                 <h4 class="pb-lock-success-title">Your offer is locked in.</h4>
                 <p class="pb-lock-success-body">We&rsquo;ve saved your plan and will email when onboarding opens. The early bird price holds for year one.</p>
                 <button type="button" class="btn btn-primary pb-modal-confirm" data-lock-close>Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══ The Babbitt 60 ═══ -->
-    <section class="b60" id="babbitt60">
-        <div class="container b60-inner">
-            <div class="section-header">
-                <span class="section-eyebrow">Founding members. Application only.</span>
-                <h2 class="section-title">The Babbitt 60.</h2>
-                <p class="section-lead">Sixty founding members, by invite only. They shape what Babbitt becomes and set the standard the rest of the industry joins. Founding price locked for the life of their subscription. Every add-on free in year one. Apply today.</p>
-            </div>
-
-            <div class="b60-grid">
-                <article class="b60-card">
-                    <span class="b60-card-eyebrow">Founding price, locked</span>
-                    <p>50% off the base in year one, and every year after, for as long as you stay yearly.</p>
-                </article>
-                <article class="b60-card">
-                    <span class="b60-card-eyebrow">Add-ons free, year one</span>
-                    <p>Every add-on at $0 for the first 12 months. Standard pricing year two onward.</p>
-                </article>
-                <article class="b60-card">
-                    <span class="b60-card-eyebrow">Direct line to the founders</span>
-                    <p>Your feature requests go straight into the build queue.</p>
-                </article>
-                <article class="b60-card">
-                    <span class="b60-card-eyebrow">A place in the Babbitt record</span>
-                    <p>A site visit, a co-owned content day on one of your real jobs, and a highlight feature on the platform.</p>
-                </article>
-            </div>
-
-            <p class="b60-everyoneelse-line">The free tier and standard yearly price are unchanged. The first sixty just go deeper.</p>
-
-            <div class="b60-closer">
-                <p class="b60-closer-line">Every job. Your name on it.</p>
-                <p class="b60-closer-tag">Babbitt is where the job lives.</p>
-            </div>
-
-            <div class="b60-cta-row">
-                <button type="button" class="btn btn-primary js-open-babbitt60 b60-apply">Apply for the Babbitt 60</button>
-                <button type="button" class="btn btn-tertiary" data-open-b60-explainer>Read the full explainer</button>
-            </div>
-            <p class="b60-fine">Selective. Yearly billing. Lifetime price lock for active members.</p>
-        </div>
-    </section>
-
-    <!-- ═══ Babbitt 60 explainer modal ═══ -->
-    <div class="pb-modal" id="b60ExplainerModal" aria-hidden="true">
-        <div class="pb-modal-backdrop" data-b60-explainer-close></div>
-        <div class="pb-modal-inner pb-modal-inner--b60" role="dialog" aria-modal="true" aria-labelledby="b60ExplainerTitle">
-            <button class="pb-modal-close" aria-label="Close" data-b60-explainer-close>&times;</button>
-            <span class="pb-modal-eyebrow">Founding members. Invite only.</span>
-            <h3 id="b60ExplainerTitle" class="pb-modal-title">The Babbitt 60.</h3>
-
-            <div class="b60-explainer-body">
-                <p>Sixty of Babbitt&rsquo;s early visionaries, by invite only, who take pride in the work they do for their customers and their profession.</p>
-                <p>They shape what Babbitt becomes. Founding price locked for the life of their subscription. Every add-on free in year one.</p>
-
-                <h4>What&rsquo;s included</h4>
-                <ul>
-                    <li><strong>Founding price, locked.</strong> 50% off your first year. 50% off for the life of your subscription, for as long as you stay yearly.</li>
-                    <li><strong>Add-ons free for year one.</strong> Every add-on at $0 for the first 12 months.</li>
-                    <li><strong>Direct line to the founders.</strong> Your feature requests go into the build queue.</li>
-                    <li><strong>AI training opt-out.</strong> On by default for cohort members.</li>
-                </ul>
-
-                <h4>Eligibility</h4>
-                <p>By application. Yearly billing only. Switching to monthly cancels the cohort terms.</p>
-
-                <p class="b60-explainer-closer">Every job. Your name on it.</p>
-            </div>
-
-            <div class="b60-explainer-cta">
-                <button type="button" class="btn btn-primary js-open-babbitt60" data-b60-explainer-close>Apply now</button>
             </div>
         </div>
     </div>
@@ -1515,12 +1396,10 @@
                         <span>Get paid for variations</span>
                         <span class="meta-sep">&middot;</span>
                         <span>Your name on every property you service</span>
-                        <span class="meta-sep">&middot;</span>
-                        <span class="meta-faint">Forman job summaries drive new traffic</span>
                     </p>
                 </div>
 
-                <!-- Workspace tab strip — proof "the whole job, one place" -->
+                <!-- Workspace tab strip — proof "the whole job, one place"
                 <nav class="ws-tabs" aria-label="Workspace tabs (preview)">
                     <span class="ws-tab is-active">Overview</span>
                     <span class="ws-tab">Staging / BoQ</span>
@@ -1528,10 +1407,10 @@
                     <span class="ws-tab">Compliance / Documents</span>
                     <span class="ws-tab">Sub-Contracts</span>
                     <span class="ws-tab">Close-Out</span>
-                </nav>
+                </nav> -->
 
                 <!-- ◢ spec-sheet divider -->
-                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why tradies pick Babbitt</div>
+                <!-- <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why tradies pick Babbitt</div> -->
 
                 <!-- Foreman Job Briefing — 3 flagged items, click chip to reveal -->
                 <aside class="foreman-panel" aria-label="Job briefing">
@@ -1599,7 +1478,6 @@
                         Save your subbies, on platform and off platform, to your private lists and invite them to quote on any job.
                         Connect your network and get recognised by new clients for qualiry work.
                     </p>
-                    <span class="payout-tag">Network</span>
                 </aside>
 
                 <!-- CTAs -->
@@ -1667,7 +1545,7 @@
                     </p>
                 </div>
 
-                <!-- Workspace tab strip — supplier surface -->
+                <!-- Workspace tab strip — supplier surface
                 <nav class="ws-tabs" aria-label="Supplier workspace (preview)">
                     <span class="ws-tab is-active">Orders</span>
                     <span class="ws-tab">Quotes</span>
@@ -1675,10 +1553,10 @@
                     <span class="ws-tab">Dispatch</span>
                     <span class="ws-tab">Pack Queue</span>
                     <span class="ws-tab">Reconciliation</span>
-                </nav>
+                </nav> -->
 
                 <!-- ◢ section divider -->
-                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why suppliers run with Babbitt</div>
+                <!-- <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why suppliers run with Babbitt</div> -->
 
                 <!-- Foreman Order Briefing — 3 flagged items, click chip to reveal -->
                 <aside class="foreman-panel" aria-label="Order briefing">
@@ -1810,7 +1688,6 @@
                         Pack list, dispatch, driver POD and reconciliation run on the same record as the tradie's job.
                         You handle the order; we handle the paper.
                     </p>
-                    <span class="payout-tag payout-tag--info">Order</span>
                 </aside>
 
                 <!-- CTAs -->
@@ -1877,15 +1754,15 @@
                     </p>
                 </div>
 
-                <!-- Workspace tab strip — property surface -->
+                <!-- Workspace tab strip — property surface
                 <nav class="ws-tabs ws-tabs--green" aria-label="Property workspace (preview)">
                     <span class="ws-tab is-active">Property</span>
                     <span class="ws-tab">Projects</span>
                     <span class="ws-tab">Transaction</span>
-                </nav>
+                </nav> -->
 
-                <!-- ◢ section divider -->
-                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why managers run their portfolio on Babbitt</div>
+                <!-- ◢ section divider
+                <div class="spec-divider"><span class="spec-mark">&#9698;</span> Why managers run their portfolio on Babbitt</div> -->
 
                 <!-- Foreman Portfolio Briefing — 3 flagged items, click chip to reveal -->
                 <aside class="foreman-panel" aria-label="Portfolio briefing">
@@ -1963,7 +1840,7 @@
                         <h3 class="ticket-section-title">Maintenance, scheduled. Nothing slips.</h3>
                         <span class="track-tail">Quoted, scheduled, signed off. Tenant self-inspections feed the schedule before the next callout.</span>
                     </div>
-                    <ol class="schedule-strip" aria-label="Upcoming maintenance">
+                    <!-- <ol class="schedule-strip" aria-label="Upcoming maintenance">
                         <li class="schedule-week" data-state="now">
                             <span class="week-label">This week</span>
                             <span class="week-count">3</span>
@@ -1984,7 +1861,7 @@
                             <span class="week-count">1</span>
                             <span class="week-foot">Tenant inspection in &middot; Hereford</span>
                         </li>
-                    </ol>
+                    </ol> -->
                 </section>
 
                 <!-- 3-up benefits tiles -->
@@ -2014,7 +1891,6 @@
                         Every job, every owner in the loop and every tenant inspection tied to the property record.
                         The brief is already written.
                     </p>
-                    <span class="payout-tag payout-tag--success">Brief</span>
                 </aside>
 
                 <!-- CTAs -->
@@ -2081,7 +1957,7 @@
                     </p>
                 </div>
 
-                <!-- Workspace tab strip — strata surface -->
+                <!-- Workspace tab strip — strata surface
                 <nav class="ws-tabs ws-tabs--plum" aria-label="Strata workspace (preview)">
                     <span class="ws-tab">Overview</span>
                     <span class="ws-tab">Noticeboard</span>
@@ -2089,10 +1965,10 @@
                     <span class="ws-tab is-active">Voting</span>
                     <span class="ws-tab">Common Works</span>
                     <span class="ws-tab">Documents</span>
-                </nav>
+                </nav> -->
 
                 <!-- ◢ section divider -->
-                <div class="spec-divider spec-divider--plum"><span class="spec-mark">&#9698;</span> Why committees run their scheme on Babbitt</div>
+                <!-- <div class="spec-divider spec-divider--plum"><span class="spec-mark">&#9698;</span> Why committees run their scheme on Babbitt</div> -->
 
                 <!-- Foreman Scheme Briefing — 3 flagged items, click chip to reveal -->
                 <aside class="foreman-panel" aria-label="Scheme briefing">
@@ -2200,10 +2076,10 @@
                 <!-- Scheme calendar strip -->
                 <section class="ticket-track">
                     <div class="track-head">
-                        <h3 class="ticket-section-title">Scheme calendar. Votes, works and notices.</h3>
+                        <!-- <h3 class="ticket-section-title">Scheme calendar. Votes, works and notices.</h3> -->
                         <span class="track-tail">Common works, contractor windows, committee dates and live votes. All linked to the scheme.</span>
                     </div>
-                    <ol class="schedule-strip schedule-strip--plum" aria-label="Upcoming scheme dates">
+                    <!-- <ol class="schedule-strip schedule-strip--plum" aria-label="Upcoming scheme dates">
                         <li class="schedule-week" data-state="now">
                             <span class="week-label">In 9 days</span>
                             <span class="week-count">Clean</span>
@@ -2219,7 +2095,7 @@
                             <span class="week-count">Vote</span>
                             <span class="week-foot">Voting opens</span>
                         </li>
-                    </ol>
+                    </ol> -->
                 </section>
 
                 <!-- 3-up benefits tiles -->
@@ -2249,7 +2125,6 @@
                         Compare quotes on the same platform as your tradies, Lot owners vote on the platform built for their portfolio, contractors and sign-offs are filed forever.
                         The whole building notified. And owners see what's done.
                     </p>
-                    <span class="payout-tag payout-tag--plum">Filed</span>
                 </aside>
 
                 <!-- CTAs -->
@@ -2316,7 +2191,7 @@
                     </p>
                 </div>
 
-                <!-- Workspace tab strip — owner surface -->
+                <!-- Workspace tab strip — owner surface
                 <nav class="ws-tabs ws-tabs--amber" aria-label="Owner workspace (preview)">
                     <span class="ws-tab is-active">Property</span>
                     <span class="ws-tab">Projects</span>
@@ -2324,10 +2199,10 @@
                     <span class="ws-tab">Inspections</span>
                     <span class="ws-tab">Maintenance</span>
                     <span class="ws-tab">Governance</span>
-                </nav>
+                </nav> -->
 
                 <!-- ◢ section divider -->
-                <div class="spec-divider spec-divider--amber"><span class="spec-mark">&#9698;</span> Why owners keep their asset on Babbitt</div>
+                <!-- <div class="spec-divider spec-divider--amber"><span class="spec-mark">&#9698;</span> Why owners keep their asset on Babbitt</div> -->
 
                 <!-- Foreman Owner Briefing — 3 flagged items, click chip to reveal -->
                 <aside class="foreman-panel" aria-label="Owner briefing">
@@ -2424,10 +2299,10 @@
                 <!-- Owner calendar strip -->
                 <section class="ticket-track">
                     <div class="track-head">
-                        <h3 class="ticket-section-title">What's up next on this property.</h3>
+                        <!-- <h3 class="ticket-section-title">What's up next on this property.</h3> -->
                         <span class="track-tail">Renewals, inspections, planned works. All logged on the property record, surfaced when they're due.</span>
                     </div>
-                    <ol class="schedule-strip schedule-strip--amber" aria-label="Upcoming owner items">
+                    <!-- <ol class="schedule-strip schedule-strip--amber" aria-label="Upcoming owner items">
                         <li class="schedule-week" data-state="now">
                             <span class="week-label">In 6 weeks</span>
                             <span class="week-count">Safety</span>
@@ -2443,7 +2318,7 @@
                             <span class="week-count">Plan</span>
                             <span class="week-foot">Bathroom 2 renovation callout</span>
                         </li>
-                    </ol>
+                    </ol> -->
                 </section>
 
                 <!-- 3-up benefits tiles -->
@@ -2473,7 +2348,6 @@
                         Every job, photo, warranty and certificate, against the address.
                         Sell it, switch managers, hand it down. The record stays with the house.
                     </p>
-                    <span class="payout-tag payout-tag--amber">Record</span>
                 </aside>
 
                 <!-- CTAs -->
@@ -2540,17 +2414,17 @@
                     </p>
                 </div>
 
-                <!-- Workspace tab strip — tenant lives inside Portfolio (read-only) -->
+                <!-- Workspace tab strip — tenant lives inside Portfolio (read-only)
                 <nav class="ws-tabs ws-tabs--coral" aria-label="Tenant workspace (preview)">
                     <span class="ws-tab is-active">Overview</span>
                     <span class="ws-tab">Linked Work</span>
                     <span class="ws-tab">Inspections</span>
                     <span class="ws-tab">Maintenance</span>
                     <span class="ws-tab">Governance</span>
-                </nav>
+                </nav> -->
 
                 <!-- ◢ section divider -->
-                <div class="spec-divider spec-divider--coral"><span class="spec-mark">&#9698;</span> Why tenants log issues on Babbitt</div>
+                <!-- <div class="spec-divider spec-divider--coral"><span class="spec-mark">&#9698;</span> Why tenants log issues on Babbitt</div> -->
 
                 <!-- HERO: Tenant Card — issue report + live status -->
                 <section class="tenant-card" aria-label="Your place">
@@ -2659,7 +2533,6 @@
                         <strong>You&rsquo;re in the loop. By default.</strong> Babbitt links you, your PM and the tradie to the same record.
                         When you ask &ldquo;when&rsquo;s it being fixed?&rdquo;, the answer is already on your screen.
                     </p>
-                    <span class="payout-tag payout-tag--coral">Live</span>
                 </aside>
 
                 <!-- CTAs -->

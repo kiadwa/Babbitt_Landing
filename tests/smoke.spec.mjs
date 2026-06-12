@@ -27,12 +27,7 @@ test.describe('landing page', () => {
         await page.goto('/index.html');
         const required = [
             '#hero',
-            '#yellowSweep',
-            '#sweepMessage',
-            '#babbitt60',
-            '#babbitt60Form',
             '#waitlistForm',
-            '#btnNavCta',
             '#btnWaitlistCta',
             '#navHamburger',
             '#navLinks',
@@ -40,30 +35,6 @@ test.describe('landing page', () => {
         for (const sel of required) {
             await expect(page.locator(sel), `missing ${sel}`).toHaveCount(1);
         }
-    });
-
-    test('nav "Babbitt 60" scrolls to the explainer section', async ({ page, isMobile }) => {
-        await page.goto('/index.html');
-        if (isMobile) {
-            // The CTA lives inside the collapsed nav menu on small screens.
-            await page.locator('#navHamburger').click();
-            await expect(page.locator('#navLinks')).toHaveClass(/is-open/);
-        }
-        const cta = page.locator('#btnNavCta').first();
-        await cta.click();
-        // Clicking the nav CTA scrolls the #babbitt60 section into view rather
-        // than opening the yellow sweep directly — users land on the explainer
-        // and apply from there via a .js-open-babbitt60 button.
-        await expect(page.locator('#babbitt60')).toBeInViewport();
-    });
-
-    test('Babbitt 60 "Apply" opens the yellow sweep with the application form', async ({ page }) => {
-        await page.goto('/index.html');
-        await page.locator('#babbitt60').scrollIntoViewIfNeeded();
-        await page.locator('.js-open-babbitt60').first().click();
-        await expect(page.locator('#yellowSweep')).toHaveClass(/active/);
-        await expect(page.locator('#sweepMessage')).toHaveClass(/active/);
-        await expect(page.locator('#babbitt60Form')).toBeVisible();
     });
 
     test('hero word-cycling spans render', async ({ page }) => {
