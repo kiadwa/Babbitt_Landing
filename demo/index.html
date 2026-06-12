@@ -195,9 +195,9 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-green/70"></span>
                 <span class="ml-3 text-xs text-txt-tertiary font-mono hidden sm:inline" id="urlBar">babbitt.app/marketplace</span>
                 <span class="ml-auto text-xs text-txt-secondary flex items-center gap-2">
-                    <span id="actorAvatar" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border" style="background:rgba(96,205,226,0.15); color:#60CDE2; border-color:rgba(96,205,226,0.3);">SO</span>
+                    <span id="actorAvatar" class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold border" style="background:rgba(96,205,226,0.05); color:#BFEEF5; border-color:rgba(96,205,226,0.35);">SO</span>
                     <span id="actorName" class="hidden sm:inline">Sarah O'Connor</span>
-                    <span id="actorRole" class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold border" style="background:rgba(96,205,226,0.15); color:#60CDE2; border-color:rgba(96,205,226,0.4);">Property Owner</span>
+                    <span id="actorRole" class="px-1.5 py-0.5 rounded-badge text-[10px] font-semibold border" style="background:rgba(96,205,226,0.05); color:#BFEEF5; border-color:rgba(96,205,226,0.4);">Property Owner</span>
                 </span>
             </div>
 
@@ -207,7 +207,7 @@
                 <!-- ═══ STEP 1 — Intro ═══ -->
                 <div class="step step-fade" data-flow="property-owner-listing" data-step="1">
                     <div class="max-w-2xl mx-auto text-center py-3 sm:py-5">
-                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-yellow/15 text-yellow border border-yellow/40 mb-4">
+                        <span class="inline-block px-2.5 py-1 rounded-badge text-[11px] uppercase tracking-wider font-semibold bg-yellow/5 border border-yellow/40 mb-4" style="color:#FFD865;">
                             Property Owner Flow
                         </span>
                         <h2 class="font-head text-3xl sm:text-4xl font-bold text-txt mb-3">
@@ -5019,12 +5019,15 @@ Bonus points if they're across NSW SafeWork notification too.</p>
         const $$ = (s, root) => Array.from((root || document).querySelectorAll(s));
 
         // ── Actor profiles (drives the topbar avatar) ─────────────
+        // `hex` is the brand colour used for borders + (low-alpha) backgrounds.
+        // `bright` is the WCAG-AA contrast-safe foreground used for text/glyphs
+        // sitting on the tinted backdrop — brand-hue but lightened for legibility.
         const ACTORS = {
-          sarah:  { initials: 'SO', name: "Sarah O'Connor",  role: 'Property Owner',         hex: '#60CDE2' },
-          marcus: { initials: 'MO', name: "Marcus O'Brien",  role: 'Trades · Plumber',       hex: '#F6B500' },
-          dan:    { initials: 'DM', name: 'Dan Murray',      role: 'Supplier · Reece',       hex: '#67E4AA' },
-          liam:   { initials: 'LT', name: 'Liam Tran',       role: 'Property Manager',       hex: '#FF5C00' },
-          priya:  { initials: 'PN', name: 'Priya Nair',      role: 'Strata Committee · Chair', hex: '#C084FC' },
+          sarah:  { initials: 'SO', name: "Sarah O'Connor",  role: 'Property Owner',         hex: '#60CDE2', bright: '#BFEEF5' },
+          marcus: { initials: 'MO', name: "Marcus O'Brien",  role: 'Trades · Plumber',       hex: '#F6B500', bright: '#FFD865' },
+          dan:    { initials: 'DM', name: 'Dan Murray',      role: 'Supplier · Reece',       hex: '#67E4AA', bright: '#ADF2CE' },
+          liam:   { initials: 'LT', name: 'Liam Tran',       role: 'Property Manager',       hex: '#FF5C00', bright: '#FFC2A0' },
+          priya:  { initials: 'PN', name: 'Priya Nair',      role: 'Strata Committee · Chair', hex: '#C084FC', bright: '#E0BFFF' },
         };
 
         // ── Flow definitions ──────────────────────────────────────
@@ -5197,13 +5200,13 @@ Bonus points if they're across NSW SafeWork notification too.</p>
           const a = ACTORS[key];
           if (!a) return;
           $('#actorAvatar').textContent = a.initials;
-          $('#actorAvatar').style.backgroundColor = a.hex + '26';
-          $('#actorAvatar').style.color = a.hex;
-          $('#actorAvatar').style.borderColor = a.hex + '4D';
+          $('#actorAvatar').style.backgroundColor = a.hex + '0D';
+          $('#actorAvatar').style.color = a.bright;
+          $('#actorAvatar').style.borderColor = a.hex + '59';
           $('#actorName').textContent = a.name;
           $('#actorRole').textContent = a.role;
-          $('#actorRole').style.backgroundColor = a.hex + '26';
-          $('#actorRole').style.color = a.hex;
+          $('#actorRole').style.backgroundColor = a.hex + '0D';
+          $('#actorRole').style.color = a.bright;
           $('#actorRole').style.borderColor = a.hex + '66';
         }
 
@@ -5256,14 +5259,17 @@ Bonus points if they're across NSW SafeWork notification too.</p>
             const label = btn.querySelector('.dot-label');
             if (n < cur) {
               dot.className = 'dot w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center border transition-colors bg-yellow text-txt-inverse border-yellow';
+              dot.style.color = '';
               dot.innerHTML = '<i class="fas fa-check text-[10px]"></i>';
               label.classList.remove('text-txt-secondary'); label.classList.add('text-yellow');
             } else if (n === cur) {
-              dot.className = 'dot w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center border transition-colors bg-yellow/20 text-yellow border-yellow';
+              dot.className = 'dot w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center border transition-colors bg-yellow/5 border-yellow';
+              dot.style.color = '#FFD865';
               dot.textContent = String(n);
               label.classList.remove('text-txt-secondary'); label.classList.add('text-yellow');
             } else {
               dot.className = 'dot w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center border transition-colors bg-surface text-txt-tertiary border-bdr';
+              dot.style.color = '';
               dot.textContent = String(n);
               label.classList.remove('text-yellow'); label.classList.add('text-txt-secondary');
             }

@@ -28,7 +28,7 @@ export default [
     {
         // Node-side Playwright harnesses; the page.evaluate() callbacks inside
         // them run in the browser, so allow browser globals too.
-        files: ['audit*.mjs', 'tests/**/*.mjs', 'tests/**/*.js', 'playwright.config.*'],
+        files: ['audit*.mjs', 'audit-lib/**/*.mjs', 'tests/**/*.mjs', 'tests/**/*.js', 'playwright.config.*'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: 'module',

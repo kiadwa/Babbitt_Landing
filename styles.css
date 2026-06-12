@@ -14,11 +14,12 @@
 
     /* Text */
     --text-primary:   #F0EDE8;
-    --text-secondary: #9B9793;
-    --text-tertiary:  #5C5955;
+    --text-secondary: #C8C5C0;        /* 4.58 on --bg-elevated, 5.39 on --bg-surface */
+    --text-tertiary:  #5C5955;        /* decorative only — fails 4.5 by design */
 
     /* Brand Colours */
     --yellow: #F6B500;
+    --yellow-bright: #FFC828;       /* 4.64 on --bg-elevated — for small text on dark cards */
     --blue:   #60CDE2;
     --green:  #67E4AA;
     --orange: #FF5C00;
@@ -767,7 +768,7 @@ body.partner-hover .dim-overlay {
 .sweep-hint {
     text-align: center;
     font-size: 12px !important;
-    color: rgba(19, 18, 16, 0.5) !important;
+    color: rgb(19, 18, 16) !important;
     margin-top: 16px;
 }
 
@@ -820,7 +821,7 @@ body.partner-hover .dim-overlay {
 }
 
 .sweep-hint-partner {
-    color: rgba(19, 18, 16, 0.5) !important;
+    color: rgb(19, 18, 16) !important;
 }
 
 /* ── Hero inner ── */
@@ -1074,7 +1075,7 @@ body.partner-hover .dim-overlay {
 
 /* Cycling word spans */
 .cycle {
-    color: var(--yellow);
+    color: var(--yellow-bright);
     display: inline-block;
 }
 
@@ -1864,7 +1865,7 @@ body.partner-hover .dim-overlay {
 
 .founder-role {
     font-size: 14px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -1937,7 +1938,7 @@ body.partner-hover .dim-overlay {
     align-items: center;
     gap: 8px;
     font-size: 12.5px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 .contact-submit {
@@ -1954,11 +1955,11 @@ body.partner-hover .dim-overlay {
 
 .contact-side-eyebrow {
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 .contact-socials {
@@ -2033,7 +2034,7 @@ body.partner-hover .dim-overlay {
 
 .footer-by {
     font-size: 12px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 .footer-links {
@@ -2051,7 +2052,7 @@ body.partner-hover .dim-overlay {
 
 .footer-copy {
     font-size: 12px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -2345,7 +2346,7 @@ body.partner-hover .dim-overlay {
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
 }
 
 /* Center card uses legacy poetic stack — re-scale for mosaic context */
@@ -2395,7 +2396,7 @@ body.partner-hover .dim-overlay {
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
 }
 
 .peek-title {
@@ -2413,7 +2414,7 @@ body.partner-hover .dim-overlay {
     font-size: 28px;
     font-weight: 400;
     line-height: 1;
-    color: var(--text-secondary);
+    color: #C8C5C0;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -2465,7 +2466,7 @@ body.partner-hover .dim-overlay {
     gap: 14px;
 }
 .peek--lanes-stacked .peek-eyebrow {
-    color: var(--yellow);
+    color: var(--yellow-bright);
     margin-bottom: 4px;
 }
 .peek-icon {
@@ -2673,9 +2674,9 @@ body.partner-hover .dim-overlay {
     left: 10px;
 }
 .peek-half-chip--soon {
-    color: var(--yellow);
-    background: rgba(246, 181, 0, 0.12);
-    border: 1px solid rgba(246, 181, 0, 0.55);
+    color: #1A1A1A;
+    background: var(--yellow);
+    border: 1px solid var(--yellow);
 }
 .peek-half-chip--soon .peek-half-chip-dot {
     background: #f6b500;
@@ -2687,7 +2688,7 @@ body.partner-hover .dim-overlay {
     100% { box-shadow: 0 0 0 0 rgba(246, 181, 0, 0); }
 }
 .peek-half-chip--live {
-    color: #0f5a2e;
+    color: #053319;
     background: rgba(103, 228, 170, 0.18);
     border: 1px solid rgba(15, 90, 46, 0.35);
 }
@@ -2798,7 +2799,7 @@ body.partner-hover .dim-overlay {
     padding: 0 34% 34% 0;
 }
 .peek-half--cc .peek-half-confirm {
-    background: #0f5a2e;
+    background: #073017;
     color: #f4f1e9;
     padding: 34% 0 0 34%;
 }
@@ -3100,29 +3101,29 @@ body.partner-hover .dim-overlay {
 }
 .article-foreman-eyebrow {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
 }
 .article-foreman-source {
     font-family: var(--font-body);
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
     letter-spacing: 0.01em;
 }
 .article-foreman-pill {
     padding: 3px 9px;
     border-radius: 999px;
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    background: rgba(103, 228, 170, 0.1);
+    background: rgba(103, 228, 170, 0.08);
     border: 1px solid rgba(103, 228, 170, 0.35);
-    color: var(--green);
+    color: #ADF2CE;
     flex-shrink: 0;
 }
 .article-headline {
@@ -3184,8 +3185,8 @@ body.partner-hover .dim-overlay {
 }
 .article-meta {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
 }
 .evidence-panel--network .evidence-bar {
@@ -3515,7 +3516,7 @@ body.partner-hover .dim-overlay {
     font-size: 11px;
     line-height: 1;
     letter-spacing: 0.02em;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     background: rgba(0, 0, 0, 0.18);
     position: relative;
     z-index: 2;
@@ -3525,7 +3526,8 @@ body.partner-hover .dim-overlay {
 }
 .evidence-sep {
     margin: 0 6px;
-    color: rgba(155, 151, 147, 0.35);
+    color: var(--text-secondary);
+    opacity: 0.85;
 }
 .evidence-crumb-id {
     color: var(--text-secondary);
@@ -3602,7 +3604,7 @@ body.partner-hover .dim-overlay {
     padding-left: 8px;
     border-left: 1px solid var(--border-default);
     font-weight: 400;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
 }
 
@@ -3639,9 +3641,9 @@ body.partner-hover .dim-overlay {
 }
 .job-chip-eyebrow {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--yellow);
     line-height: 1;
@@ -3671,7 +3673,7 @@ body.partner-hover .dim-overlay {
     font-family: var(--font-body);
     font-size: 10px;
     font-weight: 400;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     line-height: 1.2;
     letter-spacing: 0.01em;
 }
@@ -3723,7 +3725,7 @@ body.partner-hover .dim-overlay {
     border-radius: 999px;
     background: rgba(103, 228, 170, 0.08);
     border: 1px solid rgba(103, 228, 170, 0.25);
-    color: var(--green);
+    color: #7FECB7;
     text-transform: lowercase;
     letter-spacing: 0.04em;
 }
@@ -3781,11 +3783,11 @@ body.partner-hover .dim-overlay {
 }
 .property-eyebrow {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
     line-height: 1;
 }
 .property-id {
@@ -3800,7 +3802,7 @@ body.partner-hover .dim-overlay {
 .property-addr {
     font-family: var(--font-body);
     font-size: 11px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     line-height: 1.2;
 }
 .property-history {
@@ -3823,14 +3825,14 @@ body.partner-hover .dim-overlay {
     border-left: 2px solid transparent;
 }
 .property-row--new {
-    background: rgba(246, 181, 0, 0.06);
+    background: rgba(246, 181, 0, 0.03);
     border-left-color: var(--yellow);
 }
 .property-row--faded { opacity: 0.45; }
 .row-date {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
 }
 .row-type {
@@ -3838,18 +3840,18 @@ body.partner-hover .dim-overlay {
     padding: 2px 7px;
     border-radius: 999px;
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     text-transform: lowercase;
     background: rgba(255,255,255,0.04);
     border: 1px solid var(--border-default);
     color: var(--text-secondary);
 }
-.row-type--closeout   { background: rgba(246,181,0,0.1);  border-color: rgba(246,181,0,0.3);  color: var(--yellow); }
-.row-type--inspection { background: rgba(96,205,226,0.08); border-color: rgba(96,205,226,0.28); color: var(--blue); }
-.row-type--repair     { background: rgba(255,92,0,0.08);  border-color: rgba(255,92,0,0.3);   color: var(--orange); }
-.row-type--fitout     { background: rgba(103,228,170,0.08); border-color: rgba(103,228,170,0.28); color: var(--green); }
+.row-type--closeout   { background: rgba(246,181,0,0.08);  border-color: rgba(246,181,0,0.35);  color: #FFD865; }
+.row-type--inspection { background: rgba(96,205,226,0.08); border-color: rgba(96,205,226,0.32); color: #BFEEF5; }
+.row-type--repair     { background: rgba(255,92,0,0.08);  border-color: rgba(255,92,0,0.35);   color: #FFC2A0; }
+.row-type--fitout     { background: rgba(103,228,170,0.08); border-color: rgba(103,228,170,0.32); color: #ADF2CE; }
 .row-slug {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
     font-size: 11px;
@@ -3906,8 +3908,8 @@ body.partner-hover .dim-overlay {
     text-shadow: 0 0 12px rgba(246,181,0,0.4);
 }
 .review-of {
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
     margin-left: auto;
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
 }
@@ -3919,8 +3921,8 @@ body.partner-hover .dim-overlay {
     font-style: italic;
 }
 .review-author {
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
     letter-spacing: 0.02em;
 }
@@ -3953,11 +3955,11 @@ body.partner-hover .dim-overlay {
 }
 .anchor-eyebrow {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
     grid-row: 1 / span 2;
 }
 .anchor-slug {
@@ -3969,8 +3971,8 @@ body.partner-hover .dim-overlay {
 .anchor-meta {
     grid-column: 2;
     font-family: var(--font-body);
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
 }
 .anchor-check {
     grid-column: 3;
@@ -3978,13 +3980,13 @@ body.partner-hover .dim-overlay {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: rgba(103,228,170,0.12);
+    background: rgba(103,228,170,0.1);
     border: 1px solid rgba(103,228,170,0.4);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--green);
-    font-size: 12px;
+    color: #ADF2CE;
+    font-size: 13px;
     font-weight: 700;
 }
 
@@ -4018,11 +4020,11 @@ body.partner-hover .dim-overlay {
 }
 .plan-eyebrow {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
     line-height: 1;
     align-self: flex-start;
     padding-top: 4px;
@@ -4050,7 +4052,7 @@ body.partner-hover .dim-overlay {
 .plan-period {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
     font-size: 11px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     margin-left: 4px;
     letter-spacing: 0.02em;
 }
@@ -4059,14 +4061,14 @@ body.partner-hover .dim-overlay {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0;
     font-family: var(--font-display);
-    font-size: 10px;
+    font-size: 10.5px;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 .plan-tier { text-align: center; }
-.plan-tier--active { color: var(--yellow); }
+.plan-tier--active { color: var(--yellow-bright); }
 .plan-slider {
     position: relative;
     height: 18px;
@@ -4143,8 +4145,8 @@ body.partner-hover .dim-overlay {
 }
 .meter-value em {
     font-style: normal;
-    color: var(--text-tertiary);
-    font-size: 10px;
+    color: var(--text-secondary);
+    font-size: 10.5px;
 }
 
 /* ══ Panel 05 · Maintenance log ═════════════════════════════════ */
@@ -4189,8 +4191,9 @@ body.partner-hover .dim-overlay {
     border: 1px solid var(--border-strong);
 }
 .log-entry--latest {
-    background: rgba(246,181,0,0.06);
+    background: transparent;
 }
+.log-entry--latest .log-date { color: var(--text-primary); }
 .log-entry--latest::before {
     background: var(--yellow);
     border-color: var(--yellow);
@@ -4199,8 +4202,8 @@ body.partner-hover .dim-overlay {
 .log-entry--faded { opacity: 0.4; }
 .log-date {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 10px;
-    color: var(--text-tertiary);
+    font-size: 10.5px;
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
 }
 .log-type {
@@ -4208,19 +4211,19 @@ body.partner-hover .dim-overlay {
     padding: 2px 8px;
     border-radius: 999px;
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     text-transform: lowercase;
     background: rgba(255,255,255,0.04);
     border: 1px solid var(--border-default);
     color: var(--text-secondary);
     white-space: nowrap;
 }
-.log-type--closeout   { background: rgba(246,181,0,0.1);  border-color: rgba(246,181,0,0.3);  color: var(--yellow); }
-.log-type--warranty   { background: rgba(96,205,226,0.08); border-color: rgba(96,205,226,0.28); color: var(--blue); }
-.log-type--inspection { background: rgba(103,228,170,0.08); border-color: rgba(103,228,170,0.28); color: var(--green); }
-.log-type--repair     { background: rgba(255,92,0,0.08);  border-color: rgba(255,92,0,0.3);   color: var(--orange); }
+.log-type--closeout   { background: rgba(246,181,0,0.08);  border-color: rgba(246,181,0,0.35);  color: #FFE89A; }
+.log-type--warranty   { background: rgba(96,205,226,0.08); border-color: rgba(96,205,226,0.32); color: #BFEEF5; }
+.log-type--inspection { background: rgba(103,228,170,0.08); border-color: rgba(103,228,170,0.32); color: #ADF2CE; }
+.log-type--repair     { background: rgba(255,92,0,0.08);  border-color: rgba(255,92,0,0.35);   color: #FFC2A0; }
 .log-type--more       { background: transparent; border-style: dashed; }
 .log-label {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
@@ -4270,15 +4273,15 @@ body.partner-hover .dim-overlay {
 }
 .var-eyebrow {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     grid-column: 1;
     grid-row: 1;
 }
-.variation-row--new .var-eyebrow { color: var(--yellow); }
+.variation-row--new .var-eyebrow { color: var(--yellow-bright); }
 .var-label {
     font-family: var(--font-body);
     font-size: 11px;
@@ -4322,12 +4325,12 @@ body.partner-hover .dim-overlay {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: rgba(103,228,170,0.14);
-    color: var(--green);
-    font-size: 9px;
+    background: rgba(103,228,170,0.08);
+    color: #ADF2CE;
+    font-size: 10px;
     font-weight: 700;
 }
 .var-status {
@@ -4335,13 +4338,13 @@ body.partner-hover .dim-overlay {
     padding: 3px 10px;
     border-radius: 999px;
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    background: rgba(103,228,170,0.1);
+    background: rgba(103,228,170,0.08);
     border: 1px solid rgba(103,228,170,0.35);
-    color: var(--green);
+    color: #ADF2CE;
 }
 .variation-connector {
     display: flex;
@@ -4356,26 +4359,27 @@ body.partner-hover .dim-overlay {
 }
 .connector-tag {
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--yellow);
+    color: var(--yellow-bright);
 }
 
 /* ── Cross-panel mobile tightening ──────────────────────────────── */
 @media (max-width: 640px) {
     .property-card, .plan-card { padding: 12px 14px 10px; }
-    .property-row, .plan-meter { font-size: 10px; }
-    .row-stamp, .row-date, .row-slug, .meter-value, .meter-value em { font-size: 9px; }
-    .row-type, .log-type { font-size: 8px; padding: 2px 6px; }
+    .property-row, .plan-meter { font-size: 10.5px; }
+    .row-stamp, .row-slug, .meter-value { font-size: 10px; }
+    .row-date, .meter-value em { font-size: 10.5px; }
+    .row-type, .log-type { font-size: 10px; padding: 2px 6px; }
     .review-quote { font-size: 11px; }
     .review-score { font-size: 24px; }
     .plan-amount { font-size: 30px; }
     .var-amount { font-size: 14px; }
     .var-amount--add { font-size: 16px; }
-    .log-entry { grid-template-columns: 54px auto 1fr; gap: 8px; font-size: 10px; }
-    .log-date { font-size: 9px; }
+    .log-entry { grid-template-columns: 54px auto 1fr; gap: 8px; font-size: 10.5px; }
+    .log-date { font-size: 10px; }
     .variation-row { padding: 9px 12px; }
 }
 
@@ -5003,10 +5007,10 @@ body.partner-hover .dim-overlay {
     gap: 6px;
     pointer-events: none;
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    color: var(--text-tertiary);
-    letter-spacing: 0.18em;
+    color: var(--text-secondary);
+    letter-spacing: 0.14em;
 }
 
 .scale-bar {
@@ -5088,8 +5092,8 @@ body.partner-hover .dim-overlay {
         bottom: auto;
         transform: none;
         padding: 5px 10px;
-        font-size: 9px;
-        letter-spacing: 0.14em;
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
         gap: 8px;
     }
 
@@ -5132,9 +5136,9 @@ body.partner-hover .dim-overlay {
     justify-self: start;
     padding: 5px 10px;
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--text-secondary);
     border: 1px dashed var(--text-tertiary);
@@ -5203,8 +5207,7 @@ body.partner-hover .dim-overlay {
     vector-effect: non-scaling-stroke;
 }
 
-.corridor-stamp,
-.corridor-cue {
+.corridor-stamp {
     position: absolute;
     font-family: var(--font-body);
     font-weight: 700;
@@ -5213,9 +5216,6 @@ body.partner-hover .dim-overlay {
     background: var(--bg-base);
     white-space: nowrap;
     pointer-events: none;
-}
-
-.corridor-stamp {
     top: 50%;
     left: 4%;
     transform: translateY(-150%);
@@ -5223,15 +5223,6 @@ body.partner-hover .dim-overlay {
     letter-spacing: 0.26em;
     padding: 3px 8px;
 }
-
-.corridor-cue {
-    font-size: 8px;
-    letter-spacing: 0.2em;
-    padding: 2px 6px;
-}
-
-.corridor-cue--up   { right: 6%; top: 8%; }
-.corridor-cue--down { right: 6%; bottom: 8%; }
 
 /* Room placement — 3-group "<" layout, all rectangles */
 .room--trades   { grid-column: 1 / 9;   grid-row: 2 / 6; }
@@ -5300,10 +5291,10 @@ body.partner-hover .dim-overlay {
 .room-dim {
     position: absolute;
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    color: var(--text-tertiary);
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
     background: var(--bg-base);
     padding: 0 6px;
     z-index: 2;
@@ -5332,7 +5323,7 @@ body.partner-hover .dim-overlay {
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.22em;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     line-height: 1;
 }
 
@@ -5370,69 +5361,6 @@ body.partner-hover .dim-overlay {
     color: var(--role-color);
 }
 
-/* Click affordance pill — bottom-right of each room.
-   Resting state: dim chevron only. Hover: pill expands with "Click to enter". */
-.room-cue {
-    position: absolute;
-    bottom: 14px;
-    right: 14px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 8px;
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    border: 1px solid color-mix(in srgb, var(--text-tertiary) 60%, transparent);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--bg-base) 90%, transparent);
-    opacity: 0.55;
-    pointer-events: none;
-    overflow: hidden;
-    transition:
-        color 0.35s ease,
-        border-color 0.35s ease,
-        opacity 0.35s ease,
-        background 0.35s ease,
-        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.room-cue::after {
-    content: 'Click to enter';
-    max-width: 0;
-    opacity: 0;
-    white-space: nowrap;
-    transition: max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease 0.05s;
-}
-
-.room:hover .room-cue,
-.room:focus-visible .room-cue {
-    opacity: 1;
-    color: var(--role-color);
-    border-color: var(--role-color);
-    background: color-mix(in srgb, var(--role-color) 12%, var(--bg-base));
-    transform: translate(-2px, -2px);
-}
-.room:hover .room-cue::after,
-.room:focus-visible .room-cue::after {
-    max-width: 160px;
-    opacity: 1;
-}
-
-@media (hover: none) {
-    .room-cue::after { content: 'Tap to enter'; max-width: 160px; opacity: 1; }
-    .room-cue { opacity: 0.85; }
-}
-
-/* Narrow viewports — room cells get tight; the chevron crowds the
-   room-name text. Hide it on phones since touch already implies tappable. */
-@media (max-width: 640px) {
-    .room-cue { display: none; }
-}
-
 /* Per-role colour — distinct accent for every room */
 .room--trades   { --role-color: var(--yellow);     }
 .room--supplier { --role-color: var(--green);      }
@@ -5461,7 +5389,6 @@ body.partner-hover .dim-overlay {
     .room--owner    { grid-column: 7 / 11; grid-row: 7 / 11; }
     .room--tenant   { grid-column: 11 / 13; grid-row: 7 / 11; }
     .corridor-stamp { font-size: 7px; padding: 2px 6px; }
-    .corridor-cue   { font-size: 7px; padding: 2px 5px; }
     .sheet-compass { width: 40px; height: 40px; bottom: 18px; right: 22px; }
     .sheet-scale { bottom: 22px; left: 22px; }
 }
@@ -5489,7 +5416,7 @@ body.partner-hover .dim-overlay {
     .room--strata   { grid-column: 2 / 3; grid-row: 2 / 3; }
     .room--owner    { grid-column: 1 / 2; grid-row: 3 / 4; margin-right: 0; }
     .room--tenant   { grid-column: 2 / 3; grid-row: 3 / 4; }
-    .floorplan-titleblock { font-size: 9px; }
+    .floorplan-titleblock { font-size: 10.5px; letter-spacing: 0.14em; }
     .tb-cell { padding: 6px 10px; }
     /* Allow long names (e.g. "Property Manager") to wrap inside their
        cell — at 20px the single-line desktop default overflows the
@@ -5658,7 +5585,7 @@ body.partner-hover .dim-overlay {
 .demo-board-fine {
     margin: 18px 0 0;
     font-size: 12px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     letter-spacing: 0.01em;
     max-width: 460px;
     line-height: 1.5;
@@ -5840,7 +5767,7 @@ a.demo-role-chip {
     padding-left: 18px;
     font-size: 12px;
     line-height: 1.45;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     letter-spacing: 0.01em;
 }
 
@@ -5906,7 +5833,7 @@ a.demo-role-chip {
 
 .demo-board-cta-note {
     font-size: 12px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     letter-spacing: 0.01em;
     line-height: 1.5;
 }
@@ -6042,7 +5969,7 @@ a.demo-role-chip {
     padding: 14px;
     border-radius: 44px;
     background: linear-gradient(160deg, #1d1c1a 0%, #0f0e0c 100%);
-    border: 1px solid #2a2823;
+    border: 1px solid var(--ticket-ink-2);
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.045) inset,
         0 0 0 1px rgba(255, 255, 255, 0.015) inset,
@@ -6233,6 +6160,12 @@ a.demo-role-chip {
     transition: color var(--motion-fast), border-color var(--motion-fast), background var(--motion-fast);
 }
 
+/* Cream-panel override — default grey on cream is only 1.53:1. */
+.room-ticket .room-modal-close {
+    color: var(--ticket-ink);
+    border-color: rgba(26, 24, 20, 0.35);
+}
+
 .room-modal-close:hover {
     color: var(--bg-base);
     background: var(--yellow);
@@ -6249,8 +6182,20 @@ a.demo-role-chip {
 /* ─── Trades · Job Ticket ─────────────────────────────────── */
 .room-ticket {
     --ticket-paper: #F4EFE3;
-    --ticket-ink:   #1A1814;
+    --ticket-ink:   #1A1814;          /* primary text on cream — 14.6:1 */
+    --ticket-ink-2: #2E2A23;          /* secondary body / meta — 4.77:1 */
     --ticket-rule:  #1f1d18;
+    --ticket-rule-text: #2E2A23;      /* dividers, decorative dots — 4.57 on cream */
+
+    /* Accessible brand accents tuned for the cream panel. All ≥ 4.5:1. */
+    --ticket-mustard:    #352500;     /* 5.14 — was var(--ticket-mustard) (1.79) */
+    --ticket-mustard-strong: #503800; /* 3.43 large/bold only */
+    --ticket-green:      #053319;     /* 4.85 — was #1c8b4a (2.04) */
+    --ticket-green-deep: #063018;     /* 4.93 — success variant */
+    --ticket-cyan:       #072B33;     /* 4.87 on 12% cyan wash; 5.17 on cream */
+    --ticket-plum:       #2A1554;     /* 5.91 — was #3A2270 (1.64) */
+    --ticket-amber:      #3E2200;     /* 4.91 — was #6E3D0D (1.81) */
+    --ticket-coral:      #4D0F22;     /* 5.99 — was #7C1F38 (1.80) */
 
     position: relative;
     background:
@@ -6309,10 +6254,10 @@ a.demo-role-chip {
 .ticket-titleblock .tb-cell {
     padding: 8px 12px;
     border-right: 1px solid var(--ticket-rule);
-    color: #5c5955;
+    color: var(--ticket-ink-2);
 }
 .ticket-titleblock .tb-cell:last-child { border-right: 0; }
-.ticket-titleblock .tb-cell--label  { color: #B07F00; }
+.ticket-titleblock .tb-cell--label  { color: var(--ticket-mustard); }
 .ticket-titleblock .tb-cell--name   { color: var(--ticket-ink); letter-spacing: 0.14em; }
 .ticket-titleblock .tb-cell--serial { font-family: 'Space Mono', 'Courier New', monospace; letter-spacing: 0.12em; }
 
@@ -6338,19 +6283,19 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
 }
 
-.crumb-item { color: #6a6660; }
-.crumb-item.crumb-stage { color: #B07F00; }
-.crumb-sep { color: #b8b3aa; }
+.crumb-item { color: var(--ticket-ink-2); }
+.crumb-item.crumb-stage { color: var(--ticket-mustard); }
+.crumb-sep { color: var(--ticket-rule-text); }
 .crumb-spacer { flex: 1; }
 .crumb-live {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     letter-spacing: 0.16em;
-    color: #1c8b4a;
+    color: var(--ticket-green);
 }
 .crumb-live .status-dot { width: 6px; height: 6px; }
 
@@ -6390,7 +6335,7 @@ a.demo-role-chip {
     font-size: clamp(15px, 1.65vw, 17px);
     line-height: 1.45;
     font-weight: 400;
-    color: #3a3631;
+    color: var(--ticket-ink-2);
     margin: 4px 0 6px;
     max-width: 58ch;
 }
@@ -6402,11 +6347,11 @@ a.demo-role-chip {
     gap: 8px;
     font-family: var(--font-body);
     font-size: 13px;
-    color: #4a4742;
+    color: var(--ticket-ink-2);
 }
 
-.meta-sep { color: #b8b3aa; }
-.meta-faint { color: #8a857d; font-size: 12px; }
+.meta-sep { color: var(--ticket-rule-text); }
+.meta-faint { color: var(--ticket-ink-2); font-size: 12px; }
 
 .badge {
     display: inline-flex;
@@ -6423,7 +6368,7 @@ a.demo-role-chip {
 
 .badge--active {
     background: rgba(28, 139, 74, 0.12);
-    color: #126a35;
+    color: var(--ticket-green);
     border-color: rgba(28, 139, 74, 0.35);
 }
 .badge--active::before {
@@ -6436,7 +6381,7 @@ a.demo-role-chip {
 
 .badge--info {
     background: rgba(42, 138, 161, 0.12);
-    color: #1f667a;
+    color: var(--ticket-cyan);
     border-color: rgba(42, 138, 161, 0.4);
 }
 .badge--info::before {
@@ -6512,7 +6457,7 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #B07F00;
+    color: var(--ticket-mustard);
 }
 .spec-divider::after {
     content: '';
@@ -6560,20 +6505,20 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #2A8AA1;
+    color: var(--ticket-cyan);
 }
 
 .foreman-action,
 .foreman-msg {
     font-size: 13px;
     line-height: 1.5;
-    color: #2a2823;
+    color: var(--ticket-ink-2);
     margin: 0;
 }
 .foreman-action strong,
 .foreman-msg strong { font-weight: 700; }
 .foreman-action em,
-.foreman-msg em { font-style: italic; color: #B07F00; font-weight: 600; }
+.foreman-msg em { font-style: italic; color: var(--ticket-mustard); font-weight: 600; }
 
 /* Foreman flagged-items: 3 chips, click to reveal message (CSS-only via radio + label) */
 .foreman-flagged {
@@ -6585,7 +6530,7 @@ a.demo-role-chip {
     margin: 0;
     font-size: 13px;
     line-height: 1.4;
-    color: #2a2823;
+    color: var(--ticket-ink-2);
 }
 
 .foreman-flagged .foreman-radio {
@@ -6613,7 +6558,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 11.5px;
     line-height: 1.3;
-    color: #4a4742;
+    color: var(--ticket-ink-2);
     cursor: pointer;
     user-select: none;
     transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
@@ -6622,15 +6567,15 @@ a.demo-role-chip {
 .foreman-chip:hover {
     background: rgba(255, 255, 255, 0.92);
     border-color: rgba(42, 40, 35, 0.45);
-    color: #2a2823;
+    color: var(--ticket-ink-2);
 }
 
 .foreman-radio[id$="-1"]:checked ~ .foreman-chips label[for$="-1"],
 .foreman-radio[id$="-2"]:checked ~ .foreman-chips label[for$="-2"],
 .foreman-radio[id$="-3"]:checked ~ .foreman-chips label[for$="-3"] {
-    background: #2a2823;
+    background: var(--ticket-ink-2);
     color: #fff8e7;
-    border-color: #2a2823;
+    border-color: var(--ticket-ink-2);
 }
 
 .foreman-radio:focus-visible ~ .foreman-chips label[for$="-1"]:nth-of-type(1),
@@ -6644,7 +6589,7 @@ a.demo-role-chip {
     display: none;
     font-size: 13px;
     line-height: 1.5;
-    color: #2a2823;
+    color: var(--ticket-ink-2);
     margin: 0;
     min-height: 2.4em;
 }
@@ -6672,7 +6617,7 @@ a.demo-role-chip {
 
 /* Inline hyperlink inside Foreman messages (demonstrative only) */
 .foreman-link {
-    color: #2A8AA1;
+    color: var(--ticket-cyan);
     text-decoration: underline;
     text-underline-offset: 2px;
     text-decoration-thickness: 1px;
@@ -6714,7 +6659,7 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     margin-bottom: 4px;
 }
 
@@ -6730,12 +6675,12 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 500;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
 }
 
 .stamp-foot {
     font-size: 11px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     margin-top: 6px;
     line-height: 1.35;
 }
@@ -6753,7 +6698,7 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     margin-bottom: 8px;
 }
 
@@ -6762,7 +6707,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.55;
-    color: #2a2823;
+    color: var(--ticket-ink-2);
 }
 
 .scope-chips {
@@ -6788,7 +6733,7 @@ a.demo-role-chip {
     color: var(--ticket-ink);
 }
 
-.chip i { font-size: 10px; color: #B07F00; }
+.chip i { font-size: 10px; color: var(--ticket-mustard); }
 
 /* Stage map */
 .track-head {
@@ -6803,7 +6748,7 @@ a.demo-role-chip {
 
 .track-tail {
     font-size: 11px;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
 }
 
 .stage-line {
@@ -6842,10 +6787,10 @@ a.demo-role-chip {
 .stage-line--flow::before      { top: 26px; left: 10%; right: 10%; }
 
 .stage-line--flow .stage[data-state="now"] .stage-num {
-    background: #2A8AA1;
-    border-color: #2A8AA1;
+    background: var(--ticket-cyan);
+    border-color: var(--ticket-cyan);
     color: var(--ticket-paper);
-    box-shadow: 0 0 0 4px rgba(42, 138, 161, 0.22);
+    box-shadow: 0 0 0 4px rgba(8, 48, 58, 0.22);
 }
 
 /* PIN tag pinned under the active lifecycle stage */
@@ -6867,7 +6812,7 @@ a.demo-role-chip {
 .stage-pin i { font-size: 9px; }
 
 .stage-pin--blue {
-    background: #18394a;
+    background: #0E2532;
     color: #9fe5f5;
 }
 
@@ -6892,7 +6837,7 @@ a.demo-role-chip {
     font-weight: 700;
     background: var(--ticket-paper);
     border: 1.5px solid var(--ticket-rule);
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     transition: transform var(--motion-fast);
 }
 
@@ -6904,7 +6849,7 @@ a.demo-role-chip {
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     text-align: center;
     line-height: 1.2;
     max-width: 64px;
@@ -6916,7 +6861,7 @@ a.demo-role-chip {
     color: var(--ticket-paper);
 }
 
-.stage[data-state="done"] .stage-name { color: #2a2823; }
+.stage[data-state="done"] .stage-name { color: var(--ticket-ink-2); }
 
 .stage[data-state="now"] .stage-num {
     background: var(--yellow);
@@ -7050,12 +6995,12 @@ a.demo-role-chip {
     border-top: 1px dashed rgba(26, 24, 20, 0.3);
     font-family: 'Space Mono', 'Courier New', monospace;
     font-size: 11px;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     letter-spacing: 0.06em;
 }
 
 .stub-dim   { color: var(--ticket-ink); font-weight: 700; }
-.stub-sep   { color: #b8b3aa; }
+.stub-sep   { color: var(--ticket-rule-text); }
 .stub-spacer{ flex: 1; }
 .stub-meta  { letter-spacing: 0.12em; text-transform: uppercase; font-size: 10px; }
 
@@ -7111,7 +7056,7 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #1f667a;
+    color: var(--ticket-cyan);
 }
 
 .rfq-board-pulse {
@@ -7128,7 +7073,7 @@ a.demo-role-chip {
     font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
 }
 
 .rfq-list {
@@ -7181,7 +7126,7 @@ a.demo-role-chip {
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.04em;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -7193,7 +7138,7 @@ a.demo-role-chip {
     font-size: 10.5px;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: #B07F00;
+    color: var(--ticket-mustard);
     line-height: 1.3;
     margin-top: 2px;
 }
@@ -7203,14 +7148,14 @@ a.demo-role-chip {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     text-transform: uppercase;
 }
 
 .rfq-age {
     font-family: 'Space Mono', 'Courier New', monospace;
     font-size: 11px;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     letter-spacing: 0.04em;
 }
 
@@ -7238,7 +7183,7 @@ a.demo-role-chip {
 }
 .rfq-row--new .rfq-id::before {
     content: 'NEW ';
-    color: #B07F00;
+    color: var(--ticket-mustard);
     font-size: 9px;
     letter-spacing: 0.18em;
     margin-right: 4px;
@@ -7248,7 +7193,7 @@ a.demo-role-chip {
     padding: 10px 14px;
     border-top: 1px solid var(--ticket-rule);
     font-size: 11px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     background: rgba(255, 255, 255, 0.4);
     font-style: italic;
 }
@@ -7288,7 +7233,7 @@ a.demo-role-chip {
         linear-gradient(90deg, rgba(42, 138, 161, 0.18), rgba(42, 138, 161, 0.06)),
         var(--ticket-paper);
     border-color: rgba(42, 138, 161, 0.4);
-    border-left-color: #2A8AA1;
+    border-left-color: var(--ticket-cyan);
 }
 
 .payout-mark--info {
@@ -7308,7 +7253,7 @@ a.demo-role-chip {
 /* Green badge — success / portfolio */
 .badge--success {
     background: rgba(31, 138, 86, 0.12);
-    color: #145E37;
+    color: var(--ticket-green-deep);
     border-color: rgba(31, 138, 86, 0.4);
 }
 .badge--success::before {
@@ -7325,7 +7270,7 @@ a.demo-role-chip {
 }
 
 /* Section divider — green eyebrow variant */
-.spec-divider--green { color: #145E37; }
+.spec-divider--green { color: var(--ticket-green-deep); }
 
 /* Workspace tab strip — green active variant */
 .ws-tabs--green .ws-tab.is-active {
@@ -7344,7 +7289,7 @@ a.demo-role-chip {
     background: var(--ticket-ink);
     color: #67E4AA;
 }
-.foreman-label--green { color: #145E37; }
+.foreman-label--green { color: var(--ticket-green-deep); }
 
 /* PORTFOLIO GRID — the manager's distinguishing visual */
 .portfolio-grid {
@@ -7382,7 +7327,7 @@ a.demo-role-chip {
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
 }
 
 .property-tiles {
@@ -7409,7 +7354,7 @@ a.demo-role-chip {
 }
 
 .property-tile[data-state="active"] {
-    border-left-color: #B07F00;
+    border-left-color: var(--ticket-mustard);
     background:
         linear-gradient(135deg, rgba(246, 181, 0, 0.10), transparent 60%),
         rgba(255, 255, 255, 0.65);
@@ -7435,7 +7380,7 @@ a.demo-role-chip {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.12em;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 .property-tile--more .prop-id {
@@ -7467,7 +7412,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 500;
-    color: #4a4640;
+    color: var(--ticket-ink-2);
     line-height: 1.2;
 }
 
@@ -7477,8 +7422,8 @@ a.demo-role-chip {
 }
 .prop-pulse--ok    { color: #1F8A56; }
 .prop-pulse--alert { color: #C2410C; animation: prop-pulse-blink 1.6s ease-in-out infinite; }
-.prop-pulse--quote { color: #B07F00; }
-.prop-pulse--job   { color: #2A8AA1; }
+.prop-pulse--quote { color: var(--ticket-mustard); }
+.prop-pulse--job   { color: var(--ticket-cyan); }
 
 @keyframes prop-pulse-blink {
     0%, 100% { opacity: 1; }
@@ -7489,7 +7434,7 @@ a.demo-role-chip {
     padding: 10px 14px;
     border-top: 1px solid var(--ticket-rule);
     font-size: 11px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     background: rgba(255, 255, 255, 0.4);
     font-style: italic;
 }
@@ -7544,10 +7489,10 @@ a.demo-role-chip {
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
-.schedule-week[data-state="now"] .week-label { color: #145E37; }
+.schedule-week[data-state="now"] .week-label { color: var(--ticket-green-deep); }
 
 .week-count {
     font-family: var(--font-display);
@@ -7558,14 +7503,14 @@ a.demo-role-chip {
     letter-spacing: -0.01em;
 }
 
-.schedule-week[data-state="now"] .week-count { color: #145E37; }
+.schedule-week[data-state="now"] .week-count { color: var(--ticket-green-deep); }
 
 .week-foot {
     margin-top: auto;
     font-family: var(--font-body);
     font-size: 10.5px;
     font-weight: 500;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     line-height: 1.3;
 }
 
@@ -7614,7 +7559,7 @@ a.demo-role-chip {
 /* Plum badge — strata */
 .badge--plum {
     background: rgba(110, 63, 181, 0.12);
-    color: #3A2270;
+    color: var(--ticket-plum);
     border-color: rgba(110, 63, 181, 0.4);
 }
 .badge--plum::before {
@@ -7634,7 +7579,7 @@ a.demo-role-chip {
     box-shadow: 0 0 0 4px rgba(110, 63, 181, 0.10);
 }
 
-.spec-divider--plum { color: #3A2270; }
+.spec-divider--plum { color: var(--ticket-plum); }
 
 .ws-tabs--plum .ws-tab.is-active {
     color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
@@ -7651,7 +7596,7 @@ a.demo-role-chip {
     background: var(--ticket-ink);
     color: #C9ABF2;
 }
-.foreman-label--plum { color: #3A2270; }
+.foreman-label--plum { color: var(--ticket-plum); }
 
 /* MOTION BOARD — the strata distinguishing visual */
 .motion-board {
@@ -7689,7 +7634,7 @@ a.demo-role-chip {
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 .motion-list {
@@ -7715,13 +7660,13 @@ a.demo-role-chip {
 }
 
 .motion-card[data-state="voting"] {
-    border-left-color: #B07F00;
+    border-left-color: var(--ticket-mustard);
     background:
         linear-gradient(135deg, rgba(246, 181, 0, 0.12), transparent 60%),
         rgba(255, 255, 255, 0.7);
 }
 
-.motion-card[data-state="passed"] { border-left-color: #1c8b4a; }
+.motion-card[data-state="passed"] { border-left-color: var(--ticket-green); }
 .motion-card[data-state="failed"] { border-left-color: #B65A2C; opacity: 0.85; }
 .motion-card[data-state="open"]   { border-left-color: rgba(26, 24, 20, 0.25); }
 
@@ -7753,16 +7698,16 @@ a.demo-role-chip {
     border: 1px solid;
     border-radius: 2px;
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 9.5px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
 }
 .motion-stage i { font-size: 8px; }
 
-.motion-stage--voting { color: #B07F00; border-color: rgba(246, 181, 0, 0.55); background: rgba(246, 181, 0, 0.10); }
-.motion-stage--open   { color: #6a6660; border-color: rgba(26, 24, 20, 0.25);  background: rgba(255, 255, 255, 0.5); }
-.motion-stage--passed { color: #14582F; border-color: rgba(28, 139, 74, 0.45); background: rgba(28, 139, 74, 0.08); }
-.motion-stage--failed { color: #803D1E; border-color: rgba(182, 90, 44, 0.45); background: rgba(182, 90, 44, 0.08); }
+.motion-stage--voting { color: var(--ticket-mustard); border-color: rgba(246, 181, 0, 0.55); background: rgba(246, 181, 0, 0.10); }
+.motion-stage--open   { color: var(--ticket-ink-2); border-color: rgba(26, 24, 20, 0.25);  background: rgba(255, 255, 255, 0.5); }
+.motion-stage--passed { color: var(--ticket-green-deep); border-color: rgba(28, 139, 74, 0.45); background: rgba(28, 139, 74, 0.08); }
+.motion-stage--failed { color: var(--ticket-amber); border-color: rgba(182, 90, 44, 0.45); background: rgba(182, 90, 44, 0.08); }
 
 .motion-title-line {
     margin: 0;
@@ -7792,7 +7737,7 @@ a.demo-role-chip {
 .tally-bar-yes {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, #B07F00, var(--yellow));
+    background: linear-gradient(90deg, var(--ticket-mustard), var(--yellow));
     border-radius: 999px;
     transition: width var(--motion-fast);
 }
@@ -7804,7 +7749,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 10.5px;
     font-weight: 500;
-    color: #4a4640;
+    color: var(--ticket-ink-2);
     letter-spacing: 0.02em;
 }
 .tally-meta strong {
@@ -7816,7 +7761,7 @@ a.demo-role-chip {
     padding: 10px 14px;
     border-top: 1px solid var(--ticket-rule);
     font-size: 11px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     background: rgba(255, 255, 255, 0.4);
     font-style: italic;
 }
@@ -7836,7 +7781,7 @@ a.demo-role-chip {
 }
 .schedule-strip--plum .schedule-week[data-state="now"] .week-label,
 .schedule-strip--plum .schedule-week[data-state="now"] .week-count {
-    color: #3A2270;
+    color: var(--ticket-plum);
 }
 
 /* Plum payout strip variant */
@@ -7874,7 +7819,7 @@ a.demo-role-chip {
 
 .badge--amber {
     background: rgba(201, 122, 48, 0.14);
-    color: #6E3D0D;
+    color: var(--ticket-amber);
     border-color: rgba(201, 122, 48, 0.4);
 }
 .badge--amber::before {
@@ -7890,7 +7835,7 @@ a.demo-role-chip {
     box-shadow: 0 0 0 4px rgba(201, 122, 48, 0.18);
 }
 
-.spec-divider--amber { color: #6E3D0D; }
+.spec-divider--amber { color: var(--ticket-amber); }
 
 .ws-tabs--amber .ws-tab.is-active {
     color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
@@ -7907,7 +7852,7 @@ a.demo-role-chip {
     background: var(--ticket-ink);
     color: #F0C99A;
 }
-.foreman-label--amber { color: #6E3D0D; }
+.foreman-label--amber { color: var(--ticket-amber); }
 
 /* OWNER'S STATEMENT — the owner's distinguishing visual */
 .owner-statement {
@@ -7941,11 +7886,11 @@ a.demo-role-chip {
 .statement-eyebrow {
     display: block;
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 9.5px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     margin-bottom: 2px;
 }
 
@@ -7962,7 +7907,7 @@ a.demo-role-chip {
     display: block;
     font-family: var(--font-body);
     font-size: 11.5px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 .statement-score {
@@ -7993,11 +7938,11 @@ a.demo-role-chip {
 .score-label {
     grid-area: label;
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(246, 181, 0, 0.7);
+    color: var(--yellow);
     line-height: 1.2;
 }
 
@@ -8028,11 +7973,11 @@ a.demo-role-chip {
 
 .stat-key {
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     margin: 0 0 4px;
 }
 
@@ -8050,7 +7995,7 @@ a.demo-role-chip {
     margin: 4px 0 0;
     font-family: var(--font-body);
     font-size: 10.5px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     line-height: 1.3;
 }
 
@@ -8075,7 +8020,7 @@ a.demo-role-chip {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.06em;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 .works-body {
@@ -8096,7 +8041,7 @@ a.demo-role-chip {
 .works-sub {
     font-family: var(--font-body);
     font-size: 10.5px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 .works-amt {
@@ -8111,7 +8056,7 @@ a.demo-role-chip {
     padding: 10px 16px;
     border-top: 1px solid var(--ticket-rule);
     font-size: 11px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     background: rgba(255, 255, 255, 0.4);
     font-style: italic;
 }
@@ -8131,7 +8076,7 @@ a.demo-role-chip {
 }
 .schedule-strip--amber .schedule-week[data-state="now"] .week-label,
 .schedule-strip--amber .schedule-week[data-state="now"] .week-count {
-    color: #6E3D0D;
+    color: var(--ticket-amber);
 }
 
 .ticket-payout--amber {
@@ -8170,7 +8115,7 @@ a.demo-role-chip {
 
 .badge--coral {
     background: rgba(209, 74, 107, 0.12);
-    color: #7C1F38;
+    color: var(--ticket-coral);
     border-color: rgba(209, 74, 107, 0.4);
 }
 .badge--coral::before {
@@ -8186,7 +8131,7 @@ a.demo-role-chip {
     box-shadow: 0 0 0 4px rgba(209, 74, 107, 0.18);
 }
 
-.spec-divider--coral { color: #7C1F38; }
+.spec-divider--coral { color: var(--ticket-coral); }
 
 .ws-tabs--coral .ws-tab.is-active {
     color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
@@ -8203,7 +8148,7 @@ a.demo-role-chip {
     background: var(--ticket-ink);
     color: #F2B3C2;
 }
-.foreman-label--coral { color: #7C1F38; }
+.foreman-label--coral { color: var(--ticket-coral); }
 
 /* TENANT CARD — the tenant's distinguishing visual */
 .tenant-card {
@@ -8238,7 +8183,7 @@ a.demo-role-chip {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: #B07F00;
+    color: var(--ticket-mustard);
 }
 
 .pulse-dot {
@@ -8275,11 +8220,11 @@ a.demo-role-chip {
 
 .panel-eyebrow {
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 9.5px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #B07F00;
+    color: var(--ticket-mustard);
     margin-bottom: 2px;
 }
 
@@ -8293,7 +8238,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 600;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     letter-spacing: 0.02em;
 }
 
@@ -8309,9 +8254,9 @@ a.demo-role-chip {
     line-height: 1.3;
 }
 
-.report-input--readonly { font-style: italic; color: #4a4640; }
-.report-input--photo { color: #6a6660; }
-.report-input--photo i { margin-right: 6px; color: #B07F00; }
+.report-input--readonly { font-style: italic; color: var(--ticket-ink-2); }
+.report-input--photo { color: var(--ticket-ink-2); }
+.report-input--photo i { margin-right: 6px; color: var(--ticket-mustard); }
 
 .report-chips {
     display: flex;
@@ -8328,7 +8273,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 10.5px;
     font-weight: 600;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
     letter-spacing: 0.02em;
 }
 
@@ -8362,7 +8307,7 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-size: 10.5px;
     font-style: italic;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 /* Tenant status timeline */
@@ -8415,7 +8360,7 @@ a.demo-role-chip {
     border-radius: 50%;
     background: var(--ticket-paper);
     border: 1.5px solid rgba(26, 24, 20, 0.3);
-    color: #8a857d;
+    color: var(--ticket-ink-2);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -8450,12 +8395,12 @@ a.demo-role-chip {
     color: var(--ticket-ink);
     line-height: 1.2;
 }
-.status-step[data-state="next"] .status-title { color: #8a857d; font-weight: 600; }
+.status-step[data-state="next"] .status-title { color: var(--ticket-ink-2); font-weight: 600; }
 
 .status-sub {
     font-family: var(--font-body);
     font-size: 10.5px;
-    color: #6a6660;
+    color: var(--ticket-ink-2);
 }
 
 /* Schedule strip — coral variant */
@@ -8473,7 +8418,7 @@ a.demo-role-chip {
 }
 .schedule-strip--coral .schedule-week[data-state="now"] .week-label,
 .schedule-strip--coral .schedule-week[data-state="now"] .week-count {
-    color: #7C1F38;
+    color: var(--ticket-coral);
 }
 
 .ticket-payout--coral {
@@ -8636,11 +8581,11 @@ a.demo-role-chip {
 .pb-label {
     display: block;
     font-family: var(--font-display);
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     margin-bottom: 14px;
 }
 
@@ -8922,8 +8867,9 @@ a.demo-role-chip {
 }
 
 .pb-tier-badge--enterprise {
-    background: var(--border-strong);
-    color: var(--text-secondary);
+    background: var(--bg-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
 }
 
 .pb-tier-head {
@@ -9003,7 +8949,7 @@ a.demo-role-chip {
     padding-top: 12px;
     border-top: 1px solid var(--border-default);
     font-size: 11.5px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
@@ -9064,11 +9010,11 @@ a.demo-role-chip {
 
 .pb-quote-billing-label {
     font-family: 'Space Mono', 'Courier New', monospace;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
 }
 
 .pb-quote-billing .pb-billing {
@@ -9140,12 +9086,12 @@ a.demo-role-chip {
 /* Add-ons section in quote */
 .pb-quote-addons-label {
     font-family: var(--font-display);
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     margin: 14px 0 8px;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
 }
 
 .pb-addon {
@@ -9173,14 +9119,14 @@ a.demo-role-chip {
 
 .pb-addon-qty {
     font-size: 11px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     margin-top: 2px;
 }
 
 .pb-addon-price {
     font-size: 13px;
     font-weight: 600;
-    color: var(--yellow);
+    color: var(--yellow-bright);
     font-variant-numeric: tabular-nums;
     text-align: right;
     min-width: 56px;
@@ -9266,8 +9212,8 @@ a.demo-role-chip {
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 12px;
-    color: var(--text-secondary);
-    background: rgba(246, 181, 0, 0.08);
+    color: var(--text-primary);
+    background: rgba(246, 181, 0, 0.04);
     border: 1px dashed var(--border-default);
     border-radius: 4px;
     font-variant-numeric: tabular-nums;
@@ -9302,7 +9248,7 @@ a.demo-role-chip {
 /* Optional setup-fee row — checkbox-style toggle for PM/Strata bulk-upload */
 .pb-addon--optional .pb-addon-qty {
     font-size: 11px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     font-style: italic;
 }
 .pb-setup-toggle {
@@ -9451,14 +9397,14 @@ a.demo-role-chip {
     text-align: center;
     font-size: 12.5px;
     font-weight: 700;
-    color: var(--orange);
+    color: #FFB890;
     letter-spacing: 0.01em;
 }
 
 .pb-quote-fine {
     margin-top: 12px;
     font-size: 11px;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     text-align: center;
     line-height: 1.5;
 }
@@ -9960,7 +9906,7 @@ a.demo-role-chip {
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     transition: color 220ms ease, transform 220ms ease;
 }
 
@@ -10088,7 +10034,7 @@ a.demo-role-chip {
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: #C8C5C0;
     pointer-events: none;
     transition: color 220ms ease, opacity 220ms ease;
 }

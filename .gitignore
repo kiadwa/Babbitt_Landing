@@ -36,6 +36,14 @@ scroll-shots/
 audit-*-full.png
 audit-*-hero.png
 
+# Screenshot output from audit-section-*.mjs runners (wiped on each run)
+audit-*-shots/
+audit-lib/fullsweep-shots/
+audit-lib/*.json
+
+# Reference media, not site assets
+Sample-idea-for-why-section.mp4
+
 # Playwright test artefacts
 test-results/
 playwright-report/
