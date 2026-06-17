@@ -808,6 +808,12 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     var waitlistForm = document.getElementById('waitlistForm');
     var waitlistMsg  = document.getElementById('formMessage');
     var waitlistBtn  = document.getElementById('submitBtn');
+    // When the EO bridge is configured, route the native form through it instead
+    // of FormSubmit. The worker mirrors to FormSubmit and 302s back to _next, so
+    // the success-banner flow below is unchanged.
+    if (window.EO_BRIDGE_ENDPOINT && waitlistForm) {
+        waitlistForm.setAttribute('action', window.EO_BRIDGE_ENDPOINT);
+    }
     if (waitlistForm) {
         waitlistForm.addEventListener('submit', function () {
             if (waitlistBtn) {
@@ -892,6 +898,9 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     var contactForm = document.getElementById('contactForm');
     var contactMsg  = document.getElementById('contactFormMessage');
     var contactBtn  = document.getElementById('contactSubmitBtn');
+    if (window.EO_BRIDGE_ENDPOINT && contactForm) {
+        contactForm.setAttribute('action', window.EO_BRIDGE_ENDPOINT);
+    }
     if (contactForm) {
         contactForm.addEventListener('submit', function () {
             if (contactBtn) {
@@ -2087,7 +2096,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             msgEl.className = 'pb-lock-form-message';
         }
 
-        fetch('https://formsubmit.co/ajax/db2386c230f1fd46e7c207920bbf4508', {
+        fetch(window.EO_BRIDGE_ENDPOINT || 'https://formsubmit.co/ajax/db2386c230f1fd46e7c207920bbf4508', {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
             body: new FormData(form)

@@ -72,6 +72,7 @@
                 <input type="hidden" name="_subject" value="New Waitlist Signup - Babbitt">
                 <input type="hidden" name="_autoresponse" value="Thank you for your interest in Babbitt! We'll be in touch soon.">
                 <input type="hidden" name="entry_point" id="waitlistEntryPoint" value="">
+                <input type="hidden" name="_source" value="website_waitlist">
                 <div class="form-row">
                     <input type="text" name="firstName" id="wl-firstName" autocomplete="given-name" aria-label="First name" placeholder="First Name" required>
                     <input type="text" name="lastName" id="wl-lastName" autocomplete="family-name" aria-label="Last name" placeholder="Last Name" required>
@@ -1177,6 +1178,7 @@
                 <input type="hidden" name="_subject" value="New Early Bird Lock Request - Babbitt">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_source" value="website_pricing">
                 <input type="hidden" name="plan_account"   id="pbLockPlanAccount">
                 <input type="hidden" name="plan_tier"      id="pbLockPlanTier">
                 <input type="hidden" name="plan_billing"   id="pbLockPlanBilling">
@@ -1273,6 +1275,7 @@
                     <input type="hidden" name="_url" value="https://babbitt.app">
                     <input type="hidden" name="_next" value="https://babbitt.app/#contact_submitted">
                     <input type="hidden" name="_subject" value="New General Enquiry - Babbitt">
+                    <input type="hidden" name="_source" value="website_contact">
                     <input type="hidden" name="_autoresponse" value="Thanks for reaching out to Babbitt. We've received your message and will reply soon.">
 
                     <div class="form-row">
@@ -2544,6 +2547,10 @@
         <span class="scroll-top-label" aria-hidden="true">Back to top</span>
     </button>
 
+    <!-- Email Octopus bridge endpoint (Cloudflare Worker). Empty = forms post to
+         FormSubmit as today. Set to the deployed worker URL to route signups into
+         Email Octopus (the worker also mirrors to FormSubmit). See eo-bridge/README.md. -->
+    <script>window.EO_BRIDGE_ENDPOINT = '';</script>
     <script src="pricing-copy.js"></script>
     <script src="script.js"></script>
     <script>

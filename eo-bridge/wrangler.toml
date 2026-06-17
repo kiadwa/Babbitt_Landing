@@ -1,0 +1,28 @@
+name = "babbitt-eo-bridge"
+main = "src/worker.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+# ─── Fill these in after logging into Email Octopus ───────────────────────
+# Lists → open each list → its UUID is in the URL / list settings.
+EO_LIST_TRADES    = ""
+EO_LIST_OWNERS    = ""
+EO_LIST_MANAGERS  = ""
+EO_LIST_STRATA    = ""
+EO_LIST_SUPPLIERS = ""
+# General / review list — contact form + tenant + other + unmatched lanes.
+EO_LIST_DEFAULT   = ""
+
+# Origin(s) allowed to call the worker via AJAX (the pricing-lock modal).
+# Comma-separated. Native form posts don't need this, but it's harmless.
+ALLOWED_ORIGIN = "https://babbitt.app"
+
+# Dual-send: mirror every submission to FormSubmit so Bruno's inbox still
+# gets a copy during rollout. Set to "" to turn the mirror off later.
+FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/db2386c230f1fd46e7c207920bbf4508"
+
+# Fallback redirect for native form posts that omit a _next field.
+DEFAULT_NEXT = "https://babbitt.app/#user_waitlist_submitted"
+
+# ─── SECRET — do NOT put the API key here ─────────────────────────────────
+# Set it once with:  npx wrangler secret put EO_API_KEY

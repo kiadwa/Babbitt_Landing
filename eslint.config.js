@@ -43,8 +43,8 @@ export default [
         },
     },
     {
-        // Cloudflare Worker — uses Web/ServiceWorker runtime globals.
-        files: ['worker/**/*.js'],
+        // Cloudflare Workers — use Web/ServiceWorker runtime globals.
+        files: ['worker/**/*.js', 'eo-bridge/**/*.js'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: 'module',
@@ -59,6 +59,6 @@ export default [
         },
     },
     {
-        ignores: ['node_modules/', 'scroll-shots/', 'test-results/', 'playwright-report/', '_about/', 'worker/node_modules/'],
+        ignores: ['node_modules/', 'scroll-shots/', 'test-results/', 'playwright-report/', '_about/', 'worker/node_modules/', 'eo-bridge/node_modules/'],
     },
 ];

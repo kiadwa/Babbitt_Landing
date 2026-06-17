@@ -1,0 +1,201 @@
+/* ════════════════════════════════════════════════════════════
+   Babbitt — Email Octopus form bridge (Cloudflare Worker)
+   ════════════════════════════════════════════════════════════
+   A drop-in replacement for FormSubmit.co that ALSO subscribes the
+   contact to the correct Email Octopus list.
+
+   - Native form POST (Content-Type: form-urlencoded/multipart, no JSON
+     Accept header)  → responds 302 to the form's `_next`, exactly like
+     FormSubmit, so the site's existing redirect+banner flow is unchanged.
+   - AJAX POST (Accept: application/json, e.g. the pricing-lock modal)
+     → responds JSON { success, message }.
+
+   Either way it: (1) subscribes the contact to the right EO list, and
+   (2) mirrors the submission to FormSubmit so Bruno's inbox still gets a
+   copy during rollout (dual-send). See ../README.md for deploy + config.
+
+   Secrets/config come from the environment (wrangler.toml [vars] +
+   `wrangler secret put EO_API_KEY`). No keys live in the static site.
+   ════════════════════════════════════════════════════════════ */
+
+/* Form select value → EO list bucket. Both waitlist (`userType`) and the
+   pricing-lock modal (`icp`) values are covered here. */
+const LANE_MAP = {
+    trades: 'TRADES',
+    trades_owner: 'TRADES',
+    trades_team: 'TRADES',
+    property_owner: 'OWNERS',
+    property_manager: 'MANAGERS',
+    strata: 'STRATA',
+    supplier: 'SUPPLIERS',
+    enterprise: 'SUPPLIERS',
+    tenant: 'DEFAULT',
+    other: 'DEFAULT',
+    '': 'DEFAULT'
+};
+
+export default {
+    async fetch(request, env) {
+        const origin = request.headers.get('Origin') || '';
+        const cors = corsHeaders(origin, env);
+
+        if (request.method === 'OPTIONS') {
+            return new Response(null, { status: 204, headers: cors });
+        }
+        if (request.method !== 'POST') {
+            return json({ success: false, message: 'Method not allowed' }, 405, cors);
+        }
+
+        const wantsJson = (request.headers.get('Accept') || '').includes('application/json');
+
+        let data;
+        try {
+            data = await parseBody(request);
+        } catch {
+            return finish(wantsJson, false, 'Could not read form data.', 400, cors, '');
+        }
+
+        const email = String(data.email || data.email_address || '').trim();
+        const next = String(data._next || env.DEFAULT_NEXT || '');
+        if (!email) {
+            return finish(wantsJson, false, 'Email is required.', 422, cors, '');
+        }
+
+        const laneValue = String(data.userType || data.icp || '').trim();
+        const laneKey = LANE_MAP[laneValue] || 'DEFAULT';
+        const listId = env['EO_LIST_' + laneKey] || env.EO_LIST_DEFAULT || '';
+        const source = String(data._source || 'website').trim();
+
+        // 1) Subscribe to Email Octopus.
+        let eoOk = false;
+        let eoMsg = '';
+        if (env.EO_API_KEY && listId) {
+            try {
+                eoOk = await subscribe(env, listId, email, data, source, laneValue);
+            } catch (e) {
+                eoMsg = (e && e.message) || 'Email Octopus error.';
+            }
+        } else {
+            eoMsg = 'Email Octopus not configured (missing API key or list id).';
+        }
+
+        // 2) Mirror to FormSubmit so Bruno's inbox still gets a copy.
+        let mirrorOk = false;
+        if (env.FORMSUBMIT_ENDPOINT) {
+            try {
+                const r = await fetch(env.FORMSUBMIT_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify(stripControlFields(data))
+                });
+                mirrorOk = r.ok;
+            } catch {
+                /* best-effort — never fail the submission on the mirror */
+            }
+        }
+
+        const ok = eoOk || mirrorOk;
+        const message = ok ? '' : (eoMsg || 'Submission failed. Please try again.');
+        return finish(wantsJson, ok, message, ok ? 200 : 502, cors, next);
+    }
+};
+
+/* ── Email Octopus 1.6: add the contact to a list ── */
+async function subscribe(env, listId, email, data, source, laneValue) {
+    const fields = {
+        FirstName: data.firstName || '',
+        LastName: data.lastName || '',
+        icp_lane: laneValue || '',
+        stage: 'cold',
+        source: source
+    };
+    const company = data.company || data.businessName || '';
+    if (company) fields.CompanyName = company;
+    // Carry the pricing snapshot through when present (pricing-lock form).
+    ['plan_account', 'plan_tier', 'plan_billing', 'plan_total'].forEach(function (k) {
+        if (data[k]) fields[k] = String(data[k]);
+    });
+
+    const tags = ['source:' + source, 'lane:' + (laneValue || 'unknown')];
+    const url = 'https://emailoctopus.com/api/1.6/lists/' + listId + '/contacts';
+
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            api_key: env.EO_API_KEY,
+            email_address: email,
+            fields: fields,
+            tags: tags,
+            status: 'SUBSCRIBED'
+        })
+    });
+
+    if (res.ok) return true;
+
+    const err = await res.json().catch(function () { return {}; });
+    const code = err && err.error && err.error.code;
+    // Already on the list — treat as success (we don't overwrite their fields).
+    if (code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') return true;
+    throw new Error((err && err.error && err.error.message) || ('Email Octopus HTTP ' + res.status));
+}
+
+/* ── Helpers ── */
+async function parseBody(request) {
+    const ct = request.headers.get('Content-Type') || '';
+    if (ct.includes('application/json')) {
+        return await request.json();
+    }
+    // form-urlencoded (native POST) or multipart (fetch FormData)
+    const form = await request.formData();
+    const obj = {};
+    for (const [k, v] of form.entries()) {
+        obj[k] = typeof v === 'string' ? v : '';
+    }
+    return obj;
+}
+
+// FormSubmit control fields are fine to forward, but bridge-only markers aren't.
+function stripControlFields(data) {
+    const out = {};
+    for (const k in data) {
+        if (k === '_source') continue;
+        out[k] = data[k];
+    }
+    return out;
+}
+
+function corsHeaders(origin, env) {
+    const allowed = String(env.ALLOWED_ORIGIN || '')
+        .split(',')
+        .map(function (s) { return s.trim(); })
+        .filter(Boolean);
+    let allow = '*';
+    if (allowed.length) {
+        allow = allowed.indexOf(origin) !== -1 ? origin : allowed[0];
+    }
+    return {
+        'Access-Control-Allow-Origin': allow,
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Accept',
+        Vary: 'Origin'
+    };
+}
+
+function json(obj, status, cors) {
+    return new Response(JSON.stringify(obj), {
+        status: status,
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cors)
+    });
+}
+
+// JSON for AJAX callers; 302-to-_next for native form posts (FormSubmit parity).
+function finish(wantsJson, ok, message, status, cors, next) {
+    if (wantsJson) {
+        return json({ success: ok, message: message }, status, cors);
+    }
+    if (ok && next) {
+        return new Response(null, { status: 302, headers: Object.assign({ Location: next }, cors) });
+    }
+    return new Response(ok ? 'OK' : message, { status: status, headers: cors });
+}
