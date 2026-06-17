@@ -149,10 +149,7 @@
             <div class="mosaic-grid">
                 <div class="mosaic-card mosaic-peek peek--lanes peek--lanes-stacked anim-hero" tabindex="0">
                     <a class="peek-lanes-tap" href="#features" aria-label="See how Babbitt works for every role"></a>
-                    <span class="peek-eyebrow">01 &middot; What</span>
-                    <span class="peek-icon" aria-hidden="true">
-                        <i class="fas fa-people-group"></i>
-                    </span>
+                    <span class="peek-eyebrow">What</span>
                     <span class="peek-title">For every<br>role on it</span>
                     <span class="peek-arrow" aria-hidden="true">→</span>
 
@@ -208,13 +205,13 @@
                 </div>
 
                 <a class="mosaic-card mosaic-peek peek--why anim-hero delay-2" href="#why">
-                    <span class="peek-eyebrow">02 &middot; Why</span>
+                    <span class="peek-eyebrow">Why</span>
                     <span class="peek-title">Why<br>Babbitt</span>
                     <span class="peek-arrow" aria-hidden="true">→</span>
                 </a>
 
                 <div class="mosaic-card mosaic-peek peek--demo anim-hero delay-3" tabindex="0">
-                    <span class="peek-eyebrow">03 &middot; Product</span>
+                    <span class="peek-eyebrow">Product</span>
                     <span class="peek-title">Product<br>&amp; Demo</span>
                     <span class="peek-arrow" aria-hidden="true">→</span>
 
@@ -253,7 +250,7 @@
                 </div>
 
                 <a class="mosaic-card mosaic-peek peek--founders anim-hero delay-4" href="#founders">
-                    <span class="peek-eyebrow">04 &middot; Team</span>
+                    <span class="peek-eyebrow">Team</span>
                     <span class="peek-title">The<br>founders</span>
                     <span class="peek-arrow" aria-hidden="true">→</span>
                 </a>
@@ -271,29 +268,11 @@
         </div>
     </section>
 
-    <!-- ═══ Incentive Bridge — cycling words → product quote on hover ═══ -->
+    <!-- ═══ Incentive Bridge — static mission statement ═══ -->
     <section class="incentive-bridge" id="incentive" aria-label="Why Babbitt works for every party">
         <div class="container">
-            <div class="incentive-card"
-                 id="incentiveCard"
-                 tabindex="0"
-                 role="button"
-                 aria-expanded="false"
-                 aria-label="Hover or tap to read why Babbitt works for every party">
-
-                <div class="incentive-default" aria-hidden="false">
-                    <span class="incentive-eyebrow">A reason to stay</span>
-                    <p class="incentive-line">
-                        Every <span class="cycle" id="c-incentive-role">trade</span>
-                        gets <span class="cycle" id="c-incentive-value">paid faster</span>.
-                    </p>
-                    <span class="incentive-hint" aria-hidden="true">
-                        <span class="incentive-hint-label">Hover</span>
-                        <span class="incentive-hint-arrow">→</span>
-                    </span>
-                </div>
-
-                <div class="incentive-reveal" aria-hidden="true">
+            <div class="incentive-card incentive-card--static">
+                <div class="incentive-reveal" aria-hidden="false">
                     <blockquote class="incentive-quote">
                         We solve the industry&rsquo;s incentive problem by giving each party
                         standalone value and a reason to stay long after the job closes,
@@ -343,7 +322,7 @@
 
                     <span class="sheet-note" aria-hidden="true">
                         <span class="sheet-note-mark"><i class="fa-solid fa-pencil"></i></span>
-                        <span class="sheet-note-text">NOTE &middot; Click any lane to enter</span>
+                        <span class="sheet-note-text">NOTE &middot; Six lanes, one record</span>
                         <span class="sheet-note-arrow">&rarr;</span>
                     </span>
 
@@ -374,6 +353,7 @@
                                 <span class="room-num">01</span>
                                 <span class="room-name">Trades</span>
                             </span>
+                            <span class="room-cursor" aria-hidden="true"><i class="fas fa-arrow-pointer"></i><span class="room-cursor-label">click</span></span>
                         </button>
 
                         <button type="button" class="room room--supplier" data-tool="supplier" role="listitem" aria-label="Enter the Supplier lane">
@@ -384,6 +364,7 @@
                                 <span class="room-num">02</span>
                                 <span class="room-name">Supplier</span>
                             </span>
+                            <span class="room-cursor" aria-hidden="true"><i class="fas fa-arrow-pointer"></i><span class="room-cursor-label">click</span></span>
                         </button>
 
                         <button type="button" class="room room--manager" data-tool="manager" role="listitem" aria-label="Enter the Property Manager lane">
@@ -394,6 +375,7 @@
                                 <span class="room-num">03</span>
                                 <span class="room-name">Property Manager</span>
                             </span>
+                            <span class="room-cursor" aria-hidden="true"><i class="fas fa-arrow-pointer"></i><span class="room-cursor-label">click</span></span>
                         </button>
 
                         <button type="button" class="room room--strata" data-tool="strata" role="listitem" aria-label="Enter the Strata lane">
@@ -404,6 +386,7 @@
                                 <span class="room-num">04</span>
                                 <span class="room-name">Strata</span>
                             </span>
+                            <span class="room-cursor" aria-hidden="true"><i class="fas fa-arrow-pointer"></i><span class="room-cursor-label">click</span></span>
                         </button>
 
                         <button type="button" class="room room--owner" data-tool="owner" role="listitem" aria-label="Enter the Property Owner lane">
@@ -414,6 +397,7 @@
                                 <span class="room-num">05</span>
                                 <span class="room-name">Property Owner</span>
                             </span>
+                            <span class="room-cursor" aria-hidden="true"><i class="fas fa-arrow-pointer"></i><span class="room-cursor-label">click</span></span>
                         </button>
 
                         <button type="button" class="room room--tenant" data-tool="tenant" role="listitem" aria-label="Enter the Tenant lane">
@@ -424,6 +408,7 @@
                                 <span class="room-num">06</span>
                                 <span class="room-name">Tenant</span>
                             </span>
+                            <span class="room-cursor" aria-hidden="true"><i class="fas fa-arrow-pointer"></i><span class="room-cursor-label">click</span></span>
                         </button>
                     </div>
                 </div>
@@ -436,10 +421,7 @@
 
             <div class="why-header">
                 <span class="why-eyebrow">Why Babbitt</span>
-                <h2 class="why-title">
-                    <span class="why-index">01</span>
-                    <span class="why-title-text">One job. Every stakeholder.</span>
-                </h2>
+                <p class="why-description" id="whyDescription">Owners, managers, trades and suppliers all work from the same job record &mdash; not scattered across inboxes, calls and portals.</p>
             </div>
 
             <!-- Carousel navigation arrows — shown/hidden by IIFE 4d -->
@@ -803,12 +785,12 @@
                     Live walkthrough
                 </span>
                 <h2 class="section-title demo-board-title">Who are you? What demo would you like to play?</h2>
-                <p class="demo-board-fine">Pick your role, we open the matching walkthrough.</p>
+                <p class="demo-board-fine">Pick your role to open its walkthrough.</p>
                 <ul class="demo-board-facts" aria-label="What to expect">
                     <li><i class="fas fa-check" aria-hidden="true"></i>No login, opens in a new tab</li>
                     <li><i class="fas fa-check" aria-hidden="true"></i>About 90 seconds per flow</li>
                     <li><i class="fas fa-check" aria-hidden="true"></i>Skip ahead or jump between steps</li>
-                    <li><i class="fas fa-check" aria-hidden="true"></i>Real screens, just no save</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i>Real product screens</li>
                 </ul>
             </header>
 
@@ -904,14 +886,6 @@
                     </ul>
                     <span class="demo-role-go" aria-hidden="true">Open demo &rarr;</span>
                 </a>
-            </div>
-
-            <div class="demo-board-cta-row anim-up">
-                <a class="demo-board-master-cta" href="/demo">
-                    <span>Not sure? Open the canonical walkthrough</span>
-                    <i class="fas fa-arrow-right demo-board-master-cta-arrow" aria-hidden="true"></i>
-                </a>
-                <span class="demo-board-cta-note">All six flows on one screen. Pick from the role chips inside.</span>
             </div>
             </div><!-- /.demo-board-content -->
 
@@ -1245,19 +1219,39 @@
     <section class="founders" id="founders">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">The people behind Babbitt</h2>
+                <h2 class="section-title">The people behind <img class="babbitt-wordmark-inline babbitt-wordmark-inline--title" src="babbitt-wordmark.svg" alt="Babbitt" /></h2>
             </div>
             <div class="founders-grid">
-                <div class="founder-card tilt-card anim-up">
-                    <div class="founder-avatar">BP</div>
-                    <h3>Bruno Panucci</h3>
-                    <p class="founder-role">Founder</p>
-                </div>
-                <div class="founder-card tilt-card anim-up">
-                    <div class="founder-avatar">KA</div>
-                    <h3>Ky Anh Pham</h3>
-                    <p class="founder-role">Co-Founder</p>
-                </div>
+                <article class="founder-card tilt-card anim-up">
+                    <header class="founder-card-head">
+                        <div class="founder-avatar">BP</div>
+                        <div class="founder-card-id">
+                            <h3>Bruno Panucci</h3>
+                            <p class="founder-role">Founder</p>
+                        </div>
+                    </header>
+                    <div class="founder-quotes" data-founder-quotes>
+                        <blockquote class="founder-quote is-active">On every job site, three industries meet &mdash; trades, property, and suppliers. Yet for some reason, no one&rsquo;s thought to put them all onto the same platform and give them a reason to stay after the invoice is paid. That observation became the foundation behind every decision we&rsquo;ve made at Babbitt.</blockquote>
+                        <blockquote class="founder-quote">My brother&rsquo;s at a critical point in his career as a builder right now, where he will sink or swim by the processes and systems he&rsquo;s got in place to support him. What I built Babbitt to be is the system to support him through the rest of his career.</blockquote>
+                        <blockquote class="founder-quote">The property is the one thing that outlasts every job. Tradies finish the job. Property managers move on, owners sell. Suppliers deliver and leave. We turn your property into a logbook, and every job into a compounding asset for everyone.</blockquote>
+                    </div>
+                    <div class="founder-quote-dots" data-founder-dots aria-hidden="true"></div>
+                </article>
+                <article class="founder-card tilt-card anim-up">
+                    <header class="founder-card-head">
+                        <div class="founder-avatar">KA</div>
+                        <div class="founder-card-id">
+                            <h3>Ky Anh Pham</h3>
+                            <p class="founder-role">Co-Founder</p>
+                        </div>
+                    </header>
+                    <div class="founder-quotes" data-founder-quotes>
+                        <blockquote class="founder-quote is-active">I chose to start building Babbitt because of a problem in construction and real estate I&rsquo;d never worked in before: every party on a job needs each other and so much collaboration, but there was no place for them to work together and see each other&rsquo;s work without guessing.</blockquote>
+                        <blockquote class="founder-quote">Six different user types use Babbitt in six different ways. Tradies come to manage jobs. Owners come to find contractors. Suppliers come to move product. Strata and property managers need to find each other. They&rsquo;re miles apart &mdash; but we found the common anchors.</blockquote>
+                        <blockquote class="founder-quote">We&rsquo;ve tried our hardest to reduce every tradie workflow to button clicks and minimal typing. Pick a stage template. Purchase goods. A product code generates based on your specs &mdash; done. That kind of simplicity doesn&rsquo;t happen by accident.</blockquote>
+                    </div>
+                    <div class="founder-quote-dots" data-founder-dots aria-hidden="true"></div>
+                </article>
             </div>
         </div>
     </section>
@@ -1300,27 +1294,21 @@
                     <p class="contact-side-eyebrow">Or follow along</p>
                     <ul class="contact-socials" role="list">
                         <li>
-                            <a href="#" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on LinkedIn">
-                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                                <span>LinkedIn</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on Instagram">
+                            <a href="#" data-social-todo class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on Instagram">
                                 <i class="fab fa-instagram" aria-hidden="true"></i>
                                 <span>Instagram</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on X">
-                                <i class="fab fa-x-twitter" aria-hidden="true"></i>
-                                <span>X / Twitter</span>
+                            <a href="#" data-social-todo class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                <span>LinkedIn</span>
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:hello@babbitt.app" class="contact-social" aria-label="Email Babbitt">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
-                                <span>hello@babbitt.app</span>
+                            <a href="#" data-social-todo class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on YouTube">
+                                <i class="fab fa-youtube" aria-hidden="true"></i>
+                                <span>YouTube</span>
                             </a>
                         </li>
                     </ul>

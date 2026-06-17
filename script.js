@@ -55,67 +55,47 @@
     }, 3500);
 })();
 
-/* ── 1b. Incentive Bridge — role/value cycling + tap-to-toggle reveal ──
-   Paired with the in-between section (hero → who-is-babbitt-for). Default
-   surface shows a cycling "Every <role> gets <value>." line; hover or tap
-   opens the yellow surface with Bruno's product quote (see styles.css
-   "INCENTIVE BRIDGE" block for the clip-path open animation). */
+/* ── 1b. Incentive Bridge — now a static mission statement.
+   The cycling "Every <role> gets <value>." teaser and the hover/tap reveal
+   were removed per Build Review 17-06-26; the yellow surface is shown by
+   default (see styles.css ".incentive-card--static"). No JS needed. */
+
+/* ── 1c. Founder quote cycling ──
+   Each founder card rotates through its quotes with a fade + dot indicator.
+   Quotes live in the HTML (one .founder-quote per card) so content is present
+   without JS; this only toggles which one is active and builds the dots.
+   Respects prefers-reduced-motion: shows the first quote, no dots, no motion. */
 (function () {
-    var pairs = [
-        { role: 'trade',             value: 'paid faster'      },
-        { role: 'supplier',          value: 'loyal customers'  },
-        { role: 'property manager',  value: 'less admin'       },
-        { role: 'strata',            value: 'clean records'    },
-        { role: 'owner',             value: 'a full history'   },
-        { role: 'tenant',            value: 'clear repairs'    }
-    ];
-    var roleEl  = document.getElementById('c-incentive-role');
-    var valueEl = document.getElementById('c-incentive-value');
-    var card    = document.getElementById('incentiveCard');
-    if (!roleEl || !valueEl) return;
+    var wraps = document.querySelectorAll('[data-founder-quotes]');
+    if (!wraps.length) return;
 
-    var i = 0;
-    setInterval(function () {
-        [roleEl, valueEl].forEach(function (el) {
-            el.classList.remove('anim-in');
-            el.classList.add('anim-out');
-        });
-        setTimeout(function () {
-            i = (i + 1) % pairs.length;
-            roleEl.textContent  = pairs[i].role;
-            valueEl.textContent = pairs[i].value;
-            [roleEl, valueEl].forEach(function (el) {
-                el.classList.remove('anim-out');
-                el.classList.add('anim-in');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    Array.prototype.forEach.call(wraps, function (wrap, cardIdx) {
+        var quotes = Array.prototype.slice.call(wrap.querySelectorAll('.founder-quote'));
+        if (quotes.length < 2 || reduceMotion) return;
+
+        var dotsWrap = wrap.parentNode.querySelector('[data-founder-dots]');
+        var dots = [];
+        if (dotsWrap) {
+            quotes.forEach(function (_, i) {
+                var dot = document.createElement('span');
+                dot.className = 'founder-quote-dot' + (i === 0 ? ' is-active' : '');
+                dotsWrap.appendChild(dot);
+                dots.push(dot);
             });
-            setTimeout(function () {
-                [roleEl, valueEl].forEach(function (el) { el.classList.remove('anim-in'); });
-            }, 300);
-        }, 300);
-    }, 3500);
-
-    if (!card) return;
-
-    // Touch devices have no :hover — tap toggles the open state.
-    var isTouch = window.matchMedia('(hover: none)').matches;
-    function setOpen(open) {
-        card.classList.toggle('is-open', open);
-        card.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-    if (isTouch) {
-        card.addEventListener('click', function () {
-            setOpen(!card.classList.contains('is-open'));
-        });
-    }
-    // Keyboard: Enter/Space opens (and Escape closes) for non-touch too.
-    card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setOpen(!card.classList.contains('is-open'));
-        } else if (e.key === 'Escape') {
-            setOpen(false);
-            card.blur();
         }
+
+        var active = 0;
+        // Stagger the two cards so they don't flip in lockstep.
+        var interval = 5200 + cardIdx * 1300;
+        setInterval(function () {
+            quotes[active].classList.remove('is-active');
+            if (dots[active]) dots[active].classList.remove('is-active');
+            active = (active + 1) % quotes.length;
+            quotes[active].classList.add('is-active');
+            if (dots[active]) dots[active].classList.add('is-active');
+        }, interval);
     });
 })();
 
@@ -501,9 +481,20 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     var section = document.querySelector('.why');
     var wrap    = document.querySelector('.why-stage-wrap');
     var stage   = document.querySelector('.why-stage');
-    var titleEl = document.querySelector('.why-title-text');
-    var indexEl = document.querySelector('.why-index');
-    if (!section || !wrap || !stage || !titleEl || !indexEl) return;
+    var descEl  = document.querySelector('.why-description');
+    if (!section || !wrap || !stage || !descEl) return;
+
+    // Per-tile descriptions shown in the header, keyed by card index. Source:
+    // each card's (commented-out) body copy, condensed to one line.
+    var DESCRIPTIONS = [
+        'Owners, managers, trades and suppliers all work from the same job record — not scattered across inboxes, calls and portals.',
+        'Every completed job becomes a permanent record on the property, still useful long after the invoice is paid.',
+        'Reputation is tied to signed close-outs and verified work — trust built from proof, not paid visibility.',
+        'Affordable from day one: no pay-to-bid, no charge before there is real value, no heavy onboarding to begin.',
+        'Every repair, inspection, warranty and approval becomes part of the property’s service history.',
+        'Variations open inside the job with scope, price and approval attached, so the invoice follows the work, not the argument.',
+        'Foreman drafts SEO-ready articles from your closed jobs and catalogue updates. Add a photo, hit publish.'
+    ];
 
     var cards  = Array.prototype.slice.call(stage.querySelectorAll('.why-card'));
     var thumbs = Array.prototype.slice.call(wrap.querySelectorAll('.why-thumb'));
@@ -592,9 +583,7 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         if (idx < 0) idx = 0; else if (idx > LAST) idx = LAST;
         if (idx !== lastIndex) {
             lastIndex = idx;
-            var label = cards[idx].dataset.whyLabel || ('Subsection ' + (idx + 1));
-            titleEl.textContent = label;
-            indexEl.textContent = (idx + 1 < 10 ? '0' : '') + (idx + 1);
+            descEl.textContent = DESCRIPTIONS[idx] || '';
         }
 
         // Show/hide arrows at carousel edges
@@ -627,11 +616,9 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         if (arrowLeft)  arrowLeft.classList.add('is-hidden');
         if (arrowRight) arrowRight.classList.add('is-hidden');
         wrap.classList.remove('is-animating');
-        // In stacked (non-carousel) layout the cycling title has no meaning —
-        // each card carries its own headline. Anchor the section with a
-        // static thesis line and drop the per-card index.
-        titleEl.textContent = 'Built around the work.';
-        indexEl.textContent = '';
+        // In stacked (non-carousel) layout each card carries its own headline,
+        // so the header just leads with the first description.
+        descEl.textContent = DESCRIPTIONS[0];
         lastIndex = -1;
     }
 
@@ -1198,6 +1185,43 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
     });
+})();
+
+/* ── 13a. Floorplan lanes — one-time "click" cursor attract hint ──
+   When the plan scrolls into view, a small cursor pulses across each lane in
+   turn (trades → supplier → manager → strata → owner → tenant) then clears,
+   replacing the static "click any lane" note. Runs once; skipped under
+   prefers-reduced-motion (the .room-cursor is display:none there). */
+(function () {
+    var plan = document.getElementById('floorplan');
+    if (!plan) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var rooms = Array.prototype.slice.call(plan.querySelectorAll('.room'));
+    if (!rooms.length) return;
+
+    var played = false;
+    function play() {
+        if (played) return;
+        played = true;
+        rooms.forEach(function (room, i) {
+            var onAt  = 500 + i * 650;   // stagger each lane in DOM order
+            var offAt = onAt + 560;
+            setTimeout(function () { room.classList.add('is-hinting'); }, onAt);
+            setTimeout(function () { room.classList.remove('is-hinting'); }, offAt);
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) { play(); io.disconnect(); }
+            });
+        }, { threshold: 0.4 });
+        io.observe(plan);
+    } else {
+        play();
+    }
 })();
 
 /* ── 13b. User Waitlist Sweep — fired from "Who Babbitt is for" room-modal CTAs ── */

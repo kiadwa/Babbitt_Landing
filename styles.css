@@ -1558,6 +1558,8 @@ body.partner-hover .dim-overlay {
     width: 64px;
     height: 64px;
     object-fit: contain;
+    /* Rounded so it reads as an app icon, not a raw square (Build Review 17-06-26). */
+    border-radius: 16px;
     filter: drop-shadow(0 4px 16px rgba(246, 181, 0, 0.25));
 }
 
@@ -1866,6 +1868,83 @@ body.partner-hover .dim-overlay {
 .founder-role {
     font-size: 14px;
     color: var(--text-secondary);
+}
+
+/* Founder cards — avatar/name header + cycling quote (Build Review 17-06-26) */
+.founders-grid {
+    align-items: stretch;
+}
+
+.founder-card {
+    max-width: 520px;
+    flex: 1 1 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px;
+}
+
+.founder-card-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.founder-card .founder-avatar {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Cycling quotes — all stacked in one grid cell so the card height equals the
+   tallest quote and swaps never cause layout jump. */
+.founder-quotes {
+    display: grid;
+    flex: 1 1 auto;
+}
+
+.founder-quote {
+    grid-area: 1 / 1;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    padding-left: 18px;
+    border-left: 2px solid rgba(246, 181, 0, 0.35);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 500ms ease, transform 500ms ease;
+    pointer-events: none;
+}
+
+.founder-quote.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.founder-quote-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.founder-quote-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border-default);
+    transition: background 300ms ease, transform 300ms ease;
+}
+
+.founder-quote-dot.is-active {
+    background: var(--yellow);
+    transform: scale(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .founder-quote { transition: none; transform: none; }
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -3253,26 +3332,16 @@ body.partner-hover .dim-overlay {
     color: var(--yellow);
     text-transform: uppercase;
 }
-.why-title {
+/* Per-tile description — updated by IIFE 4d as each card scrolls in
+   (replaces the old "01 · label" side-title; Build Review 17-06-26). */
+.why-description {
     font-family: var(--font-display);
-    font-size: clamp(22px, 2.4vw, 32px);
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--text-primary);
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 32ch;
     margin: 0;
-}
-.why-index {
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-}
-.why-title-text {
     transition: opacity 200ms ease-out;
 }
 
@@ -4384,11 +4453,18 @@ body.partner-hover .dim-overlay {
 }
 
 .why-card-headline {
+    /* Title now sits ABOVE the image (Build Review 17-06-26). A fixed
+       min-height reserves the same space on every card so the artwork below
+       lands at a uniform size no matter how many lines the title runs. */
+    order: -1;
     font-family: var(--font-display);
-    font-size: clamp(22px, 2.6vw, 32px);
+    font-size: clamp(26px, 3vw, 40px);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
     color: var(--yellow);
+    min-height: 2.3em;
+    margin: 0;
 }
 .why-card-body {
     font-size: 16px;
@@ -4417,9 +4493,7 @@ body.partner-hover .dim-overlay {
         text-align: center;
         align-items: center;
     }
-    .why-title { font-size: clamp(20px, 5vw, 28px); justify-content: center; }
-    /* Static section thesis on mobile — the per-card "01" index is desktop-only */
-    .why-index { display: none; }
+    .why-description { max-width: 48ch; }
     .why-stage {
         position: static;
         transform: none;
@@ -5256,6 +5330,50 @@ body.partner-hover .dim-overlay {
 .room:focus-visible {
     outline: 2px solid var(--role-color);
     outline-offset: 4px;
+}
+
+/* One-time attract hint — a cursor + "click" pulses across each lane in turn
+   (Build Review 17-06-26), replacing the static "click any lane" note. */
+.room-cursor {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px 5px 9px;
+    border-radius: 999px;
+    background: var(--yellow);
+    color: var(--bg-base);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 6;
+    transform: translate(-50%, -50%) scale(0.85);
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.room-cursor i { font-size: 12px; }
+
+.room.is-hinting .room-cursor {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: roomCursorTap 600ms ease;
+}
+
+@keyframes roomCursorTap {
+    0%   { transform: translate(-50%, -50%) scale(0.8); }
+    45%  { transform: translate(-50%, -50%) scale(1.06); }
+    70%  { transform: translate(-50%, -50%) scale(0.92); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .room-cursor { display: none; }
 }
 
 /* Floor pattern — graph paper inside the room */
@@ -9736,7 +9854,9 @@ a.demo-role-chip {
 .scroll-top {
     position: fixed;
     left: 24px;
-    top: 24px;
+    /* Sits below the 64px sticky header so it never overlaps the brand mark
+       (Build Review 17-06-26). */
+    top: 84px;
     /* Auto width to accommodate icon + label */
     height: 44px;
     display: inline-flex;
@@ -9800,7 +9920,7 @@ a.demo-role-chip {
 @media (max-width: 720px) {
     .scroll-top {
         left: 16px;
-        top: 16px;
+        top: 76px;
         height: 40px;
         padding: 0 14px 0 10px;
         gap: 6px;
@@ -9979,6 +10099,23 @@ a.demo-role-chip {
     font-size: 14px;
     color: #1a1a1a;
     opacity: 0.55;
+}
+
+/* Static variant — cycling teaser + hover reveal removed (Build Review 17-06-26).
+   The yellow mission-statement face is shown by default; the card is no longer
+   interactive. Higher specificity (two classes) overrides the reduced-motion
+   opacity:0 rule below. */
+.incentive-card--static {
+    cursor: default;
+}
+.incentive-card--static:hover,
+.incentive-card--static:focus-visible {
+    transform: none;
+}
+.incentive-card--static .incentive-reveal {
+    clip-path: none;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 @media (max-width: 720px) {
