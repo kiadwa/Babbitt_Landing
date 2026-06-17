@@ -8,14 +8,13 @@
 # Email Octopus API key (Account Settings -> API).
 EO_API_KEY=eo_paste_your_key_here
 
-# Email Octopus list. One list is recommended (segment by fields + tags), so
-# normally you only fill EO_LIST_DEFAULT. Empty lane vars fall back to it.
-EO_LIST_DEFAULT=
+# List UUIDs (Email Octopus -> Lists). Fill the lanes you want to exercise.
 EO_LIST_TRADES=
 EO_LIST_OWNERS=
 EO_LIST_MANAGERS=
 EO_LIST_STRATA=
 EO_LIST_SUPPLIERS=
+EO_LIST_DEFAULT=
 
 # Allow your local static server's origin so the AJAX pricing-lock form passes
 # CORS. Match the port you serve index.html on (python http.server = 8000,
