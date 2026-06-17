@@ -120,24 +120,24 @@ export default {
 
 /* ── Email Octopus 1.6: add the contact to a list ── */
 async function subscribe(env, listId, email, data, source, laneValue) {
-    // EO custom-field tags must be alphanumeric (no underscores), so use
-    // camelCase tags matching EO's built-in FirstName/LastName convention.
+    // Keys MUST match the list's EmailOctopus merge tags EXACTLY. EO generates
+    // these from the field label (strips underscores, capitalises first letter
+    // only) and they are case-sensitive — see the list's Settings -> Fields.
     const fields = {
         FirstName: data.firstName || '',
         LastName: data.lastName || '',
-        icpLane: laneValue || '',
-        stage: 'cold',
-        source: source
+        Icplane: laneValue || '',
+        Stage: 'cold',
+        Source: source
     };
     const company = data.company || data.businessName || '';
     if (company) fields.CompanyName = company;
-    // Carry the pricing snapshot through when present (pricing-lock form).
-    // Map the form's snake_case field names to camelCase EO tags.
+    // Pricing snapshot (early-bird form) -> EO merge tags.
     const PLAN_FIELDS = {
-        plan_account: 'planAccount',
-        plan_tier: 'planTier',
-        plan_billing: 'planBilling',
-        plan_total: 'planTotal'
+        plan_account: 'Planaccount',
+        plan_tier: 'Plantier',
+        plan_billing: 'Planbilling',
+        plan_total: 'Plantotal'
     };
     Object.keys(PLAN_FIELDS).forEach(function (k) {
         if (data[k]) fields[PLAN_FIELDS[k]] = String(data[k]);
