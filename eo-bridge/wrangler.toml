@@ -7,7 +7,7 @@ compatibility_date = "2024-09-01"
 # EmailOctopus recommends ONE list, segmented by fields + tags — so normally
 # you only fill EO_LIST_DEFAULT. Every form lands there; the icp_lane field and
 # the lane:* / source:* tags let you segment inside it.
-EO_LIST_DEFAULT   = ""   # REQUIRED — your single list's UUID.
+EO_LIST_DEFAULT   = "665970a6-6a21-11f1-94b7-4113fc49f2d9"   # REQUIRED — your single list's UUID.
 
 # Optional: only set a lane below if you ever want it on its OWN separate list.
 # Any left empty automatically falls back to EO_LIST_DEFAULT.
@@ -19,7 +19,7 @@ EO_LIST_SUPPLIERS = ""
 
 # Origin(s) allowed to call the worker via AJAX (the pricing-lock modal).
 # Comma-separated. Native form posts don't need this, but it's harmless.
-ALLOWED_ORIGIN = "https://babbitt.app"
+ALLOWED_ORIGIN = "https://babbitt.app,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8080,http://localhost:8000"
 
 # Dual-send: mirror every submission to FormSubmit so Bruno's inbox still
 # gets a copy during rollout. Set to "" to turn the mirror off later.

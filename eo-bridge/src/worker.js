@@ -47,6 +47,7 @@ export default {
         }
 
         const wantsJson = (request.headers.get('Accept') || '').includes('application/json');
+        const debug = request.headers.get('X-Debug') === '1';
 
         let data;
         try {
@@ -79,24 +80,41 @@ export default {
             eoMsg = 'Email Octopus not configured (missing API key or list id).';
         }
 
-        // 2) Mirror to FormSubmit so Bruno's inbox still gets a copy.
+        // 2) Mirror to FormSubmit so Bruno's inbox still gets a copy. FormSubmit's
+        //    /ajax endpoint rejects requests without a Referer (its "open through a
+        //    web server" guard) and returns HTTP 200 with success:"false", so we
+        //    send the site origin as Referer/Origin and check the body, not r.ok.
         let mirrorOk = false;
+        let mirrorMsg = '';
         if (env.FORMSUBMIT_ENDPOINT) {
+            const siteOrigin = (String(env.ALLOWED_ORIGIN || '').split(',')[0] || 'https://babbitt.app').trim();
             try {
                 const r = await fetch(env.FORMSUBMIT_ENDPOINT, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                        Referer: siteOrigin,
+                        Origin: siteOrigin
+                    },
                     body: JSON.stringify(stripControlFields(data))
                 });
-                mirrorOk = r.ok;
-            } catch {
-                /* best-effort — never fail the submission on the mirror */
+                const j = await r.json().catch(function () { return {}; });
+                mirrorOk = r.ok && String(j.success) !== 'false';
+                mirrorMsg = String((j && j.message) || ('HTTP ' + r.status));
+            } catch (e) {
+                mirrorMsg = 'fetch error: ' + ((e && e.message) || 'unknown');
             }
         }
 
         const ok = eoOk || mirrorOk;
         const message = ok ? '' : (eoMsg || 'Submission failed. Please try again.');
-        return finish(wantsJson, ok, message, ok ? 200 : 502, cors, next);
+        if (wantsJson) {
+            const payload = { success: ok, message: message };
+            if (debug) { payload.eo = eoOk; payload.eoMessage = eoMsg; payload.mirror = mirrorOk; payload.mirrorMessage = mirrorMsg; }
+            return json(payload, ok ? 200 : 502, cors);
+        }
+        return finish(false, ok, message, ok ? 200 : 502, cors, next);
     }
 };
 
