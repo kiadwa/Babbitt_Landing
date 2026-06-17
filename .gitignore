@@ -24,7 +24,10 @@ npm-debug.log*
 # Note: reCAPTCHA Site Keys are public and safe to commit for static sites
 .env
 .env.local
-.env.production 
+.env.production
+
+# Cloudflare Worker local secrets (wrangler dev). The .example template is committed.
+.dev.vars
 
 _about*
 .claude

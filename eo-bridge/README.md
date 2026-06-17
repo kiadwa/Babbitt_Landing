@@ -69,6 +69,44 @@ In `../index.html`, set the endpoint (one line, near the bottom):
 
 ---
 
+## Local testing (`wrangler dev`)
+
+Exercise the Email Octopus half on your machine before deploying:
+
+```bash
+cd eo-bridge
+npm install
+cp .dev.vars.example .dev.vars      # then fill EO_API_KEY + the list UUIDs
+npx wrangler dev                     # worker runs at http://localhost:8787
+```
+
+Serve the site from the repo root in another terminal:
+
+```bash
+python -m http.server 8080           # or: npx http-server -p 8080 -c-1
+```
+
+Point the site at the local worker — in `index.html`:
+
+```html
+<script>window.EO_BRIDGE_ENDPOINT = 'http://localhost:8787';</script>
+```
+
+Now submit a form at `http://localhost:8080` — it routes into Email Octopus and
+mirrors to FormSubmit.
+
+- Set `ALLOWED_ORIGIN` in `.dev.vars` to your static server's origin (e.g.
+  `http://localhost:8080`) or the AJAX pricing-lock form is blocked by CORS. The
+  native waitlist/contact forms don't need it.
+- Use a **test list / test key** so you don't pollute real lanes.
+- Revert `window.EO_BRIDGE_ENDPOINT` to `''` before committing — don't ship a
+  localhost URL.
+
+> Without the API key + list IDs you can still run the site locally; forms just
+> use the FormSubmit fallback (no EO, no key needed).
+
+---
+
 ## Lane → list mapping (form value → EO list)
 
 The select value from each form (`userType` on waitlist, `icp` on pricing-lock)
