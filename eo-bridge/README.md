@@ -27,11 +27,15 @@ website form ──POST──▶ babbitt-eo-bridge (Cloudflare Worker)
 
 1. Log in (Bruno provides the credentials).
 2. **Account Settings → API** → copy the API key.
-3. **Lists** → note each list's **UUID**:
-   - Trades, Owners, Managers, Strata, Suppliers, and a general/Default list.
-4. In each list, **Settings → Fields**, confirm these custom fields exist
-   (EO silently drops fields that aren't pre-created):
-   - `FirstName`, `LastName` (usually default), `CompanyName`
+3. Create **one list** — EmailOctopus recommends a single list, segmented by
+   fields + tags (cheaper, simpler, easier to stay compliant). Get its **UUID**
+   via **Account settings → Manage lists → dropdown next to the list → copy ID**.
+   Put it in `EO_LIST_DEFAULT`; leave the per-lane `EO_LIST_*` blank (they fall
+   back to it). The lane is still captured per contact via the `icp_lane` field
+   and `lane:*` tags, so you can segment inside the one list.
+4. In that list, **Settings → Fields**, create these custom fields
+   (EO silently drops fields that aren't pre-created; tags must match exactly):
+   - `FirstName`, `LastName` (default), `CompanyName`
    - `icp_lane` (TEXT), `stage` (TEXT), `source` (TEXT)
    - optional pricing snapshot: `plan_account`, `plan_tier`, `plan_billing`, `plan_total` (all TEXT)
 
@@ -108,6 +112,11 @@ mirrors to FormSubmit.
 ---
 
 ## Lane → list mapping (form value → EO list)
+
+> **One-list setup (recommended):** every lane falls back to `EO_LIST_DEFAULT`,
+> so all contacts land in your single list — the table below only matters if you
+> later split a lane onto its own list. Either way the lane is always recorded in
+> the `icp_lane` field and the `lane:*` tag, which is what you segment on.
 
 The select value from each form (`userType` on waitlist, `icp` on pricing-lock)
 maps to a list bucket. Edit `LANE_MAP` in `src/worker.js` if these change.
