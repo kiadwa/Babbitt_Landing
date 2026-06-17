@@ -31,13 +31,14 @@ website form ──POST──▶ babbitt-eo-bridge (Cloudflare Worker)
    fields + tags (cheaper, simpler, easier to stay compliant). Get its **UUID**
    via **Account settings → Manage lists → dropdown next to the list → copy ID**.
    Put it in `EO_LIST_DEFAULT`; leave the per-lane `EO_LIST_*` blank (they fall
-   back to it). The lane is still captured per contact via the `icp_lane` field
+   back to it). The lane is still captured per contact via the `icpLane` field
    and `lane:*` tags, so you can segment inside the one list.
-4. In that list, **Settings → Fields**, create these custom fields
-   (EO silently drops fields that aren't pre-created; tags must match exactly):
-   - `FirstName`, `LastName` (default), `CompanyName`
-   - `icp_lane` (TEXT), `stage` (TEXT), `source` (TEXT)
-   - optional pricing snapshot: `plan_account`, `plan_tier`, `plan_billing`, `plan_total` (all TEXT)
+4. In that list, **Settings → Fields**, create these custom fields as **TEXT**.
+   EO drops any field whose tag it doesn't recognise, and tags must be
+   **alphanumeric (no underscores) and match exactly (case-sensitive)**:
+   - `CompanyName`, `icpLane`, `stage`, `source`
+   - pricing snapshot (early-bird form): `planAccount`, `planTier`, `planBilling`, `planTotal`
+   - (`FirstName`, `LastName` already exist as EO defaults)
 
 ---
 
@@ -116,7 +117,7 @@ mirrors to FormSubmit.
 > **One-list setup (recommended):** every lane falls back to `EO_LIST_DEFAULT`,
 > so all contacts land in your single list — the table below only matters if you
 > later split a lane onto its own list. Either way the lane is always recorded in
-> the `icp_lane` field and the `lane:*` tag, which is what you segment on.
+> the `icpLane` field and the `lane:*` tag, which is what you segment on.
 
 The select value from each form (`userType` on waitlist, `icp` on pricing-lock)
 maps to a list bucket. Edit `LANE_MAP` in `src/worker.js` if these change.
@@ -138,7 +139,7 @@ maps to a list bucket. Edit `LANE_MAP` in `src/worker.js` if these change.
 | Pricing lock ("Lock my early bird offer") | `website_pricing` |
 | Contact ("Get in touch") | `website_contact` |
 
-Each contact also gets a `lane:<value>` tag and the `icp_lane`/`stage`/`source`
+Each contact also gets a `lane:<value>` tag and the `icpLane`/`stage`/`source`
 fields. `stage` is always `cold` on signup.
 
 ---
@@ -146,9 +147,9 @@ fields. `stage` is always `cold` on signup.
 ## Test end-to-end (after deploy)
 
 - [ ] Waitlist for each lane (trades, property_owner, property_manager, strata, supplier) → contact lands in the right list within ~30s
-- [ ] Custom fields populated (FirstName, LastName, icp_lane, stage, source, CompanyName)
+- [ ] Custom fields populated (FirstName, LastName, icpLane, stage, source, CompanyName)
 - [ ] Tags applied (`source:website_waitlist`, `lane:trades`, …)
-- [ ] Pricing-lock submit → JSON success, contact tagged `source:website_pricing`, plan_* fields set
+- [ ] Pricing-lock submit → JSON success, contact tagged `source:website_pricing`, planTier/planBilling/planTotal fields set
 - [ ] Contact form → lands in DEFAULT list, tagged `source:website_contact`
 - [ ] Bruno still receives the FormSubmit copy (dual-send)
 - [ ] Re-submitting the same email doesn't error (treated as already-subscribed)

@@ -120,18 +120,27 @@ export default {
 
 /* ── Email Octopus 1.6: add the contact to a list ── */
 async function subscribe(env, listId, email, data, source, laneValue) {
+    // EO custom-field tags must be alphanumeric (no underscores), so use
+    // camelCase tags matching EO's built-in FirstName/LastName convention.
     const fields = {
         FirstName: data.firstName || '',
         LastName: data.lastName || '',
-        icp_lane: laneValue || '',
+        icpLane: laneValue || '',
         stage: 'cold',
         source: source
     };
     const company = data.company || data.businessName || '';
     if (company) fields.CompanyName = company;
     // Carry the pricing snapshot through when present (pricing-lock form).
-    ['plan_account', 'plan_tier', 'plan_billing', 'plan_total'].forEach(function (k) {
-        if (data[k]) fields[k] = String(data[k]);
+    // Map the form's snake_case field names to camelCase EO tags.
+    const PLAN_FIELDS = {
+        plan_account: 'planAccount',
+        plan_tier: 'planTier',
+        plan_billing: 'planBilling',
+        plan_total: 'planTotal'
+    };
+    Object.keys(PLAN_FIELDS).forEach(function (k) {
+        if (data[k]) fields[PLAN_FIELDS[k]] = String(data[k]);
     });
 
     const tags = ['source:' + source, 'lane:' + (laneValue || 'unknown')];
