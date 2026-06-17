@@ -1317,7 +1317,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             },
             propertyManager: {
                 setupFees: [
-                    { id: 'portfolioUpload', name: 'Bulk upload lots under management', amount: 200, explainLink: true, optional: true }
+                    { id: 'portfolioUpload', name: 'Bulk upload properties under management', amount: 200, explainLink: true, optional: true }
                 ]
             },
             strata: {

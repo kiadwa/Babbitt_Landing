@@ -1684,6 +1684,19 @@ body.partner-hover .dim-overlay {
     z-index: 10;
 }
 
+/* Pricing — desktop compaction toward a single viewport (Build Review 17-06-26).
+   Scoped to >=1025px; the stacked mobile layout keeps its roomier spacing. */
+@media (min-width: 1025px) {
+    .waitlist { padding: 48px 0; }
+    .waitlist .section-header { margin-bottom: 20px; }
+    .waitlist .section-title { font-size: 30px; margin-bottom: 6px; }
+    .waitlist .section-lead { font-size: 15px; }
+    .pb-main { gap: 16px; }
+    .pb-tier { padding: 16px 18px 14px; }
+    .pb-tier-list { font-size: 12.5px; gap: 2px; line-height: 1.28; }
+    .pb-tier-list li { padding-left: 16px; }
+}
+
 
 .form-message {
     padding: 10px;
