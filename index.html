@@ -58,48 +58,8 @@
         </div>
     </div> -->
 
-    <!-- Yellow sweep — user waitlist (wired to "Who Babbitt is for" room-modal CTAs) -->
-    <div class="yellow-sweep" id="userWaitlistSweep"></div>
-    <div class="sweep-message" id="userWaitlistMessage">
-        <div class="sweep-content">
-            <p class="sweep-title">Every job. Your name on it.</p>
-            <form class="sweep-form" id="waitlistForm" action="https://formsubmit.co/db2386c230f1fd46e7c207920bbf4508" method="POST">
-                <input type="hidden" name="_captcha" value="true">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_format" value="plain">
-                <input type="hidden" name="_url" value="https://babbitt.app">
-                <input type="hidden" name="_next" value="https://babbitt.app/#user_waitlist_submitted">
-                <input type="hidden" name="_subject" value="New Waitlist Signup - Babbitt">
-                <input type="hidden" name="_autoresponse" value="Thank you for your interest in Babbitt! We'll be in touch soon.">
-                <input type="hidden" name="entry_point" id="waitlistEntryPoint" value="">
-                <input type="hidden" name="_source" value="website_waitlist">
-                <div class="form-row">
-                    <input type="text" name="firstName" id="wl-firstName" autocomplete="given-name" aria-label="First name" placeholder="First Name" required>
-                    <input type="text" name="lastName" id="wl-lastName" autocomplete="family-name" aria-label="Last name" placeholder="Last Name" required>
-                </div>
-                <input type="email" name="email" id="wl-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
-                <input type="text" name="company" id="wl-company" autocomplete="organization" aria-label="Company name" placeholder="Your Company Name (if any)">
-                <select name="userType" id="waitlistUserType" aria-label="Your profession" required>
-                    <option value ="">Your Profession</option>
-                    <option value="trades">Trades & Specialists</option>
-                    <option value="property_manager">Property Manager</option>
-                    <option value="property_owner">Property Owner</option>
-                    <option value="strata">Strata</option>
-                    <option value="supplier">Suppliers & Enterprise Contractors</option>
-                    <option value="tenant">Tenant</option>
-                    <option value="other">Other</option>
-                </select>
-                <textarea name="Your thoughts" id="wl-thoughts" aria-label="Your thoughts about Babbitt" rows="3" maxlength="300" placeholder="Anything on your mind about Babbitt? Let us know"></textarea>
-                <label class="checkbox-label" for="wl-terms">
-                    <input type="checkbox" name="terms" id="wl-terms" required>
-                    <span>I agree to the <a href="terms.html" target="_blank" rel="noopener">terms and conditions</a></span>
-                </label>
-                <div id="formMessage" class="form-message"></div>
-                <button type="submit" class="btn btn-submit-sweep" id="submitBtn">Secure My Spot</button>
-            </form>
-            <p class="sweep-hint">Click outside to close</p>
-        </div>
-    </div>
+    <!-- (Retired) User-waitlist yellow sweep removed — the floor-plan room-modal CTAs
+         now link to the #waitlist early-bird pricing section and pre-select the plan. -->
 
     <!-- ═══ Nav ═══ -->
     <nav class="navbar nav--yellow">
@@ -150,8 +110,8 @@
             <div class="mosaic-grid">
                 <div class="mosaic-card mosaic-peek peek--lanes peek--lanes-stacked anim-hero" tabindex="0">
                     <a class="peek-lanes-tap" href="#features" aria-label="See how Babbitt works for every role"></a>
-                    <span class="peek-eyebrow">Made for the Trades</span>
-                    <!-- <span class="peek-title">For every<br>role on it</span> -->
+                    <span class="peek-eyebrow">What</span>
+                    <span class="peek-title">One platform.<br>Every workflow.</span>
                     <span class="peek-arrow" aria-hidden="true">→</span>
 
                     <div class="peek-roles" aria-label="Choose your role">
@@ -199,7 +159,7 @@
 
                     <div class="mosaic-center-reveal" aria-hidden="true">
                         <blockquote class="mosaic-center-quote">
-                            Babbitt is the first record of construction built around the property itself, bringing trades, owners, property management, and suppliers onto a single accountable history rather than fragmenting them across individual tools.
+                            Babbitt is the first record of construction built around the property itself. Tradies, suppliers, property owners and managers operate from a single digital jobsite on every project.
                         </blockquote>
                         <span class="mosaic-center-reveal-mark" aria-hidden="true">&#9733;</span>
                     </div>
@@ -473,10 +433,10 @@
                             <span class="strip-item strip-item--ok">close-out pending</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">All your stakeholders in one place.</h3>
-                    <!-- <p class="why-card-body">Owners, tenants, managers, trades, subbies and suppliers all work from the same job record. Scope, approvals, orders, variations, delivery and close-out stay connected instead of splitting across inboxes, calls and portals. Everyone sees the same work, at the same address, with the same history.</p> -->
+                    <h3 class="why-card-headline">One job. Every stakeholder.</h3>
+                    <p class="why-card-body">Everyone on the same job record. Scope, approvals, orders, variations, delivery and close-out stay connected &mdash; not scattered across inboxes, calls and portals.</p>
                 </article>
-                <article class="why-card" data-why-index="1" data-why-label="More than a job manager.">
+                <article class="why-card" data-why-index="1" data-why-label="Not another admin tool.">
                     <div class="why-card-visual evidence-panel evidence-panel--property" aria-hidden="true">
                         <div class="evidence-bar">
                             <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>properties<span class="evidence-sep">/</span><span class="evidence-crumb-id">hopetoun_st_paddington</span></span>
@@ -523,8 +483,8 @@
                             <span class="strip-item strip-item--ok">record permanent</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Every job stays on the property's record.</h3>
-                    <!-- <p class="why-card-body">Babbitt does not just help you run today's job. It turns every completed job into a permanent property record. What was scoped, approved, supplied, built and signed off stays useful after the invoice is paid.</p> -->
+                    <h3 class="why-card-headline">Not another admin tool.</h3>
+                    <p class="why-card-body">Babbitt doesn&rsquo;t just help you run today&rsquo;s work. Every job you close or property you manage becomes part of your permanent record. What was scoped, approved, built and signed off stays useful long after the invoice is paid.</p>
                 </article>
                 <article class="why-card" data-why-index="2" data-why-label="Ratings backed by real work.">
                     <div class="why-card-visual evidence-panel evidence-panel--rating" aria-hidden="true">
@@ -561,8 +521,8 @@
                             <span class="strip-item strip-item--ok">no pay-to-rank</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Your reputation, directly from the work you did.</h3>
-                    <!-- <p class="why-card-body">Reviews only mean something when they are tied to the job that earned them. Babbitt links reputation to signed close-outs, real properties and verified work, so trust is built from proof instead of paid visibility or empty profile claims.</p> -->
+                    <h3 class="why-card-headline">Ratings backed by real work.</h3>
+                    <p class="why-card-body">Reviews are tied to real, completed work with signed close-outs. No pay-to-rank, no fake reviews. Trust built from proof.</p>
                 </article>
                 <article class="why-card" data-why-index="3" data-why-label="Free to start. Scales when you do.">
                     <div class="why-card-visual evidence-panel evidence-panel--plan" aria-hidden="true">
@@ -610,10 +570,10 @@
                             <span class="strip-item strip-item--ok">$0 to start</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Easy to start, easy to thrive.</h3>
-                    <!-- <p class="why-card-body">Babbitt is built to be affordable from day one. No pay-to-bid, no charge before there is real business value, and no heavy onboarding just to begin. The platform grows with the operator, portfolio or supply team using it.</p> -->
+                    <h3 class="why-card-headline">Free to start. Scales when you do.</h3>
+                    <p class="why-card-body">No pay-to-bid. No charge before there&rsquo;s real business value. The platform grows with the user, portfolio or supply team using it. A tool for everyone at every stage.</p>
                 </article>
-                <article class="why-card" data-why-index="4" data-why-label="A permanent maintenance log.">
+                <article class="why-card" data-why-index="4" data-why-label="A permanent maintenance log for every building.">
                     <div class="why-card-visual evidence-panel evidence-panel--log" aria-hidden="true">
                         <div class="evidence-bar">
                             <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>properties<span class="evidence-sep">/</span>hopetoun_st_paddington<span class="evidence-sep">/</span><span class="evidence-crumb-id">history</span></span>
@@ -655,8 +615,8 @@
                             <span class="strip-item strip-item--ok">1 inspection due</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Property management made easy. It's all there.</h3>
-                    <!-- <p class="why-card-body">From con-note to close-out, every repair, inspection, product, warranty and approval can become part of the property's service history. The next person opening the property starts with context, not a blank page.</p> -->
+                    <h3 class="why-card-headline">A permanent maintenance log for every building.</h3>
+                    <p class="why-card-body">Every repair, inspection, product, warranty and approval becomes part of the property&rsquo;s service history. The next person opening the property starts with context, not a blank page.</p>
                 </article>
                 <article class="why-card" data-why-index="5" data-why-label="Get paid for scope creep.">
                     <div class="why-card-visual evidence-panel evidence-panel--variation" aria-hidden="true">
@@ -694,10 +654,10 @@
                             <span class="strip-item strip-item--ok">invoice ready</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Scope creep is less scary. You see it coming.</h3>
-                    <!-- <p class="why-card-body">When the client asks for more, a variation opens inside the job with scope, price and approval attached. Work moves forward once it is signed. Every change stays pinned to the job, so the invoice follows the work instead of the argument.</p> -->
+                    <h3 class="why-card-headline">Get paid for scope creep.</h3>
+                    <p class="why-card-body">When the client asks for more, a variation opens with scope, price and approval attached. Work moves once it&rsquo;s signed. The invoice that follows captures every change, protecting your margins.</p>
                 </article>
-                <article class="why-card" data-why-index="6" data-why-label="Your story is seen and heard.">
+                <article class="why-card" data-why-index="6" data-why-label="SEO that writes itself.">
                     <div class="why-card-visual evidence-panel evidence-panel--network" aria-hidden="true">
                         <div class="evidence-bar">
                             <span class="evidence-crumb">babbitt.app<span class="evidence-sep">/</span>network<span class="evidence-sep">/</span><span class="evidence-crumb-id">article_07</span></span>
@@ -736,8 +696,8 @@
                             <span class="strip-item strip-item--ok">indexed</span>
                         </div>
                     </div>
-                    <h3 class="why-card-headline">Your story, drafted from your data.</h3>
-                    <!-- <p class="why-card-body">Foreman drafts SEO-ready articles from your closed jobs, property records or catalogue updates. Add a photo, link to your profile, hit publish. Babbitt posts to the network and the open web. Built for people who build things, not the noise of social feeds.</p> -->
+                    <h3 class="why-card-headline">SEO that writes itself.</h3>
+                    <p class="why-card-body">Foreman AI drafts SEO (search engine optimised) ready articles from your closed jobs. All you need to do is edit, add a photo, hit publish. Babbitt posts to the industry network and the open web. No social-media noise, no ad payments.</p>
                 </article>
             </div>
 
@@ -1005,6 +965,7 @@
                             <div class="pb-tier-grid">
                                 <!-- FREE -->
                                 <article class="pb-tier" data-tier="free" data-monthly="0" data-yearly="0" tabindex="0" role="radio" aria-checked="false">
+                                    <span class="pb-tier-badge pb-tier-badge--popular">★ Most Popular</span>
                                     <header class="pb-tier-head">
                                         <h3 class="pb-tier-name">Free</h3>
                                     </header>
@@ -1022,7 +983,7 @@
 
                                 <!-- TIER 1 -->
                                 <article class="pb-tier is-selected is-popular" data-tier="tier1" data-monthly="60" data-yearly="30" tabindex="0" role="radio" aria-checked="true">
-                                    <span class="pb-tier-badge">★ Most Popular</span>
+                                    <span class="pb-tier-badge pb-tier-badge--popular">★ Most Popular</span>
                                     <header class="pb-tier-head">
                                         <h3 class="pb-tier-name">Tier 1</h3>
                                     </header>
@@ -1237,7 +1198,18 @@
                         <blockquote class="founder-quote">My brother&rsquo;s at a critical point in his career as a builder right now, where he will sink or swim by the processes and systems he&rsquo;s got in place to support him. What I built Babbitt to be is the system to support him through the rest of his career.</blockquote>
                         <blockquote class="founder-quote">The property is the one thing that outlasts every job. Tradies finish the job. Property managers move on, owners sell. Suppliers deliver and leave. We turn your property into a logbook, and every job into a compounding asset for everyone.</blockquote>
                     </div>
-                    <div class="founder-quote-dots" data-founder-dots aria-hidden="true"></div>
+                    <div class="founder-quote-nav">
+                        <button type="button" class="founder-quote-btn" data-founder-prev aria-label="Previous quote">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="founder-quote-btn founder-quote-btn--pause" data-founder-pause aria-label="Pause quotes" aria-pressed="false">
+                            <i class="fas fa-pause" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="founder-quote-btn" data-founder-next aria-label="Next quote">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <div class="founder-quote-dots" data-founder-dots aria-hidden="true"></div>
+                    </div>
                 </article>
                 <article class="founder-card tilt-card anim-up">
                     <header class="founder-card-head">
@@ -1252,7 +1224,18 @@
                         <blockquote class="founder-quote">Six different user types use Babbitt in six different ways. Tradies come to manage jobs. Owners come to find contractors. Suppliers come to move product. Strata and property managers need to find each other. They&rsquo;re miles apart &mdash; but we found the common anchors.</blockquote>
                         <blockquote class="founder-quote">We&rsquo;ve tried our hardest to reduce every tradie workflow to button clicks and minimal typing. Pick a stage template. Purchase goods. A product code generates based on your specs &mdash; done. That kind of simplicity doesn&rsquo;t happen by accident.</blockquote>
                     </div>
-                    <div class="founder-quote-dots" data-founder-dots aria-hidden="true"></div>
+                    <div class="founder-quote-nav">
+                        <button type="button" class="founder-quote-btn" data-founder-prev aria-label="Previous quote">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="founder-quote-btn founder-quote-btn--pause" data-founder-pause aria-label="Pause quotes" aria-pressed="false">
+                            <i class="fas fa-pause" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="founder-quote-btn" data-founder-next aria-label="Next quote">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <div class="founder-quote-dots" data-founder-dots aria-hidden="true"></div>
+                    </div>
                 </article>
             </div>
         </div>
@@ -1297,19 +1280,19 @@
                     <p class="contact-side-eyebrow">Or follow along</p>
                     <ul class="contact-socials" role="list">
                         <li>
-                            <a href="#" data-social-todo class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on Instagram">
+                            <a href="https://www.instagram.com/babbitt.app/" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on Instagram">
                                 <i class="fab fa-instagram" aria-hidden="true"></i>
                                 <span>Instagram</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" data-social-todo class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on LinkedIn">
+                            <a href="https://www.linkedin.com/company/babbitt" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on LinkedIn">
                                 <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                                 <span>LinkedIn</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" data-social-todo class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on YouTube">
+                            <a href="https://www.youtube.com/@Babbittapp" class="contact-social" target="_blank" rel="noopener noreferrer" aria-label="Babbitt on YouTube">
                                 <i class="fab fa-youtube" aria-hidden="true"></i>
                                 <span>YouTube</span>
                             </a>
@@ -1466,7 +1449,7 @@
 
                 <!-- CTAs -->
                 <footer class="ticket-cta">
-                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="trades">
+                    <a href="#waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="trades">
                         Start your next job <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo?flow=trade-respond-and-stage" class="btn btn-ghost ticket-cta-ghost">
@@ -1676,7 +1659,7 @@
 
                 <!-- CTAs -->
                 <footer class="ticket-cta">
-                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="supplier">
+                    <a href="#waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="supplier">
                         Start receiving orders <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
@@ -1879,7 +1862,7 @@
 
                 <!-- CTAs -->
                 <footer class="ticket-cta">
-                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="manager">
+                    <a href="#waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="manager">
                         Onboard your portfolio <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
@@ -2113,7 +2096,7 @@
 
                 <!-- CTAs -->
                 <footer class="ticket-cta">
-                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="strata">
+                    <a href="#waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="strata">
                         Onboard your scheme <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
@@ -2336,7 +2319,7 @@
 
                 <!-- CTAs -->
                 <footer class="ticket-cta">
-                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="owner">
+                    <a href="#waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="owner">
                         Connect your home <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo" class="btn btn-ghost ticket-cta-ghost">
@@ -2521,7 +2504,7 @@
 
                 <!-- CTAs -->
                 <footer class="ticket-cta">
-                    <a href="#user_waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="tenant">
+                    <a href="#waitlist" class="btn btn-primary ticket-cta-primary" data-room-cta="tenant">
                         Connect your home <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a href="/demo?flow=tradie-incident-chat" class="btn btn-ghost ticket-cta-ghost">

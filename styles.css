@@ -1956,6 +1956,40 @@ body.partner-hover .dim-overlay {
     transform: scale(1.15);
 }
 
+/* Quote navigation — prev / pause / next, sitting beside the dot indicators
+   so visitors can read each quote at their own pace (Review 3, 18-06-26). */
+.founder-quote-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+.founder-quote-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+    transition: border-color var(--motion-fast), color var(--motion-fast),
+                background var(--motion-fast);
+}
+.founder-quote-btn:hover,
+.founder-quote-btn:focus-visible {
+    border-color: var(--yellow);
+    color: var(--yellow);
+    outline: none;
+}
+.founder-quote-nav .founder-quote-dots {
+    margin-left: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .founder-quote { transition: none; transform: none; }
 }
@@ -2064,7 +2098,9 @@ body.partner-hover .dim-overlay {
 }
 
 .contact-social {
-    display: inline-flex;
+    /* Block-level flex so every pill fills its row to the same width
+       (Review 3, 18-06-26) instead of sizing to its label. */
+    display: flex;
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
@@ -2563,13 +2599,14 @@ body.partner-hover .dim-overlay {
    #features. Hidden on desktop where the role grid handles routing. */
 .peek-lanes-tap { display: none; }
 
-/* Stacked centered layout for the What block (icon → title) */
+/* Left-aligned layout for the What block — matches the other peek cards
+   (Why / Product / Team) which are all left-aligned; justify-content falls
+   back to the base .mosaic-card `space-between` so eyebrow/title/arrow sit
+   top / middle / bottom like the siblings. */
 .peek--lanes-stacked {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 28px 22px;
-    gap: 14px;
+    align-items: stretch;
+    text-align: left;
+    padding: 22px;
 }
 .peek--lanes-stacked .peek-eyebrow {
     color: var(--yellow-bright);
@@ -2589,17 +2626,12 @@ body.partner-hover .dim-overlay {
     transition: transform 0.3s ease, background-color 0.3s ease,
                 box-shadow 0.3s ease;
 }
+/* Match the standard .peek-title scale so this card's headline reads at the
+   same size as the Why / Product / Team cards (Review 3, 18-06-26). */
 .peek--lanes-stacked .peek-title {
-    font-size: clamp(26px, 3vw, 38px);
-    line-height: 1.05;
-    text-align: center;
-}
-.peek--lanes-stacked .peek-arrow {
-    position: absolute;
-    right: 14px;
-    bottom: 12px;
-    align-self: auto;
-    font-size: 22px;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.1;
+    text-align: left;
 }
 .peek--lanes-stacked:hover .peek-icon,
 .peek--lanes-stacked:focus-within .peek-icon {
@@ -3340,7 +3372,10 @@ body.partner-hover .dim-overlay {
    spills into the carousel area at narrower viewports. */
 .why-header {
     position: absolute;
-    top: clamp(72px, 9vh, 120px);
+    /* Starts below the back-to-top FAB (fixed at top:84px, ~44px tall) so the
+       two never overlap in this section — the FAB stays put (Review 3,
+       18-06-26). */
+    top: clamp(144px, 16vh, 184px);
     left: clamp(32px, 5vw, 72px);
     right: calc(50% + min(320px, 28vw) + 24px);
     display: flex;
@@ -4494,9 +4529,13 @@ body.partner-hover .dim-overlay {
     margin: 0;
 }
 .why-card-body {
+    /* Hidden in the desktop carousel — the body copy lives in the sticky
+       left-header description there, so showing it again would inflate the
+       card. Shown only in the ≤1024px stacked layout (Review 3 follow-up). */
+    display: none;
     font-size: 16px;
     line-height: 1.6;
-    color: var(--yellow);
+    color: var(--text-secondary);
 }
 
 .why-stage-wrap.is-animating .why-card { transition: none; }
@@ -4549,6 +4588,9 @@ body.partner-hover .dim-overlay {
     /* Let card artwork grow to fit on mobile — fixed height clipped key
        proof-points (e.g. the yellow "Tied to" anchor on the rating card). */
     .why-card-visual { height: auto; min-height: 240px; }
+    /* Stacked layout has no left-header description, so each card shows its
+       own body paragraph here. */
+    .why-card-body { display: block; }
     .why-thumb { display: none; }
     /* Hide carousel arrows in stacked layout */
     .why-arrow { display: none; }
@@ -9017,6 +9059,12 @@ a.demo-role-chip {
     color: var(--text-primary);
 }
 
+/* "Most Popular" badge shows only on the tier currently flagged popular.
+   Default is Tier 1; for the Owner ICP, JS moves `.is-popular` to the Free
+   tier (script.js → updatePopularBadge). */
+.pb-tier-badge--popular { display: none; }
+.pb-tier.is-popular .pb-tier-badge--popular { display: inline-block; }
+
 .pb-tier-head {
     margin-bottom: 8px;
 }
@@ -10214,6 +10262,42 @@ a.demo-role-chip {
 .mosaic-center:hover .mosaic-center-hint-arrow,
 .mosaic-center:focus-visible .mosaic-center-hint-arrow {
     transform: translate(4px, -4px) rotate(-12deg);
+}
+
+/* Light-beam sweep across "Click to read" on hover (Review 3, 18-06-26).
+   A bright band is clipped to the text and slid across; a subtle
+   letter-spacing pulse makes the letters expand as the beam passes. At rest
+   the band sits off to the right so the label reads as a solid colour. */
+.mosaic-center-hint-label {
+    background-image: linear-gradient(
+        100deg,
+        currentcolor 0%,
+        currentcolor 42%,
+        #fff 50%,
+        currentcolor 58%,
+        currentcolor 100%
+    );
+    background-size: 220% 100%;
+    background-position: 150% 0;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@keyframes hint-beam {
+    0%   { background-position: 150% 0; letter-spacing: 0.16em; }
+    18%  { letter-spacing: 0.26em; }
+    38%  { background-position: -50% 0; letter-spacing: 0.16em; }
+    100% { background-position: -50% 0; letter-spacing: 0.16em; }
+}
+.mosaic-center:hover .mosaic-center-hint-label,
+.mosaic-center:focus-visible .mosaic-center-hint-label {
+    animation: hint-beam 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .mosaic-center-hint-label { -webkit-text-fill-color: currentcolor; }
+    .mosaic-center:hover .mosaic-center-hint-label,
+    .mosaic-center:focus-visible .mosaic-center-hint-label { animation: none; }
 }
 
 .mosaic-center-reveal {

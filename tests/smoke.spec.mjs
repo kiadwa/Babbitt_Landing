@@ -27,7 +27,7 @@ test.describe('landing page', () => {
         await page.goto('/index.html');
         const required = [
             '#hero',
-            '#waitlistForm',
+            '#pricingBuilder',
             '#btnWaitlistCta',
             '#navHamburger',
             '#navLinks',
@@ -35,6 +35,21 @@ test.describe('landing page', () => {
         for (const sel of required) {
             await expect(page.locator(sel), `missing ${sel}`).toHaveCount(1);
         }
+    });
+
+    test('room-modal CTA pre-selects the matching plan in the pricing builder', async ({ page }) => {
+        await page.goto('/index.html');
+
+        // Owner ticket → Property account, Owner sub-type selected.
+        await page.locator('[data-room-cta="owner"]').dispatchEvent('click');
+        await expect(page.locator('.pb-account-chip[data-account="property"]')).toHaveClass(/is-active/);
+        await expect(
+            page.locator('.pb-property-subchip[data-property-type="propertyOwner"]'),
+        ).toHaveAttribute('aria-selected', 'true');
+
+        // Supplier ticket → Supplier account selected.
+        await page.locator('[data-room-cta="supplier"]').dispatchEvent('click');
+        await expect(page.locator('.pb-account-chip[data-account="supplier"]')).toHaveClass(/is-active/);
     });
 
     test('hero word-cycling spans render', async ({ page }) => {

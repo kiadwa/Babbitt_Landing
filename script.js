@@ -73,9 +73,14 @@
 
     Array.prototype.forEach.call(wraps, function (wrap, cardIdx) {
         var quotes = Array.prototype.slice.call(wrap.querySelectorAll('.founder-quote'));
-        if (quotes.length < 2 || reduceMotion) return;
+        if (quotes.length < 2) return;
 
-        var dotsWrap = wrap.parentNode.querySelector('[data-founder-dots]');
+        var card     = wrap.parentNode;
+        var dotsWrap = card.querySelector('[data-founder-dots]');
+        var prevBtn  = card.querySelector('[data-founder-prev]');
+        var nextBtn  = card.querySelector('[data-founder-next]');
+        var pauseBtn = card.querySelector('[data-founder-pause]');
+
         var dots = [];
         if (dotsWrap) {
             quotes.forEach(function (_, i) {
@@ -87,15 +92,45 @@
         }
 
         var active = 0;
-        // Stagger the two cards so they don't flip in lockstep.
-        var interval = 5200 + cardIdx * 1300;
-        setInterval(function () {
+        // Start paused under reduced-motion (no autoplay) but keep the manual
+        // prev/next controls working. Cycling speed slowed ~2x from the prior
+        // build so each quote is comfortable to read; the two cards are
+        // staggered so they don't flip in lockstep.
+        var paused   = reduceMotion;
+        var DURATION = 10400 + cardIdx * 2600;
+        var timer    = null;
+
+        function show(idx) {
             quotes[active].classList.remove('is-active');
             if (dots[active]) dots[active].classList.remove('is-active');
-            active = (active + 1) % quotes.length;
+            active = (idx + quotes.length) % quotes.length;
             quotes[active].classList.add('is-active');
             if (dots[active]) dots[active].classList.add('is-active');
-        }, interval);
+        }
+
+        function startTimer() {
+            if (timer) { clearInterval(timer); timer = null; }
+            if (!paused) {
+                timer = setInterval(function () { show(active + 1); }, DURATION);
+            }
+        }
+
+        function setPaused(next) {
+            paused = next;
+            if (pauseBtn) {
+                pauseBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+                pauseBtn.setAttribute('aria-label', paused ? 'Play quotes' : 'Pause quotes');
+                var icon = pauseBtn.querySelector('i');
+                if (icon) icon.className = (paused ? 'fas fa-play' : 'fas fa-pause');
+            }
+            startTimer();
+        }
+
+        if (prevBtn)  prevBtn.addEventListener('click',  function () { show(active - 1); startTimer(); });
+        if (nextBtn)  nextBtn.addEventListener('click',  function () { show(active + 1); startTimer(); });
+        if (pauseBtn) pauseBtn.addEventListener('click', function () { setPaused(!paused); });
+
+        setPaused(paused);
     });
 })();
 
@@ -487,13 +522,13 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
     // Per-tile descriptions shown in the header, keyed by card index. Source:
     // each card's (commented-out) body copy, condensed to one line.
     var DESCRIPTIONS = [
-        'Owners, managers, trades and suppliers all work from the same job record — not scattered across inboxes, calls and portals.',
-        'Every completed job becomes a permanent record on the property, still useful long after the invoice is paid.',
-        'Reputation is tied to signed close-outs and verified work — trust built from proof, not paid visibility.',
-        'Affordable from day one: no pay-to-bid, no charge before there is real value, no heavy onboarding to begin.',
-        'Every repair, inspection, warranty and approval becomes part of the property’s service history.',
-        'Variations open inside the job with scope, price and approval attached, so the invoice follows the work, not the argument.',
-        'Foreman drafts SEO-ready articles from your closed jobs and catalogue updates. Add a photo, hit publish.'
+        'Everyone on the same job record. Scope, approvals, orders, variations, delivery and close-out stay connected — not scattered across inboxes, calls and portals.',
+        'Babbitt doesn’t just help you run today’s work. Every job you close or property you manage becomes part of your permanent record. What was scoped, approved, built and signed off stays useful long after the invoice is paid.',
+        'Reviews are tied to real, completed work with signed close-outs. No pay-to-rank, no fake reviews. Trust built from proof.',
+        'No pay-to-bid. No charge before there’s real business value. The platform grows with the user, portfolio or supply team using it. A tool for everyone at every stage.',
+        'Every repair, inspection, product, warranty and approval becomes part of the property’s service history. The next person opening the property starts with context, not a blank page.',
+        'When the client asks for more, a variation opens with scope, price and approval attached. Work moves once it’s signed. The invoice that follows captures every change, protecting your margins.',
+        'Foreman AI drafts SEO (search engine optimised) ready articles from your closed jobs. All you need to do is edit, add a photo, hit publish. Babbitt posts to the industry network and the open web. No social-media noise, no ad payments.'
     ];
 
     var cards  = Array.prototype.slice.call(stage.querySelectorAll('.why-card'));
@@ -804,29 +839,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 (function () {
     var successEl = document.getElementById('waitlistSuccess');
 
-    // User waitlist form (fired from "Who Babbitt is for" room-modal CTAs)
-    var waitlistForm = document.getElementById('waitlistForm');
-    var waitlistMsg  = document.getElementById('formMessage');
-    var waitlistBtn  = document.getElementById('submitBtn');
-    // When the EO bridge is configured, route the native form through it instead
-    // of FormSubmit. The worker mirrors to FormSubmit and 302s back to _next, so
-    // the success-banner flow below is unchanged.
-    if (window.EO_BRIDGE_ENDPOINT && waitlistForm) {
-        waitlistForm.setAttribute('action', window.EO_BRIDGE_ENDPOINT);
-    }
-    if (waitlistForm) {
-        waitlistForm.addEventListener('submit', function () {
-            if (waitlistBtn) {
-                waitlistBtn.disabled = true;
-                waitlistBtn.textContent = 'Submitting...';
-            }
-            if (waitlistMsg) {
-                waitlistMsg.textContent = 'Submitting your details...';
-                waitlistMsg.className = 'form-message';
-            }
-            sessionStorage.setItem('formSubmitted', 'user_waitlist');
-        });
-    }
+    // (The user-waitlist sweep form was retired; the room-modal CTAs now route to
+    //  the #waitlist early-bird pricing section — see IIFE 13b.)
 
     // Detect return from successful FormSubmit redirect — show inline banner.
     // Driven by sessionStorage (set on submit) with URL-hash as fallback,
@@ -1233,63 +1247,61 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
 })();
 
-/* ── 13b. User Waitlist Sweep — fired from "Who Babbitt is for" room-modal CTAs ── */
+/* ── 13b. Room-modal CTAs → early-bird pricing ──
+   Each floor-plan room's primary "ticket" CTA closes the room modal, pre-selects
+   the matching plan in the pricing builder (so the visitor lands on pricing that
+   already reflects their role), and smooth-scrolls to the #waitlist early-bird
+   section. Tenants have no paid plan, so theirs just scrolls. This replaces the
+   retired user-waitlist yellow-sweep form. The pre-select works by triggering the
+   builder's own chip clicks, so it stays in sync with IIFE 14's logic. */
 (function () {
-    var sweep      = document.getElementById('userWaitlistSweep');
-    var sweepMsg   = document.getElementById('userWaitlistMessage');
-    var entryInput = document.getElementById('waitlistEntryPoint');
-    var userType   = document.getElementById('waitlistUserType');
-    var ctaEls     = document.querySelectorAll('[data-room-cta]');
-    var roomModal  = document.getElementById('roomModal');
-    if (!sweep || !sweepMsg || !ctaEls.length) return;
+    var ctaEls = document.querySelectorAll('[data-room-cta]');
+    if (!ctaEls.length) return;
 
-    var sweepContent = sweepMsg.querySelector('.sweep-content');
-
-    // Maps the CTA's role context onto the form's userType <select> option value.
-    var ROLE_TO_USERTYPE = {
-        trades:   'trades',
-        supplier: 'supplier',
-        manager:  'property_manager',
-        strata:   'strata',
-        owner:    'property_owner',
-        tenant:   'tenant'
+    // Room role → pricing-builder Property sub-type (data-property-type).
+    var PROPERTY_SUBTYPE = {
+        owner:   'propertyOwner',
+        manager: 'propertyManager',
+        strata:  'strata'
     };
 
+    function selectPlanForRole(role) {
+        var pb = document.getElementById('pricingBuilder');
+        if (!pb) return;
+        if (role === 'trades' || role === 'supplier') {
+            var chip = pb.querySelector('.pb-account-chip[data-account="' + role + '"]');
+            if (chip) chip.click();
+        } else if (PROPERTY_SUBTYPE[role]) {
+            // Activate Property (reveals the sub-chips), then pick the sub-type.
+            var propChip = pb.querySelector('.pb-account-chip[data-account="property"]');
+            if (propChip) propChip.click();
+            var sub = pb.querySelector('.pb-property-subchip[data-property-type="' + PROPERTY_SUBTYPE[role] + '"]');
+            if (sub) sub.click();
+        }
+        // tenant / unknown: no paid plan — leave the builder on its default.
+    }
+
     function closeRoomModal() {
-        if (!roomModal) return;
-        roomModal.classList.remove('is-open');
-        roomModal.setAttribute('aria-hidden', 'true');
+        var modal = document.getElementById('roomModal');
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-    }
-
-    function openSweep() {
-        sweep.classList.add('active');
-        sweepMsg.classList.add('active');
-    }
-
-    function closeSweep() {
-        sweepMsg.classList.remove('active');
-        setTimeout(function () { sweep.classList.remove('active'); }, 300);
     }
 
     ctaEls.forEach(function (el) {
         el.addEventListener('click', function (e) {
             e.preventDefault();
-            var role = el.getAttribute('data-room-cta') || '';
-            if (entryInput) entryInput.value = role;
-            if (userType && ROLE_TO_USERTYPE[role]) userType.value = ROLE_TO_USERTYPE[role];
+            selectPlanForRole(el.getAttribute('data-room-cta') || '');
             closeRoomModal();
-            openSweep();
+            var target = document.getElementById('waitlist');
+            if (!target) return;
+            // Scroll after the modal is closed and the builder has re-rendered, so
+            // the smooth scroll measures the final (unlocked) page layout.
+            window.requestAnimationFrame(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         });
-    });
-
-    sweep.addEventListener('click', closeSweep);
-    if (sweepContent) {
-        sweepContent.addEventListener('click', function (e) { e.stopPropagation(); });
-    }
-    sweepMsg.addEventListener('click', closeSweep);
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && sweepMsg.classList.contains('active')) closeSweep();
     });
 })();
 
@@ -1415,6 +1427,45 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         }
     }
 
+    // Programmatically select a tier — mirrors a user click on the tier card,
+    // moving the highlight outline and updating the quote label/price and the
+    // add-on list. Tier 2 is locked, so selecting it is a no-op.
+    function selectTier(tierKey) {
+        var card = builder.querySelector('.pb-tier[data-tier="' + tierKey + '"]');
+        if (!card || tierKey === 'tier2') return;
+        tierCards.forEach(function (c) {
+            var on = c === card;
+            c.classList.toggle('is-selected', on);
+            c.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
+        state.tier = tierKey;
+        state.addons = {};
+        var price = state.billing === 'yearly'
+            ? parseFloat(card.getAttribute('data-yearly'))
+            : parseFloat(card.getAttribute('data-monthly'));
+        state.tierCost = price;
+        if (tierLabel) tierLabel.textContent = card.querySelector('.pb-tier-name').textContent;
+        if (tierPriceEl) tierPriceEl.textContent = '$' + price.toFixed(2);
+        renderAddons();
+        renderTotals();
+        updateTier2Card();
+    }
+
+    // Owner realistically lives on the Free tier, so the "Most Popular" badge
+    // moves to Free when Owner is the active account; every other ICP keeps it
+    // on Tier 1. CSS shows the badge only on the card carrying `.is-popular`,
+    // and the selected (highlighted) tier follows it so the outline and badge
+    // always sit on the same card.
+    function updatePopularBadge() {
+        var freeCard  = builder.querySelector('.pb-tier[data-tier="free"]');
+        var tier1Card = builder.querySelector('.pb-tier[data-tier="tier1"]');
+        if (!freeCard || !tier1Card) return;
+        var ownerPopular = state.account === 'propertyOwner';
+        freeCard.classList.toggle('is-popular', ownerPopular);
+        tier1Card.classList.toggle('is-popular', !ownerPopular);
+        selectTier(ownerPopular ? 'free' : 'tier1');
+    }
+
     // Billing toggle
     billingChips.forEach(function (chip) {
         chip.addEventListener('click', function () {
@@ -1506,6 +1557,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         state.optedInSetupFees = {};
         state.accountFee = totalSetupFees(state.account);
         populateTierFeatures();
+        updatePopularBadge();
         renderAddons();
         renderTotals();
     }
@@ -1551,6 +1603,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             state.optedInSetupFees = {};
             state.accountFee = totalSetupFees(state.account);
             populateTierFeatures();
+            updatePopularBadge();
             renderAddons();
             renderTotals();
         });
@@ -1559,22 +1612,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     // Tier selection
     tierCards.forEach(function (card) {
         card.addEventListener('click', function () {
-            if (card.getAttribute('data-tier') === 'tier2') return;
-            tierCards.forEach(function (c) {
-                c.classList.toggle('is-selected', c === card);
-                c.setAttribute('aria-checked', c === card ? 'true' : 'false');
-            });
-            state.tier = card.getAttribute('data-tier');
-            state.addons = {};
-            var price = state.billing === 'yearly'
-                ? parseFloat(card.getAttribute('data-yearly'))
-                : parseFloat(card.getAttribute('data-monthly'));
-            state.tierCost = price;
-            if (tierLabel) tierLabel.textContent = card.querySelector('.pb-tier-name').textContent;
-            if (tierPriceEl) tierPriceEl.textContent = '$' + price.toFixed(2);
-            renderAddons();
-            renderTotals();
-            updateTier2Card();
+            selectTier(card.getAttribute('data-tier'));
         });
 
         card.addEventListener('keydown', function (e) {
@@ -1936,6 +1974,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     // Initialise
     state.accountFee = totalSetupFees(state.account);
     populateTierFeatures();
+    updatePopularBadge();
     renderAddons();
     renderTotals();
     updateTier2Card();
