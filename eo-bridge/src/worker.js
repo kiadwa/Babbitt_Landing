@@ -118,53 +118,109 @@ export default {
     }
 };
 
-/* ── Email Octopus 1.6: add the contact to a list ── */
+/* ── Email Octopus 1.6: add OR update the contact on a list ──
+   First touch → POST (create). If the email is already on the list (any
+   earlier form — contact, waitlist or pricing all share one list), EO rejects
+   the POST with MEMBER_EXISTS; we then PUT to MERGE this submission's fields
+   into the existing contact, so a 2nd form with the same email still records
+   its answers instead of being silently dropped. */
 async function subscribe(env, listId, email, data, source, laneValue) {
-    // Keys MUST match the list's EmailOctopus merge tags EXACTLY. EO generates
-    // these from the field label (strips underscores, capitalises first letter
-    // only) and they are case-sensitive — see the list's Settings -> Fields.
-    const fields = {
-        FirstName: data.firstName || '',
-        LastName: data.lastName || '',
-        Icplane: laneValue || '',
-        Stage: 'cold',
-        Source: source
-    };
-    const company = data.company || data.businessName || '';
-    if (company) fields.CompanyName = company;
-    // Pricing snapshot (early-bird form) -> EO merge tags.
-    const PLAN_FIELDS = {
-        plan_account: 'Planaccount',
-        plan_tier: 'Plantier',
-        plan_billing: 'Planbilling',
-        plan_total: 'Plantotal'
-    };
-    Object.keys(PLAN_FIELDS).forEach(function (k) {
-        if (data[k]) fields[PLAN_FIELDS[k]] = String(data[k]);
-    });
-
+    const fields = buildFields(data, laneValue);
     const tags = ['source:' + source, 'lane:' + (laneValue || 'unknown')];
-    const url = 'https://emailoctopus.com/api/1.6/lists/' + listId + '/contacts';
+    const base = 'https://emailoctopus.com/api/1.6/lists/' + listId + '/contacts';
 
-    const res = await fetch(url, {
+    // Stage + Source are stamped on first touch only — a later merge must not
+    // reset the funnel stage or overwrite the original acquisition source.
+    const res = await fetch(base, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             api_key: env.EO_API_KEY,
             email_address: email,
-            fields: fields,
+            fields: Object.assign({ Stage: 'cold', Source: source }, fields),
             tags: tags,
             status: 'SUBSCRIBED'
         })
     });
-
     if (res.ok) return true;
 
     const err = await res.json().catch(function () { return {}; });
     const code = err && err.error && err.error.code;
-    // Already on the list — treat as success (we don't overwrite their fields).
-    if (code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') return true;
+    if (code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') {
+        return await updateContact(env, listId, email, fields);
+    }
     throw new Error((err && err.error && err.error.message) || ('Email Octopus HTTP ' + res.status));
+}
+
+/* Merge this submission's fields into an existing contact. EO's contact id is
+   the MD5 of the lowercased email. We READ the contact's current fields first
+   and PUT the union (this submission's non-empty values winning), so the write
+   is correct whether EO's PUT merges or replaces — earlier answers are never
+   lost. `status` is deliberately omitted so we never silently re-subscribe
+   someone who had opted out. */
+async function updateContact(env, listId, email, fields) {
+    const memberId = await md5Hex(email.trim().toLowerCase());
+    const base = 'https://emailoctopus.com/api/1.6/lists/' + listId + '/contacts/' + memberId;
+
+    // Read existing fields (best effort) so we can preserve everything already set.
+    let existing = {};
+    try {
+        const getRes = await fetch(base + '?api_key=' + encodeURIComponent(env.EO_API_KEY));
+        if (getRes.ok) {
+            const body = await getRes.json().catch(function () { return {}; });
+            if (body && body.fields) existing = body.fields;
+        }
+    } catch { /* fall back to writing just this submission's fields */ }
+
+    const merged = Object.assign({}, existing, fields);
+    const res = await fetch(base, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ api_key: env.EO_API_KEY, fields: merged })
+    });
+    if (res.ok) return true;
+    const err = await res.json().catch(function () { return {}; });
+    const code = err && err.error && err.error.code;
+    // The contact is already on the list either way — don't fail the whole
+    // submission over a merge hiccup.
+    if (code === 'MEMBER_NOT_FOUND') return true;
+    throw new Error((err && err.error && err.error.message) || ('Email Octopus update HTTP ' + res.status));
+}
+
+/* Map the site's form fields → the list's EmailOctopus merge tags. Keys MUST
+   match the tags EXACTLY (EO strips underscores and capitalises only the first
+   letter; they're case-sensitive — see the list's Settings -> Fields). Only
+   NON-EMPTY values are returned, so merging a later form never wipes earlier
+   answers, and forms that omit a field (e.g. waitlist has no Message) never
+   send it. */
+function buildFields(data, laneValue) {
+    const fields = {};
+    const set = function (tag, val) {
+        const v = (val == null ? '' : String(val)).trim();
+        if (v) fields[tag] = v;
+    };
+    set('FirstName', data.firstName);
+    set('LastName', data.lastName);
+    set('Icplane', laneValue);
+    set('CompanyName', data.company || data.businessName);
+    // Contact form: "What's this about?" (topic) + the message body.
+    set('Whatabout', data.topic || data.what_about);
+    set('Message', data.message);
+    // Pricing snapshot (early-bird lock form).
+    set('Planaccount', data.plan_account);
+    set('Plantier', data.plan_tier);
+    set('Planbilling', data.plan_billing);
+    set('Plantotal', data.plan_total);
+    return fields;
+}
+
+/* MD5 hex — used only to derive the EO contact id from the email. Cloudflare's
+   Web Crypto exposes MD5 for digest() as a non-standard extension. */
+async function md5Hex(str) {
+    const buf = await crypto.subtle.digest('MD5', new TextEncoder().encode(str));
+    return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return b.toString(16).padStart(2, '0');
+    }).join('');
 }
 
 /* ── Helpers ── */
