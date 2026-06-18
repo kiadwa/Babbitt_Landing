@@ -581,22 +581,6 @@ body.partner-hover .dim-overlay {
     background: rgba(13, 12, 10, 0.58);
 }
 
-/* ── Yellow sweep — member click ── */
-.yellow-sweep {
-    position: fixed;
-    inset: 0;
-    background: var(--yellow);
-    z-index: 900;
-    clip-path: circle(0% at calc(100% + 20px) -20px);
-    pointer-events: none;
-    transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.yellow-sweep.active {
-    clip-path: circle(175% at calc(100% + 20px) -20px);
-    pointer-events: none;
-}
-
 .sweep-message {
     position: fixed;
     inset: 0;
@@ -805,11 +789,6 @@ body.partner-hover .dim-overlay {
 
 .sweep-partner .sweep-title {
     color: var(--bg-base);
-}
-
-#userWaitlistMessage .sweep-title {
-    white-space: nowrap;
-    font-size: clamp(20px, 2.6vw, 28px);
 }
 
 .btn-submit-partner {

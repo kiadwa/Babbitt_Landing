@@ -837,8 +837,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 
 /* ── 9. Form Submission (FormSubmit.co with built-in captcha) ── */
 (function () {
-    var successEl = document.getElementById('waitlistSuccess');
-
     // (The user-waitlist sweep form was retired; the room-modal CTAs now route to
     //  the #waitlist early-bird pricing section — see IIFE 13b.)
 
@@ -872,13 +870,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     if (bannerClose) bannerClose.addEventListener('click', hideBanner);
 
     var HASH_TO_KEY = {
-        '#user_waitlist_submitted': 'user_waitlist',
         '#partner_waitlist':        'partner',
         '#partner_submitted':       'partner',
         '#contact_submitted':       'contact'
     };
     var SUCCESS_TEXT = {
-        user_waitlist: "Thank you for joining the waitlist. We'll be in touch soon.",
         partner:       "Thank you for your partnership enquiry. We'll be in touch soon.",
         contact:       "Thanks for the message. We've got it and will reply soon."
     };
