@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Analytics: GA4 + consent + Metricool (MKT-P015A). Must be first script. -->
+    <script src="analytics-head.js"></script>
     <meta name="description" content="Babbitt. The operating layer for the built environment. Where the whole job lives, for everyone on it.">
     <title>Babbitt &middot; The industry, in one place</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1311,7 +1313,7 @@
             </div>
             <p class="footer-copy">Made in Australia 🇦🇺</p>
             <p class="footer-copy">ABN: 34695388277 - &copy; 2026 Babbitt. All rights reserved.</p>
-            <p class="footer-copy"><a class="footer-link" href="terms.html">Terms &amp; Conditions</a></p>
+            <p class="footer-copy"><a class="footer-link" href="terms.html">Terms &amp; Conditions</a> &middot; <a class="footer-link" href="privacy.html">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -2535,6 +2537,8 @@
          Email Octopus (the worker also mirrors to FormSubmit). See eo-bridge/README.md. -->
     <script>window.EO_BRIDGE_ENDPOINT = 'https://babbitt-eo-bridge.v1babbitt.workers.dev';</script>
     <script src="pricing-copy.js"></script>
+    <!-- Analytics event bindings — before script.js so the contact-success signal is read first. -->
+    <script src="analytics.js"></script>
     <script src="script.js"></script>
     <script>
         // Auto-resize each inline /demo iframe based on its real content height.
