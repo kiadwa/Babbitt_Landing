@@ -15,7 +15,7 @@ EO_LIST_MANAGERS=
 EO_LIST_STRATA=
 EO_LIST_SUPPLIERS=
 EO_LIST_DEFAULT=
-
+GG_ANA_MID='G-KH77ZM2JBK'
 # Allow your local static server's origin so the AJAX pricing-lock form passes
 # CORS. Match the port you serve index.html on (python http.server = 8000,
 # http-server = 8080, etc). Comma-separated.
