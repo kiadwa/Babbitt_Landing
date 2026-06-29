@@ -203,6 +203,7 @@ function buildFields(data, laneValue) {
     set('LastName', data.lastName);
     set('Icplane', laneValue);
     set('CompanyName', data.company || data.businessName);
+    set('abn', data.abn);
     // Contact form: "What's this about?" (topic) + the message body.
     set('Whatabout', data.topic || data.what_about);
     set('Message', data.message);

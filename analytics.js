@@ -166,7 +166,7 @@
 
         var form = document.getElementById('pbLockForm');
         if (form) {
-            var FIELDS = ['firstName', 'lastName', 'email', 'businessName', 'icp'];
+            var FIELDS = ['firstName', 'lastName', 'email', 'businessName', 'abn', 'icp'];
             FIELDS.forEach(function (name, idx) {
                 var field = form.querySelector('[name="' + name + '"]');
                 if (!field) return;

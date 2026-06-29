@@ -1152,7 +1152,10 @@
                     <input type="text" name="lastName"  id="pbLock-lastName"  autocomplete="family-name" aria-label="Last name"  placeholder="Last name"  required>
                 </div>
                 <input type="email" name="email" id="pbLock-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
-                <input type="text" name="businessName" id="pbLock-businessName" autocomplete="organization" aria-label="Business name or ABN" placeholder="Business name / ABN" required>
+                <div class="pb-lock-form-row">
+                    <input type="text" name="businessName" id="pbLock-businessName" autocomplete="organization" aria-label="Business name" placeholder="Business name">
+                    <input type="text" name="abn" id="pbLock-abn" inputmode="numeric" autocomplete="off" aria-label="ABN" placeholder="ABN">
+                </div>
                 <select name="icp" id="pbLockIcp" aria-label="Your role" required>
                     <option value="">Your role</option>
                     <option value="trades_owner">Trades &middot; owner / principal</option>
