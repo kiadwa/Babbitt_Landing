@@ -1147,17 +1147,18 @@
                 <input type="hidden" name="plan_addons"    id="pbLockPlanAddons">
                 <input type="hidden" name="plan_total"     id="pbLockPlanTotal">
 
+                <p class="pb-lock-legend"><span class="pb-lock-req" aria-hidden="true">*</span> Required field &middot; Business name &amp; ABN are optional</p>
                 <div class="pb-lock-form-row">
-                    <input type="text" name="firstName" id="pbLock-firstName" autocomplete="given-name" aria-label="First name" placeholder="First name" required>
-                    <input type="text" name="lastName"  id="pbLock-lastName"  autocomplete="family-name" aria-label="Last name"  placeholder="Last name"  required>
+                    <input type="text" name="firstName" id="pbLock-firstName" autocomplete="given-name" aria-label="First name (required)" placeholder="First name *" required>
+                    <input type="text" name="lastName"  id="pbLock-lastName"  autocomplete="family-name" aria-label="Last name (required)"  placeholder="Last name *"  required>
                 </div>
-                <input type="email" name="email" id="pbLock-email" autocomplete="email" aria-label="Email" placeholder="Email" required>
+                <input type="email" name="email" id="pbLock-email" autocomplete="email" aria-label="Email (required)" placeholder="Email *" required>
                 <div class="pb-lock-form-row">
-                    <input type="text" name="businessName" id="pbLock-businessName" autocomplete="organization" aria-label="Business name" placeholder="Business name">
-                    <input type="text" name="abn" id="pbLock-abn" inputmode="numeric" autocomplete="off" aria-label="ABN" placeholder="ABN">
+                    <input type="text" name="businessName" id="pbLock-businessName" autocomplete="organization" aria-label="Business name (optional)" placeholder="Business name (optional)">
+                    <input type="text" name="abn" id="pbLock-abn" inputmode="numeric" autocomplete="off" aria-label="ABN (optional)" placeholder="ABN (optional)">
                 </div>
-                <select name="icp" id="pbLockIcp" aria-label="Your role" required>
-                    <option value="">Your role</option>
+                <select name="icp" id="pbLockIcp" aria-label="Your role (required)" required>
+                    <option value="">Your role *</option>
                     <option value="trades_owner">Trades &middot; owner / principal</option>
                     <option value="trades_team">Trades &middot; team / employee</option>
                     <option value="property_owner">Property owner / investor</option>

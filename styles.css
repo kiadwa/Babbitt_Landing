@@ -9776,6 +9776,15 @@ a.demo-role-chip {
 
 .pb-lock-form { display: flex; flex-direction: column; gap: 10px; }
 
+.pb-lock-legend {
+    margin: 0 0 2px;
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+}
+
+.pb-lock-req { color: var(--yellow); font-weight: 600; }
+
 .pb-lock-form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
