@@ -324,7 +324,11 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
                         half.classList.remove('peek-half--clicked');
                     }, 400);
                 } else if (href.charAt(0) === '#') {
-                    var target = document.querySelector(href);
+                    // A bare "#" (or any non-ident fragment) is not a valid CSS
+                    // selector — querySelector throws a DOMException instead of
+                    // returning null, so guard the lookup.
+                    var target = null;
+                    try { target = document.querySelector(href); } catch { target = null; }
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
@@ -363,9 +367,11 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
         { sel: '.peek--founders', rot:  16, ox:  30, oy:  10 },
         { sel: '.mosaic-center',  rot:   0, ox:   0, oy:   0 }
     ];
-    cards = cards
-        .map(function (c) { c.el = hero.querySelector(c.sel); return c; })
-        .filter(function (c) { return c.el; });
+    cards = cards.reduce(function (kept, c) {
+        c.el = hero.querySelector(c.sel);
+        if (c.el) kept.push(c);
+        return kept;
+    }, []);
 
     // All cards converge to this scale at progress = 1. The peek cards
     // shrink less than the centre card, which leaves the centre as the
@@ -755,7 +761,12 @@ document.querySelectorAll('.mosaic-card').forEach(function (card) {
 document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
+        // The decorative .foreman-link anchors use a bare href="#", which is
+        // not a valid CSS selector — querySelector throws a DOMException
+        // rather than returning null, so guard the lookup.
+        var hash = this.getAttribute('href');
+        var target = null;
+        try { target = document.querySelector(hash); } catch { target = null; }
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -1954,8 +1965,12 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(buildCheckoutPayload()),
                 });
+                if (!res.ok) {
+                    var errBody = await res.json().catch(function () { return {}; });
+                    throw new Error(errBody.error || 'Checkout could not be started. Please try again.');
+                }
                 var data = await res.json().catch(function () { return {}; });
-                if (!res.ok || !data.url) {
+                if (!data.url) {
                     throw new Error(data.error || 'Checkout could not be started. Please try again.');
                 }
                 window.location.assign(data.url);
@@ -2136,8 +2151,13 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             headers: { 'Accept': 'application/json' },
             body: new FormData(form)
         }).then(function (res) {
+            if (!res.ok) {
+                return res.json().catch(function () { return {}; }).then(function (data) {
+                    throw new Error((data && data.message) || 'Submission failed. Please try again.');
+                });
+            }
             return res.json().catch(function () { return {}; }).then(function (data) {
-                if (!res.ok || (data && data.success === 'false')) {
+                if (data && data.success === 'false') {
                     throw new Error((data && data.message) || 'Submission failed. Please try again.');
                 }
                 showSuccess();

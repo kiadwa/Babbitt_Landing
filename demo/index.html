@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babbitt Demo &middot; Try the Construction Job Platform</title>
+    <meta name="description" content="Try Babbitt free. Walk through posting a job, quoting, staging a build and signing off — as a tradie, supplier, builder or property manager.">
+    <link rel="canonical" href="https://babbitt.app/demo/">
+    <link rel="alternate" hreflang="en-au" href="https://babbitt.app/demo/">
+    <meta name="robots" content="index, follow">
     <script src="../analytics-head.js"></script>
-    <meta name="description" content="Babbitt. Live demo of the platform. Walk through key user flows.">
-    <title>Babbitt &middot; Demo</title>
     <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 
     <!-- Open Graph / social previews -->
@@ -14,11 +17,14 @@
     <meta property="og:title" content="Babbitt &middot; Live demo">
     <meta property="og:description" content="Walk through real user flows. Post a job, quote, stage a build, sign off. All in one place.">
     <meta property="og:url" content="https://babbitt.app/demo/">
-    <meta property="og:image" content="https://babbitt.app/assets/babbitt-full-logo.svg">
+    <!-- Was babbitt-full-logo.svg. No social platform renders SVG previews —
+         that tag produced a bare link everywhere it was shared. -->
+    <meta property="og:image" content="https://babbitt.app/assets/Foreman_Pic.png">
+    <meta property="og:locale" content="en_AU">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Babbitt &middot; Live demo">
     <meta name="twitter:description" content="Walk through real user flows. Post a job, quote, stage a build, sign off. All in one place.">
-    <meta name="twitter:image" content="https://babbitt.app/assets/babbitt-full-logo.svg">
+    <meta name="twitter:image" content="https://babbitt.app/assets/Foreman_Pic.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5307,7 +5313,7 @@ Bonus points if they're across NSW SafeWork notification too.</p>
 
         // ── Flow 1: priority buttons ──────────────────────────────
         function readPriorities() {
-          return $$('.priority-btn').filter((b) => b.dataset.selected === '1').map((b) => b.dataset.priority);
+          return $$('.priority-btn').flatMap((b) => (b.dataset.selected === '1' ? [b.dataset.priority] : []));
         }
         function setPriority(p, selected) {
           const btn = $(`[data-priority="${p}"]`);

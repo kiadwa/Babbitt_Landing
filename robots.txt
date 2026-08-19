@@ -1,0 +1,43 @@
+# babbitt.app — landing
+# Named agents are listed explicitly: several AI crawlers ignore wildcard
+# blocks but honour a directive addressed to them by name.
+# Nothing is disallowed. /qrlanding/ carries its own noindex meta — it must
+# stay crawlable for that meta to be read.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://babbitt.app/sitemap.xml

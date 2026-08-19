@@ -173,12 +173,15 @@ async function createCheckoutSession(env, priced) {
     body: form.toString(),
   });
 
-  const data = await res.json();
   if (!res.ok) {
-    const msg = (data && data.error && data.error.message) || 'Stripe request failed';
+    // Stripe errors can arrive as a non-JSON body (edge/proxy error pages), so
+    // an unguarded res.json() here would throw a SyntaxError and bury the real
+    // HTTP status.
+    const errBody = await res.json().catch(() => ({}));
+    const msg = (errBody && errBody.error && errBody.error.message) || `Stripe request failed (HTTP ${res.status})`;
     throw new Error(msg);
   }
-  return data;
+  return await res.json();
 }
 
 export default {

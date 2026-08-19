@@ -142,14 +142,15 @@ async function subscribe(env, listId, email, data, source, laneValue) {
             status: 'SUBSCRIBED'
         })
     });
-    if (res.ok) return true;
-
-    const err = await res.json().catch(function () { return {}; });
-    const code = err && err.error && err.error.code;
-    if (code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') {
-        return await updateContact(env, listId, email, fields);
+    if (!res.ok) {
+        const err = await res.json().catch(function () { return {}; });
+        const code = err && err.error && err.error.code;
+        if (code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') {
+            return await updateContact(env, listId, email, fields);
+        }
+        throw new Error((err && err.error && err.error.message) || ('Email Octopus HTTP ' + res.status));
     }
-    throw new Error((err && err.error && err.error.message) || ('Email Octopus HTTP ' + res.status));
+    return true;
 }
 
 /* Merge this submission's fields into an existing contact. EO's contact id is
@@ -178,13 +179,15 @@ async function updateContact(env, listId, email, fields) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ api_key: env.EO_API_KEY, fields: merged })
     });
-    if (res.ok) return true;
-    const err = await res.json().catch(function () { return {}; });
-    const code = err && err.error && err.error.code;
-    // The contact is already on the list either way — don't fail the whole
-    // submission over a merge hiccup.
-    if (code === 'MEMBER_NOT_FOUND') return true;
-    throw new Error((err && err.error && err.error.message) || ('Email Octopus update HTTP ' + res.status));
+    if (!res.ok) {
+        const err = await res.json().catch(function () { return {}; });
+        const code = err && err.error && err.error.code;
+        // The contact is already on the list either way — don't fail the whole
+        // submission over a merge hiccup.
+        if (code === 'MEMBER_NOT_FOUND') return true;
+        throw new Error((err && err.error && err.error.message) || ('Email Octopus update HTTP ' + res.status));
+    }
+    return true;
 }
 
 /* Map the site's form fields → the list's EmailOctopus merge tags. Keys MUST

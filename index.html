@@ -1,12 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title and description sit above the first script so a crawler reaches
+         them without waiting on a blocking request. analytics-head.js is still
+         the first *script*, which is what MKT-P015A requires. -->
+    <title>Babbitt &middot; Construction Jobs &amp; Trade Network Australia</title>
+    <meta name="description" content="Free job board and network for Australian construction — trades, suppliers, builders and property managers. Find work, post jobs, connect across the industry.">
+    <link rel="canonical" href="https://babbitt.app/">
+    <link rel="alternate" hreflang="en-au" href="https://babbitt.app/">
+    <meta name="robots" content="index, follow">
+
     <!-- Analytics: GA4 + consent + Metricool (MKT-P015A). Must be first script. -->
     <script src="analytics-head.js"></script>
-    <meta name="description" content="Babbitt. The operating layer for the built environment. Where the whole job lives, for everyone on it.">
-    <title>Babbitt &middot; The industry, in one place</title>
+
+    <!-- Open Graph / Twitter. Without these every shared link renders bare. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Babbitt">
+    <meta property="og:locale" content="en_AU">
+    <meta property="og:url" content="https://babbitt.app/">
+    <meta property="og:title" content="Babbitt &middot; Construction Jobs &amp; Trade Network Australia">
+    <meta property="og:description" content="Free job board and network for Australian construction — trades, suppliers, builders and property managers. Find work, post jobs, connect across the industry.">
+    <!-- TODO: replace with a purpose-built 1200x630. Foreman_Pic is 1024x1024
+         and gets centre-cropped by every platform. -->
+    <meta property="og:image" content="https://babbitt.app/assets/Foreman_Pic.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Babbitt &middot; Construction Jobs &amp; Trade Network Australia">
+    <meta name="twitter:description" content="Free job board and network for Australian construction — trades, suppliers, builders and property managers.">
+    <meta name="twitter:image" content="https://babbitt.app/assets/Foreman_Pic.png">
+
+    <!-- Entity graph. The @id values are shared with the babbitt-app codebase —
+         both properties serve babbitt.app, so they must name the same entity or
+         Google resolves neither. Do not change an @id without changing it there. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://babbitt.app/#organization",
+          "name": "Babbitt",
+          "legalName": "Babbitt Australia Pty Ltd",
+          "url": "https://babbitt.app/",
+          "logo": "https://babbitt.app/assets/babbitt-full-logo.svg",
+          "areaServed": { "@type": "Country", "name": "Australia" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://babbitt.app/#website",
+          "url": "https://babbitt.app/",
+          "name": "Babbitt",
+          "inLanguage": "en-AU",
+          "publisher": { "@id": "https://babbitt.app/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://babbitt.app/#app",
+          "name": "Babbitt",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://babbitt.app/",
+          "publisher": { "@id": "https://babbitt.app/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://babbitt.app/#webpage",
+          "url": "https://babbitt.app/",
+          "name": "Babbitt · Construction Jobs & Trade Network Australia",
+          "inLanguage": "en-AU",
+          "isPartOf": { "@id": "https://babbitt.app/#website" },
+          "about": { "@id": "https://babbitt.app/#organization" }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      /* Semantic-only heading. The visible hero headline cycles words via JS,
+         so it can't carry the page's primary term reliably. This is the real
+         page heading until the rebuild gives the hero static, keyword-bearing
+         copy that can carry it visibly.
+         It describes what the page is about — same claim as the visible copy,
+         not hidden keyword stuffing. */
+      .sr-only {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -105,6 +195,7 @@
 
     <!-- ═══ Hero — 5-Card Mosaic ═══ -->
     <section class="hero hero-mosaic" id="hero">
+        <h1 class="sr-only">Babbitt — the network and free job board for Australian construction, trades, suppliers and property</h1>
         <div class="glow-orb glow-orb-1"></div>
         <div class="glow-orb glow-orb-2"></div>
 
