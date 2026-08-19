@@ -101,7 +101,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <!-- Favicons live at the site ROOT on purpose: browsers and Googlebot probe
+         /favicon.ico unconditionally, whatever these tags say, and /favicon.svg
+         is the pre-2026-06-29 URL Google still re-crawls. Keep them at root.
+         Paths stay relative so the page also works opened over file://.
+         assets/favicon.svg is kept as a byte-identical shim for the 2026-06-29
+         to 2026-08-19 URL — nothing references it; GitHub Pages can't redirect.
+         If the icon ever changes, update all three copies together. -->
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -1084,7 +1092,7 @@
                                     <div class="pb-tier-storage">10 GB storage</div>
                                     <ul class="pb-tier-list">
                                         <li><strong>CodeChecker included</strong></li>
-                                        <li>Untracked fleet</li>
+                                        <li>Unlimited fleet</li>
                                         <li>AI decision support</li>
                                         <li>Unlimited sub-contractors</li>
                                         <li>Advanced job management</li>

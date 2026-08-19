@@ -9,7 +9,8 @@
     <link rel="alternate" hreflang="en-au" href="https://babbitt.app/demo/">
     <meta name="robots" content="index, follow">
     <script src="../analytics-head.js"></script>
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="icon" href="../favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
     <!-- Open Graph / social previews -->
     <meta property="og:type" content="website">
@@ -25,6 +26,61 @@
     <meta name="twitter:title" content="Babbitt &middot; Live demo">
     <meta name="twitter:description" content="Walk through real user flows. Post a job, quote, stage a build, sign off. All in one place.">
     <meta name="twitter:image" content="https://babbitt.app/assets/Foreman_Pic.png">
+
+    <!-- Entity graph. The @id values are shared with index.html and the
+         babbitt-app codebase — every property serving babbitt.app must name the
+         same entity or Google resolves none of them. The Organization, WebSite
+         and SoftwareApplication nodes here are reference stubs; index.html
+         carries their full definitions. Do not change an @id in isolation. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://babbitt.app/#organization",
+          "name": "Babbitt",
+          "url": "https://babbitt.app/"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://babbitt.app/#website",
+          "url": "https://babbitt.app/",
+          "name": "Babbitt",
+          "inLanguage": "en-AU",
+          "publisher": { "@id": "https://babbitt.app/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://babbitt.app/#app",
+          "name": "Babbitt",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://babbitt.app/",
+          "publisher": { "@id": "https://babbitt.app/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://babbitt.app/demo/#webpage",
+          "url": "https://babbitt.app/demo/",
+          "name": "Babbitt Demo · Try the Construction Job Platform",
+          "description": "Try Babbitt free. Walk through posting a job, quoting, staging a build and signing off — as a tradie, supplier, builder or property manager.",
+          "inLanguage": "en-AU",
+          "isPartOf": { "@id": "https://babbitt.app/#website" },
+          "about": { "@id": "https://babbitt.app/#app" },
+          "breadcrumb": { "@id": "https://babbitt.app/demo/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://babbitt.app/demo/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Babbitt", "item": "https://babbitt.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Demo" }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

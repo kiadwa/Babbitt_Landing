@@ -1,0 +1,47 @@
+# Babbitt
+
+> Babbitt is a free job board and shared workspace for the Australian construction and property industry. Trades, suppliers, property owners, property managers, strata and tenants all work from a single record that is anchored to the property rather than to one job or one company.
+
+Operated by Babbitt Australia Pty Ltd. Serves Australia. The platform is pre-launch: the interactive demo and the CodeChecker tool are live, and early-bird pricing can be locked from the landing page.
+
+The premise: the property outlasts every job. Tradies finish and leave, property managers move on, owners sell, suppliers deliver and go. Babbitt keeps a permanent record against the property itself, so each completed job compounds into a maintenance log, a verifiable work history and a rating backed by real work — instead of evaporating when the invoice is paid.
+
+## Who it is for
+
+Six user types, one shared record:
+
+- **Trades** — manage jobs, quotes, variations and sign-off. PIN signatures for quote approvals and variations, so scope creep is captured and billable. Completed job history becomes a public showcase of your work.
+- **Suppliers** — bills of quantity arrive normalised against your stocklist, so quoting needs no rework. Pack, ship, signed consignment note, out.
+- **Property Owners** — find contractors, and turn routine maintenance into a documented history that carries value into resale.
+- **Property Managers** — every property, tenant and job in one brief. Dispatch tradies, collect inspection reports, get owner approval.
+- **Strata** — schedule and sign off common works, with motions, votes and quote comparisons recorded against the scheme.
+- **Tenants** — report an issue once and everyone connected sees it, no chasing. Tenants do not subscribe; they are invited free by their property manager or owner.
+
+## Pricing
+
+Australian dollars. Yearly billing saves 50%. Early-bird price holds for year one.
+
+- **Free — $0 forever.** 1 GB storage, basic job management, 2 properties, business registration, basic AI features, 12 confirmed jobs per year.
+- **Tier 1 — $30/month, billed yearly.** 10 GB storage, CodeChecker included, AI decision support, unlimited sub-contractors, advanced job management, no ads.
+- **Tier 2 — $100/month, billed yearly.** 100 GB storage, CodeChecker included, dedicated support, full API access, advanced reporting, team collaboration, custom integration, no ads. Unlocks at v2, for organisations with 20+ staff or 50+ properties.
+
+Suppliers can optionally add **catalogue setup for a one-time $200**: assisted stock-data migration, automatic trade-code sync for accurate quoting, real-time inventory across the platform. Sync updates are automatic after setup.
+
+## CodeChecker
+
+CodeChecker answers National Construction Code questions onsite, and every answer points at the clause it came from rather than paraphrasing it. Indexed from the NCC. Sold standalone at $190/year, it is bundled at no extra cost with any Babbitt subscription: 100 queries per month, same login, results saved against your jobs.
+
+## Pages
+
+- [Babbitt landing page](https://babbitt.app/): what Babbitt is, the six user lanes, the pricing builder and early-bird signup.
+- [Interactive demo](https://babbitt.app/demo/): walk a real flow end to end — post a job, quote it, stage the build, sign off — as a tradie, supplier, builder or property manager.
+- [Terms & Conditions](https://babbitt.app/terms.html): terms for babbitt.app.
+- [Privacy Policy](https://babbitt.app/privacy.html): how Babbitt handles personal data.
+
+## Company
+
+- Legal entity: Babbitt Australia Pty Ltd
+- Country served: Australia
+- Founder: Bruno Panucci
+- Co-Founder: Ky Anh Pham
+- Contact: the contact form at https://babbitt.app/#contact
